@@ -1,5 +1,6 @@
 export const siteConfig = {
-  brandName: "Nature Capital Real Estate",
+  brandName: "ネイチャーキャピタル・リアルエステイト",
+  englishBrandName: "Nature Capital Real Estate",
   serviceRegions: ["北海道", "東北", "山梨", "四国"],
   contact: {
     status: "preparing" as const,
