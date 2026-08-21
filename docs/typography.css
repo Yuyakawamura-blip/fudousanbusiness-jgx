@@ -1,0 +1,75 @@
+/* Shared type scale: 16 / 24 / 32 / 48 / 64px only. */
+body,
+.brand,
+.nav,
+.text-link,
+.label,
+.hero-copy p,
+.eyebrow,
+.pills,
+.button,
+.hero small,
+.intro > p:not(.label),
+.concerns li:before,
+.consultation p:not(.label),
+.consultation .note,
+.steps b,
+.steps p,
+.principles > div p,
+summary,
+.cta span,
+footer,
+.concept-copy > p:not(.label),
+.concept-image figcaption,
+.services-heading > p:not(.label),
+.service-number,
+.service-type,
+.service-grid h3 small,
+.service-grid article > p:not(.service-number):not(.service-type),
+.service-grid a,
+.service-grid span,
+.body-copy p,
+.connection-grid span,
+.connection-grid p,
+.service-grid .number,
+.service-grid .type,
+.service-grid article > p:not(.number):not(.type),
+.promise p:not(.eyebrow),
+.brand small {
+  font-size: 16px !important;
+}
+
+h1,
+.hero h1 {
+  font-size: 64px !important;
+}
+
+h2 {
+  font-size: 48px !important;
+}
+
+h3,
+.service-grid h3 {
+  font-size: 32px !important;
+}
+
+.lead,
+.concerns li {
+  font-size: 24px !important;
+}
+
+@media (max-width: 720px) {
+  h1,
+  .hero h1 {
+    font-size: 48px !important;
+  }
+
+  h2 {
+    font-size: 32px !important;
+  }
+
+  h3,
+  .service-grid h3 {
+    font-size: 24px !important;
+  }
+}
