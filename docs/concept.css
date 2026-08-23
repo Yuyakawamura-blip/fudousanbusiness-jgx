@@ -52,7 +52,7 @@
     padding: 85px 25px;
   }
   .concept-image {
-    min-height: 290px;
+    min-height: 200px;
   }
   .concept-image img {
     object-position: center 58%;
