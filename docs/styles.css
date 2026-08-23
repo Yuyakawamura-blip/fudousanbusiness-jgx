@@ -2002,6 +2002,15 @@ footer a {
 }
 
 .guide-section-heading {
+  /*
+   * This element is a semantic <header>, but it is not the site header.
+   * Reset the shared header layout here so the section title and description
+   * flow vertically instead of being squeezed into an 80px flex row.
+   */
+  height: auto;
+  min-height: 0;
+  display: block;
+  padding: 0;
   max-width: 930px;
   margin-bottom: 68px;
 }
