@@ -95,7 +95,7 @@ body {
   margin: 0 0 22px;
   color: #708874;
   font:
-    12px Georgia,
+    24px Georgia,
     serif;
   letter-spacing: 0.15em;
 }
@@ -126,12 +126,11 @@ h2 {
   line-height: 1.45;
   letter-spacing: 0.04em;
 }
-.body-copy {
-}
+
 .body-copy p {
   margin: 0 0 21px;
-  font-size: 16px;
-  line-height: 2.1;
+  font-size: 24px;
+  line-height: 1.65;
 }
 .connection {
   padding: 115px clamp(24px, 9vw, 142px);
@@ -163,8 +162,8 @@ h2 {
 }
 .connection-grid p {
   margin: 0;
-  line-height: 1.9;
-  font-size: 14px;
+  line-height: 1.65;
+  font-size: 24px;
   color: #4d554f;
 }
 .jgx {
