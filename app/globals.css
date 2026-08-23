@@ -351,7 +351,7 @@ h1 {
   margin: 0;
   padding: 25px 20px 25px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.6;
 }
 .principle-grid p:nth-child(even) {
@@ -388,7 +388,7 @@ summary::-webkit-details-marker {
 }
 summary span {
   color: var(--forest);
-  font-size: 23px;
+  font-size: 24px;
   font-weight: 300;
 }
 details[open] summary span {
