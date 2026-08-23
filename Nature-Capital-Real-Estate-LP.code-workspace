@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "name": "Nature Capital Real Estate LP",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/.next": true,
+      "**/dist": true,
+      "**/.wrangler": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/.next": true,
+      "**/dist": true,
+      "**/.wrangler": true
+    },
+    "explorer.compactFolders": false
+  }
+}
