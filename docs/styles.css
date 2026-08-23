@@ -531,7 +531,7 @@ footer span:first-child {
   background: var(--paper);
 }
 .concept-copy {
-  padding: 130px clamp(34px, 8vw, 142px);
+  padding: 115px clamp(24px, 9vw, 142px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -703,9 +703,9 @@ h3 {
 }
 .two-column {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(45px, 8vw, 140px);
-  padding: 130px clamp(24px, 9vw, 142px);
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 80px;
+  padding: 115px clamp(24px, 9vw, 142px);
 }
 h2 {
   margin: 0;
@@ -727,7 +727,7 @@ h2 {
   margin-bottom: 60px;
 }
 .connection-grid,
-.service-grid {
+.about-services .service-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
@@ -755,65 +755,65 @@ h2 {
 .jgx {
   background: #f4f1e9;
 }
-.services {
-  padding: 125px clamp(24px, 9vw, 142px);
+.about-services {
+  padding: 115px clamp(24px, 9vw, 142px);
 }
-.services > h2 {
+.about-services > h2 {
   margin-bottom: 58px;
 }
-.service-grid {
+.about-services .service-grid {
   grid-template-columns: 1fr 1fr;
 
 }
-.service-grid article {
+.about-services .service-grid article {
   padding: 38px;
   background: #f3f1ea;
   border-top: 3px solid #66826d;
 }
-.service-grid article + article {
+.about-services .service-grid article + article {
   border-top-color: #85775b;
 }
-.service-grid .number {
+.about-services .service-grid .number {
   margin: 0 0 14px;
 }
-.service-grid .type {
+.about-services .service-grid .type {
   margin: 0 0 22px;
   font: 20px Georgia,
     serif;
   letter-spacing: 0.12em;
   color: #68806c;
 }
-.service-grid h3 {
+.about-services .service-grid h3 {
   margin: 0 0 22px;
   font-size: 28px;
 }
-.service-grid h3 small {
+.about-services .service-grid h3 small {
   display: block;
   margin-top: 8px;
   font: 20px "Hiragino Sans",
     "Yu Gothic",
     sans-serif;
 }
-.service-grid article > p:not(.number):not(.type) {
+.about-services .service-grid article > p:not(.number):not(.type) {
   min-height: 116px;
   margin: 0 0 25px;
   font-size: 20px;
   line-height: 2;
   color: #4d554f;
 }
-.service-grid a,
-.service-grid span {
+.about-services .service-grid a,
+.about-services .service-grid span {
   font-size: 20px;
   color: var(--green);
   text-decoration: none;
   border-bottom: 1px solid var(--green);
 }
-.service-grid span {
+.about-services .service-grid span {
   color: #777;
   border-color: #aaa;
 }
 .promise {
-  padding: 125px clamp(24px, 9vw, 142px);
+  padding: 115px clamp(24px, 9vw, 142px);
   background: #354f40;
   color: #f3f2ea;
 }
@@ -878,16 +878,16 @@ footer span:first-child {
     padding: 85px 25px;
   }
   .connection,
-  .services {
+  .about-services {
     padding: 85px 25px;
   }
   .connection-grid {
     grid-template-columns: 1fr;
   }
-  .service-grid {
+  .about-services .service-grid {
     grid-template-columns: 1fr;
   }
-  .service-grid article > p:not(.number):not(.type) {
+  .about-services .service-grid article > p:not(.number):not(.type) {
     min-height: auto;
   }
   .promise {
