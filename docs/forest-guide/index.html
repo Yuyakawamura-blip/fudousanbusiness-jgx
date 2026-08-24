@@ -32,7 +32,7 @@
           <p class="label light">FOREST FIELD GUIDE</p>
           <h1>森林について、<br />もっと詳しく知る。</h1>
           <p>
-            森は、木の集まりではありません。光、水、土、生きもの、人の仕事が、長い時間をかけて関わり合う生態系です。その仕組みを、六つの視点から読み解きます。
+            森は、木の集まりではありません。<br />光、水、土、生きもの、人の仕事が、長い時間をかけて関わり合う生態系です。<br />その仕組みを、６つの視点から読み解きます。
           </p>
         </div>
       </section>
@@ -48,7 +48,7 @@
 
       <section class="guide-opening">
         <p class="label">HOW TO READ A FOREST</p>
-        <h2>森を見るとき、<br />三つの尺度を行き来する。</h2>
+        <h2>森を見るとき、<br />３つの尺度で解釈する</h2>
         <div class="guide-scale-grid">
           <article>
             <span>SMALL</span>
@@ -77,16 +77,41 @@
           </p>
         </header>
 
-        <div class="ecosystem-diagram" role="img" aria-label="太陽、生産者、消費者、分解者、土壌の間でエネルギーと物質が循環する図">
-          <div class="eco-sun">太陽<small>光エネルギー</small></div>
+        <figure class="guide-asset ecosystem-asset" role="img" aria-label="太陽、生産者、消費者、分解者、土壌の間でエネルギーと物質が循環する図">
+          <img src="../assets/forest-ecosystem-guide.png" alt="太陽から生産者、消費者、分解者、土壌へとつながる森林生態系の循環図" />
+          <figcaption>太陽の光が植物に入り、生きものを経て、落葉や死骸が土へ戻る。</figcaption>
+        </figure>
+        <div class="ecosystem-diagram ecosystem-diagram-legacy" aria-hidden="true">
+          <div class="eco-sun"><span class="eco-icon eco-icon-sun" aria-hidden="true">☼</span><b>太陽</b>
+            <small>光エネルギー</small>
+          </div>
           <i class="eco-arrow eco-arrow-one">→</i>
-          <div class="eco-node eco-producer"><b>生産者</b><span>樹木・草・コケ</span><small>光合成で有機物をつくる</small></div>
+          <div class="eco-node eco-producer">
+            <span class="eco-icon" aria-hidden="true">♧</span>
+            <b>生産者</b>
+            <span>樹木・草・コケ</span>
+            <small>光合成で有機物をつくる</small>
+          </div>
           <i class="eco-arrow">→</i>
-          <div class="eco-node eco-consumer"><b>消費者</b><span>昆虫・鳥・動物</span><small>食べる・運ぶ・散布する</small></div>
+          <div class="eco-node eco-consumer">
+            <span class="eco-icon" aria-hidden="true">◌</span>
+            <b>消費者</b>
+            <span>昆虫・鳥・動物</span>
+            <small>食べる・運ぶ・散布する</small>
+          </div>
           <i class="eco-arrow eco-arrow-down">↓</i>
-          <div class="eco-node eco-decomposer"><b>分解者</b><span>菌類・微生物・土壌動物</span><small>落葉や死骸を分解する</small></div>
+          <div class="eco-node eco-decomposer">
+            <span class="eco-icon" aria-hidden="true">✣</span>
+            <b>分解者</b>
+            <span>菌類・微生物・土壌動物</span>
+            <small>落葉や死骸を分解する</small>
+          </div>
           <i class="eco-arrow eco-arrow-back">↖</i>
-          <div class="eco-soil"><b>土壌</b><span>水分と養分を蓄える</span></div>
+          <div class="eco-soil">
+            <span class="eco-icon" aria-hidden="true">⌁</span>
+            <b>土壌</b>
+            <span>水分と養分を蓄える</span>
+          </div>
         </div>
 
         <div class="guide-two-column">
@@ -114,12 +139,36 @@
               台風、火災、崩壊、伐採などで空間が生まれると、光を好む植物から再生が始まります。草本、低木、若い林、成熟した林へと移り変わる過程を植生遷移といいます。森は完成して止まるのではなく、異なる段階の場所がモザイク状に並ぶことで、多様な環境をつくります。
             </p>
           </div>
-          <ol class="succession-flow" aria-label="森林の植生遷移">
-            <li><i></i><b>攪乱</b><span>風・火・崩壊・伐採</span></li>
-            <li><i></i><b>草地</b><span>光を好む植物</span></li>
-            <li><i></i><b>低木林</b><span>種子・萌芽で更新</span></li>
-            <li><i></i><b>若齢林</b><span>競争と成長</span></li>
-            <li><i></i><b>成熟林</b><span>複雑な階層構造</span></li>
+          <figure class="guide-asset succession-asset" role="img" aria-label="森林の植生遷移">
+            <img src="../assets/forest-succession-guide.png" alt="攪乱後の裸地から草地、低木林、若齢林、成熟林へ進む植生遷移" />
+            <figcaption>攪乱 → 草地 → 低木林 → 若齢林 → 成熟林</figcaption>
+          </figure>
+          <ol class="succession-flow succession-flow-legacy" aria-hidden="true">
+            <li>
+              <i></i>
+              <b>攪乱</b>
+              <span>風・火・崩壊・伐採</span>
+            </li>
+            <li>
+              <i></i>
+              <b>草地</b>
+              <span>光を好む植物</span>
+            </li>
+            <li>
+              <i></i>
+              <b>低木林</b>
+              <span>種子・萌芽で更新</span>
+            </li>
+            <li>
+              <i></i>
+              <b>若齢林</b>
+              <span>競争と成長</span>
+            </li>
+            <li>
+              <i></i>
+              <b>成熟林</b>
+              <span>複雑な階層構造</span>
+            </li>
           </ol>
         </div>
       </section>
@@ -133,21 +182,69 @@
           </p>
         </header>
 
-        <div class="function-detail-grid">
-          <article><span>01</span><h3>生物多様性</h3><p>遺伝子、種、生態系の多様性を保ち、変化へ適応する余地を残します。</p></article>
-          <article><span>02</span><h3>地球環境</h3><p>樹木と土壌に炭素を蓄え、木材利用を通じて化石資源の代替にもつながります。</p></article>
-          <article><span>03</span><h3>土砂災害防止・土壌保全</h3><p>落葉や下層植生が地表を覆い、根が表層土を支え、侵食を抑えます。</p></article>
-          <article><span>04</span><h3>水源涵養</h3><p>森林土壌が雨を浸透させ、流出を遅らせ、水量と水質を調整します。</p></article>
-          <article><span>05</span><h3>快適環境</h3><p>気温緩和、塵や汚染物質の捕捉、防音や遮蔽など、生活環境を整えます。</p></article>
-          <article><span>06</span><h3>保健・レクリエーション</h3><p>休養、運動、自然体験など、心身の健康と学びの場になります。</p></article>
-          <article><span>07</span><h3>文化</h3><p>景観、信仰、祭礼、教育、地域の記憶を支えます。数字だけでは測れない価値です。</p></article>
-          <article><span>08</span><h3>物質生産</h3><p>木材、食料、燃料、工芸材料など、再生可能な資源を生み出します。</p></article>
+        <figure class="guide-asset functions-asset" role="img" aria-label="森林の八つの多面的機能">
+          <img src="../assets/forest-functions-wheel.png" alt="中心の森林を囲む生物多様性、地球環境、土壌保全、水源涵養、快適環境、保健、文化、物質生産の多面的機能" />
+          <figcaption>森林を中心に、生物・環境・社会・文化の機能が重なり合う。</figcaption>
+        </figure>
+        <ol class="function-text-list" aria-label="森林の八つの多面的機能の一覧">
+          <li><b>01</b><span>生物多様性</span></li>
+          <li><b>02</b><span>地球環境</span></li>
+          <li><b>03</b><span>土砂災害防止・土壌保全</span></li>
+          <li><b>04</b><span>水源涵養</span></li>
+          <li><b>05</b><span>快適環境</span></li>
+          <li><b>06</b><span>保健・レクリエーション</span></li>
+          <li><b>07</b><span>文化</span></li>
+          <li><b>08</b><span>物質生産</span></li>
+        </ol>
+        <div class="function-detail-grid function-detail-grid-legacy">
+          <div class="function-wheel-core" aria-hidden="true"><b>森林</b><span>多面的機能</span></div>
+          <article>
+            <span class="function-icon" aria-hidden="true">◌</span><span>01</span>
+            <h3>生物多様性</h3>
+            <p>遺伝子、種、生態系の多様性を保ち、変化へ適応する余地を残します。</p>
+          </article>
+          <article>
+            <span class="function-icon" aria-hidden="true">◒</span><span>02</span>
+            <h3>地球環境</h3>
+            <p>樹木と土壌に炭素を蓄え、木材利用を通じて化石資源の代替にもつながります。</p>
+          </article>
+          <article>
+            <span class="function-icon" aria-hidden="true">⌁</span><span>03</span>
+            <h3>土砂災害防止・土壌保全</h3>
+            <p>落葉や下層植生が地表を覆い、根が表層土を支え、侵食を抑えます。</p>
+          </article>
+          <article>
+            <span class="function-icon" aria-hidden="true">≋</span><span>04</span>
+            <h3>水源涵養</h3>
+            <p>森林土壌が雨を浸透させ、流出を遅らせ、水量と水質を調整します。</p>
+          </article>
+          <article>
+            <span class="function-icon" aria-hidden="true">✦</span><span>05</span>
+            <h3>快適環境</h3>
+            <p>気温緩和、塵や汚染物質の捕捉、防音や遮蔽など、生活環境を整えます。</p>
+          </article>
+          <article>
+            <span class="function-icon" aria-hidden="true">♧</span><span>06</span>
+            <h3>保健・レクリエーション</h3>
+            <p>休養、運動、自然体験など、心身の健康と学びの場になります。</p>
+          </article>
+          <article>
+            <span class="function-icon" aria-hidden="true">◉</span><span>07</span>
+            <h3>文化</h3>
+            <p>景観、信仰、祭礼、教育、地域の記憶を支えます。数字だけでは測れない価値です。</p>
+          </article>
+          <article>
+            <span class="function-icon" aria-hidden="true">▣</span><span>08</span>
+            <h3>物質生産</h3>
+            <p>木材、食料、燃料、工芸材料など、再生可能な資源を生み出します。</p>
+          </article>
         </div>
 
         <div class="water-system">
           <div class="water-copy">
             <p class="guide-kicker">WATER &amp; SOIL</p>
-            <h3>水をつくるのではなく、<br />流れ方を変える。</h3>
+            <h3>水をつくるのではなく、<br />流れ方を変える。
+            </h3>
             <p>
               樹冠と落葉層が雨滴の勢いを弱め、孔隙の多い森林土壌が水を地中へ浸透させます。地中を通った水は時間をかけて川へ流れ、濁りや一部の物質が濾過されます。
             </p>
@@ -157,9 +254,13 @@
           </div>
           <div class="water-diagram" role="img" aria-label="雨が樹冠、落葉層、森林土壌、地下水を通って川へ流れる図">
             <div class="rain">雨　↓　↓　↓</div>
-            <div class="canopy"><span>樹冠</span><i></i><i></i><i></i></div>
+            <div class="canopy">
+              <span>樹冠</span>
+              <i></i><i></i><i></i></div>
             <div class="litter">落葉・下層植生</div>
-            <div class="soil-layer"><span>森林土壌</span><b>浸透　↓</b><b>浸透　↓</b></div>
+            <div class="soil-layer">
+              <span>森林土壌</span>
+              <b>浸透　↓</b><b>浸透　↓</b></div>
             <div class="groundwater">地中流　→　→　→　川へ</div>
           </div>
         </div>
@@ -174,18 +275,22 @@
           </p>
         </header>
 
-        <div class="forest-type-compare">
+        <figure class="guide-asset management-asset" role="img" aria-label="天然林と人工林、間伐前後の森林管理比較">
+          <img src="../assets/forest-management-guide.png" alt="天然林と人工林、間伐前後の森林の違いを比較した図" />
+          <figcaption>天然林と人工林、過密な林と間伐後の林を比較する。</figcaption>
+        </figure>
+        <div class="forest-type-compare forest-type-compare-legacy">
           <article>
             <p class="guide-kicker">NATURAL FOREST</p>
             <h3>天然林</h3>
             <p>自然の更新や攪乱によって成り立ち、年齢や樹種の異なる木が混ざることがあります。</p>
-            <div class="type-canopy natural-canopy" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="type-canopy natural-canopy" aria-hidden="true"><i class="tree-icon"></i><i class="tree-icon"></i><i class="tree-icon"></i><i class="tree-icon"></i><i class="tree-icon"></i></div>
           </article>
           <article>
             <p class="guide-kicker">PLANTED FOREST</p>
             <h3>人工林</h3>
             <p>人が植えて育てます。植えた後も、下刈り、除伐、間伐などの管理が必要です。</p>
-            <div class="type-canopy planted-canopy" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="type-canopy planted-canopy" aria-hidden="true"><i class="tree-icon"></i><i class="tree-icon"></i><i class="tree-icon"></i><i class="tree-icon"></i><i class="tree-icon"></i></div>
           </article>
           <aside>
             <h3>どちらが良い、ではない。</h3>
@@ -197,12 +302,30 @@
           <p class="guide-kicker">A LONG CYCLE OF WORK</p>
           <h3>植えてから使うまで、仕事は何十年も続く。</h3>
           <ol>
-            <li><b>地ごしらえ</b><span>植栽する場所を整える</span></li>
-            <li><b>植栽</b><span>立地に合う樹種と苗を選ぶ</span></li>
-            <li><b>下刈り</b><span>苗木を覆う草やササを刈る</span></li>
-            <li><b>つる切り・除伐</b><span>成長を妨げる植物を整理する</span></li>
-            <li><b>間伐</b><span>残す木へ光と空間を配る</span></li>
-            <li><b>利用・更新</b><span>木を使い、次の森林へつなぐ</span></li>
+            <li>
+              <b>地ごしらえ</b>
+              <span>植栽する場所を整える</span>
+            </li>
+            <li>
+              <b>植栽</b>
+              <span>立地に合う樹種と苗を選ぶ</span>
+            </li>
+            <li>
+              <b>下刈り</b>
+              <span>苗木を覆う草やササを刈る</span>
+            </li>
+            <li>
+              <b>つる切り・除伐</b>
+              <span>成長を妨げる植物を整理する</span>
+            </li>
+            <li>
+              <b>間伐</b>
+              <span>残す木へ光と空間を配る</span>
+            </li>
+            <li>
+              <b>利用・更新</b>
+              <span>木を使い、次の森林へつなぐ</span>
+            </li>
           </ol>
         </div>
 
@@ -214,10 +337,17 @@
               林が混みすぎると、林床へ光が届かず、木の成長や下層植生が弱くなります。残す木の樹冠、根の配置、将来の利用を考えながら間隔を整えます。急に大きな空間をつくると風害や乾燥のリスクが増えるため、立地と林況に応じた判断が必要です。
             </p>
           </div>
-          <div class="thinning-compare" role="img" aria-label="過密な林と適度に間伐した林の比較図">
-            <div><span>間伐前</span><figure class="dense-stand"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></figure><small>光が届きにくい</small></div>
+          <div class="thinning-compare thinning-compare-legacy" role="img" aria-label="過密な林と適度に間伐した林の比較図">
+            <div>
+              <span>間伐前</span>
+              <figure class="dense-stand"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></figure>
+              <small>光が届きにくい</small>
+            </div>
             <b>→</b>
-            <div><span>間伐後</span><figure class="open-stand"><i></i><i></i><i></i><i></i></figure><small>残す木と林床を育てる</small></div>
+            <div><span>間伐後</span>
+              <figure class="open-stand"><i></i><i></i><i></i><i></i></figure>
+              <small>残す木と林床を育てる</small>
+            </div>
           </div>
         </div>
       </section>
@@ -232,11 +362,18 @@
         </header>
 
         <div class="conservation-layers">
-          <article><span>PLAN</span><h3>計画する</h3><p>全国、地域、市町村、森林経営の各段階で、森林の将来像と施業方針を定める。</p></article>
+          <article><span>PLAN</span>
+            <h3>計画する</h3>
+            <p>全国、地域、市町村、森林経営の各段階で、森林の将来像と施業方針を定める。</p>
+          </article>
           <i>→</i>
-          <article><span>REGULATE</span><h3>行為を調整する</h3><p>林地開発許可や保安林制度などで、重要な森林の伐採や土地改変を調整する。</p></article>
+          <article><span>REGULATE</span>
+            <h3>行為を調整する</h3>
+            <p>林地開発許可や保安林制度などで、重要な森林の伐採や土地改変を調整する。</p></article>
           <i>→</i>
-          <article><span>RESTORE</span><h3>機能を回復する</h3><p>森林整備、治山、林道整備によって、荒廃地の復旧と持続的な管理を支える。</p></article>
+          <article><span>RESTORE</span>
+            <h3>機能を回復する</h3>
+            <p>森林整備、治山、林道整備によって、荒廃地の復旧と持続的な管理を支える。</p></article>
         </div>
 
         <div class="risk-grid">
@@ -273,7 +410,11 @@
         </header>
 
         <div class="wood-anatomy">
-          <div class="wood-disc" role="img" aria-label="木材の樹皮、辺材、心材、髄、年輪を示す断面図">
+          <figure class="guide-asset wood-asset" role="img" aria-label="木材の樹皮、辺材、心材、髄、年輪を示す断面図">
+            <img src="../assets/wood-anatomy-guide.png" alt="樹皮、辺材、心材、髄、年輪を示す木材断面図" />
+            <figcaption>樹皮・辺材・心材・髄・年輪を、断面で読み解く。</figcaption>
+          </figure>
+          <div class="wood-disc wood-disc-legacy" role="img" aria-label="木材の樹皮、辺材、心材、髄、年輪を示す断面図">
             <div class="wood-ring ring-one"></div>
             <div class="wood-ring ring-two"></div>
             <div class="wood-ring ring-three"></div>
@@ -292,9 +433,18 @@
         </div>
 
         <div class="wood-properties">
-          <article><span>MOISTURE</span><h3>乾燥</h3><p>水分が抜けると収縮します。方向による差が、反りや割れにつながります。</p></article>
-          <article><span>QUALITY</span><h3>品質</h3><p>節、あて材、未成熟材などを見極め、用途に適した材料へ加工します。</p></article>
-          <article><span>CARBON</span><h3>炭素の貯蔵</h3><p>乾燥木材の重量のおよそ半分は炭素です。長く使うほど固定期間を延ばせます。</p></article>
+          <article><span>MOISTURE</span>
+            <h3>乾燥</h3>
+            <p>水分が抜けると収縮します。方向による差が、反りや割れにつながります。</p>
+          </article>
+          <article><span>QUALITY</span>
+            <h3>品質</h3>
+            <p>節、あて材、未成熟材などを見極め、用途に適した材料へ加工します。</p>
+          </article>
+          <article><span>CARBON</span>
+            <h3>炭素の貯蔵</h3>
+            <p>乾燥木材の重量のおよそ半分は炭素です。長く使うほど固定期間を延ばせます。</p>
+          </article>
         </div>
 
         <div class="cascade-use">
@@ -304,10 +454,22 @@
             <p>丸太を建築材として長く使い、再利用や木質材料へ回し、最後にエネルギーとして利用する。用途を段階的につなぐことで、資源と炭素を社会の中に長く留めます。</p>
           </div>
           <ol aria-label="木材のカスケード利用">
-            <li><span>01</span><b>建築・家具</b><small>長期間使う</small></li>
-            <li><span>02</span><b>再利用</b><small>部材として使い直す</small></li>
-            <li><span>03</span><b>木質材料・紙</b><small>形を変えて使う</small></li>
-            <li><span>04</span><b>エネルギー</b><small>最後に熱として使う</small></li>
+            <li>
+              <span>01</span><b>建築・家具</b>
+              <small>長期間使う</small>
+            </li>
+            <li><span>02</span>
+              <b>再利用</b>
+              <small>部材として使い直す</small>
+            </li>
+            <li><span>03</span>
+              <b>木質材料・紙</b>
+              <small>形を変えて使う</small>
+            </li>
+            <li><span>04</span>
+              <b>エネルギー</b>
+              <small>最後に熱として使う</small>
+            </li>
           </ol>
         </div>
       </section>
@@ -322,21 +484,37 @@
         </header>
 
         <div class="satoyama-transect" role="img" aria-label="集落から農地、草地、里山、奥山、岳へ連続する里山の空間構成図">
-          <div class="transect-village"><i></i><b>むら</b><span>家々・共同体</span></div>
-          <div class="transect-field"><i></i><b>のら</b><span>田畑・農の仕事</span></div>
-          <div class="transect-grass"><i></i><b>や</b><span>草地・採草</span></div>
-          <div class="transect-sato"><i></i><b>やま</b><span>薪炭林・里山</span></div>
-          <div class="transect-deep"><i></i><b>おくやま</b><span>森林・源流</span></div>
-          <div class="transect-peak"><i></i><b>たけ</b><span>岳・信仰</span></div>
+          <div class="transect-village"><i></i><b>むら</b>
+            <span>家々・共同体</span></div>
+          <div class="transect-field"><i></i><b>のら</b>
+            <span>田畑・農の仕事</span></div>
+          <div class="transect-grass"><i></i><b>や</b>
+            <span>草地・採草</span></div>
+          <div class="transect-sato"><i></i><b>やま</b>
+            <span>薪炭林・里山</span></div>
+          <div class="transect-deep"><i></i><b>おくやま</b>
+            <span>森林・源流</span></div>
+          <div class="transect-peak"><i></i><b>たけ</b>
+            <span>岳・信仰</span></div>
         </div>
 
         <div class="community-cycles">
-          <div class="community-loop" role="img" aria-label="生産、消費、教育が地域内で循環する図">
-            <span class="loop-production">生産<small>森を育てる</small></span>
+          <figure class="guide-asset community-asset" role="img" aria-label="上流と下流が仕事でつながる流域の循環図">
+            <img src="../assets/upstream-downstream-guide.png" alt="上流の森林管理から下流の木材利用、教育、地域の自然へつながる流域の循環図" />
+            <figcaption>上流の管理、下流の利用、学びと地域の関係が流域でつながる。</figcaption>
+          </figure>
+          <div class="community-loop community-loop-legacy" aria-hidden="true">
+            <span class="loop-production">生産
+              <small>森を育てる</small>
+            </span>
             <i>→</i>
-            <span class="loop-use">利用<small>地域材を使う</small></span>
+            <span class="loop-use">利用
+              <small>地域材を使う</small>
+            </span>
             <i>→</i>
-            <span class="loop-learning">教育<small>技術と文化を継ぐ</small></span>
+            <span class="loop-learning">教育
+              <small>技術と文化を継ぐ</small>
+            </span>
             <i>↺</i>
           </div>
           <div>
@@ -375,7 +553,7 @@
           </ul>
         </details>
       </section>
-    </main>
+    </main>ï
 
     <footer>
       <span

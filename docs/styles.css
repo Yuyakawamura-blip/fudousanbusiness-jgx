@@ -1268,9 +1268,11 @@ footer a {
 
 .baseline-column {
   width: 120px;
+  height: 360px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .baseline-title {
@@ -1297,6 +1299,10 @@ footer a {
 }
 
 .baseline-column b {
+  min-height: 60px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   margin-top: 14px;
   font-size: 20px;
   font-weight: 500;
@@ -1819,6 +1825,7 @@ footer a {
 
   .baseline-column {
     width: 88px;
+    height: 340px;
   }
 
   .baseline-difference {
@@ -2060,6 +2067,23 @@ footer a {
   font: 32px Georgia, serif;
 }
 
+.eco-sun b {
+  font-weight: 500;
+}
+
+.eco-icon {
+  display: block;
+  margin-bottom: 8px;
+  color: #d9e3d1;
+  font: 42px/1 Georgia, serif;
+}
+
+.eco-sun .eco-icon {
+  margin-bottom: 2px;
+  color: #b39b4f;
+  font-size: 48px;
+}
+
 .eco-sun small,
 .eco-node small {
   display: block;
@@ -2098,6 +2122,15 @@ footer a {
   font-size: 20px;
 }
 
+.eco-node .eco-icon {
+  margin-top: 0;
+  font-size: 42px;
+}
+
+.eco-node .eco-icon + b {
+  display: block;
+}
+
 .eco-soil {
   grid-column: 3;
   grid-row: 2;
@@ -2112,6 +2145,12 @@ footer a {
   font-size: 20px;
 }
 
+.eco-soil .eco-icon {
+  margin-top: 0;
+  color: #8a7650;
+  font-size: 38px;
+}
+
 .eco-arrow {
   color: #6f826f;
   font-size: 32px;
@@ -2123,7 +2162,7 @@ footer a {
   grid-column: 5;
   grid-row: 1 / 3;
   align-self: end;
-  transform: translateY(-145px);
+  transform: translateY(-88px);
 }
 
 .eco-arrow-back {
@@ -2225,6 +2264,7 @@ footer a {
 }
 
 .succession-flow i {
+  z-index: 0;
   width: 28px;
   height: 30px;
   position: absolute;
@@ -2232,6 +2272,23 @@ footer a {
   left: calc(50% - 14px);
   background: #d9e3d1;
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.succession-flow i:after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 3px);
+  bottom: 0;
+  width: 6px;
+  height: 28px;
+  background: #765d45;
+}
+
+.succession-flow b,
+.succession-flow span {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 2px rgba(36, 61, 47, 0.45);
 }
 
 .succession-flow li:nth-child(2) i {
@@ -2275,21 +2332,68 @@ footer a {
 }
 
 .function-detail-grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
+  padding: 80px 0;
 }
 
 .function-detail-grid article {
-  min-height: 285px;
+  aspect-ratio: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 28px;
   background: #fffdf8;
   border-top: 3px solid #68816d;
+  border: 1px solid #d2d9cd;
+  border-radius: 50%;
+  text-align: center;
 }
 
 .function-detail-grid span {
   color: #68816d;
   font: 20px Georgia, serif;
+}
+
+.function-detail-grid .function-icon {
+  display: block;
+  margin-bottom: 5px;
+  color: #68816d;
+  font-size: 38px;
+  line-height: 1;
+}
+
+.function-wheel-core {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 154px;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  color: #f5f3eb;
+  border: 10px solid #dbe2d5;
+  border-radius: 50%;
+  background: #365d49;
+  text-align: center;
+}
+
+.function-wheel-core b {
+  font: 26px Georgia, "Hiragino Mincho ProN", serif;
+  font-weight: 500;
+}
+
+.function-wheel-core span {
+  margin-top: 4px;
+  color: #dbe6d8;
+  font-size: 15px;
 }
 
 .function-detail-grid h3 {
@@ -2301,8 +2405,8 @@ footer a {
 .function-detail-grid p {
   margin: 0;
   color: #4d554f;
-  font-size: 20px;
-  line-height: 1.8;
+  font-size: 16px;
+  line-height: 1.65;
 }
 
 .water-system {
@@ -2465,7 +2569,8 @@ footer a {
   width: 6px;
   height: 60px;
   position: absolute;
-  top: 60px;
+  top: auto;
+  bottom: 0;
   left: -3px;
   background: #62513e;
 }
@@ -2606,7 +2711,8 @@ footer a {
   width: 4px;
   height: 120px;
   position: absolute;
-  top: 80px;
+  top: auto;
+  bottom: 0;
   left: -2px;
   background: #604d3a;
 }
@@ -2790,8 +2896,8 @@ footer a {
 }
 
 .label-pith {
-  bottom: 45%;
-  left: 41%;
+  bottom: 7%;
+  left: 42%;
 }
 
 .wood-copy {
@@ -3009,7 +3115,17 @@ footer a {
   background: #f7f5ef;
 }
 
+.community-loop:before {
+  content: "";
+  position: absolute;
+  inset: 72px;
+  border: 1px solid #b8c3b7;
+  border-radius: 50%;
+}
+
 .community-loop span {
+  position: relative;
+  z-index: 1;
   min-height: 150px;
   display: flex;
   flex-direction: column;
@@ -3037,6 +3153,8 @@ footer a {
 }
 
 .community-loop i {
+  position: relative;
+  z-index: 2;
   color: #637267;
   font-size: 32px;
   font-style: normal;
@@ -3254,6 +3372,20 @@ footer a {
     grid-template-columns: 1fr;
   }
 
+  .function-detail-grid {
+    gap: 18px;
+    padding: 0;
+  }
+
+  .function-detail-grid article {
+    aspect-ratio: auto;
+    min-height: 250px;
+  }
+
+  .function-wheel-core {
+    display: none;
+  }
+
   .forest-type-compare aside {
     grid-column: auto;
   }
@@ -3340,5 +3472,113 @@ footer a {
 
   .guide-summary > div p:nth-child(even) {
     padding-left: 0;
+  }
+}
+
+/* Generated field-guide illustration assets */
+.guide-asset {
+  margin: 0;
+  color: #59635b;
+  background: #f8f6ef;
+}
+
+.guide-asset img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.guide-asset figcaption {
+  padding: 14px 18px 16px;
+  color: #59635b;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.ecosystem-asset,
+.succession-asset,
+.management-asset,
+.community-asset {
+  padding: 24px;
+  border: 1px solid #d6ddd0;
+}
+
+.functions-asset {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.function-text-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 960px;
+  margin: 24px auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.function-text-list li {
+  min-height: 74px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 14px 18px;
+  color: #283c31;
+  background: #fffdf8;
+  border-top: 2px solid #68816d;
+}
+
+.function-text-list b {
+  color: #68816d;
+  font: 16px Georgia, serif;
+}
+
+.function-text-list span {
+  margin-top: 5px;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.wood-asset {
+  min-width: 0;
+  padding: 20px;
+}
+
+.ecosystem-diagram-legacy,
+.succession-flow-legacy,
+.function-detail-grid-legacy,
+.forest-type-compare-legacy,
+.thinning-compare-legacy,
+.wood-disc-legacy,
+.community-loop-legacy {
+  display: none !important;
+}
+
+@media (max-width: 720px) {
+  .guide-asset {
+    padding: 12px;
+  }
+
+  .guide-asset figcaption {
+    padding: 10px 6px 4px;
+    font-size: 14px;
+  }
+
+  .succession-panel {
+    gap: 28px;
+  }
+
+  .wood-anatomy {
+    display: block;
+  }
+
+  .wood-copy {
+    margin-top: 28px;
+  }
+
+  .function-text-list {
+    grid-template-columns: 1fr 1fr;
   }
 }
