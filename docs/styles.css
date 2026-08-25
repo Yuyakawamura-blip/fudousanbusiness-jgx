@@ -6,6 +6,9 @@
 html.auth-locked body > * {
   visibility: hidden;
 }
+html.auth-locked body > .password-gate {
+  visibility: visible;
+}
 .password-gate {
   position: fixed;
   z-index: 1000;
