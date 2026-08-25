@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var PASSWORD = "fnature ";
+  var PASSWORD = "fnature";
   var SESSION_KEY = "nature-capital-site-unlocked";
 
   document.documentElement.classList.add("auth-locked");
