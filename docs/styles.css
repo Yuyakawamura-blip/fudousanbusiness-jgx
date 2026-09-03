@@ -3572,7 +3572,8 @@ footer a {
 .ecosystem-asset,
 .succession-asset,
 .management-asset,
-.community-asset {
+.community-asset,
+.water-asset {
   padding: 24px;
   border: 1px solid #d6ddd0;
 }
@@ -3633,7 +3634,8 @@ footer a {
 .forest-type-compare-legacy,
 .thinning-compare-legacy,
 .wood-disc-legacy,
-.community-loop-legacy {
+.community-loop-legacy,
+.water-diagram-legacy {
   display: none !important;
 }
 
