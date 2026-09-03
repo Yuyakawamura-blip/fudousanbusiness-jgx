@@ -3622,38 +3622,6 @@ footer a {
 .hotspot-07 { left: 23%; top: 77%; }
 .hotspot-08 { left: 19%; top: 50%; }
 
-.function-text-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  max-width: 960px;
-  margin: 24px auto 0;
-  padding: 0;
-  list-style: none;
-}
-
-.function-text-list li {
-  min-height: 74px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 14px 18px;
-  color: #283c31;
-  background: #fffdf8;
-  border-top: 2px solid #68816d;
-}
-
-.function-text-list b {
-  color: #68816d;
-  font: 16px Georgia, serif;
-}
-
-.function-text-list span {
-  margin-top: 5px;
-  font-size: 17px;
-  line-height: 1.45;
-}
-
 .wood-asset {
   min-width: 0;
   padding: 20px;
@@ -3689,10 +3657,6 @@ footer a {
 
   .wood-copy {
     margin-top: 28px;
-  }
-
-  .function-text-list {
-    grid-template-columns: 1fr 1fr;
   }
 
   .function-hotspot-labels a {
