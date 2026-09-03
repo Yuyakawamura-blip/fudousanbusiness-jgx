@@ -3639,6 +3639,81 @@ footer a {
   display: none !important;
 }
 
+/* Sustainable forestry research pages */
+.sustainable-page { background: #ecefe5; color: #26342e; }
+.sustainable-hero { min-height: 430px; padding: 96px clamp(28px, 8vw, 120px) 72px; background: #294f43; color: #f7f4ed; display: flex; justify-content: space-between; gap: 48px; align-items: flex-end; }
+.sustainable-hero h1 { margin: 18px 0 24px; font-size: clamp(2.4rem, 5vw, 5.6rem); line-height: 1.12; letter-spacing: .03em; font-weight: 500; }
+.sustainable-hero > div:first-child > p:last-child { font-size: clamp(1.05rem, 1.8vw, 1.45rem); line-height: 1.9; }
+.sustainable-hero-meta { min-width: 260px; padding: 20px 0 0 24px; border-left: 1px solid rgba(247,244,237,.55); }
+.sustainable-hero-meta span { display: block; margin-bottom: 18px; color: #d7dfcf; font-size: .75rem; letter-spacing: .18em; }
+.sustainable-hero-meta strong { font-size: 1.2rem; line-height: 1.8; font-weight: 500; }
+.sustainable-toc { display: flex; flex-wrap: wrap; gap: 0; padding: 0 clamp(28px, 8vw, 120px); background: #f7f4ed; border-bottom: 1px solid #d7ddd1; }
+.sustainable-toc a { padding: 20px 26px 18px 0; margin-right: 26px; color: #5d7969; text-decoration: none; font-size: .9rem; letter-spacing: .08em; }
+.sustainable-toc a:hover { color: #294f43; }
+.sustainable-intro, .sustainable-section { max-width: 1320px; margin: 0 auto; padding: clamp(72px, 9vw, 140px) clamp(28px, 7vw, 100px); }
+.sustainable-intro { max-width: 960px; }
+.sustainable-intro h2, .sustainable-heading h2 { margin: 18px 0 28px; font-size: clamp(2rem, 4vw, 4.2rem); line-height: 1.28; font-weight: 500; letter-spacing: .02em; }
+.sustainable-intro > p:not(.label), .sustainable-heading > p:not(.label), .sustainable-two-col p { color: #58625c; font-size: 1.08rem; line-height: 2.05; }
+.source-lead { padding-top: 18px; border-top: 1px solid #cfd7cb; font-size: .9rem !important; }
+.source-lead a { color: #476b59; }
+.sustainable-section { max-width: none; background: #f7f4ed; }
+.sustainable-section:nth-of-type(odd) { background: #eef1e8; }
+.sustainable-heading { max-width: 760px; margin-bottom: 48px; }
+.sustainable-heading > p:not(.label) { max-width: 650px; }
+.tone-green { background: #355f50; color: #f7f4ed; }
+.tone-green .sustainable-heading > p:not(.label) { color: #dce5da; }
+.tone-sand { background: #ded1b1; }
+.sustainable-two-col { max-width: 1040px; display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 72px; align-items: center; }
+.stat-card { padding: 34px 28px; background: #355f50; color: #f7f4ed; }
+.stat-card strong { display: block; font-size: 3.8rem; font-weight: 500; letter-spacing: .04em; }
+.stat-card span { display: block; margin-top: 12px; line-height: 1.8; font-size: .86rem; }
+.instrument-grid, .value-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.instrument-grid article { min-height: 390px; padding: 28px 24px; background: rgba(247,244,237,.1); border: 1px solid rgba(247,244,237,.35); }
+.instrument-grid article > span, .value-grid article > span { color: #cbd9c9; font-size: .72rem; letter-spacing: .12em; }
+.instrument-grid h3, .value-grid h3 { margin: 22px 0 16px; font-size: 1.55rem; line-height: 1.35; font-weight: 500; }
+.instrument-grid p, .instrument-grid dd, .value-grid p { line-height: 1.85; font-size: .92rem; }
+.instrument-grid dl { margin-top: 26px; }
+.instrument-grid dt { display: inline-block; margin-top: 10px; padding: 3px 8px; background: #d7e1d2; color: #355f50; font-size: .72rem; }
+.instrument-grid dd { margin: 8px 0 0; color: #dce5da; }
+.evaluation-table { max-width: 1120px; border-top: 2px solid #5d7969; }
+.evaluation-row { display: grid; grid-template-columns: 1.35fr repeat(3, 1fr); border-bottom: 1px solid #cfd7cb; }
+.evaluation-row > * { min-width: 0; padding: 18px 14px; line-height: 1.55; font-size: .92rem; }
+.evaluation-head { color: #5d7969; font-size: .76rem; letter-spacing: .12em; }
+.evaluation-row strong { font-weight: 600; }
+.small-note { margin-top: 22px; color: #69736c; font-size: .82rem; line-height: 1.8; }
+.value-grid article { padding: 25px 22px; background: rgba(255,255,255,.42); border-top: 3px solid #6d8068; }
+.value-grid article > span { color: #6d8068; font-size: 1.35rem; }
+.value-callout { max-width: 840px; margin-top: 28px; padding: 28px; background: #355f50; color: #f7f4ed; }
+.value-callout strong { font-size: 1.15rem; font-weight: 500; }
+.value-callout p { margin: 12px 0 0; line-height: 1.9; color: #e1e9df; }
+.recommendation-list { max-width: 980px; margin: 0; padding: 0; list-style: none; border-top: 1px solid #bfcabd; }
+.recommendation-list li { display: grid; grid-template-columns: 72px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid #bfcabd; }
+.recommendation-list li > span { color: #6d8068; font-size: 1.4rem; }
+.recommendation-list h3 { margin: 0 0 8px; font-size: 1.25rem; font-weight: 500; }
+.recommendation-list p { margin: 0; color: #58625c; line-height: 1.85; }
+.sustainable-footer { padding: 88px clamp(28px, 8vw, 120px); background: #294f43; color: #f7f4ed; }
+.sustainable-footer h2 { margin: 18px 0; font-size: clamp(2rem, 4vw, 4rem); line-height: 1.25; font-weight: 500; }
+.sustainable-footer > p:not(.label) { color: #dce5da; line-height: 1.8; }
+.sustainable-footer > div { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 34px; }
+.sustainable-footer a { color: #f7f4ed; text-decoration: none; border-bottom: 1px solid rgba(247,244,237,.6); padding-bottom: 5px; }
+.sustainable-en .sustainable-hero h1 { letter-spacing: 0; }
+.sustainable-en .evaluation-row > * { font-size: .86rem; }
+@media (max-width: 900px) {
+  .sustainable-hero { min-height: 0; padding-top: 72px; display: block; }
+  .sustainable-hero-meta { margin-top: 52px; }
+  .instrument-grid, .value-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sustainable-two-col { grid-template-columns: 1fr; gap: 28px; }
+}
+@media (max-width: 620px) {
+  .sustainable-toc a { padding-right: 14px; margin-right: 14px; font-size: .78rem; }
+  .sustainable-intro, .sustainable-section { padding-top: 68px; padding-bottom: 68px; }
+  .instrument-grid, .value-grid { grid-template-columns: 1fr; }
+  .instrument-grid article { min-height: 0; }
+  .evaluation-table { overflow-x: auto; }
+  .evaluation-row { min-width: 680px; }
+  .recommendation-list li { grid-template-columns: 48px 1fr; gap: 12px; }
+}
+
 @media (max-width: 720px) {
   .guide-asset {
     padding: 12px;
