@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="日本の森林オープンデータを地図から活用。林野庁の森林計画対象森林レイヤを閲覧し、都道府県別GISデータと公式の利用条件を確認できます。" />
+  <title>日本の森林オープンデータ｜Nature Capital Real Estate</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="vendor/leaflet.css" />
+  <link rel="stylesheet" href="forest-data.css" />
+  <script src="../auth.js"></script>
+  <script src="vendor/leaflet.js" defer></script>
+  <script src="forest-data.js" defer></script>
+</head>
+<body class="forest-data-page">
+<header>
+  <a class="brand" href="../"><b>N</b><span>ネイチャーキャピタル・リアルエステイト<small>Nature Capital Real Estate</small></span></a>
+  <nav class="site-nav" aria-label="主要ナビゲーション"><a class="nav" href="../forest/">森林を知る</a><a class="nav" href="#catalog">データを探す</a><a class="nav" href="#guide">使い方・利用条件</a></nav>
+</header>
+<main>
+  <section class="data-intro">
+    <a class="back-link" href="../">ホーム / 森林オープンデータ</a>
+    <div class="intro-grid">
+      <div><p class="eyebrow">JAPAN FOREST OPEN DATA</p><h1>日本の森林を、<br />データでひらく。</h1></div>
+      <div class="intro-description"><p>日本の森林を地図で知り、<br class="desktop-break" />地域の計画や調査に活かす。</p><p class="muted">林野庁が公開する森林GISデータへの入口です。<br />区域を確認し、必要な地域のデータを取得できます。</p><a class="data-button" href="#catalog">都道府県別データを探す <span aria-hidden="true">↓</span></a></div>
+    </div>
+    <div class="update-strip" aria-live="polite"><span class="update-label">提供元を毎日確認</span><span id="checked-at">更新情報を読み込み中…</span><a href="#updates">更新の仕組み ↗</a></div>
+  </section>
+  <section class="map-section" aria-labelledby="map-heading">
+    <div class="map-top"><div><p class="eyebrow">01 / EXPLORE</p><h2 id="map-heading">地図で見る、森林の区域</h2></div><p>森林計画対象森林レイヤ</p></div>
+    <div class="map-layout">
+      <aside class="map-sidebar">
+        <p class="sidebar-title">全国の森林計画対象区域</p><p>地図を移動・拡大して、<br />地域の森林を確認できます。</p>
+        <div class="legend"><span><i class="national"></i>国有林</span><span><i class="private"></i>民有林（計画対象）</span></div>
+        <label class="toggle"><input id="forest-toggle" type="checkbox" checked disabled /> 森林レイヤを表示</label>
+        <label class="opacity-label" for="opacity">森林レイヤの濃さ <output id="opacity-value">75%</output></label><input id="opacity" type="range" min="10" max="100" value="75" disabled />
+        <button class="outline-button" id="reset-map" type="button" disabled>全国表示に戻す</button>
+        <p class="map-note">表示は区域の参考情報です。所有者や所有境界、現在の現況を証明するものではありません。</p>
+        <a href="https://www.geospatial.jp/ckan/dataset/layer" target="_blank" rel="noopener noreferrer">公式データを見る ↗</a>
+      </aside>
+      <div class="map-wrap"><div id="forest-map" aria-label="森林計画対象区域の地図"></div><p id="map-status" role="status">地図を読み込み中…</p></div>
+    </div>
+    <p class="source-line">出典：<a href="https://www.geospatial.jp/ckan/dataset/layer" target="_blank" rel="noopener noreferrer">林野庁</a>、<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0" target="_blank" rel="noopener noreferrer">PDL1.0</a>。背景地図：<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener noreferrer">地理院タイル</a>。当サイトが地図を重ね合わせ、表示濃度を調整しています。</p>
+  </section>
+  <section class="catalog-section" id="catalog" aria-labelledby="catalog-heading">
+    <div class="section-heading"><div><p class="eyebrow">02 / DOWNLOAD</p><h2 id="catalog-heading">地域のデータを、手元に。</h2></div><p>GISで区域と属性を確認するための<br />都道府県別データです。</p></div>
+    <div class="catalog-toolbar"><label for="prefecture-search">都道府県名で絞り込み<input type="search" id="prefecture-search" placeholder="例：長野、静岡、北海道" disabled /></label><p id="resource-count" role="status">データを読み込み中…</p></div>
+    <p class="download-note">取得前に<a href="#terms">利用条件</a>をご確認ください。配布ファイルは提供元から取得します。7zなどの圧縮ファイルは展開してからGISに読み込みます。</p>
+    <div class="prefecture-grid" id="prefecture-list"></div>
+    <p id="empty-result" hidden>該当するデータがありません。都道府県名を短くしてお試しください。</p>
+    <p class="source-line">都道府県名は公式ファイル名の都道府県コードから表示しています。ファイル名・形式・リンクは提供元の登録内容に基づきます。</p>
+    <details class="source-details"><summary>提供元の説明・仕様を見る（自動反映）</summary><p id="source-notes" class="source-notes">読み込み中…</p><a href="https://www.geospatial.jp/ckan/dataset/layer" target="_blank" rel="noopener noreferrer">提供元のページを開く ↗</a></details>
+  </section>
+  <section class="guide-section" id="guide">
+    <div class="section-heading"><div><p class="eyebrow">03 / HOW TO USE</p><h2>目的に合わせて、使い分ける。</h2></div></div>
+    <div class="usage-grid">
+      <article><span class="step">01</span><h3>まず、区域を知る</h3><p>このページの地図で国有林と計画対象民有林の分布を確認します。表示に使うラスタタイルは画像のため、属性の照会には次の方法を使います。</p></article>
+      <article><span class="step">02</span><h3>GISで詳しく調べる</h3><p>都道府県別ファイルを展開し、GeoPackageをQGISなどに読み込みます。森林計画区・市町村・林班・民国別・データ時点などの属性を確認できます。</p></article>
+      <article><span class="step">03</span><h3>タイルを接続する</h3><p>GISの接続設定には下の配信URLを使えます。ベクトルタイルは公式のstyle.jsonを利用してください。QLRファイルはQGISへドラッグして読み込めます。</p></article>
+    </div>
+    <div class="connections" id="connections"><h3>GISに接続する</h3><div id="connection-list"></div><p id="copy-status" role="status"></p></div>
+    <div class="terms-box" id="terms"><p class="eyebrow">BEFORE YOU USE</p><h3>利用前に確認しておきたいこと</h3><ul><li>このデータは森林計画の対象区域です。すべての森林・樹木を網羅する現況植生図ではありません。</li><li>所有権・所有境界・面積等の証明には使えません。現地や登記情報と異なる場合があります。</li><li>地域ごとの情報の時点は属性「データ時点」で確認してください。ページの更新日と森林情報の時点は異なります。</li><li>出典と利用規約を明記し、加工した場合は加工した旨も記載してください。詳細は以下の公式規約をご確認ください。</li></ul><div id="document-list" class="document-list"></div><p class="source-line">説明の確認日：2026年9月6日。提供元の規約が更新された場合は最新の原文をご確認ください。</p></div>
+  </section>
+  <section class="context-section">
+    <p class="eyebrow">BEYOND THE MAP</p><h2>区域の先に、森林を知るデータがあります。</h2><p>航空レーザから得られる地形や樹高、森林資源情報は、この区域レイヤとは別のデータです。公開範囲や提供条件を確かめ、目的に合う情報を選びます。</p>
+    <div class="reference-grid"><a href="https://www.rinya.maff.go.jp/j/keikaku/smartforest/smart_forestry.html" target="_blank" rel="noopener noreferrer"><small>林野庁</small><strong>森林情報のデジタル化・オープンデータ化 ↗</strong><span>公開データ、航空レーザ、標準仕様書への入口</span></a><a href="https://www.geospatial.jp/ckan/organization/rinya" target="_blank" rel="noopener noreferrer"><small>G空間情報センター</small><strong>林野庁の公開データを探す ↗</strong><span>このレイヤ以外の森林データを確認</span></a><a href="https://webgis-rashinban-mori.com/" target="_blank" rel="noopener noreferrer"><small>日本森林技術協会・MIERUNE</small><strong>森林情報WEB-GIS ↗</strong><span>航空レーザ解析データの閲覧先</span></a></div>
+    <p class="source-line">航空レーザ測量成果には申請による提供のものもあります。対象・目的・手続は林野庁の案内をご確認ください。</p>
+  </section>
+  <section class="updates-section" id="updates"><div><p class="eyebrow">KEEPING DATA CONNECTED</p><h2>提供元の更新を、<br />このページへ。</h2></div><div><p>G空間情報センターの「森林計画対象森林レイヤ」を毎日確認し、データ一覧・説明・配布リンクを反映します。地図の森林タイルは提供元から直接読み込みます。</p><dl class="update-facts"><div><dt>最終取得成功</dt><dd id="last-success">確認中</dd></div><div><dt>提供元のページ更新日</dt><dd id="source-modified">確認中</dd></div><div><dt>当サイトで変更を検知</dt><dd id="content-changed">確認中</dd></div></dl><p id="freshness" role="status"></p><p class="muted">取得できない場合は前回の情報を維持します。反映には通常、次の定期確認まで時間がかかります。森林の現況を毎日更新するものではありません。</p></div></section>
+  <noscript><p class="noscript-note">地図とデータ一覧の表示にはJavaScriptが必要です。<a href="https://www.geospatial.jp/ckan/dataset/layer">林野庁の公式データ一覧</a>をご利用ください。</p></noscript>
+</main>
+<footer><span>ネイチャーキャピタル・リアルエステイト<br /><small>Nature Capital Real Estate</small></span><span><a href="../">ホーム</a>　<a href="../forest/">森林を知る</a><br />© 2026 Nature Capital Real Estate</span></footer>
+</body>
+</html>

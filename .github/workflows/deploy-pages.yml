@@ -3,11 +3,13 @@ name: Deploy GitHub Pages
 on:
   push:
     branches: [main]
-    paths: ["docs/**", ".github/workflows/deploy-pages.yml"]
+    paths: ["docs/**", "scripts/update_forest_data.py", "tests/test_forest_data.py", ".github/workflows/deploy-pages.yml"]
+  schedule:
+    - cron: "17 21 * * *" # Daily 06:17 JST; GitHub may delay scheduled runs.
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -23,6 +25,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate forest data updater
+        run: python -m unittest discover -s tests -p 'test_forest_data.py'
+      - name: Refresh forest data catalog
+        run: python scripts/update_forest_data.py
+      - name: Save last successful catalog
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/forest-data/catalog.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh forest open data catalog"
+            git push origin HEAD:main
+          fi
       - uses: actions/configure-pages@v5
         with:
           enablement: true
