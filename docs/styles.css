@@ -712,6 +712,7 @@ footer span:first-child {
   font-size: 28px;
 }
 .tool-flow p {
+  grid-column: 2;
   margin: 0;
   color: #dce5da;
   font-size: 20px;
@@ -3769,9 +3770,16 @@ footer a {
 .tone-green .sustainable-heading > p:not(.label) { color: #dce5da; }
 .tone-sand { background: #ded1b1; }
 .sustainable-two-col { max-width: 1040px; display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 72px; align-items: center; }
+.sustainable-map-layout { max-width: 1180px; grid-template-columns: minmax(0, 1fr) minmax(360px, 520px); }
 .stat-card { padding: 34px 28px; background: #355f50; color: #f7f4ed; }
 .stat-card strong { display: block; font-size: 3.8rem; font-weight: 500; letter-spacing: .04em; }
 .stat-card span { display: block; margin-top: 12px; line-height: 1.8; font-size: .86rem; }
+.forest-area-map-card { margin: 0; overflow: hidden; background: #f7f4ed; border: 1px solid #cfd7cb; box-shadow: 0 18px 46px rgba(40, 55, 45, .14); }
+.forest-area-map-card img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.forest-area-map-card figcaption { padding: 18px 20px 20px; color: #405349; background: #f7f4ed; }
+.forest-area-map-card strong { display: block; margin-bottom: 8px; color: #294f43; font-size: .95rem; font-weight: 600; line-height: 1.55; }
+.forest-area-map-card span { display: block; font-size: .78rem; line-height: 1.75; }
+.forest-area-map-card a { color: #294f43; text-decoration: none; border-bottom: 1px solid rgba(41, 79, 67, .45); }
 .instrument-grid, .value-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
 .instrument-grid article { min-height: 390px; padding: 28px 24px; background: rgba(247,244,237,.1); border: 1px solid rgba(247,244,237,.35); }
 .instrument-grid article > span, .value-grid article > span { color: #cbd9c9; font-size: .72rem; letter-spacing: .12em; }
@@ -3796,11 +3804,6 @@ footer a {
 .recommendation-list li > span { color: #6d8068; font-size: 1.4rem; }
 .recommendation-list h3 { margin: 0 0 8px; font-size: 1.25rem; font-weight: 500; }
 .recommendation-list p { margin: 0; color: #58625c; line-height: 1.85; }
-.sustainable-footer { padding: 88px clamp(28px, 8vw, 120px); background: #294f43; color: #f7f4ed; }
-.sustainable-footer h2 { margin: 18px 0; font-size: clamp(2rem, 4vw, 4rem); line-height: 1.25; font-weight: 500; }
-.sustainable-footer > p:not(.label) { color: #dce5da; line-height: 1.8; }
-.sustainable-footer > div { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 34px; }
-.sustainable-footer a { color: #f7f4ed; text-decoration: none; border-bottom: 1px solid rgba(247,244,237,.6); padding-bottom: 5px; }
 .sustainable-en .sustainable-hero h1 { letter-spacing: 0; }
 .sustainable-en .evaluation-row > * { font-size: .86rem; }
 @media (max-width: 900px) {
