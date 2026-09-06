@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 :root {
   --ink: #202923;
@@ -7,6 +8,7 @@
 }
 * {
   box-sizing: border-box;
+  font-family: "Noto Sans JP", sans-serif !important;
 }
 html {
   scroll-behavior: smooth;
@@ -15,7 +17,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: "Hiragino Sans", "Yu Gothic", YuGothic, sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
   font-feature-settings: "palt";
 }
 a {
@@ -33,7 +35,7 @@ a {
   display: flex;
   gap: 12px;
   align-items: center;
-  font-family: Georgia, serif;
+  font-family: "Noto Sans JP", sans-serif;
   font-size: 16px;
   letter-spacing: 0.03em;
 }
@@ -148,7 +150,7 @@ a {
 .eyebrow,
 .section-label {
   margin: 0 0 22px;
-  font-family: Georgia, serif;
+  font-family: "Noto Sans JP", sans-serif;
   font-size: 12px;
   letter-spacing: 0.15em;
   color: #7b9682;
@@ -169,7 +171,7 @@ h3 {
 }
 h1 {
   margin-bottom: 25px;
-  font-family: Georgia, "Hiragino Mincho ProN", serif;
+  font-family: "Noto Sans JP", sans-serif;
   font-size: clamp(38px, 5vw, 65px);
   line-height: 1.28;
   letter-spacing: 0.05em;
@@ -222,7 +224,7 @@ h1 {
 .principles h2,
 .faq h2,
 .cta h2 {
-  font-family: Georgia, "Hiragino Mincho ProN", serif;
+  font-family: "Noto Sans JP", sans-serif;
   font-size: clamp(32px, 4vw, 50px);
   line-height: 1.42;
   letter-spacing: 0.04em;
@@ -256,7 +258,7 @@ h1 {
 .concern span,
 .step > span {
   color: #66826d;
-  font-family: Georgia, serif;
+  font-family: "Noto Sans JP", sans-serif;
   font-size: 18px;
 }
 .concern p {
@@ -434,7 +436,7 @@ footer {
   font-size: 12px;
 }
 footer span:first-child {
-  font-family: Georgia, serif;
+  font-family: "Noto Sans JP", sans-serif;
   letter-spacing: 0.04em;
 }
 @media (max-width: 720px) {
