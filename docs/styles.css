@@ -967,8 +967,7 @@ h2 {
 .connection > h2 {
   margin-bottom: 60px;
 }
-.connection-grid,
-.about-services .service-grid {
+.connection-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
@@ -995,61 +994,6 @@ h2 {
 }
 .jgx {
   background: #f4f1e9;
-}
-.about-services {
-  padding: 115px clamp(24px, 9vw, 142px);
-}
-.about-services > h2 {
-  margin-bottom: 58px;
-}
-.about-services .service-grid {
-  grid-template-columns: 1fr 1fr;
-
-}
-.about-services .service-grid article {
-  padding: 38px;
-  background: #f3f1ea;
-  border-top: 3px solid #66826d;
-}
-.about-services .service-grid article + article {
-  border-top-color: #85775b;
-}
-.about-services .service-grid .number {
-  margin: 0 0 14px;
-}
-.about-services .service-grid .type {
-  margin: 0 0 22px;
-  font: 20px "Noto Sans JP",
-    sans-serif;
-  letter-spacing: 0.12em;
-  color: #68806c;
-}
-.about-services .service-grid h3 {
-  margin: 0 0 22px;
-  font-size: 28px;
-}
-.about-services .service-grid h3 small {
-  display: block;
-  margin-top: 8px;
-  font: 20px "Noto Sans JP", sans-serif;
-}
-.about-services .service-grid article > p:not(.number):not(.type) {
-  min-height: 116px;
-  margin: 0 0 25px;
-  font-size: 20px;
-  line-height: 2;
-  color: #4d554f;
-}
-.about-services .service-grid a,
-.about-services .service-grid span {
-  font-size: 20px;
-  color: var(--green);
-  text-decoration: none;
-  border-bottom: 1px solid var(--green);
-}
-.about-services .service-grid span {
-  color: #777;
-  border-color: #aaa;
 }
 .promise {
   padding: 115px clamp(24px, 9vw, 142px);
@@ -1116,18 +1060,11 @@ footer span:first-child {
     gap: 36px;
     padding: 85px 25px;
   }
-  .connection,
-  .about-services {
+  .connection {
     padding: 85px 25px;
   }
   .connection-grid {
     grid-template-columns: 1fr;
-  }
-  .about-services .service-grid {
-    grid-template-columns: 1fr;
-  }
-  .about-services .service-grid article > p:not(.number):not(.type) {
-    min-height: auto;
   }
   .promise {
     padding: 85px 25px;
