@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="ネイチャーキャピタル・リアルエステイトが、森林・里山と地域の未来に取り組む理由をご紹介します。"
+    />
+    <title>わたしたちについて | ネイチャーキャピタル・リアルエステイト</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #1d2c25;
+        --muted: #5e6b64;
+        --green: #234b3d;
+        --cream: #f4f0e8;
+        --line: #d8ddd6;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: #fbfaf7;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+          "Yu Gothic", sans-serif;
+        line-height: 1.8;
+      }
+      a {
+        color: inherit;
+      }
+      header,
+      main,
+      footer {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        padding-top: 24px;
+        padding-bottom: 24px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        font-weight: 700;
+      }
+      .brand b {
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        color: #fff;
+        background: var(--green);
+        border-radius: 50%;
+        font-size: 20px;
+      }
+      .brand span {
+        line-height: 1.25;
+      }
+      .brand small {
+        display: block;
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+      }
+      .site-nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 18px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .site-nav a {
+        text-decoration: none;
+      }
+      .site-nav a:hover,
+      footer a:hover {
+        text-decoration: underline;
+      }
+      .hero {
+        margin: 0 -32px;
+        padding: 92px 32px 104px;
+        color: #fff;
+        background: linear-gradient(120deg, #173d31, #2c5a46);
+      }
+      .hero-inner,
+      .section-inner {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+      .eyebrow {
+        margin: 0 0 18px;
+        color: #8daf9f;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+      }
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        line-height: 1.35;
+        letter-spacing: 0;
+      }
+      h1 {
+        max-width: 780px;
+        font-size: clamp(32px, 5vw, 58px);
+      }
+      h2 {
+        font-size: clamp(26px, 3.2vw, 42px);
+      }
+      .hero p:last-child {
+        max-width: 690px;
+        margin: 28px 0 0;
+        color: #e2ece6;
+        font-size: 17px;
+      }
+      section {
+        padding: 90px 0;
+      }
+      .two-column {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 70px;
+        align-items: start;
+      }
+      .body-copy {
+        color: var(--muted);
+        font-size: 16px;
+      }
+      .body-copy p {
+        margin: 0 0 20px;
+      }
+      .connection {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .connection-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+        margin-top: 42px;
+      }
+      .connection article {
+        padding-top: 18px;
+        border-top: 3px solid #91aa9a;
+      }
+      .connection article span {
+        color: #769184;
+        font-size: 13px;
+        font-weight: 800;
+      }
+      .connection h3 {
+        margin-top: 12px;
+        font-size: 20px;
+      }
+      .connection p {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .promise {
+        margin: 0 -32px;
+        padding: 84px 32px;
+        color: #fff;
+        background: var(--green);
+      }
+      .promise-inner {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+      .promise h2 {
+        max-width: 700px;
+      }
+      .promise-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px 36px;
+        margin-top: 38px;
+        color: #e2ece6;
+      }
+      .jgx-section {
+        background: var(--cream);
+      }
+      .jgx-intro {
+        max-width: 690px;
+        margin: 22px 0 0;
+        color: var(--muted);
+      }
+      .achievement-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        margin-top: 42px;
+      }
+      .achievement-card {
+        display: flex;
+        min-height: 220px;
+        flex-direction: column;
+        padding: 26px;
+        background: #fff;
+        border: 1px solid var(--line);
+      }
+      .achievement-card span {
+        color: #769184;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+      }
+      .achievement-card h3 {
+        margin-top: 14px;
+        font-size: 21px;
+      }
+      .achievement-card p {
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .achievement-card a {
+        margin-top: auto;
+        padding-top: 20px;
+        color: var(--green);
+        font-size: 13px;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .achievement-card a:hover {
+        text-decoration: underline;
+      }
+      .jgx-cta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+        margin-top: 52px;
+        padding-top: 28px;
+        border-top: 1px solid #c8d0c8;
+      }
+      .jgx-cta p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .external-link {
+        display: inline-block;
+        flex: 0 0 auto;
+        padding: 13px 18px;
+        color: #fff;
+        background: var(--green);
+        font-size: 14px;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .external-link:hover {
+        background: #173d31;
+      }
+      footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 28px;
+        padding-top: 34px;
+        padding-bottom: 38px;
+        color: #e6ece6;
+        background: #1b2922;
+        font-size: 14px;
+      }
+      footer small {
+        color: #afc0b6;
+      }
+      footer span:last-child {
+        text-align: right;
+      }
+      footer a {
+        color: inherit;
+        text-decoration: none;
+      }
+      @media (max-width: 720px) {
+        header {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .site-nav {
+          justify-content: flex-start;
+          gap: 10px 16px;
+        }
+        .hero {
+          padding-top: 70px;
+          padding-bottom: 78px;
+        }
+      .two-column,
+        .connection-grid,
+        .promise-list,
+        .achievement-grid {
+          grid-template-columns: 1fr;
+          gap: 34px;
+        }
+        .jgx-cta {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        footer {
+          flex-direction: column;
+        }
+        footer span:last-child {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="../" aria-label="トップページへ">
+        <b>N</b>
+        <span
+          >ネイチャーキャピタル・リアルエステイト<small
+            >Nature Capital Real Estate</small
+          ></span
+        >
+      </a>
+      <nav class="site-nav" aria-label="主要ナビゲーション">
+        <a href="./">わたしたちについて</a>
+        <a href="../forest/">森林を知る</a>
+        <a href="../forest-planning-tool/">森林経営計画作成</a>
+        <a href="../#concerns">お悩みから探す</a>
+        <a href="../satoyama-real-estate/">サービス</a>
+        <a href="../">トップへ戻る</a>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="hero-inner">
+          <p class="eyebrow">ABOUT US</p>
+          <h1>自然の価値を、地域に残る仕事へ。</h1>
+          <p>
+            森林・里山を持つ人の悩みと、地域で手入れを担う人、都市で自然と関わりたい企業や人をつなぎます。
+          </p>
+        </div>
+      </section>
+      <section>
+        <div class="section-inner two-column">
+          <div>
+            <p class="eyebrow">WHY WE DO THIS</p>
+            <h2>自然は、そこにあるだけで未来の資本にはならない。</h2>
+          </div>
+          <div class="body-copy">
+            <p>
+              山や里山は、所有者にとって管理の負担になり、地域にとっては手入れする人が足りない場所になっています。一方で都市には、自然と関わり、地域とともに価値を育てたい企業や人がいます。
+            </p>
+            <p>
+              私たちは、その間をつなぎます。土地の権利や管理の状況を整え、地域で実行できる人と仕組みをつくり、企業や参加者が関われる場へと育てていく。お金を地域へ送るだけでなく、山を手入れする仕事と、続いていく関係を地域に残すこと。それが、私たちの考える自然資本です。
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="connection">
+        <div class="section-inner">
+          <p class="eyebrow">WHAT WE CONNECT</p>
+          <h2>一つの土地に、新しい関係をつくる。</h2>
+          <div class="connection-grid">
+            <article>
+              <span>01</span>
+              <h3>所有者の安心</h3>
+              <p>相続、管理、境界、これからの選択肢を整理します。</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>地域の実行</h3>
+              <p>
+                森林組合・林業事業体など、現場で手入れを担う人の存在を重視します。
+              </p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>企業・参加者の関わり</h3>
+              <p>自然と地域に関わる機会を、無理のない形でつくります。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="promise">
+        <div class="promise-inner">
+          <p class="eyebrow">OUR PROMISE</p>
+          <h2>売却ありきではなく、実行できる未来を考える。</h2>
+          <div class="promise-list">
+            <div>権利と管理の状況から確認する</div>
+            <div>地域で実際に手入れできる体制を重視する</div>
+            <div>自然資本価値や認証を安易に約束しない</div>
+            <div>地域に仕事と担い手が残ることを大切にする</div>
+          </div>
+        </div>
+      </section>
+      <section class="jgx-section">
+        <div class="section-inner">
+          <p class="eyebrow">JGX CONNECTION</p>
+          <h2>GXの知見を、地域の現場へ。</h2>
+          <p class="jgx-intro">
+            私たちの事業は、日本GXグループ（JGX）が培ってきた環境価値の可視化、地域GX、行動変容、データ活用の知見とつながっています。森林・里山の管理を、地域の仕事と都市の参加機会へ広げていきます。
+          </p>
+          <div class="achievement-grid">
+            <article class="achievement-card">
+              <span>01 / REGIONAL GX</span>
+              <h3>宮崎・一次産業の現場</h3>
+              <p>農業・自然資本・地域資源を起点に、環境価値と地域価値をつなぐ実装フィールドを展開しています。</p>
+              <a href="https://jp-gx.com/business/regional-gx" target="_blank" rel="noopener noreferrer">JGXの地域GX事業を見る ↗</a>
+            </article>
+            <article class="achievement-card">
+              <span>02 / LAND RESTORATION</span>
+              <h3>耕作放棄地の再生</h3>
+              <p>耕作放棄地の開墾を、若者や地域の担い手が参加できる実践型のクエストとして設計しています。</p>
+              <a href="https://gx-farm.com/quest-reservation" target="_blank" rel="noopener noreferrer">クエストの取り組みを見る ↗</a>
+            </article>
+            <article class="achievement-card">
+              <span>03 / FOREST &amp; SATOYAMA</span>
+              <h3>林業・里山保全への参加</h3>
+              <p>林業のお手伝い、植林・緑化、里山・里海保全など、自然の手入れを行動として記録し、参加の輪を広げています。</p>
+              <a href="https://gx-farm.com/gallery" target="_blank" rel="noopener noreferrer">現地の活動を見る ↗</a>
+            </article>
+          </div>
+          <div class="jgx-cta">
+            <p>自然資本・地域GX・行動変容に関するJGXの事業全体をご覧いただけます。</p>
+            <a class="external-link" href="https://jp-gx.com/" target="_blank" rel="noopener noreferrer">JGXのホームページへ ↗</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <span
+        >ネイチャーキャピタル・リアルエステイト<br /><small
+          >Nature Capital Real Estate</small
+        ></span
+      >
+      <span
+        ><a href="./">わたしたちについて</a>　<a href="../#concerns"
+          >お悩みから探す</a
+        >　<a href="../satoyama-real-estate/">サービス</a><br />© 2026 Nature
+        Capital Real Estate</span
+      >
+    </footer>
+  </body>
+</html>
