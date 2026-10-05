@@ -1480,6 +1480,10 @@ footer a {
 }
 
 .baseline-chart {
+  --baseline-before-height: 150px;
+  --baseline-after-height: 260px;
+  --baseline-label-space: 74px;
+  --baseline-chart-padding-bottom: 52px;
   min-height: 440px;
   position: relative;
   display: flex;
@@ -1493,7 +1497,7 @@ footer a {
 
 .baseline-column {
   width: 120px;
-  height: 360px;
+  height: 410px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1501,6 +1505,7 @@ footer a {
 }
 
 .baseline-title {
+  flex: 0 0 auto;
   min-height: 62px;
   margin-bottom: 14px;
   color: #3e4c42;
@@ -1510,20 +1515,22 @@ footer a {
 }
 
 .baseline-bar {
+  flex: 0 0 auto;
   width: 100%;
   display: block;
   background: linear-gradient(180deg, #6f9276, #365d49);
 }
 
 .baseline-before {
-  height: 150px;
+  height: var(--baseline-before-height);
 }
 
 .baseline-after {
-  height: 260px;
+  height: var(--baseline-after-height);
 }
 
 .baseline-column b {
+  flex: 0 0 auto;
   min-height: 60px;
   display: flex;
   align-items: flex-start;
@@ -1538,7 +1545,14 @@ footer a {
 .baseline-difference {
   position: absolute;
   right: 0;
-  bottom: 202px;
+  bottom: calc(
+    var(--baseline-chart-padding-bottom) + var(--baseline-label-space) +
+      var(--baseline-before-height)
+  );
+  height: calc(var(--baseline-after-height) - var(--baseline-before-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 142px;
   padding-left: 22px;
   border-left: 2px solid #b07443;
@@ -2043,6 +2057,7 @@ footer a {
   }
 
   .baseline-chart {
+    --baseline-chart-padding-bottom: 46px;
     min-height: 420px;
     gap: 28px;
     padding: 40px 118px 46px 12px;
@@ -2050,7 +2065,7 @@ footer a {
 
   .baseline-column {
     width: 88px;
-    height: 340px;
+    height: 410px;
   }
 
   .baseline-difference {

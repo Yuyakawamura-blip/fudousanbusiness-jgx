@@ -1,0 +1,106 @@
+<mxfile host="app.diagrams.net" modified="2026-10-02T12:10:00.000Z" agent="Codex" version="24.7.17">
+  <diagram id="lp-hierarchy" name="LP階層">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Nature Capital Real Estate｜現在のLP階層と導線" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=24;fontStyle=1;fontColor=#243f35;" vertex="1" parent="1">
+          <mxGeometry x="60" y="30" width="920" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="公開URLのページ構成。実線＝トップヘッダー／主要導線、点線＝ページ内・補助導線" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#5b665e;" vertex="1" parent="1">
+          <mxGeometry x="60" y="70" width="980" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="root" value="トップLP&lt;br&gt;&lt;b&gt;/&lt;/b&gt;&lt;br&gt;森林・里山の相続と管理のご相談" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#29483b;strokeColor=#1f382d;fontColor=#ffffff;fontSize=17;spacing=12;" vertex="1" parent="1">
+          <mxGeometry x="610" y="120" width="380" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="forest" value="森林を知る&lt;br&gt;&lt;b&gt;/forest/&lt;/b&gt;&lt;br&gt;森林と暮らし・循環・森林経営の課題" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dce8d8;strokeColor=#6d8d70;fontSize=16;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="300" width="330" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="planning" value="森林経営計画作成支援&lt;br&gt;&lt;b&gt;/forest-planning-tool/&lt;/b&gt;&lt;br&gt;森林組合・林業事業体向け" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8e1cf;strokeColor=#9a875e;fontSize=16;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="450" y="300" width="330" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="owner" value="山林・里山の相続、管理、出口整理&lt;br&gt;&lt;b&gt;/satoyama-real-estate/&lt;/b&gt;&lt;br&gt;山林所有者向けサービス" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0e4d8;strokeColor=#a98261;fontSize=16;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="840" y="300" width="330" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="about" value="私たちについて&lt;br&gt;&lt;b&gt;/about/&lt;/b&gt;&lt;br&gt;事業の背景・考え方" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e4e9e7;strokeColor=#71837b;fontSize=16;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="300" width="260" height="88" as="geometry" />
+        </mxCell>
+
+        <mxCell id="guide" value="森林について、もっと詳しく知る&lt;br&gt;&lt;b&gt;/forest-guide/&lt;/b&gt;&lt;br&gt;森林生態系・多面的機能・管理・里山" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef4eb;strokeColor=#8ba98b;fontSize=15;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="20" y="520" width="300" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="sustainable" value="持続可能な林業&lt;br&gt;&lt;b&gt;/forest/sustainable-forestry/&lt;/b&gt;&lt;br&gt;政策・制度・研究（日本語／英語）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef4eb;strokeColor=#8ba98b;fontSize=15;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="350" y="520" width="300" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="forestdata" value="森林オープンデータ&lt;br&gt;&lt;b&gt;/forest-data/&lt;/b&gt;&lt;br&gt;地図・森林関連データ・カタログ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef4eb;strokeColor=#8ba98b;fontSize=15;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="680" y="520" width="300" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="contact" value="共通問い合わせフォーム&lt;br&gt;&lt;b&gt;Googleフォーム&lt;/b&gt;&lt;br&gt;氏名・会社／団体名（任意）・メール・電話（任意）・相談内容" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5eee4;strokeColor=#b08b62;fontSize=15;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="520" width="360" height="88" as="geometry" />
+        </mxCell>
+
+        <mxCell id="owner-sections" value="ページ内の主な論点&lt;br&gt;売却・価値化｜遠方管理｜相続・境界｜サービスライン" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7ef;strokeColor=#c09a7a;fontSize=14;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="840" y="690" width="330" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="共通仕様&lt;br&gt;全ページでパスワードゲートと共通CSSを利用。森林経営計画ページと山林所有者向けページは、同じ初回相談フォームへ接続。" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f6f7f4;strokeColor=#aeb8ad;fontSize=14;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="20" y="690" width="700" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-root-forest" value="ヘッダー" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#54755b;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="root" target="forest">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-root-planning" value="ヘッダー／サービス" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8f7b54;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="root" target="planning">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-root-owner" value="ヘッダー／サービス" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#a98261;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="root" target="owner">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-root-about" value="下層ページから" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#71837b;strokeWidth=1;dashed=1;endArrow=block;" edge="1" parent="1" source="root" target="about">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-forest-guide" value="詳しく知る" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8ba98b;dashed=1;endArrow=block;" edge="1" parent="1" source="forest" target="guide">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-forest-sustainable" value="ページ内リンク" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8ba98b;dashed=1;endArrow=block;" edge="1" parent="1" source="forest" target="sustainable">
+          <mxGeometry x="-0.15" y="20" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="455" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-forest-data" value="ページ内リンク" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8ba98b;dashed=1;endArrow=block;" edge="1" parent="1" source="forest" target="forestdata">
+          <mxGeometry x="-0.1" y="24" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="575" y="455" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-planning-contact" value="相談する" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b08b62;dashed=1;endArrow=block;" edge="1" parent="1" source="planning" target="contact">
+          <mxGeometry x="-0.05" y="24" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="455" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-owner-contact" value="相談する" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b08b62;dashed=1;endArrow=block;" edge="1" parent="1" source="owner" target="contact">
+          <mxGeometry x="0.05" y="24" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="990" y="455" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-owner-sections" value="ページ内" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c09a7a;dashed=1;endArrow=block;" edge="1" parent="1" source="owner" target="owner-sections">
+          <mxGeometry x="0.2" y="24" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1110" y="455" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
