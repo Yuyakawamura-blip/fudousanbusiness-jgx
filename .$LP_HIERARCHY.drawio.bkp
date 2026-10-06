@@ -46,13 +46,10 @@
         <mxCell id="e-root-forest" edge="1" parent="1" source="root" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#54755b;strokeWidth=2;endArrow=block;" target="forest" value="ヘッダー">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-root-services" edge="1" parent="1" source="root" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8f7b54;strokeWidth=2;endArrow=block;" target="FAz_xDLRR30Q6CkGGyC3-2" value="ヘッダー／サービス">
+        <mxCell id="e-root-planning" edge="1" parent="1" source="root" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8f7b54;strokeWidth=2;endArrow=block;" target="planning" value="ヘッダー／サービス">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-services-planning" edge="1" parent="1" source="FAz_xDLRR30Q6CkGGyC3-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8f7b54;strokeWidth=2;endArrow=block;" target="planning" value="ページ内リンク">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e-services-owner" edge="1" parent="1" source="FAz_xDLRR30Q6CkGGyC3-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#a98261;strokeWidth=2;endArrow=block;" target="owner" value="ページ内リンク">
+        <mxCell id="e-root-owner" edge="1" parent="1" source="root" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#a98261;strokeWidth=2;endArrow=block;" target="owner" value="ヘッダー／サービス">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e-root-about" edge="1" parent="1" source="root" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#71837b;strokeWidth=1;dashed=1;endArrow=block;" target="about" value="下層ページから">

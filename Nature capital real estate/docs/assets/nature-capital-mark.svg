@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Nature Capital Real Estate</title>
+  <desc id="desc">山並みと水面を表すシンボル</desc>
+  <path d="M8 78 43 25l18 22 27-38 32 69H8Z" fill="#24475B"/>
+  <path d="M8 78h112v22H8z" fill="#2A4D43"/>
+  <path d="M10 88c21-8 40 6 61-1 19-7 31 4 49-2" fill="none" stroke="#F5F4EF" stroke-width="5" stroke-linecap="round"/>
+  <path d="M18 108c22-7 43 6 64-1 17-6 28 3 38-1" fill="none" stroke="#B9915B" stroke-width="3.5" stroke-linecap="round"/>
+</svg>
