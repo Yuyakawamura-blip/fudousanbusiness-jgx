@@ -1,0 +1,220 @@
+/* Figma source: voPyGfM8U5sFDuvgGXEyzK, frame 2:2. */
+.home-page {
+  --home-gutter: min(9%, 142px);
+  font-size: 20px;
+}
+.home-page h1,
+.home-page h2,
+.home-page h3,
+.home-page p,
+.home-page .card-kicker {
+  letter-spacing: 0;
+}
+.home-page > header {
+  height: 80px;
+}
+.home-page .brand {
+  gap: 12px;
+}
+.home-page .nav-contact {
+  padding: 0 20px 3px 0;
+  border: 0;
+  border-bottom: 1px solid var(--green);
+}
+.home-page .nav-contact::after {
+  right: 0;
+}
+.home-page .hero {
+  min-height: 675px;
+}
+.home-page .hero-copy {
+  padding: 105px var(--home-gutter);
+}
+.home-page .hero h1 {
+  font-size: 65px;
+  line-height: 1.28;
+  margin: 22px 0 25px;
+  min-height: 167px;
+}
+.home-page .label {
+  margin: 0 0 22px;
+  font-size: 20px;
+  line-height: 1.2;
+}
+.home-page .hero-copy .label {
+  margin-bottom: 0;
+}
+.home-page .hero-copy .lead {
+  max-width: 1142px;
+  margin: 0;
+  line-height: 1.2;
+  color: #dde8dc;
+}
+.home-page .pills {
+  margin: 22px 0;
+}
+.home-page h2 {
+  font-size: 52px;
+  line-height: 1.45;
+  margin: 0;
+}
+.home-page .owner-entry {
+  min-height: 696px;
+  grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
+  gap: 14px;
+  padding: 110px 3% 110px var(--home-gutter);
+}
+.home-page .owner-entry-list a {
+  min-height: 134px;
+}
+.home-page .concept {
+  min-height: 849px;
+}
+.home-page .concept > .concept-copy {
+  padding: 100px 20px 100px min(18%, 142px);
+  min-width: 0;
+}
+.home-page .concept-copy > p:not(.label) {
+  margin: 20px 0;
+}
+.home-page .concept-image {
+  min-height: 849px;
+}
+.home-page .fact-essence {
+  min-height: 623px;
+  padding: 24px var(--home-gutter) 50px;
+  gap: 100px;
+}
+.home-page .fact-essence-copy > p:not(.label) {
+  margin-top: 24px;
+}
+.home-page .fact-essence-copy > p:last-child {
+  width: min(515px, calc(100% + 62px));
+  max-width: none;
+  margin-top: 18px;
+}
+.home-page .fact-essence-board {
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) 38px minmax(0, 1fr);
+}
+.home-page .fact-essence-card {
+  min-width: 0;
+  min-height: 312px;
+  padding: 28px;
+}
+.home-page .fact-essence-card h3 {
+  font-size: 28px;
+  margin: 12px 0 14px;
+}
+.home-page .fact-visual {
+  display: flex;
+  min-height: 96px;
+  margin-top: 12px;
+  overflow: hidden;
+  border: 1px solid #c4cdc2;
+  border-radius: 16px;
+  background: #f7f5ef;
+}
+.home-page .fact-illustration {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  flex: 0 0 96px;
+  background: #e7eadf;
+}
+.home-page .signal-list {
+  align-content: flex-start;
+  margin: 0;
+  padding: 12px;
+}
+.home-page .fact-essence-result {
+  margin: 10px 18px 0;
+  font-size: 19px;
+}
+.home-page .services {
+  min-height: 439px;
+  padding: 33px var(--home-gutter) 55px;
+}
+.home-page .services-heading {
+  margin: 0;
+}
+.home-page .services-heading h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+.home-page .services-heading h2 a:hover {
+  text-decoration: underline;
+}
+.home-page .services-heading > p:not(.label) {
+  max-width: 717px;
+  margin: 32px 0 0;
+}
+.home-page .launch-cta {
+  min-height: 443px;
+  padding: 100px var(--home-gutter) 65px;
+}
+.home-page .launch-cta .concept-copy {
+  max-width: 1100px;
+  margin-left: 9%;
+  padding: 0;
+}
+.home-page .launch-cta .concept-copy > p:not(.label) {
+  max-width: 1015px;
+}
+.home-page .launch-cta .button {
+  align-self: flex-start;
+  min-width: min(100%, 490px);
+}
+.home-page footer {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+.home-page a:focus-visible {
+  outline: 2px solid #b9915b;
+  outline-offset: 5px;
+}
+@media (max-width: 1200px) {
+  .home-page .hero h1 { font-size: 52px; }
+  .home-page h2 { font-size: 40px; }
+  .home-page .owner-entry { gap: 32px; padding-right: var(--home-gutter); }
+  .home-page .fact-essence { gap: 36px; grid-template-columns: 1fr; padding: 60px var(--home-gutter); }
+  .home-page .fact-essence-copy { max-width: 720px; }
+  .home-page .fact-essence-copy > p:last-child { width: auto; }
+  .home-page .fact-essence-board { max-width: 760px; }
+  .home-page .launch-cta .concept-copy { margin-left: 0; }
+}
+@media (max-width: 720px) {
+  .home-page { --home-gutter: 25px; font-size: 18px; }
+  .home-page > header { height: auto; min-height: 80px; padding: 16px 25px; flex-wrap: wrap; gap: 16px; }
+  .home-page .brand { font-size: 14px; gap: 9px; }
+  .home-page .brand small { font-size: 12px; }
+  .home-page > header .site-nav { display: flex !important; flex-wrap: wrap; justify-content: flex-start; gap: 12px 18px; width: 100%; }
+  .home-page .nav { font-size: 14px; }
+  .home-page .hero { min-height: 620px; }
+  .home-page .hero::after { background: linear-gradient(90deg, #17241db3, #17241d80); }
+  .home-page .hero-copy { padding: 64px 25px; }
+  .home-page .hero h1 { font-size: 38px; line-height: 1.35; min-height: 0; }
+  .home-page .label { font-size: 16px; }
+  .home-page .hero-copy .lead { font-size: 18px; line-height: 1.8; }
+  .home-page .pills { font-size: 14px; }
+  .home-page .hero-actions { display: grid; }
+  .home-page .button { font-size: 16px; }
+  .home-page h2 { font-size: 32px; }
+  .home-page .owner-entry { display: block; min-height: 0; padding: 64px 25px; }
+  .home-page .owner-entry-list a { grid-template-columns: 32px minmax(0, 1fr); gap: 12px; min-height: 0; }
+  .home-page .owner-entry-list strong { font-size: 20px; }
+  .home-page .concept { min-height: 0; }
+  .home-page .concept > .concept-copy { padding: 64px 25px; }
+  .home-page .concept-image { min-height: 420px; }
+  .home-page .concept-copy > p:not(.label) { font-size: 18px; }
+  .home-page .fact-essence { display: block; min-height: 0; padding: 64px 25px; }
+  .home-page .fact-essence-copy { margin-bottom: 42px; }
+  .home-page .fact-essence-board { grid-template-columns: minmax(0, 1fr); padding: 18px; transform: none; }
+  .home-page .fact-essence-card { min-height: 0; padding: 24px; }
+  .home-page .fact-essence-result { margin: 0; font-size: 16px; }
+  .home-page .services { min-height: 0; padding: 64px 25px; }
+  .home-page .services-heading > p:not(.label) { font-size: 22px; line-height: 1.8; }
+  .home-page .launch-cta { min-height: 0; padding: 64px 25px; }
+  .home-page .launch-cta .concept-copy { margin-left: 0; }
+  .home-page footer { font-size: 16px; }
+}
