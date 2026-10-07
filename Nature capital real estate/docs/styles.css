@@ -1464,6 +1464,9 @@ footer span:first-child {
 
 /* Shared site rules */
 body {
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
   font-size: 20px;
 }
 header,
