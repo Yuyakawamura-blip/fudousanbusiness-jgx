@@ -34,7 +34,6 @@ a.button[target="_blank"],
 a.contact-button[target="_blank"],
 a.nav-contact[target="_blank"] {
   padding-right: 2.6em;
-  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
 a.button[target="_blank"]::after,
 a.contact-button[target="_blank"]::after,
@@ -45,20 +44,6 @@ a.nav-contact[target="_blank"]::after {
   margin: 0;
   font-size: 0.78em;
   transform: translateY(-50%);
-}
-a.button[target="_blank"]:hover,
-a.contact-button[target="_blank"]:hover,
-a.nav-contact[target="_blank"]:hover {
-  background: #c8894c;
-  border-color: #c8894c;
-  color: #fff;
-  box-shadow: 0 8px 18px rgba(92, 57, 27, 0.18);
-}
-a.button[target="_blank"]:active,
-a.contact-button[target="_blank"]:active,
-a.nav-contact[target="_blank"]:active {
-  transform: translateY(1px);
-  box-shadow: 0 3px 8px rgba(92, 57, 27, 0.16);
 }
 * {
   font-family: "Noto Sans JP", sans-serif !important;
@@ -275,6 +260,26 @@ h1 {
 .button-outline {
   border: 1px solid rgba(255, 255, 255, 0.75);
   background: rgba(24, 38, 31, 0.28);
+  color: #fff;
+}
+/* Hover on every button: the colour changes, nothing moves (maintenance/design.md §4). */
+.button,
+.contact-button,
+.nav-contact {
+  transition: background-color 160ms ease, color 160ms ease;
+}
+.button:hover {
+  background: #fff;
+}
+.button-outline:hover {
+  /* Darker, not lighter: a white wash lowers the white text's contrast over bright parts of the photo. */
+  background: rgba(24, 38, 31, 0.6);
+}
+.contact-button:hover {
+  background: #183c30;
+}
+.nav-contact:hover {
+  background: var(--green);
   color: #fff;
 }
 .hero small {
@@ -3288,8 +3293,6 @@ footer a {
 .function-hotspot-labels a:focus-visible {
   color: #fffdf8;
   background: #365d49;
-  outline: 2px solid #b9a960;
-  outline-offset: 2px;
 }
 .hotspot-01 {
   left: 50%;
