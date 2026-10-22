@@ -19,7 +19,7 @@
     gate.setAttribute("aria-labelledby", "password-gate-title");
     gate.innerHTML =
       '<div class="password-gate-card">' +
-      '<p class="password-gate-label">NATURE CAPITAL &amp; REAL ESTATE</p>' +
+      '<p class="password-gate-label">NATURE CAPITAL REAL ESTATE</p>' +
       '<h1 id="password-gate-title">サイトをご覧になるには<br>パスワードを入力してください</h1>' +
       '<form class="password-gate-form" novalidate>' +
       '<label for="site-password">パスワード</label>' +
