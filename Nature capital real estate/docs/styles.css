@@ -45,6 +45,7 @@ a.nav-contact[target="_blank"]:active {
 }
 * {
   font-family: "Noto Sans JP", sans-serif !important;
+  box-sizing: border-box;
 }
 html.auth-locked body > * {
   visibility: hidden;
@@ -217,6 +218,7 @@ h2,
 h3 {
   font-weight: 500;
   font-family: "Noto Sans JP", sans-serif;
+  word-break: auto-phrase;
 }
 h1 {
   font-size: clamp(38px, 5vw, 65px);
@@ -914,9 +916,6 @@ details p {
   --pale: #e7eadf;
   --line: #d4d8d0;
 }
-* {
-  box-sizing: border-box;
-}
 html {
   scroll-behavior: smooth;
 }
@@ -1197,6 +1196,7 @@ footer a {
   color: inherit;
   text-decoration: none;
   border-bottom: 1px solid #d8ddd4;
+  white-space: nowrap;
 }
 
 /* Forest education page */
@@ -4007,16 +4007,8 @@ footer a {
 }
 
 /* Footer: wrap between links, never inside one */
-footer a {
-  white-space: nowrap;
-}
 
 /* Japanese headings: break lines between phrases, not inside words */
-h1,
-h2,
-h3 {
-  word-break: auto-phrase;
-}
 .guide-hero-copy {
   max-width: 1040px;
 }
