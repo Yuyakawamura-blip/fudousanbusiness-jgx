@@ -6,7 +6,7 @@
 - [x] /concerns/ のヘッダー「お問い合わせ」→「相談する」
 - [x] `docs/forest/index.html` の「xxx」を削除(正式名が決まるまで「森林経営計画作成支援ツール」)
 - [x] 画像を WebP に変換して軽量化(33.1MB → 3.0MB、14 枚。About の画像はファイル名と alt を中身に合わせて修正)
-- [ ] 森林オープンデータの地図ライブラリ(Leaflet)のアイコン画像 3 点が欠けている(`forest-data/vendor/images/`、以前から)
+- [x] Leaflet 1.9.4 のアイコン画像 3 点を `forest-data/vendor/images/` に補充(公式配布から)
 
 ## B. サイト構成(対象者: 山林所有者が主役、林業事業体・企業・一般は副)
 - [x] ヘッダーのナビを対象者別に組み替えるか決める → 対象者別に決定
@@ -30,5 +30,5 @@
 - [ ] 事例(2026-10-22 時点: 実績ができてから載せる。想定ケースも載せない)
 
 ## E. CSS 整理・保守
-- [ ] GitHub Actions の Node 20 非推奨警告(actions/checkout@v4 など)のバージョン更新
+- [x] GitHub Actions を Node 24 版に更新(checkout v7 / setup-python v7 / configure-pages v6 / upload-pages-artifact v5 / deploy-pages v5)
 - [ ] `styles.css`(約 78KB、`:root` 重複)の整理
