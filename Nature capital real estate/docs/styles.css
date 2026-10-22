@@ -4109,3 +4109,107 @@ footer a {
 .not-found-links a:hover {
   background: #fff;
 }
+
+/* How it works and fees (home, さとやま不動産) */
+.flow-fees {
+  padding: 110px clamp(24px, 9vw, 142px);
+  background: #fbfaf7;
+}
+.flow-fees-heading {
+  max-width: 900px;
+}
+.flow-fees-heading > p:not(.label) {
+  margin: 24px 0 0;
+  color: #4d554f;
+  line-height: 1.8;
+}
+.flow-fees-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 56px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.flow-fees-steps > li {
+  padding: 28px;
+  background: #fff;
+  border-top: 3px solid #64816b;
+}
+.flow-fees-steps b {
+  margin-right: 12px;
+  color: #4f6a57;
+  font-size: 22px;
+  font-weight: 500;
+}
+.fee {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid #b9915b;
+  color: #85663c;
+  font-size: 15px;
+  vertical-align: 3px;
+}
+.fee-free {
+  border-color: var(--green);
+  background: var(--green);
+  color: #fff;
+}
+.flow-fees-steps h3 {
+  margin: 18px 0 12px;
+  font-size: 26px;
+}
+.flow-fees-steps p {
+  margin: 0;
+  color: #4d554f;
+  font-size: 18px;
+  line-height: 1.8;
+}
+.flow-fees-steps ul {
+  margin: 14px 0 0;
+  padding-left: 1.2em;
+  color: #4d554f;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.flow-fees-promises {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  margin: 36px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.flow-fees-promises li {
+  font-size: 18px;
+}
+.flow-fees-promises li::before {
+  content: "✓";
+  margin-right: 10px;
+  color: var(--green);
+  font-weight: 700;
+}
+@media (max-width: 1000px) {
+  .flow-fees-steps {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 720px) {
+  .flow-fees {
+    padding: 64px 25px;
+  }
+  .flow-fees-steps > li {
+    padding: 22px;
+  }
+  .flow-fees-steps h3 {
+    font-size: 22px;
+  }
+}
+.concerns-more {
+  justify-self: start;
+  margin-top: 28px;
+  font-size: 18px;
+}
+.flow-fees-steps ul li {
+  margin-top: 4px;
+}

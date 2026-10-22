@@ -45,6 +45,7 @@
 - セクションの小見出しラベル(`.label` など)は日本語で書く(英語版ページとブランド名「NATURE CAPITAL REAL ESTATE」を除く)。見出しは `word-break: auto-phrase` で文節改行するので、1 文節が列幅を超えない大きさにする
 - ページタイトルは「ページ名 | ネイチャーキャピタル・リアルエステイト」(英語版は「… | Nature Capital Real Estate」)
 - 文字色は背景とのコントラスト比 4.5 以上にする(小見出しラベルは #4f6a57)
+- 「ご相談の流れと費用」は共通部品 `.flow-fees`(styles.css)。トップとさとやま不動産で同じ 3 段階(無料 / 無料 / 事前にお見積り)を保つ
 - ロゴは `docs/assets/nature-capital-mark.svg`
 - 各ページの `<head>` にはファビコンと共有用(OGP)のメタタグがある。新しいページを作るときも同じ一式を入れる(og:url は公開 URL の絶対パス、共有画像は `docs/assets/og-image.jpg`)。独自ドメインに移すときは og:url / og:image を書き換える
 - 新しい画像は **WebP・1 枚 300KB 目安**、ファイル名は英小文字のケバブケース。`alt` を必ず書く
