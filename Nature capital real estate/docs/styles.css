@@ -9,6 +9,14 @@
   --line: #d4d8d0;
 }
 
+/* Keyboard focus, every page: an ink ring with a thin paper line inside it.
+   Ink shows on paper and paper shows on the green bands (maintenance/design.md §6). */
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--paper);
+}
+
 /* Make new-tab destinations legible as actions. */
 a[target="_blank"] {
   position: relative;
@@ -1904,6 +1912,8 @@ footer a {
   line-height: 2;
 }
 .guide-index {
+  /* Positioned so the focus ring's top edge paints above the positioned .guide-hero. */
+  position: relative;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   background: #203a2e;
