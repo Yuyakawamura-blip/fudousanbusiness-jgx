@@ -30,7 +30,7 @@
 | `docs/auth.js` | 全ページのパスワードゲート(クライアント側のみ。本当の保護ではない) |
 | `docs/404.html` | 存在しない URL 用。GitHub Pages はどの階層でもこのファイルを返すので `<base href="/fudousanbusiness-jgx/">` でリンクの基準を固定している |
 | `archive/` | 公開対象外の旧ページ |
-| `maintenance/` | 運用メモ(Figma / 森林データ) |
+| `maintenance/` | 運用メモ(デザインの決まり `design.md` / Figma / 森林データ / ローカル確認用の nginx 設定) |
 
 ## Commands
 - ローカル確認: `docker compose up -d`(このフォルダで実行、停止は `docker compose down`)→ http://localhost:8000/ 。`/fudousanbusiness-jgx/` 配下は公開時と同じパス(404 ページ確認用)、`/__preview/` 配下はパスワード画面なし(撮影用)
