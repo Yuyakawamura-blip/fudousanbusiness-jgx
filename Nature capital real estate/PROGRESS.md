@@ -17,5 +17,8 @@
 - トップの「事業コンセプト」を「事実×本質」に統合
 - 日本語ページの英語ラベル 111 か所を日本語化、見出しを文節改行(auto-phrase)、ガイドのヒーロー幅とトップの見出しサイズを調整
 - 画像 14 枚を WebP 化(33.1MB → 3.0MB)。変換は scratchpad の venv に入れた Pillow で実施(macOS の sips は WebP を書き出せない)。ローカルリンク 182 件を確認、欠けは Leaflet のアイコン 3 点のみ
+- 9cebde6e で公開(GitHub Pages のデプロイ成功、公開 URL で新ページ・WebP を確認)
+- 残り: /partners/ の文章の見直し、会社概要・対応エリア・事例、CSS 整理、Leaflet アイコン欠け、Actions の Node 20 非推奨警告
+- 会社概要(About)・フッターの運営者表記・対応エリアを追加(未コミット)
 
 次回最初に読むファイル: `PLAN.md`、`AGENTS.md`、`docs/index.html`

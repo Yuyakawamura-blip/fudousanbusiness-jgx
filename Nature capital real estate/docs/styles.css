@@ -4977,3 +4977,44 @@ h3 {
 .guide-hero-copy {
   max-width: 1040px;
 }
+
+/* About: operating company */
+.company {
+  padding: 110px clamp(24px, 9vw, 142px);
+  background: #fbfaf7;
+}
+.company h2 {
+  margin-bottom: 40px;
+}
+.company-table {
+  max-width: 960px;
+  margin: 0;
+  border-top: 1px solid #c4cdc2;
+}
+.company-table div {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid #c4cdc2;
+}
+.company-table dt {
+  color: #5d7662;
+  font-weight: 700;
+}
+.company-table dd {
+  margin: 0;
+  line-height: 1.8;
+}
+.company-table a {
+  color: var(--green);
+}
+@media (max-width: 720px) {
+  .company {
+    padding: 64px 25px;
+  }
+  .company-table div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
