@@ -210,7 +210,7 @@ html.auth-locked body > .password-gate {
   margin: 0 0 22px;
   font: 24px "Noto Sans JP", sans-serif;
   letter-spacing: 0.15em;
-  color: #7b9682;
+  color: #4f6a57;
 }
 h1,
 h2,
@@ -235,9 +235,19 @@ h1 {
   margin: 27px 0 32px;
   font-size: 20px;
 }
-.pills span {
+.pills span,
+.pills a {
   padding: 7px 11px;
   border: 1px solid #fff9;
+}
+.pills a {
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 160ms ease;
+}
+.pills a:hover,
+.pills a:focus-visible {
+  background: #ffffff26;
 }
 .button {
   display: inline-block;
@@ -826,7 +836,7 @@ details p {
   border-top: 5px solid #b9915b;
 }
 .card-kicker {
-  color: #68806c;
+  color: #4f6a57;
   font-size: 13px;
   letter-spacing: 0.14em;
 }
@@ -967,7 +977,7 @@ body {
 .hero-copy p,
 .eyebrow {
   margin: 0 0 22px;
-  color: #708874;
+  color: #4f6a57;
   font: 24px "Noto Sans JP", sans-serif;
   letter-spacing: 0.15em;
 }
@@ -1947,7 +1957,7 @@ footer a {
 }
 .guide-scale-grid span,
 .guide-kicker {
-  color: #617c67;
+  color: #4f6a57;
   font: 20px "Noto Sans JP", sans-serif;
   letter-spacing: 0.1em;
 }
