@@ -20,7 +20,7 @@
           <mxGeometry height="58" width="230" x="522" y="112" as="geometry" />
         </mxCell>
         <mxCell id="root" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#29483b;strokeColor=#1f382d;fontColor=#ffffff;fontSize=17;spacing=12;" value="トップLP&lt;br&gt;&lt;b&gt;/&lt;/b&gt;&lt;br&gt;docs/index.html&lt;br&gt;山林・里山の相続と管理の入口" vertex="1">
-          <mxGeometry height="104" width="420" x="670" y="130" as="geometry" />
+          <mxGeometry height="104" width="420" x="850" y="120" as="geometry" />
         </mxCell>
         <mxCell id="nav" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8eee9;strokeColor=#7f9485;fontSize=14;spacing=10;" value="共通ヘッダー/フッター&lt;br&gt;私たちについて｜お悩みから探す｜森林を知る｜相談する" vertex="1">
           <mxGeometry height="70" width="560" x="600" y="270" as="geometry" />
@@ -59,10 +59,10 @@
           <mxGeometry height="104" width="300" x="1140" y="610" as="geometry" />
         </mxCell>
         <mxCell id="old-planning" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff4ed;strokeColor=#cf7f5d;fontSize=14;spacing=10;" value="旧URL：アーカイブ済み&lt;br&gt;&lt;b&gt;archive/2026-10-07/docs/&lt;br&gt;forest-planning-tool/index.html&lt;/b&gt;&lt;br&gt;現行ページは /services/ 配下" vertex="1">
-          <mxGeometry height="112" width="330" x="180" y="810" as="geometry" />
+          <mxGeometry height="112" width="330" x="75" y="830" as="geometry" />
         </mxCell>
         <mxCell id="old-owner" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff4ed;strokeColor=#cf7f5d;fontSize=14;spacing=10;" value="旧URL：アーカイブ済み&lt;br&gt;&lt;b&gt;archive/2026-10-07/docs/&lt;br&gt;satoyama-real-estate/index.html&lt;/b&gt;&lt;br&gt;現行ページは /services/ 配下" vertex="1">
-          <mxGeometry height="112" width="330" x="540" y="810" as="geometry" />
+          <mxGeometry height="112" width="330" x="430" y="830" as="geometry" />
         </mxCell>
         <mxCell id="svc-planning" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3f8f1;strokeColor=#91aa84;fontSize=14;spacing=10;" value="森林経営計画作成支援&lt;br&gt;&lt;b&gt;/services/forest-planning-tool/&lt;/b&gt;&lt;br&gt;docs/services/forest-planning-tool/index.html&lt;br&gt;現行サービス配下" vertex="1">
           <mxGeometry height="112" width="330" x="940" y="810" as="geometry" />
