@@ -35,6 +35,7 @@
 ## Commands
 - ローカル確認: `docker compose up -d`(このフォルダで実行、停止は `docker compose down`)→ http://localhost:8000/ 。`/fudousanbusiness-jgx/` 配下は公開時と同じパス(404 ページ確認用)、`/__preview/` 配下はパスワード画面なし(撮影用)
 - Docker が無いとき: `python3 -m http.server 8000 -d docs`(同じポートなので Docker と同時には使えない)
+- リンク切れの確認: `python3 scripts/check_links.py`(外部リンクも見るときは `--external`)。テストは `python3 -m unittest discover -s tests -p 'test_check_links.py'`
 - 森林データ更新のテスト: `python3 -m unittest discover -s tests -p 'test_forest_data.py'`
 - `tests/rendered-html.test.mjs` は旧ビルド(`dist/`)用で、現行サイトの確認には使わない
 
