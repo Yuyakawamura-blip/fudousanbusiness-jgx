@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap");
 
+/* Settings: named colours. Use these instead of hex values (maintenance/design.md §6, §15). */
+:root {
+  --ink: #202923;
+  --green: #254c3d;
+  --paper: #fbfaf7;
+  --pale: #e7eadf;
+  --line: #d4d8d0;
+}
+
 /* Make new-tab destinations legible as actions. */
 a[target="_blank"] {
   position: relative;
@@ -909,13 +918,6 @@ details p {
 }
 
 /* About us */
-:root {
-  --ink: #202923;
-  --green: #254c3d;
-  --paper: #fbfaf7;
-  --pale: #e7eadf;
-  --line: #d4d8d0;
-}
 html {
   scroll-behavior: smooth;
 }
