@@ -5018,3 +5018,29 @@ h3 {
     gap: 4px;
   }
 }
+
+/* Partners page: availability of each way to get involved */
+.partner-grid .partner-status {
+  display: block;
+  width: fit-content;
+  margin: 14px 0 0;
+  padding: 4px 12px;
+  border: 1px solid #b9915b;
+  color: #85663c;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.partner-grid .partner-status.is-open {
+  border-color: var(--green);
+  background: var(--green);
+  color: #fff;
+}
+.partner-grid .partner-status + h3 {
+  margin-top: 16px;
+}
+.partner-link {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--green);
+  font-size: 17px;
+}
