@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="forest-data/home-link.css" />
     <link rel="stylesheet" href="home.css" />
     <script src="auth.js"></script>
+    <script src="nav.js"></script>
   </head>
   <body class="home-page">
     <header>
       <a class="brand" href="#top"
-        ><img class="brand-mark" src="assets/figma-home-mark.png" alt="" />
+        ><img class="brand-mark" src="assets/nature-capital-mark.svg" alt="" />
         <span
           >ネイチャーキャピタル・リアルエステイト<small
             >Nature Capital Real Estate</small
@@ -24,17 +25,12 @@
         ></a
       >
       <nav class="site-nav" aria-label="主要ナビゲーション">
-        <a class="nav" href="about/">私たちについて</a>
-        <a class="nav" href="concerns/">お悩みから探す</a>
+        <a class="nav" href="services/satoyama-real-estate/">山林をお持ちの方</a>
+        <a class="nav" href="services/forest-planning-tool/">林業事業体の方</a>
+        <a class="nav" href="partners/">企業・個人の方</a>
         <a class="nav" href="forest/">森林を知る</a>
-        <a class="nav" href="services/">サービス</a>
-        <a
-          class="nav nav-contact"
-          href="https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform"
-          target="_blank"
-          rel="noopener noreferrer"
-          >相談する</a
-        >
+        <a class="nav" href="about/">私たちについて</a>
+        <a class="nav nav-contact" href="https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform" target="_blank" rel="noopener noreferrer">無料相談</a>
       </nav>
     </header>
     <main>
@@ -55,7 +51,7 @@
             ><span>売却・活用の可能性診断</span>
           </p>
           <div class="hero-actions">
-            <a class="button" href="services/">サービス内容を見る</a>
+            <a class="button" href="services/satoyama-real-estate/">さとやま不動産について</a>
             <a
               class="button button-outline"
               href="https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform"
@@ -68,8 +64,9 @@
       </section>
       <section class="owner-entry" id="concerns">
         <div class="owner-entry-heading">
-          <p class="label">THREE STARTING POINTS</p>
+          <p class="label">よくあるご相談</p>
           <h2>今の悩みから、<br />整理を始めましょう。</h2>
+          <a class="text-link owner-entry-more" href="concerns/">ほかのお悩みも見る　→</a>
         </div>
         <div class="owner-entry-list">
           <a href="services/satoyama-real-estate/#valuation"
@@ -95,33 +92,49 @@
           >
         </div>
       </section>
-      <section class="concept">
-        <div class="concept-copy">
-          <p class="label">事業コンセプト</p>
-          <h2>「価値がない」の前に、分からないことを減らす。</h2>
+      <section class="home-flow" id="flow" aria-labelledby="home-flow-heading">
+        <div class="home-flow-heading">
+          <p class="label">初めての方へ</p>
+          <h2 id="home-flow-heading">ご相談の流れと、<br />費用のこと。</h2>
           <p>
-            山林の取引を難しくしているのは、土地そのものの価格だけではありません。場所や境界、所有者、接道、規制、森林の状況、管理費用が分からないことが、買い手と所有者の両方にとって大きな不安になります。
-          </p>
-          <p>
-            私たちは、その不確実さを一つずつ整理します。高値売却を約束するのではなく、管理を続ける、活用する、売却を検討するといった選択肢を判断できる状態にすることが、最初の価値化です。
+            初回のインタビューは無料です。費用がかかる作業は、内容と金額を先にお伝えし、ご了承いただいてから進めます。
           </p>
         </div>
-        <figure class="concept-image">
-          <img
-            src="assets/concept-rice-terrace.png"
-            alt="山あいの水田と集落の風景"
-          />
-        </figure>
+        <ol class="home-flow-steps">
+          <li>
+            <b>01</b><span class="fee fee-free">無料</span>
+            <h3>初回インタビュー</h3>
+            <p>電話・オンライン・対面で、山の場所や相続の状況、困っていることをお聞きし、お手元の資料から分かることを一緒に確認します。</p>
+          </li>
+          <li>
+            <b>02</b><span class="fee fee-free">無料</span>
+            <h3>対応と費用のご案内</h3>
+            <p>現地確認や調査、専門家への相談が必要な場合は、その内容と費用をお伝えします。ご依頼いただくかは、それから決めてください。</p>
+          </li>
+          <li>
+            <b>03</b><span class="fee">事前にお見積り</span>
+            <h3>ご了承後に実施</h3>
+            <p>ご納得いただいた内容だけを進めます。ご了承なく費用が発生することはありません。</p>
+          </li>
+        </ol>
+        <ul class="home-flow-promises">
+          <li>相談だけでも大丈夫です</li>
+          <li>売却を前提にしません</li>
+          <li>山の場所が曖昧でも構いません</li>
+        </ul>
       </section>
       <section class="fact-essence" id="approach">
         <div class="fact-essence-copy">
-          <p class="label">FACT × ESSENCE</p>
-          <h2>事実だけでも、<br />物語だけでも足りない。</h2>
+          <p class="label">私たちの考え方</p>
+          <h2>「価値がない」の前に、<br />分からないことを減らす。</h2>
           <p>
-            山の場所や境界を調べる。管理費用を見積もる。これは大切な「事実」です。
+            山林の取引や管理を難しくしているのは、土地の価格だけではありません。場所や境界、所有者、接道、規制、管理費用が分からないことが、所有者にも買い手にも大きな不安になります。
           </p>
           <p>
-            でも、所有者が本当に知りたいのは「この山をどうすれば、誰かの役に立つ形で手放せるか」。地域が必要としているのは、資金だけでなく、手入れを担う人と仕事です。事実と気持ち、その両方を一つの相談にします。
+            山の場所や境界を調べ、管理費用を見積もる「事実」。誰かの役に立つ形で山を託したい、地域に仕事を残したいという「願い」。その両方を、一つの相談で整理します。
+          </p>
+          <p>
+            高値売却を約束するのではなく、管理を続ける、活用する、売却を検討するといった選択肢を判断できる状態にすること。それが、私たちの考える最初の価値化です。
           </p>
         </div>
         <div
@@ -129,7 +142,7 @@
           aria-label="森林相談を事実と本質の両面から整理する図"
         >
           <article class="fact-essence-card fact-card">
-            <span class="card-kicker">01 / FACT</span>
+            <span class="card-kicker">01 / 事実</span>
             <h3>山を読む</h3>
             <p>場所、境界、接道、樹種、管理履歴。分かることを増やす。</p>
             <div class="fact-visual">
@@ -139,7 +152,7 @@
           </article>
           <div class="fact-essence-plus" aria-hidden="true">＋</div>
           <article class="fact-essence-card essence-card">
-            <span class="card-kicker">02 / ESSENCE</span>
+            <span class="card-kicker">02 / 願い</span>
             <h3>山の次を描く</h3>
             <p>安心して任せたい。地域に仕事を残したい。願いを出口にする。</p>
             <div class="fact-visual">
@@ -152,18 +165,26 @@
           </div>
         </div>
       </section>
-      <section class="services" id="services">
-        <div class="services-heading">
-          <p class="label">SERVICES</p>
-          <h2><a href="services/satoyama-real-estate/">山林所有者のための、管理と出口のサービス</a></h2>
-          <p>
-            初回インタビューで現状を整理し、必要に応じて現地確認、管理、活用、売却の検討へ進みます。
-          </p>
+      <section class="home-others" aria-labelledby="home-others-heading">
+        <div class="home-others-heading">
+          <p class="label">その他の方へ</p>
+          <h2 id="home-others-heading">山林をお持ちの方以外にも。</h2>
+        </div>
+        <div class="home-others-list">
+          <a href="services/forest-planning-tool/"
+            ><span>林業事業体の方</span>森林経営計画作成支援ツール　→</a
+          >
+          <a href="partners/"
+            ><span>企業・個人の方</span>森林・里山との関わり方　→</a
+          >
+          <a href="forest/"
+            ><span>森林について知りたい方</span>森林を知る　→</a
+          >
         </div>
       </section>
       <section class="launch-cta" aria-labelledby="launch-cta-heading">
         <div class="concept-copy">
-          <p class="label light">FIRST INTERVIEW</p>
+          <p class="label light">初回インタビュー</p>
           <h2 id="launch-cta-heading">山の場所が曖昧でも、分かる範囲から。</h2>
           <p>
             初回インタビューは無料です。所在地、相続の状況、手元の書類、現在困っていることをお聞きします。
@@ -179,20 +200,9 @@
       </section>
     </main>
     <footer>
+      <span>ネイチャーキャピタル・リアルエステイト<br /><small>Nature Capital Real Estate</small></span>
       <span
-        >ネイチャーキャピタル・リアルエステイト<br /><small
-          >Nature Capital Real Estate</small
-        ></span
-      ><span
-        ><a href="about/">私たちについて</a>　<a href="concerns/"
-          >お悩みから探す</a
-        >　<a href="forest/">森林を知る</a>　<a href="services/">サービス</a
-        >　<a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform"
-          target="_blank"
-          rel="noopener noreferrer"
-          >相談する</a
-        >
+        ><a href="services/satoyama-real-estate/">山林をお持ちの方</a>　<a href="services/forest-planning-tool/">林業事業体の方</a>　<a href="partners/">企業・個人の方</a>　<a href="forest/">森林を知る</a>　<a href="about/">私たちについて</a>　<a href="concerns/">お悩みから探す</a>　<a href="services/">サービス一覧</a>　<a href="https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform" target="_blank" rel="noopener noreferrer">無料相談</a>
         <br />© 2026 Nature Capital Real Estate</span
       >
     </footer>

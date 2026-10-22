@@ -7,6 +7,7 @@
     <title>お悩みから探す | Nature Capital Real Estate</title>
     <link rel="stylesheet" href="../styles.css" />
     <script src="../auth.js"></script>
+    <script src="../nav.js"></script>
   </head>
   <body class="service-page concerns-page">
     <header class="site-header">
@@ -15,27 +16,28 @@
         <span>ネイチャーキャピタル・リアルエステイト<small>Nature Capital Real Estate</small></span>
       </a>
       <nav class="site-nav" aria-label="主要ナビゲーション">
-        <a class="nav" href="../about/">私たちについて</a>
-        <a class="nav" href="./" aria-current="page">お悩みから探す</a>
+        <a class="nav" href="../services/satoyama-real-estate/">山林をお持ちの方</a>
+        <a class="nav" href="../services/forest-planning-tool/">林業事業体の方</a>
+        <a class="nav" href="../partners/">企業・個人の方</a>
         <a class="nav" href="../forest/">森林を知る</a>
-        <a class="nav" href="../services/">サービス</a>
-        <a class="nav nav-contact" href="https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform" target="_blank" rel="noopener noreferrer">お問い合わせ</a>
+        <a class="nav" href="../about/">私たちについて</a>
+        <a class="nav nav-contact" href="https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform" target="_blank" rel="noopener noreferrer">無料相談</a>
       </nav>
     </header>
     <main>
       <section class="service-hero">
         <figure>
-          <img src="../assets/concept-rice-terrace.png" alt="山あいの水田と集落の風景" />
+          <img src="../assets/concept-rice-terrace.webp" alt="山あいの水田と集落の風景" />
         </figure>
         <div class="service-hero-copy">
-          <p class="label light">YOUR CONCERNS</p>
+          <p class="label light">山林をお持ちの方へ</p>
           <h1>お悩みから探す</h1>
-          <p>売却、遠方からの管理、相続。今困っていることから、山林・里山の現状と選択肢を整理します。</p>
+          <p>売却、遠方からの管理、相続、手放し方、費用、境界。今困っていることから、山林・里山の現状と選択肢を整理します。</p>
         </div>
       </section>
       <section class="owner-entry">
         <div class="owner-entry-heading">
-          <p class="label">THREE STARTING POINTS</p>
+          <p class="label">よくあるご相談</p>
           <h2>今の悩みから、<br />整理を始めましょう。</h2>
         </div>
         <div class="owner-entry-list">
@@ -44,18 +46,82 @@
           <a href="../services/satoyama-real-estate/#inheritance"><b>03</b><span><strong>山を相続する前に、何を確認すべきか分からない</strong>登記、共有、境界、現在の管理状況を分かる範囲から整理します。</span></a>
         </div>
       </section>
+      <section class="concern-groups" aria-labelledby="concern-groups-heading">
+        <div class="concern-groups-heading">
+          <p class="label">お悩み別のご相談</p>
+          <h2 id="concern-groups-heading">お悩み別に、<br />よくあるご相談。</h2>
+          <p>当てはまるものから読んでください。どれにも当てはまらなくても、ご相談いただけます。</p>
+          <nav class="concern-jump" aria-label="お悩みの分類"><a href="#letting-go"><span>A</span>手放したい</a><a href="#costs"><span>B</span>費用の負担</a><a href="#boundaries"><span>C</span>境界・共有・トラブル</a></nav>
+        </div>
+        <div class="concern-group" id="letting-go">
+          <h3 class="concern-group-title"><span>A</span>手放したい</h3>
+          <div class="concern-items">
+            <article>
+              <h4>山を国に引き取ってもらえると聞いた</h4>
+              <p>相続した土地を国に引き渡す「相続土地国庫帰属制度」があります。法務局への申請と審査があり、手数料や負担金がかかります。境界が明らかでない土地や、管理に過大な費用がかかる土地などは承認されないことがあるため、山林では事前の確認が大切です。</p>
+              <p class="concern-help"><b>私たちにできること</b>境界や現況を整理し、申請を検討できる状態かを一緒に確認します。手続きは法務局や専門家へおつなぎします。<a href="../services/satoyama-real-estate/#inheritance">関連するサービス　→</a></p>
+            </article>
+            <article>
+              <h4>相続放棄をすれば、山だけ手放せる？</h4>
+              <p>相続放棄は家庭裁判所での手続きで、原則として相続の開始を知った時から3か月以内に行います。山だけでなく、預貯金や自宅を含むすべての財産を相続しないことになります。</p>
+              <p class="concern-help"><b>私たちにできること</b>山林の状況と選択肢を整理し、判断に必要な材料をそろえます。法的な判断は司法書士・弁護士などの専門家へおつなぎします。<a href="../services/satoyama-real-estate/#inheritance">関連するサービス　→</a></p>
+            </article>
+            <article>
+              <h4>誰かに譲ったり、寄付したりできる？</h4>
+              <p>隣接地の所有者、地域の林業事業者、山林を活用したい企業や個人など、引き受け手が見つかる可能性は土地の条件によって大きく変わります。自治体が寄付を受け入れる場合は限られています。</p>
+              <p class="concern-help"><b>私たちにできること</b>場所、接道、森林の状態などの条件を整理し、現実的な引き受け手を検討します。<a href="../services/satoyama-real-estate/#valuation">関連するサービス　→</a></p>
+            </article>
+          </div>
+        </div>
+        <div class="concern-group" id="costs">
+          <h3 class="concern-group-title"><span>B</span>費用の負担</h3>
+          <div class="concern-items">
+            <article>
+              <h4>固定資産税や管理費がずっとかかるのが心配</h4>
+              <p>山林は評価額が低いため、固定資産税が少額だったり、免税点未満で課税されていなかったりする場合もあります。まずは納税通知書や名寄帳で、どの土地にいくらかかっているかを確認することが出発点です。</p>
+              <p class="concern-help"><b>私たちにできること</b>名寄帳や登記資料をもとに、所有している土地と負担を一覧にして整理します。<a href="../services/satoyama-real-estate/#inheritance">関連するサービス　→</a></p>
+            </article>
+            <article>
+              <h4>手入れにいくらかかるか分からない</h4>
+              <p>費用は、面積、樹種、道からの距離、作業の内容によって大きく変わります。森林経営計画にもとづく間伐などでは、補助金を活用できる場合もあります。</p>
+              <p class="concern-help"><b>私たちにできること</b>地域の森林組合・林業事業体と、見積もりの前提となる情報を整理します。<a href="../services/satoyama-real-estate/#management">関連するサービス　→</a></p>
+            </article>
+          </div>
+        </div>
+        <div class="concern-group" id="boundaries">
+          <h3 class="concern-group-title"><span>C</span>境界・共有・トラブル</h3>
+          <div class="concern-items">
+            <article>
+              <h4>山の場所や境界が分からない</h4>
+              <p>登記簿、公図、森林簿、森林計画図、市町村の林地台帳などが手がかりになります。図面と現地が一致しないことも多く、境界の確認には隣接する所有者の立会いが必要になる場合があります。</p>
+              <p class="concern-help"><b>私たちにできること</b>手元の資料と公的な資料を照らし合わせ、分かる範囲から場所を特定します。現地確認が必要な場合は、対応可否と費用を事前にご案内します。<a href="../services/satoyama-real-estate/#valuation">関連するサービス　→</a></p>
+            </article>
+            <article>
+              <h4>共有者が多くて話がまとまらない</h4>
+              <p>相続が重なると共有者が増え、売却や伐採などに共有者の同意が必要になります。所在が分からない共有者がいる場合に使える制度もあります。</p>
+              <p class="concern-help"><b>私たちにできること</b>共有者と持分を一覧にし、話し合いの前提を整理します。手続きが必要な場合は専門家へおつなぎします。<a href="../services/satoyama-real-estate/#inheritance">関連するサービス　→</a></p>
+            </article>
+            <article>
+              <h4>倒木や越境で、近所から苦情が来た</h4>
+              <p>放置すると、事故や被害が起きたときに所有者として責任を問われる可能性があります。まずは現地の状況を確認することが大切です。</p>
+              <p class="concern-help"><b>私たちにできること</b>現地の状況確認と写真での報告、必要な場合は地域の事業者との伐採・手入れの調整を検討します。<a href="../services/satoyama-real-estate/#management">関連するサービス　→</a></p>
+            </article>
+          </div>
+        </div>
+        <p class="concern-caveat">※ 制度の内容や要件は変わることがあります。個別の法律・税務の判断は、司法書士・弁護士・税理士などの専門家にご確認ください。</p>
+      </section>
       <section class="service-intro">
         <div>
-          <p class="label">OUR SERVICES</p>
+          <p class="label">サービス</p>
           <h2>必要な支援へ、<br />相談をつなぐ。</h2>
         </div>
         <div class="body-copy">
-          <p>山林所有者の相続・管理・出口整理と、森林組合・林業事業体の計画づくり。それぞれの状況に合わせたサービスをご案内します。</p>
+          <p>山林所有者向けの「さとやま不動産」と、森林組合・林業事業体の計画づくり。それぞれの状況に合わせたサービスをご案内します。</p>
           <a class="contact-button" href="../services/">サービスを見る　→</a>
         </div>
       </section>
       <section class="cta">
-        <p class="label">CONTACT</p>
+        <p class="label">お問い合わせ</p>
         <h2>山のことが分からなくても、<br />まずはご相談ください。</h2>
         <p>初回インタビューで、分かっていることと、確認したいことを一緒に整理します。</p>
         <a class="contact-button" href="https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform" target="_blank" rel="noopener noreferrer">ウェブで問い合わせる</a>
@@ -63,7 +129,10 @@
     </main>
     <footer>
       <span>ネイチャーキャピタル・リアルエステイト<br /><small>Nature Capital Real Estate</small></span>
-      <span><a href="../about/">私たちについて</a>　<a href="./">お悩みから探す</a>　<a href="../forest/">森林を知る</a>　<a href="../services/">サービス</a>　<a href="https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform" target="_blank" rel="noopener noreferrer">相談する</a><br />© 2026 Nature Capital Real Estate</span>
+      <span
+        ><a href="../services/satoyama-real-estate/">山林をお持ちの方</a>　<a href="../services/forest-planning-tool/">林業事業体の方</a>　<a href="../partners/">企業・個人の方</a>　<a href="../forest/">森林を知る</a>　<a href="../about/">私たちについて</a>　<a href="../concerns/" aria-current="page">お悩みから探す</a>　<a href="../services/">サービス一覧</a>　<a href="https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform" target="_blank" rel="noopener noreferrer">無料相談</a>
+        <br />© 2026 Nature Capital Real Estate</span
+      >
     </footer>
   </body>
 </html>

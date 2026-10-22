@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="vendor/leaflet.css" />
     <link rel="stylesheet" href="forest-data.css" />
     <script src="../auth.js"></script>
+    <script src="../nav.js"></script>
     <script src="vendor/leaflet.js" defer></script>
     <script src="forest-data.js" defer></script>
   </head>
@@ -29,17 +30,12 @@
         ></a
       >
       <nav class="site-nav" aria-label="主要ナビゲーション">
-        <a class="nav" href="../about/">私たちについて</a
-        ><a class="nav" href="../concerns/">お悩みから探す</a
-        ><a class="nav" href="../forest/">森林を知る</a
-        ><a class="nav" href="../services/">サービス</a
-        ><a
-          class="nav nav-contact"
-          href="https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform"
-          target="_blank"
-          rel="noopener noreferrer"
-          >相談する</a
-        >
+        <a class="nav" href="../services/satoyama-real-estate/">山林をお持ちの方</a>
+        <a class="nav" href="../services/forest-planning-tool/">林業事業体の方</a>
+        <a class="nav" href="../partners/">企業・個人の方</a>
+        <a class="nav" href="../forest/" aria-current="page">森林を知る</a>
+        <a class="nav" href="../about/">私たちについて</a>
+        <a class="nav nav-contact" href="https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform" target="_blank" rel="noopener noreferrer">無料相談</a>
       </nav>
     </header>
     <main>
@@ -47,7 +43,7 @@
         <a class="back-link" href="../">ホーム / 森林オープンデータ</a>
         <div class="intro-grid">
           <div>
-            <p class="eyebrow">JAPAN FOREST OPEN DATA</p>
+            <p class="eyebrow">日本の森林オープンデータ</p>
             <h1>日本の森林を、<br />データでひらく。</h1>
           </div>
           <div class="intro-description">
@@ -73,7 +69,7 @@
       <section class="map-section" aria-labelledby="map-heading">
         <div class="map-top">
           <div>
-            <p class="eyebrow">01 / EXPLORE</p>
+            <p class="eyebrow">01 / 見る</p>
             <h2 id="map-heading">地図で見る、森林の区域</h2>
           </div>
           <p>森林計画対象森林レイヤ</p>
@@ -149,7 +145,7 @@
       >
         <div class="section-heading">
           <div>
-            <p class="eyebrow">02 / DOWNLOAD</p>
+            <p class="eyebrow">02 / 入手する</p>
             <h2 id="catalog-heading">地域のデータを、手元に。</h2>
           </div>
           <p>GISで区域と属性を確認するための<br />都道府県別データです。</p>
@@ -189,7 +185,7 @@
       <section class="guide-section" id="guide">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">03 / HOW TO USE</p>
+            <p class="eyebrow">03 / 使い方</p>
             <h2>目的に合わせて、使い分ける。</h2>
           </div>
         </div>
@@ -222,7 +218,7 @@
           <p id="copy-status" role="status"></p>
         </div>
         <div class="terms-box" id="terms">
-          <p class="eyebrow">BEFORE YOU USE</p>
+          <p class="eyebrow">ご利用の前に</p>
           <h3>利用前に確認しておきたいこと</h3>
           <ul>
             <li>
@@ -245,7 +241,7 @@
         </div>
       </section>
       <section class="context-section">
-        <p class="eyebrow">BEYOND THE MAP</p>
+        <p class="eyebrow">地図の先へ</p>
         <h2>区域の先に、森林を知るデータがあります。</h2>
         <p>
           航空レーザから得られる地形や樹高、森林資源情報は、この区域レイヤとは別のデータです。公開範囲や提供条件を確かめ、目的に合う情報を選びます。
@@ -280,7 +276,7 @@
       </section>
       <section class="updates-section" id="updates">
         <div>
-          <p class="eyebrow">KEEPING DATA CONNECTED</p>
+          <p class="eyebrow">データの更新</p>
           <h2>提供元の更新を、<br />このページへ。</h2>
         </div>
         <div>
@@ -317,21 +313,10 @@
       >
     </main>
     <footer>
+      <span>ネイチャーキャピタル・リアルエステイト<br /><small>Nature Capital Real Estate</small></span>
       <span
-        >ネイチャーキャピタル・リアルエステイト<br /><small
-          >Nature Capital Real Estate</small
-        ></span
-      ><span
-        ><a href="../about/">私たちについて</a>　<a href="../concerns/"
-          >お悩みから探す</a
-        >　<a href="../forest/">森林を知る</a>　<a href="../services/"
-          >サービス</a
-        >　<a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform"
-          target="_blank"
-          rel="noopener noreferrer"
-          >相談する</a
-        ><br />© 2026 Nature Capital Real Estate</span
+        ><a href="../services/satoyama-real-estate/">山林をお持ちの方</a>　<a href="../services/forest-planning-tool/">林業事業体の方</a>　<a href="../partners/">企業・個人の方</a>　<a href="../forest/" aria-current="page">森林を知る</a>　<a href="../about/">私たちについて</a>　<a href="../concerns/">お悩みから探す</a>　<a href="../services/">サービス一覧</a>　<a href="https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform" target="_blank" rel="noopener noreferrer">無料相談</a>
+        <br />© 2026 Nature Capital Real Estate</span
       >
     </footer>
   </body>

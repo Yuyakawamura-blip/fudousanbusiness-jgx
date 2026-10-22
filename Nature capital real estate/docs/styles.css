@@ -196,7 +196,7 @@ header {
 .scene {
   position: absolute;
   inset: 0;
-  background: url("assets/nature-capital-concept.jpeg") center 58% / cover
+  background: url("assets/nature-capital-concept.webp") center 58% / cover
     no-repeat;
 }
 .scene > * {
@@ -1545,7 +1545,7 @@ footer a {
       rgba(19, 36, 29, 0.36) 60%,
       rgba(19, 36, 29, 0.18)
     ),
-    url("assets/forest-living-system.png") center / cover;
+    url("assets/forest-living-system.webp") center / cover;
 }
 
 .forest-hero-copy {
@@ -2188,7 +2188,7 @@ footer a {
   color: #f5f4ed;
   background:
     linear-gradient(rgba(28, 52, 40, 0.66), rgba(28, 52, 40, 0.82)),
-    url("assets/forest-cycle.png") center / cover;
+    url("assets/forest-cycle.webp") center / cover;
 }
 
 .work-figure > p {
@@ -2544,7 +2544,7 @@ footer a {
       rgba(22, 39, 31, 0.44) 62%,
       rgba(22, 39, 31, 0.18)
     ),
-    url("assets/concept-rice-terrace.png") center 52% / cover;
+    url("assets/concept-rice-terrace.webp") center 52% / cover;
 }
 
 .guide-hero-copy {
@@ -4712,4 +4712,268 @@ footer a {
     font-size: 38px;
     line-height: 1.35;
   }
+}
+
+/* Partners page */
+.partner-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.partner-grid article:nth-child(4) {
+  border-top-color: #b9915b;
+}
+@media (max-width: 720px) {
+  .partner-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Current page in the shared navigation */
+.site-nav .nav[aria-current="page"] {
+  font-weight: 700;
+  border-bottom-width: 2px;
+}
+
+/* Shared header: keep the brand on one line and fit the six-item audience nav */
+@media (min-width: 721px) {
+  body > header .brand {
+    font-size: 18px;
+    white-space: nowrap;
+  }
+  body > header .brand small {
+    font-size: 13px;
+  }
+  body > header .site-nav {
+    flex-wrap: nowrap;
+    gap: 22px;
+  }
+  body > header .site-nav .nav {
+    font-size: 16px;
+    white-space: nowrap;
+  }
+}
+@media (min-width: 721px) and (max-width: 1280px) {
+  body > header,
+  body > header.site-header,
+  body.home-page > header {
+    height: auto;
+    flex-wrap: wrap;
+    row-gap: 12px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  body > header .site-nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* Mobile menu toggle (button is added by nav.js) */
+.nav-toggle {
+  display: none;
+}
+@media (max-width: 720px) {
+  body > header,
+  body > header.site-header,
+  body.home-page > header {
+    height: auto;
+    min-height: 67px;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  body > header .brand,
+  body > header.site-header .brand {
+    flex: 1 1 0;
+    min-width: 0;
+    font-size: 14px;
+  }
+  body > header .brand small,
+  body > header.site-header .brand small {
+    font-size: 12px;
+  }
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 16px;
+    border: 1px solid var(--green);
+    border-radius: 0;
+    background: transparent;
+    color: var(--green);
+    font: 15px "Noto Sans JP", sans-serif;
+    cursor: pointer;
+  }
+  body > header .site-nav,
+  body > header.site-header .site-nav {
+    display: none !important;
+  }
+  body > header.nav-open .site-nav {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+  }
+  body > header.nav-open .site-nav .nav {
+    padding: 14px 0;
+    font-size: 17px;
+    border-bottom: 1px solid #d8ddd4;
+  }
+  body > header.nav-open .site-nav .nav-contact {
+    margin-top: 12px;
+    padding: 14px 2.6em 14px 16px;
+    border: 1px solid var(--green);
+    text-align: center;
+  }
+}
+
+/* Concerns page: grouped concerns */
+.concern-groups {
+  padding: 110px clamp(24px, 9vw, 142px);
+  background: #fbfaf7;
+}
+.concern-groups-heading {
+  max-width: 900px;
+  margin-bottom: 56px;
+}
+.concern-groups-heading > p:not(.label) {
+  margin: 20px 0 0;
+  color: #4d554f;
+  font-size: 20px;
+  line-height: 1.8;
+}
+.concern-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+.concern-jump a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 1px solid var(--green);
+  color: var(--green);
+  font-size: 18px;
+  text-decoration: none;
+}
+.concern-jump a span,
+.concern-group-title span {
+  color: #b9915b;
+  font-weight: 700;
+}
+.concern-group {
+  margin-top: 64px;
+  scroll-margin-top: 24px;
+}
+.concern-group-title {
+  display: flex;
+  gap: 14px;
+  margin: 0 0 20px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--green);
+  font-size: 30px;
+}
+.concern-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+}
+.concern-items article {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  background: #fff;
+  border-top: 3px solid #64816b;
+}
+.concern-items h4 {
+  margin: 0 0 14px;
+  font-size: 22px;
+  line-height: 1.5;
+}
+.concern-items p {
+  margin: 0;
+  color: #4d554f;
+  font-size: 18px;
+  line-height: 1.8;
+}
+.concern-items .concern-help {
+  margin-top: auto;
+  padding-top: 20px;
+}
+.concern-help b {
+  display: block;
+  margin: 0 0 6px;
+  padding-top: 16px;
+  border-top: 1px solid #d8ddd4;
+  color: var(--green);
+  font-size: 16px;
+}
+.concern-help a {
+  display: block;
+  width: fit-content;
+  margin-top: 12px;
+  color: var(--green);
+  font-weight: 700;
+}
+.concern-caveat {
+  margin: 48px 0 0;
+  color: #627067;
+  font-size: 15px;
+  line-height: 1.8;
+}
+@media (max-width: 720px) {
+  .concern-groups {
+    padding: 64px 25px;
+  }
+  .concern-group-title {
+    font-size: 24px;
+  }
+  .concern-items {
+    grid-template-columns: 1fr;
+  }
+  .concern-items article {
+    padding: 22px;
+  }
+}
+
+/* Service name with a descriptive subtitle in the hero */
+.service-hero-copy h1 .hero-sub {
+  display: block;
+  margin-top: 14px;
+  color: #dce6dc;
+  font-size: 0.48em;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Services index: align card buttons to the bottom */
+.services-index-page .service-card-grid article {
+  display: flex;
+  flex-direction: column;
+}
+.services-index-page .service-card-grid .contact-button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+.services-index-page .service-card-grid p {
+  margin-bottom: 28px;
+}
+
+/* Footer: wrap between links, never inside one */
+footer a {
+  white-space: nowrap;
+}
+
+/* Japanese headings: break lines between phrases, not inside words */
+h1,
+h2,
+h3 {
+  word-break: auto-phrase;
+}
+.guide-hero-copy {
+  max-width: 1040px;
 }
