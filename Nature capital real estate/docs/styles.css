@@ -207,11 +207,6 @@ html.auth-locked body > .password-gate {
   flex-wrap: wrap;
   gap: 12px;
 }
-.button-outline {
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  background: rgba(24, 38, 31, 0.28);
-  color: #fff;
-}
 .nav-contact {
   padding: 8px 14px;
   border: 1px solid var(--green);
@@ -267,6 +262,12 @@ h1 {
   color: var(--ink);
   text-decoration: none;
   font-size: 20px;
+}
+/* After .button so the outline variant wins at equal specificity. */
+.button-outline {
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(24, 38, 31, 0.28);
+  color: #fff;
 }
 .hero small {
   position: absolute;
