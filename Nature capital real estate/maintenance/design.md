@@ -19,7 +19,7 @@
 1. **読む**: `PROGRESS.md` の末尾(「次回最初に読むファイル」)、`PLAN.md`、`AGENTS.md`、この文書。
 2. **場所を確かめる**: `git branch --show-current` が `develop`、`git status --short` が空であること。違えば作業前に報告する(他人の作業中の変更を巻き込まないため)。
 3. **最新にする**: `git pull --rebase`。`main` の変更(毎日の `catalog.json` の自動コミットなど)を `develop` に取り込むのは、自分のコミットを push し終えて手元に未 push のコミットがないときだけにする(`git fetch origin && git merge origin/main` のあと、すぐに push)。**マージのあとに `git pull --rebase` をしない**: rebase がマージを崩し、自動コミットが別の番号で複製されて、あとで `main` とぶつかる。
-4. **表示を用意する**: `docker compose up -d` を実行し、http://localhost:8000/ が開くこと(ユーザーがふだん使う確認用のサーバなので、作業が終わっても止めない)。撮影は `/__preview/` 配下を使う。ほかの URL や `python3 -m http.server` で撮るとパスワード画面しか写らず、前後比較が何を変えても「一致」になる。
+4. **表示を用意する**: `docker compose up -d` を実行し、http://localhost:8000/ が開くこと(ユーザーがふだん使う確認用のサーバなので、作業が終わっても止めない)。撮影は `/__preview/` 配下を使う。ほかの URL や `python3 -m http.server` で撮るとパスワード画面しか写らず、前後比較が何を変えても「一致」になる。`maintenance/nginx.conf` を変えたときは `docker compose up -d --force-recreate` で作り直す(`nginx -s reload` では反映されない。理由は `AGENTS.md` の Commands)。
 5. **基準を取る**: 変更するページを変更前に撮影する(下の例)。幅は 1440px と 500px(500px は 720px 以下なのでスマホ用の配置になる)。ページ全体が入る高さで撮る。撮った画像を一度開き、パスワード画面ではなくページが写っていることを確かめる。データ更新に触れる作業なら、テストを流して件数を控える(`python3 -m unittest discover -s tests -p 'test_forest_data.py'`)。
 6. **計画を書く**: `PLAN.md` に作業をチェックボックスで書く。何を変え、何を変えないか、どう確かめるかを一行ずつ。
 

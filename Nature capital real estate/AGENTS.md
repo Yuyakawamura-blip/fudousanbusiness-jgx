@@ -34,6 +34,7 @@
 
 ## Commands
 - ローカル確認: `docker compose up -d`(このフォルダで実行、停止は `docker compose down`)→ http://localhost:8000/ 。`/fudousanbusiness-jgx/` 配下は公開時と同じパス(404 ページ確認用)、`/__preview/` 配下はパスワード画面なし(撮影用)
+- **`maintenance/nginx.conf` を変えたら `docker compose up -d --force-recreate`**(このフォルダで実行、数秒で終わる)。`nginx -s reload` では反映されない: `compose.yaml` は nginx.conf を 1 ファイルだけコンテナに渡しているので、エディタが保存時にファイルを置き換えると、コンテナからは消えた古いファイルが見えたままになる(`nginx -t` が `No such file or directory` で失敗する)。`docs/` はフォルダごと渡しているので、ページの編集はそのまま反映される
 - Docker が無いとき: `python3 -m http.server 8000 -d docs`(同じポートなので Docker と同時には使えない)
 - リンク切れの確認: `python3 scripts/check_links.py`(外部リンクも見るときは `--external`)。テストは `python3 -m unittest discover -s tests -p 'test_check_links.py'`
 - 森林データ更新のテスト: `python3 -m unittest discover -s tests -p 'test_forest_data.py'`

@@ -7,5 +7,6 @@ services:
       - "127.0.0.1:8000:80"
     volumes:
       - ./docs:/usr/share/nginx/html:ro
+      # 1 ファイルだけを渡しているので、nginx.conf を変えたら reload ではなく docker compose up -d --force-recreate
       - ./maintenance/nginx.conf:/etc/nginx/conf.d/default.conf:ro
     restart: unless-stopped
