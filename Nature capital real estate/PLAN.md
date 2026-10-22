@@ -35,7 +35,7 @@
 - [x] トップのヒーローの 3 つのタグをさとやま不動産の該当箇所へのリンクに
 - [x] ページタイトルの表記を統一
 - [x] 共有時の見た目(OGP、共有画像 1200×630 JPEG)とファビコン(SVG + apple-touch-icon)を全 12 ページに追加
-- [ ] 日本語の 404 ページ
+- [x] 日本語の 404 ページ(`docs/404.html`)
 
 ## E. CSS 整理・保守
 - [x] GitHub Actions を Node 24 版に更新(checkout v7 / setup-python v7 / configure-pages v6 / upload-pages-artifact v5 / deploy-pages v5)

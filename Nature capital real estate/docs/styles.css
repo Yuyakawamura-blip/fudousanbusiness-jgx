@@ -4087,3 +4087,33 @@ h3 {
   color: var(--green);
   font-size: 17px;
 }
+
+/* 404 page */
+.not-found {
+  min-height: 60vh;
+}
+.not-found h1 {
+  margin: 0 0 24px;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.4;
+}
+.not-found-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 32px 0;
+}
+.not-found-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 1px solid var(--green);
+  color: var(--green);
+  font-size: 18px;
+  text-decoration: none;
+}
+.not-found-links a:hover {
+  background: #fff;
+}
