@@ -1,0 +1,11 @@
+# ローカル確認用: docker compose up -d → http://localhost:8000/
+# docs/ を読み取り専用でそのまま配信する(ビルド無し)。停止は docker compose down
+services:
+  site:
+    image: nginx:1.27-alpine
+    ports:
+      - "127.0.0.1:8000:80"
+    volumes:
+      - ./docs:/usr/share/nginx/html:ro
+      - ./maintenance/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
