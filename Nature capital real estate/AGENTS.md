@@ -54,6 +54,7 @@
 - コミットは日本語で「何をしたか」を 50 文字以内・prefix なし
 
 ## Deploy
+- 変更は **`develop` ブランチに push する**(`main` に直接 push しない)。`main` への反映(マージ / PR)はユーザーが決める。`catalog.json` の自動コミットは `main` にだけ入るので、`develop` には必要に応じて `origin/main` を取り込む
 - `main` への push で `.github/workflows/deploy-pages.yml`(リポジトリ直下)が `docs/` を公開する
 - ワークフローが毎日 `catalog.json` をコミットするので、**push 前に必ず `git pull --rebase`**
 - リポジトリ直下には別プロジェクト(`jcredit-creation-system/` `jgx-hp/` など)もある。このサイトのファイル以外をコミットに含めない
