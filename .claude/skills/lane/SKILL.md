@@ -30,15 +30,16 @@ disable-model-invocation: true
 - 作業のコミットは、確かめ終えてからユーザーに確認して行う。`PLAN.md` と `PROGRESS.md` はまだ直さない
 
 ## 4. push の前で止まる
-作業のコミットを終えたら、コミットの一覧(`git log --oneline origin/develop..HEAD`)と確かめた結果をまとめ、AskUserQuestion で 1 問聞く: 「develop に取り込んで push してよいか」。おすすめは確認の結果で決める(失敗・未確認が残るなら「まだ push しない」を先頭に)。
+作業のコミットを終えたら、コミットの一覧(`git log --oneline origin/develop..HEAD`)と確かめた結果、このレーンの作業で見つかった・生まれた新しい作業をまとめ、AskUserQuestion で 1 問聞く: 「develop に取り込んで push してよいか」。おすすめは確認の結果で決める(失敗・未確認が残るなら「まだ push しない」を先頭に)。
 
-## 5. 承認されたら仕上げる(`WORKLANES.md` の 3 と 5)
+## 5. 承認されたら仕上げる(`WORKLANES.md` の 3・5・6)
 worktree の中で、この順に行う。どれかが失敗したら、そこで止まって伝える。
 1. `git pull --rebase origin develop`
 2. `python3 scripts/check_links.py`
-3. `PLAN.md` のチェックと `PROGRESS.md` の追記(「やったこと」と「次回最初に読むファイル」)を 1 コミット
+3. `PLAN.md` のチェックと `PROGRESS.md` の追記(「やったこと」と「次回最初に読むファイル」)を 1 コミット。新しい作業があれば、`PLAN.md` の合う節に `[ ]` の項目として足し、このコミットに入れる
 4. `git push origin HEAD:develop`
-5. worktree の外から `python3 "SITE/scripts/worklane.py" finish <ID>`。終了コード 1 なら、表示された理由を直してからもう一度実行する。自分で `rm` や `git branch -D` を使わない
+5. 新しい作業があれば、worktree の中で `python3 scripts/worklane.py add <新しい ID> --touches … --item …`(`WORKLANES.md` の 6)。表を手で直さない
+6. worktree の外から `python3 "SITE/scripts/worklane.py" finish <ID>`。終了コード 1 なら、表示された理由を直してからもう一度実行する。自分で `rm` や `git branch -D` を使わない
 
 ## 6. 終える
 やったことを短く伝え、次のレーンに進むなら `/clear` のあとに `/lane` を実行するよう伝える。このセッションのまま次のレーンを取らない(前のレーンの文脈が残り、毎回の読み込みが重くなるため)。
