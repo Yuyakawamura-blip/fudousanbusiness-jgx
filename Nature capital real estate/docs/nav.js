@@ -6,15 +6,15 @@
   document.documentElement.classList.add("js-nav");
 
   document.addEventListener("DOMContentLoaded", function () {
-    var header = document.querySelector("body > header");
-    var nav = header && header.querySelector(".site-nav");
+    const header = document.querySelector("body > header");
+    const nav = header && header.querySelector(".site-nav");
     if (!nav) return;
 
-    var en = document.documentElement.lang === "en";
-    var labels = en ? ["Menu", "Close"] : ["メニュー", "閉じる"];
+    const en = document.documentElement.lang === "en";
+    const labels = en ? ["Menu", "Close"] : ["メニュー", "閉じる"];
     nav.id = nav.id || "site-nav";
 
-    var button = document.createElement("button");
+    const button = document.createElement("button");
     button.type = "button";
     button.className = "nav-toggle";
     button.setAttribute("aria-controls", nav.id);
@@ -22,7 +22,7 @@
     button.textContent = labels[0];
 
     button.addEventListener("click", function () {
-      var open = header.classList.toggle("nav-open");
+      const open = header.classList.toggle("nav-open");
       button.setAttribute("aria-expanded", String(open));
       button.textContent = labels[open ? 1 : 0];
     });
