@@ -285,3 +285,10 @@
 - 新しく見つけた 1 件を PLAN の E に記録し、表に E-HOOKHASH を足した: コミットの関門が `git commit -m "#12 …"` を「件名が空」で止める
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の E の E-HOOKHASH と E-MARKNOTE、`scripts/check_site.py` の `check_message()` と `main()` の `--commit-msg`
+
+### 2026-10-23(レーン E-MARKNOTE)
+- `worklane.py` の `update()` は Who の値を確かめずに表へ書いていた。`mark --note`・`mark c --who`・`pick --who` がここを通る。「|」があると列が 7 つになり、以後のコマンドがすべて止まる。改行(\n・\r・U+2028)のほうが悪く、表はそのまま読めるが、そこで表が終わったと見なされ、下のレーンが pick と list から黙って消える(3 レーンの表で確かめた)。`add` の確かめを `check_cell()` に切り出し、`update()` でも Who に使うようにした。止めたときは何も書かず、終了コード 1 で終わる(7c49f372)
+- 独立レビューの指摘で、末尾の改行 1 つ(`'x\n'` など)が `splitlines()` で落ちて通ることが分かった。前からの `add` の確かめも同じだったので、`value.splitlines() not in ([], [value])` にして両方で止めた。空の Who と今までの値はそのまま通る
+- 確認: テストを 2 つ足した(既存は変えていない)。直す前のコードでは、悪い値 8 つと `pick` の 1 つ、計 9 か所がそれぞれ失敗する。関門・リンク確認 485 件・切れ 0・テスト 4 種(16 / 25 / 6 / 45)は通過
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の E の E-HOOKHASH と E-DEADBORDER、H-2 の横はみ出し(H2-OVERFLOW)
