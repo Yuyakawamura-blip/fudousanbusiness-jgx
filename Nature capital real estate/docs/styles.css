@@ -92,7 +92,7 @@ html.auth-locked body > .password-gate {
 .password-gate-label {
   margin: 0 0 26px;
   color: #6b8975;
-  font: 18px "Noto Sans JP", sans-serif;
+  font: var(--size-md) "Noto Sans JP", sans-serif;
   letter-spacing: 0.12em;
 }
 .password-gate h1 {
@@ -219,7 +219,7 @@ html.auth-locked body > .password-gate {
 }
 .label {
   margin: 0 0 22px;
-  font: 24px "Noto Sans JP", sans-serif;
+  font: var(--size-lg) "Noto Sans JP", sans-serif;
   letter-spacing: 0.15em;
   color: var(--label);
 }
@@ -336,7 +336,7 @@ h1 {
   content: "0" counter(item);
   display: inline-block;
   width: 55px;
-  font: 20px "Noto Sans JP", sans-serif;
+  font: var(--size-body) "Noto Sans JP", sans-serif;
   color: var(--label);
 }
 .consultation {
@@ -934,13 +934,13 @@ body {
   height: 27px;
   border: 1px solid var(--green);
   border-radius: 50%;
-  font: 20px "Noto Sans JP", sans-serif;
+  font: var(--size-body) "Noto Sans JP", sans-serif;
   color: var(--green);
 }
 .brand small {
   display: block;
   margin-top: 2px;
-  font: 20px "Noto Sans JP", sans-serif;
+  font: var(--size-body) "Noto Sans JP", sans-serif;
   color: #627067;
 }
 .nav,
@@ -990,7 +990,7 @@ body {
 .eyebrow {
   margin: 0 0 22px;
   color: var(--label);
-  font: 24px "Noto Sans JP", sans-serif;
+  font: var(--size-lg) "Noto Sans JP", sans-serif;
   letter-spacing: 0.15em;
 }
 .hero-copy p {
@@ -1043,7 +1043,7 @@ h2 {
 }
 .connection-grid span,
 .number {
-  font: 20px "Noto Sans JP", sans-serif;
+  font: var(--size-body) "Noto Sans JP", sans-serif;
   color: var(--label);
 }
 .connection-grid h3 {
@@ -1313,7 +1313,7 @@ footer a {
 .function-grid span,
 .future-grid span {
   color: #638068;
-  font: 20px "Noto Sans JP", sans-serif;
+  font: var(--size-body) "Noto Sans JP", sans-serif;
 }
 .function-grid h3,
 .future-grid h3 {
@@ -1351,7 +1351,7 @@ footer a {
   border-left: 1px solid #a8aea1;
 }
 .cycle-list span {
-  font: 24px "Noto Sans JP", sans-serif;
+  font: var(--size-lg) "Noto Sans JP", sans-serif;
   color: #365b48;
 }
 .cycle-list p {
@@ -1412,7 +1412,7 @@ footer a {
   display: block;
   margin-bottom: 12px;
   color: #5d7662;
-  font: 20px "Noto Sans JP", sans-serif;
+  font: var(--size-body) "Noto Sans JP", sans-serif;
   letter-spacing: 0.08em;
 }
 .forest-context {
@@ -1475,7 +1475,7 @@ footer a {
 }
 .quality-pillars span {
   color: #638068;
-  font: 20px "Noto Sans JP", sans-serif;
+  font: var(--size-body) "Noto Sans JP", sans-serif;
 }
 .quality-pillars h3 {
   margin: 18px 0 12px;
@@ -1543,7 +1543,7 @@ footer a {
   display: block;
   margin-bottom: 12px;
   color: #c6d7c1;
-  font: 20px "Noto Sans JP", sans-serif;
+  font: var(--size-body) "Noto Sans JP", sans-serif;
   letter-spacing: 0.1em;
 }
 .business-response p {
@@ -1563,7 +1563,7 @@ footer a {
 .challenge-figure > p {
   margin: 0 0 34px;
   color: #345642;
-  font: 24px "Noto Sans JP", sans-serif;
+  font: var(--size-lg) "Noto Sans JP", sans-serif;
   line-height: 1.5;
 }
 .parcel-map {
@@ -1946,7 +1946,7 @@ footer a {
   display: block;
   margin-bottom: 7px;
   color: #a9bfa9;
-  font: 20px "Noto Sans JP", sans-serif;
+  font: var(--size-body) "Noto Sans JP", sans-serif;
 }
 .guide-opening,
 .guide-section,
@@ -1980,7 +1980,7 @@ footer a {
 .guide-scale-grid span,
 .guide-kicker {
   color: var(--label);
-  font: 20px "Noto Sans JP", sans-serif;
+  font: var(--size-body) "Noto Sans JP", sans-serif;
   letter-spacing: 0.1em;
 }
 .guide-scale-grid h3 {
@@ -2118,7 +2118,7 @@ footer a {
   top: 18px;
   left: 18px;
   color: #c3d3c0;
-  font: 20px "Noto Sans JP", sans-serif;
+  font: var(--size-body) "Noto Sans JP", sans-serif;
 }
 .management-timeline b {
   display: block;
@@ -2164,7 +2164,7 @@ footer a {
 }
 .conservation-layers span {
   color: #66806c;
-  font: 20px "Noto Sans JP", sans-serif;
+  font: var(--size-body) "Noto Sans JP", sans-serif;
   letter-spacing: 0.1em;
 }
 .conservation-layers h3 {
@@ -2212,7 +2212,7 @@ footer a {
   background: #dfe6db;
 }
 .conservation-note b {
-  font: 32px "Noto Sans JP", sans-serif;
+  font: var(--size-xl) "Noto Sans JP", sans-serif;
   font-weight: 500;
   line-height: 1.5;
 }
@@ -2243,7 +2243,7 @@ footer a {
 }
 .wood-copy b {
   color: #765638;
-  font: 24px "Noto Sans JP", sans-serif;
+  font: var(--size-lg) "Noto Sans JP", sans-serif;
   font-weight: 500;
 }
 .wood-copy p {
@@ -2265,7 +2265,7 @@ footer a {
 }
 .wood-properties span {
   color: #8b6846;
-  font: 20px "Noto Sans JP", sans-serif;
+  font: var(--size-body) "Noto Sans JP", sans-serif;
   letter-spacing: 0.1em;
 }
 .wood-properties h3 {
@@ -2387,7 +2387,7 @@ footer a {
   background: #2c5141;
 }
 .satoyama-transect b {
-  font: 24px "Noto Sans JP", sans-serif;
+  font: var(--size-lg) "Noto Sans JP", sans-serif;
   font-weight: 500;
 }
 .satoyama-transect span {
