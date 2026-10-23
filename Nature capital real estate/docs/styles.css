@@ -3379,7 +3379,7 @@ footer a {
 .sustainable-hero {
   min-height: 430px;
   padding: 96px clamp(28px, 8vw, 120px) 72px;
-  background: #294f43;
+  background: var(--green);
   color: var(--paper-warm);
   display: flex;
   justify-content: space-between;
@@ -3431,7 +3431,7 @@ footer a {
   letter-spacing: 0.08em;
 }
 .sustainable-toc a:hover {
-  color: #294f43;
+  color: var(--green);
 }
 .sustainable-intro,
 .sustainable-section {
@@ -3536,7 +3536,7 @@ footer a {
 .forest-area-map-card strong {
   display: block;
   margin-bottom: 8px;
-  color: #294f43;
+  color: var(--green);
   font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.55;
@@ -3547,7 +3547,7 @@ footer a {
   line-height: 1.75;
 }
 .forest-area-map-card a {
-  color: #294f43;
+  color: var(--green);
   text-decoration: none;
   border-bottom: 1px solid rgba(41, 79, 67, 0.45);
 }
