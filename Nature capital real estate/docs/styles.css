@@ -3478,7 +3478,7 @@ footer a {
   max-width: 650px;
 }
 .tone-green {
-  background: #355f50;
+  background: var(--green-mid);
   color: var(--paper-warm);
 }
 .tone-green .sustainable-heading > p:not(.label) {
@@ -3500,7 +3500,7 @@ footer a {
 }
 .stat-card {
   padding: 34px 28px;
-  background: #355f50;
+  background: var(--green-mid);
   color: var(--paper-warm);
 }
 .stat-card strong {
@@ -3590,7 +3590,7 @@ footer a {
   margin-top: 10px;
   padding: 3px 8px;
   background: #d7e1d2;
-  color: #355f50;
+  color: var(--green-mid);
   font-size: 0.72rem;
 }
 .instrument-grid dd {
@@ -3639,7 +3639,7 @@ footer a {
   max-width: 840px;
   margin-top: 28px;
   padding: 28px;
-  background: #355f50;
+  background: var(--green-mid);
   color: var(--paper-warm);
 }
 .value-callout strong {
