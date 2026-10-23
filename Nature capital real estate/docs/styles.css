@@ -964,6 +964,12 @@ body {
   padding: 8px 14px;
   border: 1px solid var(--green);
 }
+.text-link {
+  transition: color 160ms ease;
+}
+.text-link:hover {
+  color: #183c30;
+}
 .hero {
   height: min(67vw, 670px);
   min-height: 470px;
