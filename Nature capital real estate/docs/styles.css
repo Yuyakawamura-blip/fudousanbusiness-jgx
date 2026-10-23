@@ -2940,6 +2940,11 @@ footer a {
   text-decoration: none;
   border-bottom: 1px solid rgba(41, 79, 67, 0.45);
 }
+/* English page: the map figure with the stat card under it */
+.sustainable-map-stack {
+  display: grid;
+  gap: 16px;
+}
 .instrument-grid,
 .value-grid {
   display: grid;
