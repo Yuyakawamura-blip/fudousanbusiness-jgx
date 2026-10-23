@@ -29,6 +29,15 @@ def pick(path, who='w', dry_run=False, port_free=lambda port: True):
 def claim_in_process(path, who):
     return pick(Path(path), who)
 
+def add_lane(path, lane, needs='-', status='o', note=None, before=None, item='i'):
+    out = io.StringIO()
+    args = Namespace(command='add', lane=lane, touches='f', item=item, needs=needs, status=status, note=note,
+                     before=before)
+    return lanes.run(args, path, path.parent, Path('/repo'), 'now', out), out.getvalue()
+
+def add_in_process(path, lane):
+    return add_lane(Path(path), lane)
+
 
 class Selection(unittest.TestCase):
     def test_open_lane_with_completed_needs_is_free(self):
@@ -122,6 +131,54 @@ class Claims(unittest.TestCase):
             results = list(pool.map(claim_in_process, [str(self.path)] * 6, [f'w{i}' for i in range(6)]))
         ports = [port for _, out in results for port in re.findall(r'localhost:(\d+)/', out)]
         self.assertEqual(sorted(ports), [str(8001 + i) for i in range(6)])
+
+
+class Adding(unittest.TestCase):
+    """add puts a found lane on the board under the lock, and writes nothing when the board would be wrong."""
+    def setUp(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.path = Path(tmp.name) / 'WORKLANES.md'
+
+    def test_add_appends_one_row_and_keeps_the_rest(self):
+        text = board('A | x | - | f | a | ', 'B | c | A | g | b | bob t port 8001')
+        self.path.write_text(text)
+        self.assertEqual(add_lane(self.path, 'N', needs='A, B', item='found in B')[0], 0)
+        new = self.path.read_text()
+        self.assertEqual(new.replace('| N | o | A, B | f | found in B |  |\n', ''), text)
+        self.assertEqual([r.id for r in lanes.parse(new)], ['A', 'B', 'N'])
+
+    def test_add_before_a_lane_gives_it_priority(self):
+        self.path.write_text(board('A | o | - | f | a | ', 'B | o | - | f | b | '))
+        add_lane(self.path, 'N', before='A')
+        self.assertEqual([r.id for r in lanes.parse(self.path.read_text())], ['N', 'A', 'B'])
+        self.assertIn('Claimed N', pick(self.path)[1])
+
+    def test_blocked_lane_records_what_it_waits_for(self):
+        self.path.write_text(board('A | o | - | f | a | '))
+        add_lane(self.path, 'N', status='b', note='photos')
+        self.assertEqual(lanes.parse(self.path.read_text())[1][3:], ('b', (), 'f', 'i', 'photos'))
+
+    def test_bad_lanes_are_refused_and_write_nothing(self):
+        text = board('A | o | - | f | a | ')
+        self.path.write_text(text)
+        for kwargs in ({'lane': 'A'}, {'lane': 'N', 'needs': 'Z'}, {'lane': 'N', 'before': 'Z'},
+                       {'lane': 'N', 'item': 'a | b'}, {'lane': 'N', 'item': 'a\nb'}, {'lane': 'N', 'note': '\rb'},
+                       {'lane': 'N', 'status': ''}, {'lane': 'N M'},
+                       {'lane': 'N', 'status': 'b'}, {'lane': 'N', 'status': 'c'}, {'lane': 'N', 'needs': 'N'}):
+            with self.subTest(**kwargs), self.assertRaises(lanes.BoardError):
+                add_lane(self.path, **kwargs)
+            self.assertEqual(self.path.read_text(), text)
+
+    def test_simultaneous_adds_and_claims_lose_nothing(self):
+        self.path.write_text(board(*(f'L{i} | o | - | f | item | ' for i in range(4))))
+        with ProcessPoolExecutor(8) as pool:
+            adds = [pool.submit(add_in_process, str(self.path), f'N{i}') for i in range(4)]
+            claims = [pool.submit(claim_in_process, str(self.path), f'w{i}') for i in range(4)]
+            self.assertTrue(all(f.result()[0] == 0 for f in adds + claims))
+        rows = lanes.parse(self.path.read_text())
+        self.assertEqual(sorted(r.id for r in rows), sorted([f'L{i}' for i in range(4)] + [f'N{i}' for i in range(4)]))
+        self.assertEqual(sum(r.status == 'c' for r in rows), 4)
 
 
 def git(cwd, *args):

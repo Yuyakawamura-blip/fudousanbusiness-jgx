@@ -92,6 +92,40 @@ def update(text, lane, status, who):
     return ''.join(lines)
 
 
+def add(text, lane, needs, touches, item, status='o', who='', before=None):
+    """Return the board text with a new lane row, at the end or just above lane `before`.
+
+    The whole board is checked again afterwards, so an unknown Needs or a repeated ID writes nothing.
+    """
+    rows = parse(text)
+    if not rows:
+        raise BoardError('the board has no lanes to add after; add the first row by hand')
+    if status not in ('o', 'b'):
+        raise BoardError(f'a new lane starts as o or b, not {status!r}')
+    if status == 'b' and not who:
+        raise BoardError('a blocked lane needs --note saying what it waits for')
+    parts = [lane, status, ', '.join(needs) or '-', touches, item, who]
+    for name, value in zip(COLUMNS, parts):
+        if '|' in value or len(value.splitlines()) > 1:  # splitlines also breaks on \r and U+2028
+            raise BoardError(f'{name} cannot contain "|" or a line break')
+    if not lane or lane.split() != [lane]:
+        raise BoardError(f'lane ID {lane!r} must be one word')
+    if before is None:
+        at = rows[-1].line + 1
+    else:
+        found = [r for r in rows if r.id == before]
+        if not found:
+            raise BoardError(f'no lane {before} to add before')
+        at = found[0].line
+    lines = text.splitlines(keepends=True)
+    if not lines[at - 1].endswith('\n'):
+        lines[at - 1] += '\n'
+    lines.insert(at, '| ' + ' | '.join(parts) + ' |\n')
+    new = ''.join(lines)
+    parse(new)
+    return new
+
+
 def summary(rows):
     """Why nothing is free: one line per lane that is not completed."""
     out = []
@@ -241,6 +275,12 @@ def run(args, board, common_dir, root, now, out=sys.stdout, stop=docker_stop, po
             for r in rows:
                 print(f'{r.status} {r.id:<14} {r.item}', file=out)
             return 0
+        if args.command == 'add':
+            needs = [d.strip() for d in args.needs.split(',') if d.strip() not in ('', '-')]
+            write(board, add(text, args.lane, needs, args.touches, args.item, args.status, args.note or '',
+                             args.before))
+            print(f'Added {args.lane} ({args.status})' + (f' above {args.before}' if args.before else ''), file=out)
+            return 0
         if args.command == 'mark':
             who = args.note if args.note is not None else (
                 f'{args.who} {now}' if args.status == 'c' else
@@ -273,6 +313,14 @@ def main(argv=None):
     mark.add_argument('lane')
     mark.add_argument('status', choices=list(STATUSES))
     mark.add_argument('--note', help='text for the Who column (e.g. what a blocked lane waits for)')
+    new = sub.add_parser('add', help='add a lane for work found while doing another lane')
+    new.add_argument('lane')
+    new.add_argument('--touches', required=True, help='files and lines the work changes')
+    new.add_argument('--item', required=True, help='what to do, ending with where it was found')
+    new.add_argument('--needs', default='-', help='comma-separated lanes that must finish first')
+    new.add_argument('--status', choices=['o', 'b'], default='o', help='b when it waits on a person or thing')
+    new.add_argument('--note', help='text for the Who column (required with --status b)')
+    new.add_argument('--before', help='insert above this lane (board order is priority); default: at the end')
     done = sub.add_parser('finish', help='after pushing: stop the preview, remove the worktree and branch, mark x')
     done.add_argument('lane')
     for s in (p, pick, mark):
