@@ -774,6 +774,15 @@ details p {
     gap: 14px;
   }
 }
+/* Small enough that 「作成支援ツール」 and 「計画づくりの前に、」 each fit on one line */
+@media (max-width: 374px) {
+  .tool-hero h1 {
+    font-size: 34px;
+  }
+  .service-tool-page .service-intro h2 {
+    font-size: var(--size-lg-plus);
+  }
+}
 
 /* Business concept */
 .concept-copy {
@@ -1867,6 +1876,12 @@ footer a {
     text-align: center;
   }
 }
+/* Small enough that 「話ではない。」 fits on one line */
+@media (max-width: 374px) {
+  .forest-hero h1 {
+    font-size: 40px;
+  }
+}
 
 /* Forest field guide */
 .forest-deep-link {
@@ -2560,6 +2575,13 @@ footer a {
   }
   .guide-summary > div p:nth-child(even) {
     padding-left: 0;
+  }
+}
+/* Small enough that 「世代交代する。」 and 「減らす作業ではない。」 each fit on one line */
+@media (max-width: 374px) {
+  .succession-panel h3,
+  .thinning-explainer h3 {
+    font-size: var(--size-lg);
   }
 }
 
