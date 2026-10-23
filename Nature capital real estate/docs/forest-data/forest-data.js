@@ -26,7 +26,7 @@
     rows.forEach((r) => {
       const article = document.createElement('article');
       article.className = 'prefecture-card';
-      article.append(external(r.url, r.prefecture + ' ↗', 'download-link'));
+      article.append(external(r.url, r.prefecture, 'download-link'));
       const meta = document.createElement('small');
       meta.textContent = `${r.format.toUpperCase() || 'ファイル'} / ${r.name}`;
       article.append(meta, external(r.page, '詳細・ファイル情報', 'detail-link'));
@@ -50,7 +50,7 @@
       controls.append(input, button); row.append(label, controls); $('connection-list').append(row);
     });
     resources.filter((r) => r.kind === 'document').forEach((r) => {
-      $('document-list').append(external(r.url, `${r.name} ↗`));
+      $('document-list').append(external(r.url, r.name));
     });
   }
   function drawMap(resources) {
@@ -110,7 +110,7 @@
     } catch {
       $('checked-at').textContent = '更新情報を取得できませんでした';
       $('resource-count').textContent = 'データ一覧を取得できません。';
-      $('prefecture-list').append(external(source, '公式データ一覧を開く ↗'));
+      $('prefecture-list').append(external(source, '公式データ一覧を開く'));
       $('map-status').textContent = 'データを読み込めません。公式データのリンクをご利用ください。';
       $('source-notes').textContent = '提供元のページをご確認ください。';
       ['last-success', 'source-modified', 'content-changed'].forEach((id) => { $(id).textContent = '未確認'; });
