@@ -121,9 +121,55 @@ def instructions(row, root):
         f'    -v "{project}/maintenance/nginx.conf":/etc/nginx/conf.d/default.conf:ro nginx:1.27-alpine',
         f'Preview: http://localhost:{port}/__preview/  (use this port, not 8000)',
         f'Work in: {project}',
-        f'When finished: python3 "{root / PROJECT}/scripts/worklane.py" mark {row.id} x',
+        f'When pushed: python3 "{root / PROJECT}/scripts/worklane.py" finish {row.id}  (from outside the worktree;'
+        ' stops the preview, removes the worktree and branch, marks the lane x)',
         f'If you stop early: python3 "{root / PROJECT}/scripts/worklane.py" mark {row.id} o',
     ])
+
+
+def git(cwd, *args):
+    return subprocess.run(['git', '-C', str(cwd), *args], capture_output=True, text=True)
+
+
+def docker_stop(name):
+    # A container that is not running is already in the state we want, so the result is ignored.
+    subprocess.run(['docker', 'stop', name], capture_output=True)
+
+
+def finish(lane, root, stop=docker_stop):
+    """Clean up a pushed lane; raise BoardError, touching nothing, when cleanup could lose work."""
+    slug = lane.lower()
+    tree, branch = root.parent / f'{root.name}-{slug}', f'lane/{slug}'
+    if Path.cwd().resolve().is_relative_to(tree.resolve()):
+        raise BoardError(f'run finish from outside {tree}; it removes that folder')
+    if git(root, 'fetch', 'origin').returncode:
+        raise BoardError('git fetch origin failed, so it cannot be checked that the lane was pushed')
+    git(root, 'worktree', 'prune')  # forget a worktree whose folder was deleted by hand, so its branch can go
+    if tree.exists():
+        status = git(tree, 'status', '--porcelain', '--ignored')
+        if status.returncode:
+            raise BoardError(f'git status failed in {tree}: {status.stderr.strip()}')
+        # Ignored files count: .env* and *.pem are ignored here. Finder's .DS_Store is the one exception.
+        left = [l[3:] for l in status.stdout.splitlines() if Path(l[3:].rstrip('/')).name != '.DS_Store']
+        if left:
+            raise BoardError(f'{tree} has uncommitted or ignored files ({", ".join(left[:5])}); '
+                             'commit and push them, or remove them yourself')
+        # HEAD, not just the branch: a commit made on a detached HEAD or another branch lives only here.
+        if git(tree, 'merge-base', '--is-ancestor', 'HEAD', 'origin/develop').returncode:
+            raise BoardError(f'the commit checked out in {tree} is not in origin/develop; push it first')
+    has_branch = not git(root, 'rev-parse', '--verify', '--quiet', f'refs/heads/{branch}').returncode
+    if has_branch and git(root, 'merge-base', '--is-ancestor', branch, 'origin/develop').returncode:
+        raise BoardError(f'{branch} has commits that are not in origin/develop; push them first')
+    if tree.exists():
+        removed = git(root, 'worktree', 'remove', str(tree))
+        if removed.returncode:
+            raise BoardError(f'git worktree remove {tree} failed: {removed.stderr.strip()}')
+    # From here nothing can lose work, so the remaining steps report rather than refuse.
+    notes = []
+    if has_branch and git(root, 'branch', '-D', branch).returncode:  # safe: all in origin/develop
+        notes.append(f'could not delete {branch}')
+    stop(f'ncre-{slug}')
+    return f'Removed {tree} and {branch}, stopped ncre-{slug}' + ''.join(f'; {n}' for n in notes)
 
 
 def main_checkout():
@@ -147,7 +193,24 @@ def write(board, text):
     os.replace(tmp, board)
 
 
-def run(args, board, common_dir, root, now, out=sys.stdout):
+def run(args, board, common_dir, root, now, out=sys.stdout, stop=docker_stop):
+    if args.command == 'finish':
+        rows = {r.id: r for r in parse(board.read_text())}
+        if args.lane not in rows:
+            raise BoardError(f'no lane {args.lane}')
+        if rows[args.lane].status != 'c':
+            # A typo must not close (and so unblock the dependants of) a lane nobody worked on.
+            print(f'Not finished: {args.lane} is not claimed (status {rows[args.lane].status})', file=out)
+            return 1
+        try:
+            done = finish(args.lane, root, stop)  # outside the lock: fetch can be slow, other workers keep picking
+        except BoardError as e:
+            print(f'Not finished: {e}', file=out)
+            return 1
+        with locked(common_dir):
+            write(board, update(board.read_text(), args.lane, 'x', f'done {now}'))
+        print(f'{done}; {args.lane} -> x', file=out)
+        return 0
     with locked(common_dir):
         text = board.read_text()
         rows = parse(text)
@@ -186,6 +249,8 @@ def main(argv=None):
     mark.add_argument('lane')
     mark.add_argument('status', choices=list(STATUSES))
     mark.add_argument('--note', help='text for the Who column (e.g. what a blocked lane waits for)')
+    done = sub.add_parser('finish', help='after pushing: stop the preview, remove the worktree and branch, mark x')
+    done.add_argument('lane')
     for s in (p, pick, mark):
         s.add_argument('--who', default=os.environ.get('USER', 'worker'), help='name recorded on a claim')
     for s in (p, pick):

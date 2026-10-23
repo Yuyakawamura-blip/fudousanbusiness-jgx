@@ -3,7 +3,10 @@ from argparse import Namespace
 from concurrent.futures import ProcessPoolExecutor
 import importlib.util
 import io
+import os
 from pathlib import Path
+import shutil
+import subprocess
 import tempfile
 import unittest
 
@@ -89,6 +92,121 @@ class Claims(unittest.TestCase):
         self.assertEqual(sorted(claimed), [f'L{i}' for i in range(6)])
         self.assertEqual([code for code, _ in results].count(lanes.NONE_FREE), 2)
         self.assertTrue(all(r.status == 'c' for r in lanes.parse(self.path.read_text())))
+
+
+def git(cwd, *args):
+    return subprocess.run(['git', '-C', str(cwd), *args], capture_output=True, text=True, check=True).stdout
+
+
+class Finish(unittest.TestCase):
+    """finish cleans up a pushed lane, and refuses whenever cleanup could lose work."""
+    def setUp(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        base = Path(tmp.name)
+        git(base, 'init', '-q', '--bare', '-b', 'develop', 'origin.git')
+        git(base, 'clone', '-q', str(base / 'origin.git'), 'repo')
+        self.root = base / 'repo'
+        for key, value in (('user.name', 't'), ('user.email', 't@example.org'), ('commit.gpgsign', 'false')):
+            git(self.root, 'config', key, value)
+        git(self.root, 'commit', '-q', '--allow-empty', '-m', 'start')
+        git(self.root, 'push', '-q', 'origin', 'HEAD:develop')
+        self.tree = base / 'repo-l1'
+        git(self.root, 'worktree', 'add', '-q', '-b', 'lane/l1', str(self.tree), 'origin/develop')
+        git(self.tree, 'commit', '-q', '--allow-empty', '-m', 'lane work')
+        self.board = self.root / 'WORKLANES.md'
+        self.board.write_text(board('L1 | c | - | f | a | me'))
+        self.stopped = []
+
+    def finish(self):
+        out = io.StringIO()
+        code = lanes.run(Namespace(command='finish', lane='L1'), self.board, self.root / '.git', self.root, 'now', out,
+                         stop=self.stopped.append)
+        return code, out.getvalue()
+
+    def test_pushed_lane_is_cleaned_up_and_marked_done(self):
+        git(self.tree, 'push', '-q', 'origin', 'HEAD:develop')
+        code, out = self.finish()
+        self.assertEqual(code, 0, out)
+        self.assertFalse(self.tree.exists())
+        self.assertEqual(git(self.root, 'branch', '--list', 'lane/l1'), '')
+        self.assertEqual(self.stopped, ['ncre-l1'])
+        self.assertEqual(lanes.parse(self.board.read_text())[0].status, 'x')
+
+    def test_unpushed_commits_are_refused(self):
+        code, out = self.finish()
+        self.assertEqual(code, 1)
+        self.assertIn('not in origin/develop', out)
+        self.assertTrue(self.tree.exists())
+        self.assertEqual(lanes.parse(self.board.read_text())[0].status, 'c')
+
+    def test_uncommitted_changes_are_refused(self):
+        git(self.tree, 'push', '-q', 'origin', 'HEAD:develop')
+        (self.tree / 'draft.txt').write_text('unsaved')
+        code, out = self.finish()
+        self.assertEqual(code, 1)
+        self.assertIn('uncommitted', out)
+        self.assertTrue((self.tree / 'draft.txt').exists())
+        self.assertEqual(self.stopped, [])
+
+    def refused(self, why):
+        code, out = self.finish()
+        self.assertEqual(code, 1, out)
+        self.assertIn(why, out)
+        self.assertTrue(self.tree.exists())
+        self.assertEqual(self.stopped, [])
+        self.assertEqual(lanes.parse(self.board.read_text())[0].status, 'c')
+
+    def test_commit_on_a_detached_head_is_refused(self):
+        git(self.tree, 'push', '-q', 'origin', 'HEAD:develop')
+        git(self.tree, 'checkout', '-q', '--detach')
+        git(self.tree, 'commit', '-q', '--allow-empty', '-m', 'only reachable from the worktree HEAD')
+        self.refused('not in origin/develop')
+
+    def test_unpushed_work_on_another_branch_is_refused(self):
+        git(self.tree, 'push', '-q', 'origin', 'HEAD:develop')
+        git(self.tree, 'checkout', '-q', '-b', 'other')
+        git(self.tree, 'commit', '-q', '--allow-empty', '-m', 'not pushed')
+        self.refused('not in origin/develop')
+
+    def test_ignored_files_are_refused_except_finder_clutter(self):
+        git(self.tree, 'push', '-q', 'origin', 'HEAD:develop')
+        (self.tree / '.gitignore').write_text('.env\n.DS_Store\n')
+        git(self.tree, 'add', '.gitignore'); git(self.tree, 'commit', '-q', '-m', 'ignore')
+        git(self.tree, 'push', '-q', 'origin', 'HEAD:develop')
+        (self.tree / '.DS_Store').write_text('finder')
+        (self.tree / '.env').write_text('SECRET=1')
+        self.refused('.env')
+        (self.tree / '.env').unlink()
+        self.assertEqual(self.finish()[0], 0)
+
+    def test_folder_deleted_by_hand_still_cleans_up_the_branch(self):
+        git(self.tree, 'push', '-q', 'origin', 'HEAD:develop')
+        shutil.rmtree(self.tree)
+        code, out = self.finish()
+        self.assertEqual(code, 0, out)
+        self.assertEqual(git(self.root, 'branch', '--list', 'lane/l1'), '')
+
+    def test_failed_removal_leaves_the_preview_running(self):
+        git(self.tree, 'push', '-q', 'origin', 'HEAD:develop')
+        git(self.root, 'worktree', 'lock', str(self.tree))
+        self.refused('worktree remove')
+
+    def test_only_a_claimed_lane_can_be_finished(self):
+        self.board.write_text(board('L1 | o | - | f | a | '))
+        code, out = self.finish()
+        self.assertEqual(code, 1)
+        self.assertIn('not claimed', out)
+        self.assertEqual(lanes.parse(self.board.read_text())[0].status, 'o')
+
+    def test_running_inside_the_worktree_is_refused(self):
+        git(self.tree, 'push', '-q', 'origin', 'HEAD:develop')
+        self.addCleanup(os.chdir, os.getcwd())
+        os.chdir(self.tree)
+        code, out = self.finish()
+        self.assertEqual(code, 1)
+        self.assertIn('outside', out)
+        self.assertTrue(self.tree.exists())
 
 
 if __name__ == '__main__':
