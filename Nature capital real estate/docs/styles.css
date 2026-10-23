@@ -720,7 +720,7 @@ details p {
   min-height: 280px;
   padding: 30px 28px;
   background: var(--white);
-  border-top: 3px solid #64816b;
+  border-top: 3px solid var(--green-soft);
 }
 .service-card-grid article:nth-child(2) {
   border-top-color: #85775b;
@@ -870,7 +870,7 @@ details p {
 }
 .essence-card {
   transform: rotate(-1deg);
-  border-top: 5px solid #64816b;
+  border-top: 5px solid var(--green-soft);
 }
 .card-kicker {
   color: var(--label);
@@ -2308,19 +2308,19 @@ footer a {
   justify-content: center;
   padding: 28px;
   background: #fffdf8;
-  border-top: 3px solid #68816d;
+  border-top: 3px solid var(--green-soft);
   border: 1px solid #d2d9cd;
   border-radius: 50%;
   text-align: center;
 }
 .function-detail-grid span {
-  color: #68816d;
+  color: var(--green-soft);
   font: 20px "Noto Sans JP", sans-serif;
 }
 .function-detail-grid .function-icon {
   display: block;
   margin-bottom: 5px;
-  color: #68816d;
+  color: var(--green-soft);
   font-size: 38px;
   line-height: 1;
 }
@@ -3978,7 +3978,7 @@ footer a {
   flex-direction: column;
   padding: 28px;
   background: var(--white);
-  border-top: 3px solid #64816b;
+  border-top: 3px solid var(--green-soft);
 }
 .concern-items h4 {
   margin: 0 0 14px;
@@ -4182,7 +4182,7 @@ footer a {
 .flow-fees-steps > li {
   padding: 28px;
   background: var(--white);
-  border-top: 3px solid #64816b;
+  border-top: 3px solid var(--green-soft);
 }
 .flow-fees-steps b {
   margin-right: 12px;
