@@ -16,14 +16,6 @@
 .home-page .brand {
   gap: 12px;
 }
-.home-page .nav-contact {
-  padding: 0 20px 3px 0;
-  border: 0;
-  border-bottom: 1px solid var(--green);
-}
-.home-page .nav-contact::after {
-  right: 0;
-}
 .home-page .hero {
   min-height: 675px;
 }
