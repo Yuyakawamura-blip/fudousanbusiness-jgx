@@ -424,3 +424,10 @@
 - 新しい作業を PLAN の H-2 に 4 件記録: スマホ幅の残りの見出し(H2-HEADPHONE)、ツールの h1 の 721〜725px(H2-TOOLH1)、積んだ `.service-intro` の h2 と段落の間(H2-INTROGAP)、英語版の語の途中の折り返し(H2-ENWORDBREAK)
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-2 の H2-HEADPHONE、`styles.css` の 960px 以下の指定(`.owner-entry` の 542 行目付近から)
+
+### 2026-10-23(レーン H2-SUSTAINEN: 持続可能な林業の英語版を日本語版の訳に)
+- 英語版と日本語版の差を節ごとに一覧にした。英語版は日本語版の訳ではなく、独自の中身(67% のカード、経済価値の導入文、表の注記、long-term stewardship などの言い回し)があり、日本語版の中身(地図の図と林野庁の出典、「早く」「参加の公平性」「運用コスト」「長期の地域雇用」など)が抜けていた。ユーザーと 1 つずつ決め、本文を日本語版の訳にした(9c844c95)。カード・導入文・注記の 1 文は英語版だけに残し、地図の図の下にカードを並べる `.sustainable-map-stack` を `styles.css` に足した。h1 とタイトルは日本語版の h1 の訳にした
+- 確認: ポート 8002 で 1440 / 500 幅を撮影。経済価値の h2 は `<br />` のせいで「economic / value」と 1 語だけの行ができたので `<br />` を外した。500 幅で表の「○」が語から離れて 1 行になったので、記号の後ろを `&nbsp;` にした。表が 620px 以下で横に動くのは前からの指定(`styles.css` の `.evaluation-table`)。6 つの点(主張・行為者・依頼の強さ・確かさ・範囲の語・条件と順序)で日本語版と照らし合わせた。関門 8 項目・リンク確認 490 件・切れ 0・テスト 4 種(16 / 29 / 6 / 45)は通過
+- 新しく見つけた 1 件を PLAN の H-2 に記録: 日本語版の提言の h2 で「駆使して」が 2 回続く(H2-SUSTAINJAH2)
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-2 の H2-SUSTAINJAH2、`docs/forest/sustainable-forestry/index.html` の 264 行目
