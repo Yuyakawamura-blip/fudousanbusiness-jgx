@@ -48,7 +48,7 @@
 - [x] GitHub Actions を Node 24 版に更新(checkout v7 / setup-python v7 / configure-pages v6 / upload-pages-artifact v5 / deploy-pages v5)
 - [x] `styles.css` の整理(第 1 段階): 未使用セレクタ 56・上書きされて効いていない指定 93・空ルール 80 を削除(83KB → 77KB)。全 12 ページ × 3 幅 + パスワード画面 + スマホメニューで整理前後のピクセル差 0 を確認
 - [x] `styles.css` の整理(第 2 段階): 安全に統合できる重複ルール 3 件を統合(ピクセル差 0)。重複セレクタは残り 7 組のみ
-- [ ] (任意)15 か所に分散した `@media (max-width: 720px)` の集約。カスケード順が変わるため要検証
+- [x] (任意)15 か所に分散した `@media (max-width: 720px)` の集約。カスケード順が変わるため要検証 → 見送り(2026-10-23 ユーザー決定): 読みやすさだけの変更で、カスケード順が変わる危険に見合わない
 - [x] 森林オープンデータのページでパスワード画面の見出しが巨大化していた不具合を修正(`.forest-data-page h1` → `main h1`)
 - [x] パスワード画面のブランド名「NATURE CAPITAL & REAL ESTATE」→「NATURE CAPITAL REAL ESTATE」
 - [x] `AGENTS.md` / `CLAUDE.md` / `.claude/settings.json` をリポジトリ直下に(2026-10-23)。直下から始めたセッションでは、サイトのフォルダの権限の設定(`rm -rf` や force push の禁止)が読まれていなかったため。`PLAN.md` と `PROGRESS.md` はレーンの最後のコミットとぶつかるので動かさない
