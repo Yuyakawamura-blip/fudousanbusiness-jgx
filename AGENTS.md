@@ -1,6 +1,7 @@
 # Nature Capital Real Estate サイト — Agent Instructions
 
 > AI コーディングエージェント(Claude Code / Codex 等)向けの指示書。規約の更新はこのファイルのみで行い、`CLAUDE.md` は本ファイルを import して Claude 固有の補足だけを持つ。
+> このファイルと `CLAUDE.md` はリポジトリ直下に置いている(どのフォルダからエージェントを始めても読まれるように)。ただし中身はサイトのフォルダ `Nature capital real estate/` のためのもので、**パスとコマンドはすべてそのフォルダからの相対**。リポジトリ直下のほかのフォルダ(`jcredit-creation-system/` など)は別のリポジトリへの参照で、このファイルの対象外。
 
 ## Project
 森林・里山の相続・管理・出口整理を扱う「ネイチャーキャピタル・リアルエステイト」の Web サイト。日本GXグループの事業。
@@ -33,8 +34,8 @@
 | `maintenance/` | 運用メモ(デザインの決まり `design.md` / Figma / 森林データ / ローカル確認用の nginx 設定) |
 
 ## Commands
-- ローカル確認: `docker compose up -d`(このフォルダで実行、停止は `docker compose down`)→ http://localhost:8000/ 。`/fudousanbusiness-jgx/` 配下は公開時と同じパス(404 ページ確認用)、`/__preview/` 配下はパスワード画面なし(撮影用)
-- **`maintenance/nginx.conf` を変えたら `docker compose up -d --force-recreate`**(このフォルダで実行、数秒で終わる)。`nginx -s reload` では反映されない: `compose.yaml` は nginx.conf を 1 ファイルだけコンテナに渡しているので、エディタが保存時にファイルを置き換えると、コンテナからは消えた古いファイルが見えたままになる(`nginx -t` が `No such file or directory` で失敗する)。`docs/` はフォルダごと渡しているので、ページの編集はそのまま反映される
+- ローカル確認: `docker compose up -d`(サイトのフォルダで実行、停止は `docker compose down`)→ http://localhost:8000/ 。`/fudousanbusiness-jgx/` 配下は公開時と同じパス(404 ページ確認用)、`/__preview/` 配下はパスワード画面なし(撮影用)
+- **`maintenance/nginx.conf` を変えたら `docker compose up -d --force-recreate`**(サイトのフォルダで実行、数秒で終わる)。`nginx -s reload` では反映されない: `compose.yaml` は nginx.conf を 1 ファイルだけコンテナに渡しているので、エディタが保存時にファイルを置き換えると、コンテナからは消えた古いファイルが見えたままになる(`nginx -t` が `No such file or directory` で失敗する)。`docs/` はフォルダごと渡しているので、ページの編集はそのまま反映される
 - Docker が無いとき: `python3 -m http.server 8000 -d docs`(同じポートなので Docker と同時には使えない)
 - リンク切れの確認: `python3 scripts/check_links.py`(外部リンクも見るときは `--external`)。テストは `python3 -m unittest discover -s tests -p 'test_check_links.py'`
 - 森林データ更新のテスト: `python3 -m unittest discover -s tests -p 'test_forest_data.py'`
