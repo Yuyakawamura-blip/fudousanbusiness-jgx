@@ -41,7 +41,12 @@ pgrep -fl -- "--headless"   # 撮影用の Chrome が残っていないか。何
 - **写らないもの**: マウスを乗せたときやキーボード操作中の見た目、開いたスマホのメニュー、開いた Q&A、幅 500px より狭い画面は撮影に写らない。それを変える作業では CSS の差分を読んで確かめ、自分でも実際のブラウザで、メニューを開いた状態とマウスを乗せた状態を見る。そのうえでユーザーにも見てもらう。
 - **404 ページ**: `/__preview/404.html` で撮る。`404.html` は `<base href="/fudousanbusiness-jgx/">` で本物の `auth.js` を読むので、確認用のサーバ(`maintenance/nginx.conf`)がこの URL だけ `<base>` を `/__preview/` に書き換えて返す。撮った画像に「ページが見つかりません」が写っていることを確かめる。
 - **パスワード画面**: `/__preview/` を付けない URL(例: `http://localhost:8000/`)で撮る。ヘッドレス Chrome は毎回まっさらな状態で開くので、必ずパスワード画面が写る。CSS の共通部分(`styles.css` の `.password-gate`)に触れる作業では、ページと一緒にこれも前後比較する。
-- **JavaScript なしの表示**: ヘッドレス Chrome は JavaScript を動かすので、JavaScript なしの表示を確かめるときは `--blink-settings=scriptEnabled=false` を付けて撮る。
+- **JavaScript なしの表示**: ヘッドレス Chrome は JavaScript を動かすので、JavaScript なしの表示は `scripts/nojs_screenshot.mjs` で撮る(Node 22 以降。npm のパッケージは使わない)。`--blink-settings=scriptEnabled=false` は Chrome 154 では画像を書き出さないので使わない。最後の引数は DevTools プロトコルの接続に使うポートで、ほかのレーンとぶつからないよう、確認用サーバのポートに 1000 を足した番号にする(8014 なら 9014)。スクリプトは自分で開いた Chrome だけを閉じ、高さはページに合わせて撮る。
+  ```
+  mkdir -p /tmp/ncre-shots
+  node scripts/nojs_screenshot.mjs "http://localhost:8000/__preview/about/" 500 /tmp/ncre-shots/about-500-nojs.png 9000
+  ```
+  JavaScript を止めている間は、ページの中で JavaScript を動かして値を調べられない(DevTools プロトコルの `Runtime.evaluate` が返ってこない)。要素の位置は `DOM.getBoxModel` で調べる。
 - **地図のあるページ**: 森林オープンデータのページは地図の画像をネットから読むので、変更がなくても前後の画像が一致しないことがある。差の場所が地図の中だけか、並べて見て確かめる。
 
 ## B. ガードレール(破らない)
