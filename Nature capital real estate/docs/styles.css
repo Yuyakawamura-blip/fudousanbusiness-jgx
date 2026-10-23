@@ -357,11 +357,11 @@ h1 {
   margin: 35px 0 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid #fff6;
+  border-top: 1px solid var(--rule-on-green);
 }
 .consultation li {
   padding: 22px 0;
-  border-bottom: 1px solid #fff6;
+  border-bottom: 1px solid var(--rule-on-green);
   line-height: 1.65;
 }
 .consultation li:before {
@@ -407,12 +407,12 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 62px 0;
-  border-top: 1px solid #fff6;
+  border-top: 1px solid var(--rule-on-green);
 }
 .principles > div p {
   margin: 0;
   padding: 25px 20px 25px 0;
-  border-bottom: 1px solid #fff6;
+  border-bottom: 1px solid var(--rule-on-green);
   font-size: var(--size-lg);
   line-height: 1.6;
 }
