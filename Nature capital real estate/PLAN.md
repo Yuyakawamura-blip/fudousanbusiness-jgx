@@ -70,7 +70,7 @@
 
 - [x] `PLAN.md` に足した `[ ]` の項目が、レーンの表に行がないまま残っていた(2026-10-23): `worklane.py` は `PLAN.md` を読まず、表に行を足す決まり(`WORKLANES.md` の 6)はレーンが見つけた作業だけが対象で、守られたかを確かめるものもなかった。開いた項目の末尾に `<!-- lane: <ID> -->` か `<!-- lane: none -->` を付けることにし、`check_site.py` がタグのない新しい項目を止め、`worklane.py` が `list` と取れるレーンがないときに表にない項目を示す
 - [x] `styles.css` の `.function-detail-grid article` の `border-top: 3px solid var(--green-soft)` は、次の行の `border:` に上書きされて効いていない。消すか、上の線を出すかユーザーと決める(PLAN の E。レーン H1-15b で発見): カードを含むブロックが `.function-detail-grid-legacy` で常に隠れていたので、ユーザーと決めて線の 1 行だけを消した(2026-10-23)
-- [ ] 森林ガイド(`docs/forest-guide/index.html`)に、イラストへ置き換えたあとの古いブロックが 8 つ残り、`styles.css` の `*-legacy`(`display: none !important`)で常に隠れている(`ecosystem-diagram`・`succession-flow`・`function-detail-grid`・`water-diagram`・`forest-type-compare`・`thinning-compare`・`wood-disc`・`community-loop`)。HTML とその CSS を消す。見た目は変わらない。`!important` が 1 つ減るので `check_site.py` の `BASELINE` も下げる(PLAN の E。レーン E-DEADBORDER で発見) <!-- lane: E-LEGACYDOM -->
+- [x] 森林ガイド(`docs/forest-guide/index.html`)に、イラストへ置き換えたあとの古いブロックが 8 つ残り、`styles.css` の `*-legacy`(`display: none !important`)で常に隠れている(`ecosystem-diagram`・`succession-flow`・`function-detail-grid`・`water-diagram`・`forest-type-compare`・`thinning-compare`・`wood-disc`・`community-loop`)。HTML とその CSS を消す。見た目は変わらない。`!important` が 1 つ減るので `check_site.py` の `BASELINE` も下げる(PLAN の E。レーン E-DEADBORDER で発見): 8 つのブロックと、それだけを指す CSS の 115 規則・3 つの選択子を消した。隠れたブロックの中の `.open-stand` と `.community-loop i` にも `!important` があり、3 つ減ったので `BASELINE` は 8 → 5(2026-10-23)
 - [ ] `styles.css` の `.steps` の指定(378-400 行目と 720px 以下の 596-602 行目)を使う HTML がどのページにもない。消すかをユーザーと決める。見た目は変わらない(PLAN の E。レーン H2-SOFTGREEN で発見) <!-- lane: E-DEADSTEPS -->
 
 ## H. デザインの決まり(`maintenance/design.md`、2026-10-22)
