@@ -192,3 +192,11 @@
 - 確認: ポート 8018 で 1440 / 1000 / 760 / 501 幅を前後で測った(500 ちょうどは PLAN の E にある撮影の止まりを避けた)。どの幅も説明 16px・名前 14px・見出し 19px。カードは 1 行あたり 4px 高くなり(1000 幅は説明が前から 2 行なので 8px)、参照の区画は 4〜12px 伸びた。撮った区画で新しい折り返しはない。`forest-data.css` を読むのはこのページだけ。関門・リンク確認 485 件・切れ 0・テスト 4 種は通過
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-2 のヘッダー・フッターの下の 2 項目(メニューの文字の大きさ、ロゴの折り返し)、H-1 の 15
+
+### 2026-10-23(レーン E-FD500)
+- 森林オープンデータを 500 幅ちょうどで撮ると `Runtime.evaluate` が返らない件(PLAN の E)を調べ、再現しなかったので、ユーザーと決めて閉じた。サイトのファイルは変えていない
+- 確認: ポート 8019(今の `develop`)と 8119(報告のあった 3e595fa3)で、500 幅(490〜520、390 も)を `--headless` / `--headless=new`、高さ 900 とページ全体、`captureBeyondViewport`・`mobile: true`・2 倍の画素・窓のある Chrome で開き、20 回の繰り返しと 4 つの Chrome の同時実行も試した。`Runtime.evaluate` はどれも 262ms 以内に返り、スクリプトのエラーもない。§A の `--screenshot --window-size=500,11000` も約 2 秒で画像を書き、フッターまで写る。H1-13c の rebase の後も同じ
+- 原因の推測: 自分の Chrome のページの処理(renderer)を PID で止めると、次の `Runtime.evaluate` は 15 秒待っても返らず、届くのは `Inspector.targetCrashed` だけだった。renderer の起動の指定には `--headless=new` がないので、ほかのレーンの `pkill -f -- "--headless=new"` が止めるのは Chrome の本体で、そのときも返事は来ない。E-ARROW の止まりはこれと推測(当時の別のレーンの動きは再現できないので未確認)。直すのは E-PKILL
+- macOS の窓のある Chrome は幅 700px より狭くならない。500 幅で見る読み手はスマホなので、確かめるときはヘッドレスか DevTools の模擬を使う
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-2 のヘッダー・フッターの下の 2 項目(メニューの文字の大きさ、ロゴの折り返し)、H-1 の 15
