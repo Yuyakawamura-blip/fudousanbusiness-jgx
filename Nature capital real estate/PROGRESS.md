@@ -63,3 +63,10 @@
 - 新しく見つけた件を PLAN の 9 の下に記録: 全ページの「無料相談」の文字が上に寄っている(`.nav` の `padding-bottom: 3px` が上書き)
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-1 の 9 の下の項目、`docs/styles.css` の `.nav-contact`(203 行目)と `.nav`(960 行目)
+
+### 2026-10-23(レーン H1-10)
+- H-1 の 10: サービス一覧の 3 枚のカードのボタン(「サービスを見る」×2・「詳しく見る」)を `.text-link` に。カードの下にそろえる指定も `.text-link` に向けた(9acb5f08、H1-08・H1-09 の後に rebase)
+- 確認: ポート 8003 で 1440 / 500 幅を前後で撮影し、変わったのはカードのリンクと、カードが低くなった分の下の位置だけ。Tab で 3 つとも共通の枠、文字は白の上で 14.97:1。リンク確認 447 件・切れ 0
+- 新しく見つけた件を PLAN の 10 の下に記録: `.text-link` にマウスオーバーの変化が無い
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-1 の 10 の下の項目、`docs/styles.css` の `.text-link`(961 行目付近)
