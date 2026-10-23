@@ -270,7 +270,7 @@
   padding: 28px;
   background: var(--white);
   color: var(--ink);
-  font-size: 22px;
+  font-size: var(--size-lg);
   text-decoration: none;
   border-top: 3px solid #85775b;
 }

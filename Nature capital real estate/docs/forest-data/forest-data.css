@@ -4,7 +4,7 @@
 .forest-data-page h1,.forest-data-page h2,.forest-data-page h3,.forest-data-page p { margin-top:0; }
 .forest-data-page main h1 { font-size:clamp(40px,5.3vw,74px); line-height:1.35; letter-spacing:.025em; margin-bottom:0; }
 .forest-data-page h2 { font-size:clamp(25px,3vw,38px); line-height:1.5; margin-bottom:12px; }
-.forest-data-page h3 { font-size:22px; line-height:1.6; }
+.forest-data-page h3 { font-size:var(--size-lg); line-height:1.6; }
 .forest-data-page p,.forest-data-page li { line-height:1.9; }
 .forest-data-page .eyebrow { font-size:var(--size-xs); letter-spacing:.12em; color:var(--green); font-weight:700; margin-bottom:16px; }
 .forest-data-page .muted { color:var(--data-muted); font-size:var(--size-sm); }
