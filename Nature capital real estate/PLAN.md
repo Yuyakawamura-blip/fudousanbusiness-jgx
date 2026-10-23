@@ -55,9 +55,10 @@
 - [x] 書いてあるだけだった決まりをコミットの関門に(2026-10-23): `scripts/check_site.py` + `.githooks/`(pre-commit / commit-msg)+ `develop` への push と PR で動く `.github/workflows/checks.yml`。守れていない決まりは今の数を上限に(AGENTS.md「Checks」)
 - [x] 外部リンクはすべて新しいタブで開く、とユーザーが決定(2026-10-23)。同じタブで開いていた 9 か所(森林ガイドの図のラベル 8、森林データの `<noscript>` 1)に `target` / `rel`、`rel` に `noopener` がなかった 3 か所に追加。図のラベルの ↗ は角に置いた(グリッドのため、そのままだと 3 行目にずれる)。関門も外部リンク全体に広げた
 - [x] 地図の出典のリンク 3 つ(`forest-data.js` の `attribution`)と Leaflet の「Leaflet」リンクが同じタブで開く。出典の欄は H1-06a(出典リンクの枠が切れる件)と同じ場所なので、そのときに一緒に見る → H1-06a で 4 つとも新しいタブに。「Leaflet」は Leaflet の書いた形(旗と title)のまま、開きタグに `target` と `rel` だけを足した。出典の欄は ↗ の分 234 → 280px に広がる。関門は JavaScript の文字列の中のリンクを見ていない
-- [ ] 森林データの「公式データを見る ↗」(`forest-data/index.html:124`)は本文にも矢印があり、CSS の矢印と 2 つ並ぶ。`forest-data.js` が作るリンクにも同じものが 3 か所ある(29・53・110 行目の `external()` の文字に ↗)
+- [x] 森林データの「公式データを見る ↗」(`forest-data/index.html:124`)は本文にも矢印があり、CSS の矢印と 2 つ並ぶ。`forest-data.js` が作るリンクにも同じものが 3 か所ある(29・53・110 行目の `external()` の文字に ↗) → レーン E-ARROW で本文の ↗ を 10 か所すべて消した(index.html 7、うち 1 つはページ内リンクの「更新の仕組み」。forest-data.js 3)。参照カード 3 枚は CSS の矢印が説明の下の行に落ちるので、見出しの行の右端に置いた
 - [ ] design.md §A の JavaScript なしの撮影(`--blink-settings=scriptEnabled=false`)が、Chrome 154 のヘッドレスでは画像を書き出さない(どのページでも)。代わりの手順を決める
 - [x] レーンの手順を `/lane` にまとめる(2026-10-23): リポジトリ直下の `.claude/skills/lane/SKILL.md`。読む → セッションごとの名前でレーンを取る → worktree で作業 → push の前で承認を待つ → 仕上げと `finish` → `/clear` のあと次の `/lane`。直下に置けば、サイトのフォルダから始めたセッションでも読まれる(Claude Code は開始したフォルダからリポジトリ直下までの `.claude/skills/` を読む)
+- [ ] 森林オープンデータを 500 幅ちょうどで撮ると、DevTools プロトコルの `Runtime.evaluate` が返らない(レーン E-ARROW で発見、2026-10-23)。`origin/develop` の 3e595fa3 で、E-ARROW の変更なしでも起きる。e1ce8459(H2-HF の記録)の上では起きないので、H1-13b の文字の大きさの変更が関わると推測。390・520・760・1440 幅は正常。実際のブラウザで固まるのか、撮影だけの問題かは未確認
 
 ## H. デザインの決まり(`maintenance/design.md`、2026-10-22)
 - [x] GX Career のデザイン原則と照らし合わせ、このサイトの決まりを文書化
