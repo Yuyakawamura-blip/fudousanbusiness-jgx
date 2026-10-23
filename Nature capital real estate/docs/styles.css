@@ -3588,6 +3588,12 @@ footer a {
     grid-template-columns: 1fr;
   }
 }
+/* 3 columns narrower than "初回インタビュー" at 28px (224px) up to ~1068px */
+@media (min-width: 1001px) and (max-width: 1080px) {
+  .flow-fees-steps h3 {
+    font-size: var(--size-lg);
+  }
+}
 @media (max-width: 720px) {
   .flow-fees {
     padding: 64px 25px;
