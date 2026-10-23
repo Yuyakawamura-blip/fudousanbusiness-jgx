@@ -13,6 +13,7 @@ import fcntl
 import os
 import re
 from pathlib import Path
+import secrets
 import socket
 import subprocess
 import sys
@@ -161,6 +162,14 @@ def choose_port(rows, port_free):
     raise BoardError(f'no free preview port in {PORT_FIRST}-{PORT_LAST}')
 
 
+def session_name(now):
+    """A name for a worker that gave none: the minute it started plus 4 random hex digits (1 in 65536 to repeat).
+
+    Agents asked to make up "random" digits tend to repeat the same ones, so the randomness comes from here.
+    """
+    return f'claude-{now:%m%d-%H%M}-{secrets.token_hex(2)}'
+
+
 def instructions(row, root, port):
     """Commands for a claimed lane: its own worktree, branch and preview port."""
     slug = row.id.lower()
@@ -292,6 +301,8 @@ def run(args, board, common_dir, root, now, out=sys.stdout, stop=docker_stop, po
                 who = f'{who} {port.group()}'.strip()
             write(board, update(text, args.lane, args.status, who))
             print(f'{args.lane} -> {args.status}', file=out)
+            if args.status == 'c' and args.note is None:
+                print(f'Claimed as: {args.who}  (reuse this name with --who)', file=out)
             return 0
         choices = free(rows)
         if not choices:
@@ -305,6 +316,7 @@ def run(args, board, common_dir, root, now, out=sys.stdout, stop=docker_stop, po
         port = choose_port(rows, port_free)  # inside the lock, and recorded, so two claims never share a port
         write(board, update(text, row.id, 'c', f'{args.who} {now} port {port}'))
         print(instructions(row._replace(status='c'), root, port), file=out)
+        print(f'Claimed as: {args.who}  (reuse this name with --who)', file=out)
         return 0
 
 
@@ -329,16 +341,18 @@ def main(argv=None):
     done = sub.add_parser('finish', help='after pushing: stop the preview, remove the worktree and branch, mark x')
     done.add_argument('lane')
     for s in (p, pick, mark):
-        s.add_argument('--who', default=os.environ.get('USER', 'worker'), help='name recorded on a claim')
+        s.add_argument('--who', help='name recorded on a claim (default: a new claude-MMDD-HHMM-hex4 name)')
     for s in (p, pick):
         s.add_argument('--dry-run', action='store_true', help='show the lane without claiming it')
     args = p.parse_args(argv)
     args.command = args.command or 'pick'
+    now = datetime.now()
+    args.who = getattr(args, 'who', None) or session_name(now)
     root = main_checkout()
     common_dir = root / '.git'
     board = args.board or root / PROJECT / 'WORKLANES.md'
     try:
-        return run(args, board, common_dir, root, datetime.now().strftime('%Y-%m-%d %H:%M'))
+        return run(args, board, common_dir, root, now.strftime('%Y-%m-%d %H:%M'))
     except BoardError as e:
         print(f'WORKLANES.md: {e}', file=sys.stderr)
         return 1

@@ -1,6 +1,7 @@
 """Contract tests for the work-lane selector: what is free, what a claim writes, and that claims never collide."""
 from argparse import Namespace
 from concurrent.futures import ProcessPoolExecutor
+from datetime import datetime
 import importlib.util
 import io
 import os
@@ -10,6 +11,7 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+from unittest import mock
 
 spec = importlib.util.spec_from_file_location('worklane', Path(__file__).parents[1] / 'scripts/worklane.py')
 lanes = importlib.util.module_from_spec(spec)
@@ -135,6 +137,48 @@ class Claims(unittest.TestCase):
             results = list(pool.map(claim_in_process, [str(self.path)] * 6, [f'w{i}' for i in range(6)]))
         ports = [port for _, out in results for port in re.findall(r'localhost:(\d+)/', out)]
         self.assertEqual(sorted(ports), [str(8001 + i) for i in range(6)])
+
+
+class Names(unittest.TestCase):
+    """A worker that gives no --who gets a generated name; one that gives a name keeps it."""
+
+    def setUp(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.path = Path(tmp.name) / 'WORKLANES.md'
+
+    def claim(self, *who):
+        # Through main(), where the default name is made; the pre-commit hook runs tests outside any git repository.
+        self.path.write_text(board('A | o | - | f | a | '))
+        out = io.StringIO()
+        (self.path.parent / '.git').mkdir(exist_ok=True)  # main() keeps its lock in <main checkout>/.git
+        run = lanes.run  # its out= default is bound to the real stdout, so hand it ours
+        with mock.patch.object(lanes, 'main_checkout', return_value=self.path.parent), \
+                mock.patch.object(lanes, 'run', lambda *a, **k: run(*a, out=out, **k)):
+            self.assertEqual(lanes.main(['--board', str(self.path), *who]), 0, out.getvalue())
+        return lanes.parse(self.path.read_text())[0].who, out.getvalue()
+
+    def test_no_who_records_a_new_name_and_prints_it(self):
+        who, out = self.claim()
+        name = who.split()[0]
+        self.assertRegex(name, r'^claude-\d{4}-\d{4}-[0-9a-f]{4}$')
+        self.assertIn(f'Claimed as: {name}', out)
+
+    def test_names_made_in_the_same_minute_differ(self):
+        now = datetime(2026, 10, 23, 16, 12)
+        names = {lanes.session_name(now) for _ in range(20)}
+        self.assertTrue(all(n.startswith('claude-1023-1612-') for n in names))
+        self.assertGreater(len(names), 1)
+
+    def test_given_who_is_recorded_unchanged(self):
+        self.assertEqual(self.claim('--who', 'alice')[0].split()[0], 'alice')
+
+    def test_claiming_by_mark_prints_the_name(self):
+        self.path.write_text(board('A | o | - | f | a | '))
+        out = io.StringIO()
+        args = Namespace(command='mark', lane='A', status='c', note=None, who='claude-1023-1612-a3f9')
+        self.assertEqual(lanes.run(args, self.path, self.path.parent, Path('/repo'), 'now', out), 0)
+        self.assertIn('Claimed as: claude-1023-1612-a3f9', out.getvalue())
 
 
 class Marking(unittest.TestCase):
