@@ -138,3 +138,10 @@
 - 2 回目の rebase(H1-13b の後)のあと、500 幅ちょうどの撮影が止まるようになった(E-ARROW の変更なしの `origin/develop` でも同じ)。390・520 幅で撮り直して確かめ、PLAN の E に記録した。撮影のあとの `pkill -f -- "--headless=new"` は、同じ文字を含むシェル自身も止めるので、`'--headless=ne[w]'` と書く
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の E の残り
+
+### 2026-10-23(レーン E-NOJS)
+- design.md §A の JavaScript なしの撮影の手順を書き換えた(38b9f4e9)。`--blink-settings=scriptEnabled=false` は Chrome 154 で終了コード 0 のまま画像を書き出さないことを確かめ、ユーザーと決めて、DevTools プロトコルで撮る `scripts/nojs_screenshot.mjs`(Node の標準機能だけ)を足した。スクリプトは自分で開いた Chrome を PID で閉じ、ポートが使われていれば止まる。接続のポートは確認用サーバのポート + 1000
+- 確認: ポート 8014 の私たちについてを 500 幅で 3 回撮り、3 枚とも一致(500×6686)。メニューの 6 項目が開いた一覧で写り、ボタンはない。1440 幅も撮れる。止まっているサーバでは終了コード 1 で画像を書かない、途中で止めると 130、ポートが使われていれば 1 で、どれも Chrome は残らない。独立レビューの 4 件(読み込みの失敗、Ctrl-C で Chrome が残る、Chrome がない時の表示、例の `mkdir`)を直した。Chrome がない時だけは動かしていない。関門・リンク確認 485 件・切れ 0・テスト 4 種は通過
+- ほかのレーンの `pkill -f -- "--headless=new"` で自分のシェルが止められた(終了コード 144)。撮影のコマンドはスクリプトのファイルから流すと避けられる。手順の書き換えは PLAN の E に記録
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の E の残り
