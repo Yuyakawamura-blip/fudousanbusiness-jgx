@@ -7,6 +7,7 @@
   --paper: #fbfaf7;
   --pale: #e7eadf;
   --line: #d4d8d0;
+  --badge: #b9915b; /* copper: the fee and availability badges only (§6) */
 }
 
 /* Keyboard focus, every page: an ink ring with a thin paper line inside it.
@@ -4076,7 +4077,7 @@ footer a {
   width: fit-content;
   margin: 14px 0 0;
   padding: 4px 12px;
-  border: 1px solid #b9915b;
+  border: 1px solid var(--badge);
   color: #85663c;
   font-size: 15px;
   line-height: 1.6;
@@ -4161,7 +4162,7 @@ footer a {
 .fee {
   display: inline-block;
   padding: 4px 12px;
-  border: 1px solid #b9915b;
+  border: 1px solid var(--badge);
   color: #85663c;
   font-size: 15px;
   vertical-align: 3px;
