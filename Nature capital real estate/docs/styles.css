@@ -859,7 +859,7 @@ details p {
 }
 .essence-card {
   transform: rotate(-1deg);
-  border-top: 5px solid #b9915b;
+  border-top: 5px solid #64816b;
 }
 .card-kicker {
   color: #4f6a57;
@@ -3778,9 +3778,6 @@ footer a {
 .partner-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
-.partner-grid article:nth-child(4) {
-  border-top-color: #b9915b;
-}
 @media (max-width: 720px) {
   .partner-grid {
     grid-template-columns: 1fr;
@@ -3922,7 +3919,7 @@ footer a {
 }
 .concern-jump a span,
 .concern-group-title span {
-  color: #b9915b;
+  color: var(--green);
   font-weight: 700;
 }
 .concern-group {
