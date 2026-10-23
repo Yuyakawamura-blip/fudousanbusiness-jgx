@@ -11,7 +11,9 @@ from contextlib import contextmanager
 from datetime import datetime
 import fcntl
 import os
+import re
 from pathlib import Path
+import socket
 import subprocess
 import sys
 import tempfile
@@ -19,7 +21,7 @@ import tempfile
 PROJECT = 'Nature capital real estate'
 STATUSES = 'ocxb'
 NONE_FREE = 3  # exit code when nothing can be picked
-PORT_BASE = 8000  # the user's own preview server; lanes use PORT_BASE + row number
+PORT_FIRST, PORT_LAST = 8001, 8999  # 8000 is the user's own preview server
 
 Row = namedtuple('Row', 'index line id status needs touches item who')
 COLUMNS = ('ID', 'S', 'Needs', 'Touches', 'Item', 'Who')
@@ -103,12 +105,33 @@ def summary(rows):
     return out
 
 
-def instructions(row, root):
+def host_port_free(port):
+    """Whether nothing (another lane's container included) listens on this port of the host."""
+    with socket.socket() as s:
+        try:
+            s.bind(('127.0.0.1', port))
+        except OSError:
+            return False
+    return True
+
+
+def choose_port(rows, port_free):
+    """The lowest preview port that no claimed or blocked lane has recorded and nothing on the host is using.
+
+    Row numbers are not used: a row added above a claimed lane would hand its port to the next claim.
+    """
+    taken = {int(m) for r in rows if r.status in 'cb' for m in re.findall(r'\bport (\d+)\b', r.who)}
+    for port in range(PORT_FIRST, PORT_LAST + 1):
+        if port not in taken and port_free(port):
+            return port
+    raise BoardError(f'no free preview port in {PORT_FIRST}-{PORT_LAST}')
+
+
+def instructions(row, root, port):
     """Commands for a claimed lane: its own worktree, branch and preview port."""
     slug = row.id.lower()
     tree = root.parent / f'{root.name}-{slug}'
     project = tree / PROJECT
-    port = PORT_BASE + row.index
     return '\n'.join([
         f'Claimed {row.id}: {row.item}',
         f'Touches: {row.touches}',
@@ -193,7 +216,7 @@ def write(board, text):
     os.replace(tmp, board)
 
 
-def run(args, board, common_dir, root, now, out=sys.stdout, stop=docker_stop):
+def run(args, board, common_dir, root, now, out=sys.stdout, stop=docker_stop, port_free=host_port_free):
     if args.command == 'finish':
         rows = {r.id: r for r in parse(board.read_text())}
         if args.lane not in rows:
@@ -234,8 +257,9 @@ def run(args, board, common_dir, root, now, out=sys.stdout, stop=docker_stop):
         if args.dry_run:
             print(f'Would claim {row.id}: {row.item}', file=out)
             return 0
-        write(board, update(text, row.id, 'c', f'{args.who} {now}'))
-        print(instructions(row._replace(status='c'), root), file=out)
+        port = choose_port(rows, port_free)  # inside the lock, and recorded, so two claims never share a port
+        write(board, update(text, row.id, 'c', f'{args.who} {now} port {port}'))
+        print(instructions(row._replace(status='c'), root, port), file=out)
         return 0
 
 

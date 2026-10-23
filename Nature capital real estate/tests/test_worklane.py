@@ -5,6 +5,7 @@ import importlib.util
 import io
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import tempfile
@@ -19,9 +20,10 @@ HEAD = '# board\n\nprose | with a pipe\n\n| ID | S | Needs | Touches | Item | Wh
 def board(*rows):
     return HEAD + ''.join(f'| {r} |\n' for r in rows) + '\ntrailing text\n'
 
-def pick(path, who='w', dry_run=False):
+def pick(path, who='w', dry_run=False, port_free=lambda port: True):
     out = io.StringIO()
-    code = lanes.run(Namespace(command='pick', who=who, dry_run=dry_run), path, path.parent, Path('/repo'), 'now', out)
+    code = lanes.run(Namespace(command='pick', who=who, dry_run=dry_run), path, path.parent, Path('/repo'), 'now', out,
+                     port_free=port_free)
     return code, out.getvalue()
 
 def claim_in_process(path, who):
@@ -67,8 +69,29 @@ class Claims(unittest.TestCase):
         code, out = pick(self.path, 'alice')
         self.assertEqual(code, 0)
         self.assertIn('Claimed B', out)
-        self.assertIn('localhost:8002', out)
-        self.assertEqual(lanes.parse(self.path.read_text())[1][3:], ('c', (), 'f', 'b', 'alice now'))
+        self.assertIn('localhost:8001', out)
+        self.assertEqual(lanes.parse(self.path.read_text())[1][3:], ('c', (), 'f', 'b', 'alice now port 8001'))
+
+    def test_port_follows_the_lane_not_its_row(self):
+        # B holds 8001; a row added above it must not hand 8001 to the next claim.
+        self.path.write_text(board('A | x | - | f | a | ', 'N | o | - | f | n | ', 'B | c | - | f | b | bob t port 8001'))
+        self.assertIn('localhost:8002', pick(self.path)[1])
+
+    def test_ports_of_claimed_and_blocked_lanes_are_skipped_others_reused(self):
+        self.path.write_text(board('A | c | - | f | a | bob t port 8001', 'B | b | - | f | b | photos port 8002',
+                                   'C | o | - | f | c | stale port 8003', 'D | o | - | f | d | '))
+        self.assertIn('localhost:8003', pick(self.path)[1])
+
+    def test_ports_in_use_on_the_host_are_skipped(self):
+        self.path.write_text(board('A | o | - | f | a | '))
+        self.assertIn('localhost:8003', pick(self.path, port_free=lambda port: port > 8002)[1])
+
+    def test_no_free_port_is_an_error_and_claims_nothing(self):
+        text = board('A | o | - | f | a | ')
+        self.path.write_text(text)
+        with self.assertRaises(lanes.BoardError):
+            pick(self.path, port_free=lambda port: False)
+        self.assertEqual(self.path.read_text(), text)
 
     def test_dry_run_does_not_write(self):
         text = board('A | o | - | f | a | ')
@@ -92,6 +115,13 @@ class Claims(unittest.TestCase):
         self.assertEqual(sorted(claimed), [f'L{i}' for i in range(6)])
         self.assertEqual([code for code, _ in results].count(lanes.NONE_FREE), 2)
         self.assertTrue(all(r.status == 'c' for r in lanes.parse(self.path.read_text())))
+
+    def test_simultaneous_workers_never_get_the_same_port(self):
+        self.path.write_text(board(*(f'L{i} | o | - | f | item | ' for i in range(6))))
+        with ProcessPoolExecutor(6) as pool:
+            results = list(pool.map(claim_in_process, [str(self.path)] * 6, [f'w{i}' for i in range(6)]))
+        ports = [port for _, out in results for port in re.findall(r'localhost:(\d+)/', out)]
+        self.assertEqual(sorted(ports), [str(8001 + i) for i in range(6)])
 
 
 def git(cwd, *args):
