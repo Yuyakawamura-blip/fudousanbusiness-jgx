@@ -1,5 +1,8 @@
 """Contract tests for the commit-gating checks of the written site rules."""
+import contextlib
 import importlib.util
+import io
+import os
 from pathlib import Path
 import tempfile
 import unittest
@@ -142,6 +145,32 @@ class MessageTest(unittest.TestCase):
                 mock.patch.object(site, 'git', return_value=log):
             problems, _ = site.pushed('base')
         self.assertEqual(problems, ['commit abc1234: write the subject in Japanese'])
+
+    def hook(self, message, editor, cleanup='default'):
+        """Run the commit-msg check as git's hook would, with the config set through the environment."""
+        env = {'GIT_EDITOR': editor, 'GIT_CONFIG_GLOBAL': os.devnull, 'GIT_CONFIG_NOSYSTEM': '1',
+               'GIT_CONFIG_COUNT': '1', 'GIT_CONFIG_KEY_0': 'commit.cleanup', 'GIT_CONFIG_VALUE_0': cleanup}
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.dict(os.environ, env), \
+                contextlib.redirect_stderr(io.StringIO()):
+            path = Path(tmp) / 'COMMIT_EDITMSG'
+            path.write_text(message, encoding='utf-8')
+            return site.main(['--commit-msg', str(path)])
+
+    def test_hook_without_an_editor_keeps_hash_lines(self):
+        # git commit -m / -F runs the hook with GIT_EDITOR=: and keeps lines starting with #.
+        self.assertEqual(self.hook('#12 ヘッダーを直す\n', ':'), 0)
+        self.assertEqual(self.hook('# memo\nヘッダーを直す\n', ':'), 1)
+
+    def test_hook_with_an_editor_skips_hash_lines(self):
+        self.assertEqual(self.hook('ヘッダーを直す\n# Please enter the commit message\n', 'vi'), 0)
+        self.assertEqual(self.hook('#12 ヘッダーを直す\n', 'vi'), 1)
+
+    def test_hook_without_an_editor_skips_hash_lines_under_strip(self):
+        self.assertEqual(self.hook('# memo\nヘッダーを直す\n', ':', cleanup='strip'), 0)
+
+    def test_hook_with_an_editor_keeps_hash_lines_under_whitespace(self):
+        for cleanup in ('whitespace', 'verbatim', 'scissors'):
+            self.assertEqual(self.hook('#12 ヘッダーを直す\n', 'vi', cleanup=cleanup), 0, cleanup)
 
 class SiteTest(unittest.TestCase):
     def test_the_real_site_passes(self):

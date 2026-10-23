@@ -9,6 +9,7 @@ import argparse
 import ast
 from html.parser import HTMLParser
 import importlib.util
+import os
 from pathlib import Path, PurePosixPath
 import re
 import subprocess
@@ -253,8 +254,15 @@ def main(argv=None):
     mode.add_argument('--commit-msg', type=Path, metavar='FILE', help='check only this commit message file')
     args = parser.parse_args(argv)
     if args.commit_msg:
-        comment = subprocess.run(['git', 'config', 'core.commentChar'], capture_output=True, text=True).stdout.strip()
-        problems = check_message(args.commit_msg.read_text(encoding='utf-8'), comment if len(comment) == 1 else '#')
+        config = {key: subprocess.run(['git', 'config', key], capture_output=True, text=True).stdout.strip()
+                  for key in ('core.commentChar', 'commit.cleanup')}
+        comment = config['core.commentChar'] if len(config['core.commentChar']) == 1 else '#'
+        # git drops lines starting with # only under commit.cleanup=strip, or under the default when an editor
+        # opened; it runs the hook with GIT_EDITOR=: when none did (-m, -F). A --cleanup flag is not visible here.
+        cleanup = config['commit.cleanup'] or 'default'
+        if not (cleanup == 'strip' or cleanup == 'default' and os.environ.get('GIT_EDITOR') != ':'):
+            comment = None
+        problems = check_message(args.commit_msg.read_text(encoding='utf-8'), comment)
         for p in problems:
             print(f'commit message: {p}', file=sys.stderr)
         return 1 if problems else 0
