@@ -3754,8 +3754,8 @@ footer a {
   letter-spacing: 0;
 }
 @media (max-width: 720px) {
-  body:not(.forest-page):not(.guide-page):not(.sustainable-page) > header .site-nav,
-  .service-owner-page .site-header .site-nav {
+  .js-nav body:not(.forest-page):not(.guide-page):not(.sustainable-page) > header .site-nav,
+  .js-nav .service-owner-page .site-header .site-nav {
     display: none;
   }
   body:not(.forest-page):not(.guide-page):not(.sustainable-page) > header .brand,
@@ -3829,7 +3829,9 @@ footer a {
   }
 }
 
-/* Mobile menu toggle (button is added by nav.js) */
+/* Mobile menu toggle (button is added by nav.js, which also sets .js-nav on <html>).
+   Without JavaScript the menu is shown as the opened list. The hide and open rules
+   for .site-nav have the same specificity, so the open rule wins by coming later. */
 .nav-toggle {
   display: none;
 }
@@ -3866,22 +3868,25 @@ footer a {
     font: 15px "Noto Sans JP", sans-serif;
     cursor: pointer;
   }
-  body > header .site-nav,
-  body > header.site-header .site-nav {
+  .js-nav body > header .site-nav,
+  .js-nav body > header.site-header .site-nav {
     display: none !important;
   }
-  body > header.nav-open .site-nav {
+  html:not(.js-nav) body > header .site-nav,
+  .js-nav body > header.nav-open .site-nav {
     display: flex !important;
     flex-direction: column;
     align-items: stretch;
     width: 100%;
     gap: 0;
   }
+  html:not(.js-nav) body > header .site-nav .nav,
   body > header.nav-open .site-nav .nav {
     padding: 14px 0;
     font-size: 17px;
     border-bottom: 1px solid #d8ddd4;
   }
+  html:not(.js-nav) body > header .site-nav .nav-contact,
   body > header.nav-open .site-nav .nav-contact {
     margin-top: 12px;
     padding: 14px 2.6em 14px 16px;

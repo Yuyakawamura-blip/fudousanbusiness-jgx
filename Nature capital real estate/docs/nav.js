@@ -1,6 +1,10 @@
 (function () {
   "use strict";
 
+  // Runs before the page is drawn, so styles.css hides the phone menu only when
+  // the button below will exist; without this script the menu stays open.
+  document.documentElement.classList.add("js-nav");
+
   document.addEventListener("DOMContentLoaded", function () {
     var header = document.querySelector("body > header");
     var nav = header && header.querySelector(".site-nav");
