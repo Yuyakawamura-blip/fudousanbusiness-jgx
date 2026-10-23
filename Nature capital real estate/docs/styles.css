@@ -3290,6 +3290,13 @@ footer a {
   text-decoration: none;
   transform: translate(-50%, -50%);
 }
+/* The label is a grid, so the new-tab arrow would take a row of its own; put it in the corner instead. */
+.function-hotspot-labels a::after {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  margin: 0;
+}
 .function-hotspot-labels a:hover,
 .function-hotspot-labels a:focus-visible {
   color: #fffdf8;
