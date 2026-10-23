@@ -92,3 +92,10 @@
 - 新しく見つけた件を PLAN の E に記録: 地図の出典のリンク、「公式データを見る ↗」の矢印の重なり、JavaScript なしの撮影の手順
 
 次回最初に読むファイル: `PLAN.md` の E の未完了の項目、`AGENTS.md` の Conventions の外部リンクの行
+
+### 2026-10-23(レーン H1-14)
+- H-1 の 14: Web フォント(Noto Sans JP)の読み込みを `styles.css` 1 行目の `@import` から、13 ページの `<head>` の `<link>` に移した(71cec1f6)。`styles.css` の前に `fonts.googleapis.com` と `fonts.gstatic.com` への preconnect も入れた。URL・太さ・`display=swap` は前と同じ
+- 確認: ポート 8009 と 8000(変更前)で、トップ・私たちについて・英語版・さとやま不動産・404 を 1440×900 で撮影し、5 組とも画素まで一致。対照として Google Fonts への接続を止めてトップを撮ると、英字が Helvetica に変わる。13 ページすべてに `<link>` があり、CSS に `@import` は残っていない。リンク確認・関門・テスト 4 種は前後とも通過
+- macOS には `timeout` コマンドが無いので、撮影の時間制限は `perl -e "alarm 40; exec @ARGV"` で付けた
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-1 の 15(H1-15a の前提が残り 06a・12・13b)
