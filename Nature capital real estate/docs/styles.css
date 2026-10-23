@@ -343,7 +343,7 @@ h1 {
   grid-template-columns: 1.1fr 0.9fr;
   gap: 80px;
   background: var(--green);
-  color: #f5f3eb;
+  color: var(--paper-warm);
 }
 .consultation p:not(.label) {
   font-size: var(--size-xl);
@@ -747,7 +747,7 @@ details p {
   grid-template-columns: 0.8fr 1.2fr;
   gap: 70px;
   background: #2c4d41;
-  color: #f5f3eb;
+  color: var(--paper-warm);
 }
 .tool-flow ol {
   margin: 0;
@@ -1388,7 +1388,7 @@ footer a {
 }
 .forest-future {
   background: #2c493c;
-  color: #f6f4ed;
+  color: var(--paper-warm);
 }
 .forest-future .label,
 .forest-future .forest-chapter-heading > p:not(.label),
@@ -1662,11 +1662,11 @@ footer a {
   background: #d8c7a8;
 }
 .work-figure {
-  color: #f5f4ed;
+  color: var(--paper-warm);
   background: linear-gradient(rgba(28, 52, 40, 0.66), rgba(28, 52, 40, 0.82)), url("assets/forest-cycle.webp") center / cover;
 }
 .work-figure > p {
-  color: #f5f4ed;
+  color: var(--paper-warm);
 }
 .work-figure ol {
   margin: 0;
@@ -1907,7 +1907,7 @@ footer a {
   display: inline-block;
   margin-top: 36px;
   padding: 17px 22px;
-  color: #f6f4ed;
+  color: var(--paper-warm);
   background: var(--green);
   font-size: var(--size-body);
   text-decoration: none;
@@ -1952,7 +1952,7 @@ footer a {
   flex-direction: column;
   justify-content: center;
   padding: 18px 20px;
-  color: #f5f3eb;
+  color: var(--paper-warm);
   border-right: 1px solid rgba(255, 255, 255, 0.24);
   font-size: var(--size-body);
   line-height: 1.5;
@@ -2092,7 +2092,7 @@ footer a {
 .eco-node {
   min-height: 220px;
   padding: 28px;
-  color: #f6f4ed;
+  color: var(--paper-warm);
   background: var(--green-mid);
 }
 .eco-consumer {
@@ -2210,7 +2210,7 @@ footer a {
   flex-direction: column;
   justify-content: flex-end;
   padding: 20px 10px;
-  color: #f5f3eb;
+  color: var(--paper-warm);
   background: #7f8b6d;
   text-align: center;
 }
@@ -2336,7 +2336,7 @@ footer a {
   align-items: center;
   justify-content: center;
   transform: translate(-50%, -50%);
-  color: #f5f3eb;
+  color: var(--paper-warm);
   border: 10px solid #dbe2d5;
   border-radius: 50%;
   background: var(--green-mid);
@@ -2369,7 +2369,7 @@ footer a {
   align-items: center;
   margin-top: 82px;
   padding: 58px;
-  color: #f5f3eb;
+  color: var(--paper-warm);
   background: #2f5144;
 }
 .water-copy .guide-kicker,
@@ -2439,7 +2439,7 @@ footer a {
 }
 .groundwater {
   padding: 24px;
-  color: #f5f4ed;
+  color: var(--paper-warm);
   background: #466d75;
   font-size: var(--size-body);
   text-align: center;
@@ -2471,7 +2471,7 @@ footer a {
   line-height: 1.85;
 }
 .forest-type-compare aside {
-  color: #f5f4ed;
+  color: var(--paper-warm);
   background: #365344;
 }
 .forest-type-compare aside p {
@@ -2537,7 +2537,7 @@ footer a {
   min-height: 180px;
   position: relative;
   padding: 58px 18px 20px;
-  color: #f5f3eb;
+  color: var(--paper-warm);
   background: #365c49;
 }
 .management-timeline li:not(:last-child):after {
@@ -2631,7 +2631,7 @@ footer a {
   gap: 18px !important;
 }
 .guide-conservation {
-  color: #f5f3eb;
+  color: var(--paper-warm);
   background: #29483b;
 }
 .guide-conservation .guide-section-heading > p:not(.label) {
@@ -2850,7 +2850,7 @@ footer a {
   flex-direction: column;
   justify-content: center;
   padding: 22px;
-  color: #f5f3eb;
+  color: var(--paper-warm);
   background: #775b3e;
 }
 .cascade-use li:nth-child(2) {
@@ -2909,7 +2909,7 @@ footer a {
   flex-direction: column;
   justify-content: flex-end;
   padding: 22px 12px;
-  color: #f6f4ed;
+  color: var(--paper-warm);
   text-align: center;
   background: #8b9674;
   clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 100%);
@@ -2978,7 +2978,7 @@ footer a {
   flex-direction: column;
   justify-content: center;
   padding: 22px;
-  color: #f5f3eb;
+  color: var(--paper-warm);
   background: var(--green-mid);
   font: 24px "Noto Sans JP", sans-serif;
   text-align: center;
@@ -3014,7 +3014,7 @@ footer a {
   transform: rotate(-45deg);
 }
 .guide-summary {
-  color: #f5f3eb;
+  color: var(--paper-warm);
   background: #203c31;
 }
 .guide-summary > div {
@@ -3380,7 +3380,7 @@ footer a {
   min-height: 430px;
   padding: 96px clamp(28px, 8vw, 120px) 72px;
   background: #294f43;
-  color: #f7f4ed;
+  color: var(--paper-warm);
   display: flex;
   justify-content: space-between;
   gap: 48px;
@@ -3419,7 +3419,7 @@ footer a {
   flex-wrap: wrap;
   gap: 0;
   padding: 0 clamp(28px, 8vw, 120px);
-  background: #f7f4ed;
+  background: var(--paper-warm);
   border-bottom: 1px solid #d7ddd1;
 }
 .sustainable-toc a {
@@ -3465,7 +3465,7 @@ footer a {
 }
 .sustainable-section {
   max-width: none;
-  background: #f7f4ed;
+  background: var(--paper-warm);
 }
 .sustainable-section:nth-of-type(odd) {
   background: #eef1e8;
@@ -3479,7 +3479,7 @@ footer a {
 }
 .tone-green {
   background: #355f50;
-  color: #f7f4ed;
+  color: var(--paper-warm);
 }
 .tone-green .sustainable-heading > p:not(.label) {
   color: #dce5da;
@@ -3501,7 +3501,7 @@ footer a {
 .stat-card {
   padding: 34px 28px;
   background: #355f50;
-  color: #f7f4ed;
+  color: var(--paper-warm);
 }
 .stat-card strong {
   display: block;
@@ -3518,7 +3518,7 @@ footer a {
 .forest-area-map-card {
   margin: 0;
   overflow: hidden;
-  background: #f7f4ed;
+  background: var(--paper-warm);
   border: 1px solid #cfd7cb;
   box-shadow: 0 18px 46px rgba(40, 55, 45, 0.14);
 }
@@ -3531,7 +3531,7 @@ footer a {
 .forest-area-map-card figcaption {
   padding: 18px 20px 20px;
   color: #405349;
-  background: #f7f4ed;
+  background: var(--paper-warm);
 }
 .forest-area-map-card strong {
   display: block;
@@ -3640,7 +3640,7 @@ footer a {
   margin-top: 28px;
   padding: 28px;
   background: #355f50;
-  color: #f7f4ed;
+  color: var(--paper-warm);
 }
 .value-callout strong {
   font-size: 1.15rem;
