@@ -167,3 +167,9 @@
 - 撮影の Chrome を起こした直後の 1 回目は、1440 幅の撮影や値の読み取りが止まる・空になることがあった。2 回目からは揃う。Chrome を `--headless`(`=new` なし)で起こし、止めるときは自分のポート(`remote-debugging-port=9333`)で絞った
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-1 の 15 と E の残り
+
+### 2026-10-23(レーン H2-LOGOLABEL)
+- ロゴのリンクの `aria-label` が「トップページへ」(英語版は「Back to top」)だけで、見えているブランド名を含まず WCAG 2.5.3 を満たさなかった件を直した。ユーザーと決めて、名前を「ネイチャーキャピタル・リアルエステイト トップページへ」(英語版は「Nature Capital Real Estate home」)に。13 ファイルの属性だけを変えた 1 コミット
+- 確認: ポート 8015 で 13 ページを開き、DevTools プロトコルの `Accessibility.getPartialAXTree` で `a.brand` の名前を読んで、13 ページとも見えているブランド名を含む。同じページで古い `aria-label` に戻して撮ったヘッダー(1440×120)は新しいものと画素まで一致。関門・リンク確認 485 件・切れ 0・テスト 4 種は通過
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-2 のヘッダー・フッターの下の残り 1 項目(森林オープンデータのロゴの文字の大きさ)
