@@ -369,3 +369,11 @@
 - 新しい作業 2 件を PLAN の H-1 の 15 に記録した: 15d(持続可能な森林経営のページの rem、本文 16px)、15e(一括指定の数字を名前に)。15 の親の項目にもレーンのタグを付けた
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-1 の 15d と 15e、design.md §7、`styles.css` の `:root`
+
+### 2026-10-23(レーン H2-SUSTAINFOOT: 英語版の持続可能な林業の最後の節)
+- 英語版の最後の節 `.sustainable-footer` は、作られたとき(86b345f7)から CSS がなく、余白なしで左端に付き、リンクは既定の青、緑の帯向けのラベル `.label.light` が地の上で 1.41 だった。本文の「→」が CSS の ↗ と重なっていた
+- ユーザーと決めて、ヒーローと同じ `--green` の帯にした(fd0f1849、rebase 後は 596c92de)。余白・見出し・本文は `.sustainable-intro` / `.sustainable-section` の指定に `.sustainable-footer` を足して共有し、リンクはサイトのフッターと同じく文字色に下線。本文の「→」を外し、日本語版のリンクに `lang="ja"` を付けた。ラベル 5.86・本文 7.46・見出しとリンク 8.84。注意書きと英語版から日本語版への唯一のリンクは残した
+- 確認: ポート 8002 で日本語版の 1440 / 500 幅の撮影は前後でバイト単位で一致。英語版は最後の節の行(1440 幅で 7266 行目、500 幅で 8875 行目)より上が一致し、撮影から読んだ帯の色は #254c3d。H1-15c の上に rebase したあとも同じ見た目。関門 8 項目・リンク確認 485 件・切れ 0・テスト 4 種(16 / 29 / 6 / 45)は通過。キーボード操作中の枠(全体の `:focus-visible`、紙色の縁取り付き)は実際のブラウザでは確かめていない
+- 新しく見つけた 1 件を PLAN の H-2 に記録: 日本語版に Notion の出典がない(H2-SUSTAINSRC)
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-2 の H2-SUSTAINSRC、`docs/forest/sustainable-forestry/en/index.html` の `.source-lead`(83 行目付近)
