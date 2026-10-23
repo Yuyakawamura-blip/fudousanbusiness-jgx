@@ -2808,7 +2808,7 @@ footer a {
 .tone-sand {
   background: var(--band);
 }
-/* Closing band of the English page: source, caution and the link to the Japanese version */
+/* Closing band of both language versions: source, caution and the link to the other version */
 .sustainable-footer {
   background: var(--green);
   color: var(--paper-warm);
