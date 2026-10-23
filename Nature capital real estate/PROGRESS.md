@@ -292,3 +292,10 @@
 - 確認: テストを 2 つ足した(既存は変えていない)。直す前のコードでは、悪い値 8 つと `pick` の 1 つ、計 9 か所がそれぞれ失敗する。関門・リンク確認 485 件・切れ 0・テスト 4 種(16 / 25 / 6 / 45)は通過
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の E の E-HOOKHASH と E-DEADBORDER、H-2 の横はみ出し(H2-OVERFLOW)
+
+### 2026-10-23(レーン E-DEADBORDER)
+- `.function-detail-grid article` の効いていない `border-top` を調べた。次の行の `border:` が 4 辺とも上書きするうえ、このカードは森林ガイドの `function-detail-grid-legacy` の中にあり、`*-legacy` の `display: none !important` で常に隠れていた(使う所はこの 1 か所だけ、クラスを外すスクリプトもない)。ユーザーと決めて、線の 1 行だけを消した(a28ef817)
+- 森林ガイドには同じように隠れた古いブロックが 8 つあるので、消す作業を E-LEGACYDOM として PLAN の E に足した。H2-SOFTGREEN の `.function-detail-grid span` は見えないので直さなくてよい、と項目に書き足した
+- 確認: ポート 8004 で森林ガイドの全体を 1440・375 幅で撮り、前後の画像がバイト単位で一致。関門 8 項目・リンク確認 485 件・切れ 0・テスト 4 種は通過
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の E の E-HOOKHASH と E-LEGACYDOM、H-2 の横はみ出し(H2-OVERFLOW)
