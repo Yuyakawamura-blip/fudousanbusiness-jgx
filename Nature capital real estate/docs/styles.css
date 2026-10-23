@@ -3858,6 +3858,11 @@ footer a {
   body > header.site-header .brand small {
     font-size: 12px;
   }
+  /* Break the brand name after "・", not inside a word */
+  body > header .brand span {
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
   .nav-toggle {
     display: inline-flex;
     align-items: center;
