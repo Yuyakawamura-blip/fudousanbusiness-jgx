@@ -23,7 +23,8 @@ SUFFIX_EN = ' | Nature Capital Real Estate'
 HEAD = {'icon', 'apple-touch-icon'}
 OGP = {'og:type', 'og:site_name', 'og:title', 'og:description', 'og:url', 'og:image', 'og:locale', 'twitter:card'}
 NO_OGP = {'404.html'}  # Not shared and not indexed (robots noindex).
-FORM = re.compile(r'^https://(docs\.google\.com/forms/|forms\.gle/)')
+EXTERNAL = re.compile(r'^(https?:)?//', re.I)
+PUBLIC = re.compile(r'^(https?:)?//yuyakawamura-blip\.github\.io/fudousanbusiness-jgx/', re.I)  # This site itself.
 # Counts in today's code that the rules say not to add to. A commit may lower them, never raise them;
 # when one goes down, lower it here too so it cannot creep back.
 BASELINE = {'!important in CSS': 9, 'var in JS': 12, 'innerHTML in JS': 1}
@@ -56,10 +57,11 @@ class Page(HTMLParser):
         if tag == 'img' and 'alt' not in a: self.problems.append((line, '<img> has no alt (use alt="" for decoration)'))
         handlers = sorted(k for k in a if k.startswith('on'))
         if handlers: self.problems.append((line, f'inline event handler {", ".join(handlers)} (design.md §16)'))
-        if tag == 'a' and FORM.match(a.get('href') or ''):
-            rel = set((a.get('rel') or '').split())
+        href = (a.get('href') or '').strip()
+        if tag == 'a' and EXTERNAL.match(href) and not PUBLIC.match(href):
+            rel = set((a.get('rel') or '').lower().split())
             if a.get('target') != '_blank' or not {'noopener', 'noreferrer'} <= rel:
-                self.problems.append((line, 'form link needs target="_blank" rel="noopener noreferrer"'))
+                self.problems.append((line, 'external link needs target="_blank" rel="noopener noreferrer"'))
 
     handle_startendtag = handle_starttag
 

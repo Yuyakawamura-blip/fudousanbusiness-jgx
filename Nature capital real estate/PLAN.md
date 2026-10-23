@@ -53,7 +53,10 @@
 - [x] パスワード画面のブランド名「NATURE CAPITAL & REAL ESTATE」→「NATURE CAPITAL REAL ESTATE」
 - [x] `AGENTS.md` / `CLAUDE.md` / `.claude/settings.json` をリポジトリ直下に(2026-10-23)。直下から始めたセッションでは、サイトのフォルダの権限の設定(`rm -rf` や force push の禁止)が読まれていなかったため。`PLAN.md` と `PROGRESS.md` はレーンの最後のコミットとぶつかるので動かさない
 - [x] 書いてあるだけだった決まりをコミットの関門に(2026-10-23): `scripts/check_site.py` + `.githooks/`(pre-commit / commit-msg)+ `develop` への push と PR で動く `.github/workflows/checks.yml`。守れていない決まりは今の数を上限に(AGENTS.md「Checks」)
-- [ ] 外部リンク 12 か所(森林ガイドの林野庁 8、持続可能な林業の日英 3、森林データ 1)が同じタブで開く。AGENTS.md の `target="_blank"` の決まりは相談フォームだけなので、ほかの外部リンクをどうするかを決める
+- [x] 外部リンクはすべて新しいタブで開く、とユーザーが決定(2026-10-23)。同じタブで開いていた 9 か所(森林ガイドの図のラベル 8、森林データの `<noscript>` 1)に `target` / `rel`、`rel` に `noopener` がなかった 3 か所に追加。図のラベルの ↗ は角に置いた(グリッドのため、そのままだと 3 行目にずれる)。関門も外部リンク全体に広げた
+- [ ] 地図の出典のリンク 3 つ(`forest-data.js` の `attribution`)と Leaflet の「Leaflet」リンクが同じタブで開く。出典の欄は H1-06a(出典リンクの枠が切れる件)と同じ場所なので、そのときに一緒に見る
+- [ ] 森林データの「公式データを見る ↗」(`forest-data/index.html:124`)は本文にも矢印があり、CSS の矢印と 2 つ並ぶ
+- [ ] design.md §A の JavaScript なしの撮影(`--blink-settings=scriptEnabled=false`)が、Chrome 154 のヘッドレスでは画像を書き出さない(どのページでも)。代わりの手順を決める
 
 ## H. デザインの決まり(`maintenance/design.md`、2026-10-22)
 - [x] GX Career のデザイン原則と照らし合わせ、このサイトの決まりを文書化

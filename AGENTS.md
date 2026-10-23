@@ -45,7 +45,7 @@
 - 下の決まりのうち機械で確かめられるものは、`scripts/check_site.py` がコミットのたびに確かめ、破っていればコミットを止める。**クローンごとに 1 回** `git config core.hooksPath .githooks`(リポジトリ直下で実行)。worktree は設定を共有するので、メインのチェックアウトで 1 回行えば足りる
 - `.githooks/pre-commit`: 空白の誤り(`git diff --cached --check`)、ステージしたパスの確認(`check_site.py --staged`)。そのあと、ステージした中身を一時フォルダに書き出し、そこで `check_site.py`、`check_links.py`、4 つのテスト(`test_check_links` / `test_check_site` / `test_forest_data` / `test_worklane`)を流す。ディスク上のステージしていない変更は結果に影響しない。merge・revert・cherry-pick の途中は、パスの確認を省く(それぞれの変更は作られたときに確かめられている)
 - `.githooks/commit-msg`: 件名が日本語・50 文字以内・prefix なし(git が作る `Merge` / `Revert "` などは通す)
-- `check_site.py` が見るもの: `<title>` の書き方、ファビコンと OGP の一式(`404.html` は OGP なし)、`<img>` の `alt`、HTML の `onclick` など、Google フォームへのリンクの `target` / `rel`、Python が標準ライブラリだけを使うこと、`archive/` を変えないこと(消すことも含む)、このサイト以外のファイルを足したり変えたりしないこと(消すのはよい)、新しい画像(名前の変更を含む)が `docs/` で WebP(または SVG)・英小文字のケバブケースであること(300KB 超は警告だけ)
+- `check_site.py` が見るもの: `<title>` の書き方、ファビコンと OGP の一式(`404.html` は OGP なし)、`<img>` の `alt`、HTML の `onclick` など、外部リンクの `target` / `rel`、Python が標準ライブラリだけを使うこと、`archive/` を変えないこと(消すことも含む)、このサイト以外のファイルを足したり変えたりしないこと(消すのはよい)、新しい画像(名前の変更を含む)が `docs/` で WebP(または SVG)・英小文字のケバブケースであること(300KB 超は警告だけ)
 - 今のコードが守れていない決まりは、今の数を上限にしている(`!important` 9、JS の `var` 12、`innerHTML` 1。`check_site.py` の `BASELINE`)。増やすとコミットが止まる。減らしたら `BASELINE` も下げる
 - フックは `--no-verify` で飛ばせるので、`develop` への push と PR では `.github/workflows/checks.yml` が同じ確認をもう一度行う。push された範囲のパス・空白・コミットメッセージも `check_site.py --range` で確かめる(`catalog.json` を更新する bot のコミットは除く)
 - 機械で確かめられないもの(コントラスト比、文言、デザインの判断)は、今までどおり下の決まりと `maintenance/design.md` §11 の手順で確かめる
@@ -54,7 +54,8 @@
 - **見た目と画面構成の決まりは `maintenance/design.md`**。ページを作る・直すときは先に読む
 - **ヘッダー / フッターは各 HTML に直書き**。ナビやフッターを変えたら全ページ(各 index.html 12 ファイル + `docs/404.html`)を同じように直す。ヘッダーナビは対象者別: 山林をお持ちの方 / 林業事業体の方 / 企業・個人の方 / 森林を知る / 私たちについて / 無料相談
 - リンク・画像は**相対パス**。ページの階層(`../` / `../../` / `../../../`)に合わせる
-- ヘッダーとフッターの相談リンクは「**無料相談**」(英語版は Free consultation)。本文の相談ボタンは所有者向けページで「無料相談を申し込む」、事業者・企業向けページで「お問い合わせをする」。外部リンクには CSS で ↗ が付くので本文に矢印を書かない。リンク先は共通の Google フォーム(`target="_blank" rel="noopener noreferrer"`)
+- ヘッダーとフッターの相談リンクは「**無料相談**」(英語版は Free consultation)。本文の相談ボタンは所有者向けページで「無料相談を申し込む」、事業者・企業向けページで「お問い合わせをする」。相談リンクの先は共通の Google フォーム
+- **外部リンクはすべて新しいタブで開く**(`target="_blank" rel="noopener noreferrer"`)。CSS で ↗ が付き、読み手はサイトの外へ出ることが分かる(2026-10-23 ユーザー決定)。本文に矢印を書かない。JavaScript で作るリンクも同じ(`forest-data.js` の `external()` が手本)。ボタンや図のラベルのように中身を中央にそろえる部品では、矢印を角に置く(`.button` と `.function-hotspot-labels a` の `::after`)
 - 山林所有者向けサービスの名前は「**さとやま不動産**」(説明が要る所では「山林・里山の管理と出口整理」を添える)。サービスの並びは所有者向け → 林業事業体向け → 企業・個人の方の順
 - セクションの小見出しラベル(`.label` など)は日本語で書く(英語版ページとブランド名「NATURE CAPITAL REAL ESTATE」を除く)。見出しは `word-break: auto-phrase` で文節改行するので、1 文節が列幅を超えない大きさにする
 - ページタイトルは「ページ名 | ネイチャーキャピタル・リアルエステイト」(英語版は「… | Nature Capital Real Estate」)

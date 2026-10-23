@@ -20,7 +20,8 @@ def reasons(problems):
 
 class PageTest(unittest.TestCase):
     def test_valid_page_passes(self):
-        body = ('<img src="a.webp" alt=""><a href="https://example.org/">x</a>'
+        body = ('<img src="a.webp" alt=""><a href="https://example.org/" target="_blank" rel="noreferrer noopener">x</a>'
+                '<a href="https://yuyakawamura-blip.github.io/fudousanbusiness-jgx/about/">self</a><a href="../">up</a>'
                 '<a href="https://forms.gle/x" target="_blank" rel="noopener noreferrer">相談</a>')
         self.assertEqual(site.check_page('about/index.html', page(body=body)), [])
 
@@ -32,10 +33,11 @@ class PageTest(unittest.TestCase):
     def test_inline_event_handler(self):
         self.assertIn('onclick', reasons(site.check_page('index.html', page(body='<a href="#" onclick="go()">x</a>')))[0])
 
-    def test_form_link_needs_target_and_rel(self):
-        for attrs in ('', 'target="_blank" rel="noreferrer"', 'rel="noopener noreferrer"'):
-            body = f'<a href="https://docs.google.com/forms/d/x" {attrs}>相談</a>'
-            self.assertEqual(len(site.check_page('index.html', page(body=body))), 1, attrs)
+    def test_external_link_needs_target_and_rel(self):
+        for href in ('https://docs.google.com/forms/d/x', 'http://example.org/', '//example.org/'):
+            for attrs in ('', 'target="_blank" rel="noreferrer"', 'rel="noopener noreferrer"'):
+                body = f'<a href="{href}" {attrs}>x</a>'
+                self.assertEqual(len(site.check_page('index.html', page(body=body))), 1, (href, attrs))
 
     def test_title_suffix_by_language(self):
         self.assertEqual(len(site.check_page('index.html', page(title='私たちについて'))), 1)
