@@ -2813,7 +2813,7 @@ footer a {
   color: #dce5da;
 }
 .tone-sand {
-  background: #ded1b1;
+  background: var(--band);
 }
 .sustainable-two-col {
   max-width: 1040px;
