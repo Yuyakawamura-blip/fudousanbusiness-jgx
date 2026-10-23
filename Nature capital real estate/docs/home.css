@@ -181,9 +181,6 @@
     line-height: 1.35;
     min-height: 0;
   }
-  .home-page .label {
-    font-size: 16px;
-  }
   .home-page .hero-copy .lead {
     font-size: 18px;
     line-height: 1.8;
@@ -193,9 +190,6 @@
   }
   .home-page .hero-actions {
     display: grid;
-  }
-  .home-page .button {
-    font-size: 16px;
   }
   .home-page h2 {
     font-size: 32px;
