@@ -539,6 +539,15 @@ details p {
   font-size: var(--size-sm);
   line-height: 1.8;
 }
+/* Up to 960px the heading column is narrower than 「始めましょう。」, so stack as on phones */
+@media (max-width: 960px) {
+  .owner-entry {
+    display: block;
+  }
+  .owner-entry-heading {
+    margin-bottom: 42px;
+  }
+}
 @media (max-width: 720px) {
   .hero-copy {
     padding: 87px 25px;
@@ -741,6 +750,15 @@ details p {
   color: #dce5da;
   font-size: var(--size-body);
   line-height: 1.8;
+}
+/* Up to 960px the columns are narrower than the headings' longest phrases, so stack as on phones */
+@media (max-width: 960px) {
+  .service-intro {
+    display: block;
+  }
+  .service-card-grid {
+    grid-template-columns: 1fr;
+  }
 }
 @media (max-width: 720px) {
   .service-hero,
@@ -1766,6 +1784,16 @@ footer a {
   font-size: var(--size-lg);
   font-style: normal;
 }
+/* Up to 960px four columns, and the explainer's text column, are narrower than their headings' phrases */
+@media (max-width: 960px) {
+  .future-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .baseline-explainer {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+}
 @media (max-width: 720px) {
   .site-nav {
     gap: 14px;
@@ -2452,6 +2480,26 @@ footer a {
   margin-bottom: 10px;
   font-size: var(--size-body);
   line-height: 1.7;
+}
+/* Up to 960px these columns are narrower than their headings' phrases, so stack as on phones */
+@media (max-width: 960px) {
+  .guide-scale-grid,
+  .succession-panel,
+  .water-system,
+  .thinning-explainer,
+  .conservation-layers {
+    grid-template-columns: 1fr;
+  }
+  .succession-panel {
+    gap: 28px;
+  }
+  .conservation-layers > i {
+    transform: rotate(90deg);
+    text-align: center;
+  }
+  .conservation-layers article {
+    min-height: auto;
+  }
 }
 @media (max-width: 900px) {
   .guide-index {
