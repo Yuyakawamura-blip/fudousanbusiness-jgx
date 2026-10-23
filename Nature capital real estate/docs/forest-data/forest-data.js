@@ -61,12 +61,15 @@
     }
     // Limits follow the forest layer data dictionary. Vector styles are offered unmodified.
     const map = L.map('forest-map', { minZoom: 5, maxZoom: 16, scrollWheelZoom: false, zoomControl: true }).setView([37.2, 137.8], 5);
+    // External links open in a new tab (AGENTS.md), including Leaflet's own credit, kept as Leaflet writes it.
+    const newTab = ' target="_blank" rel="noopener noreferrer"';
+    map.attributionControl.setPrefix(map.attributionControl.options.prefix.replace('<a ', '<a' + newTab + ' '));
     L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png', {
-      maxZoom: 16, attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html">地理院タイル</a>'
+      maxZoom: 16, attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html"' + newTab + '>地理院タイル</a>'
     }).on('tileerror', () => { $('map-status').textContent = '背景地図の一部を取得できません。'; }).addTo(map);
     const forest = L.tileLayer(raster.url, {
       minZoom: 5, maxZoom: 16, opacity: 0.75, bounds: [[20.4, 122.9], [45.6, 154]],
-      attribution: '<a href="' + source + '">林野庁</a> / <a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">PDL1.0</a>'
+      attribution: '<a href="' + source + '"' + newTab + '>林野庁</a> / <a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0"' + newTab + '>PDL1.0</a>'
     });
     let loaded = 0; let errors = 0;
     forest.on('loading', () => { loaded = 0; errors = 0; $('map-status').textContent = '森林レイヤを読み込み中…'; });
