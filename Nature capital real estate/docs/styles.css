@@ -2729,7 +2729,8 @@ footer a {
   color: var(--green);
 }
 .sustainable-intro,
-.sustainable-section {
+.sustainable-section,
+.sustainable-footer {
   margin: 0 auto;
   padding: clamp(72px, 9vw, 140px) clamp(28px, 7vw, 100px);
 }
@@ -2737,7 +2738,8 @@ footer a {
   max-width: 960px;
 }
 .sustainable-intro h2,
-.sustainable-heading h2 {
+.sustainable-heading h2,
+.sustainable-footer h2 {
   margin: 18px 0 28px;
   font-size: clamp(2rem, 4vw, 4.2rem);
   line-height: 1.28;
@@ -2746,6 +2748,7 @@ footer a {
 }
 .sustainable-intro > p:not(.label),
 .sustainable-heading > p:not(.label),
+.sustainable-footer > p:not(.label),
 .sustainable-two-col p {
   color: #58625c;
   font-size: 1.08rem;
@@ -2776,11 +2779,32 @@ footer a {
   background: var(--green-mid);
   color: var(--paper-warm);
 }
-.tone-green .sustainable-heading > p:not(.label) {
+.tone-green .sustainable-heading > p:not(.label),
+.sustainable-footer > p:not(.label) {
   color: #dce5da;
 }
 .tone-sand {
   background: var(--band);
+}
+/* Closing band of the English page: source, caution and the link to the Japanese version */
+.sustainable-footer {
+  background: var(--green);
+  color: var(--paper-warm);
+}
+.sustainable-footer > p:not(.label) {
+  max-width: 650px;
+}
+.sustainable-footer > div {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+}
+.sustainable-footer a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  font-size: var(--size-body);
 }
 .sustainable-two-col {
   max-width: 1040px;
@@ -3002,7 +3026,8 @@ footer a {
     font-size: 0.78rem;
   }
   .sustainable-intro,
-  .sustainable-section {
+  .sustainable-section,
+  .sustainable-footer {
     padding-top: 68px;
     padding-bottom: 68px;
   }
