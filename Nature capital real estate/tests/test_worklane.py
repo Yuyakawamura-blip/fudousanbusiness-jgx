@@ -254,6 +254,23 @@ class Marking(unittest.TestCase):
         mark_lane(self.path, 'A', 'b', note='photos')
         self.assertEqual(self.who(), 'photos')
 
+    def test_a_who_that_would_break_the_board_is_refused_and_writes_nothing(self):
+        # A "|" adds a column, so every later command stops; a line break ends the table early and hides later lanes.
+        text = self.path.read_text()
+        for status, note, who in (('b', 'a | b', 'w'), ('b', 'a\nb', 'w'), ('b', 'a\rb', 'w'), ('b', 'a\u2028b', 'w'),
+                                  ('b', 'a\n', 'w'), ('o', '\n', 'w'), ('o', 'a\u2028', 'w'), ('c', None, 'a | b')):
+            with self.subTest(note=note, who=who):
+                self.path.write_text(text)
+                with self.assertRaises(lanes.BoardError):
+                    mark_lane(self.path, 'A', status, note=note, who=who)
+                self.assertEqual(self.path.read_text(), text)
+
+    def test_a_claim_with_such_a_name_is_refused_and_writes_nothing(self):
+        text = self.path.read_text()
+        with self.assertRaises(lanes.BoardError):
+            pick(self.path, 'a | b')
+        self.assertEqual(self.path.read_text(), text)
+
 
 class Adding(unittest.TestCase):
     """add puts a found lane on the board under the lock, and writes nothing when the board would be wrong."""

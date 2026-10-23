@@ -82,6 +82,12 @@ def free(rows):
     return [r for r in rows if r.status == 'o' and not waiting_on(r, rows)]
 
 
+def check_cell(name, value):
+    # A "|" adds a column, so parse() then fails; a line break ends the table there and hides the lanes below it.
+    if '|' in value or value.splitlines() not in ([], [value]):  # also \r, U+2028 and a single trailing break
+        raise BoardError(f'{name} cannot contain "|" or a line break')
+
+
 def update(text, lane, status, who):
     """Return the board text with one lane's status and Who cell replaced."""
     rows = {r.id: r for r in parse(text)}
@@ -89,6 +95,7 @@ def update(text, lane, status, who):
         raise BoardError(f'no lane {lane}')
     if status not in STATUSES:
         raise BoardError(f'status {status!r} is not one of {STATUSES}')
+    check_cell('Who', who)
     lines = text.splitlines(keepends=True)
     r = rows[lane]
     end = '\n' if lines[r.line].endswith('\n') else ''
@@ -111,8 +118,7 @@ def add(text, lane, needs, touches, item, status='o', who='', before=None):
         raise BoardError('a blocked lane needs --note saying what it waits for')
     parts = [lane, status, ', '.join(needs) or '-', touches, item, who]
     for name, value in zip(COLUMNS, parts):
-        if '|' in value or len(value.splitlines()) > 1:  # splitlines also breaks on \r and U+2028
-            raise BoardError(f'{name} cannot contain "|" or a line break')
+        check_cell(name, value)
     if not lane or lane.split() != [lane]:
         raise BoardError(f'lane ID {lane!r} must be one word')
     if before is None:
