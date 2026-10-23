@@ -4007,12 +4007,12 @@ footer a {
   line-height: 1.5;
 }
 
-/* Services index: align card buttons to the bottom */
+/* Services index: align card links to the bottom */
 .services-index-page .service-card-grid article {
   display: flex;
   flex-direction: column;
 }
-.services-index-page .service-card-grid .contact-button {
+.services-index-page .service-card-grid .text-link {
   align-self: flex-start;
   margin-top: auto;
 }
