@@ -695,7 +695,7 @@ details p {
 }
 .service-card-grid span {
   color: #68806c;
-  font: 22px "Noto Sans JP", sans-serif;
+  font: var(--size-lg) "Noto Sans JP", sans-serif;
 }
 .service-card-grid h3 {
   margin: 26px 0 16px;
@@ -729,7 +729,7 @@ details p {
 }
 .tool-flow b {
   color: #d5dfd1;
-  font: 26px "Noto Sans JP", sans-serif;
+  font: var(--size-lg-plus) "Noto Sans JP", sans-serif;
 }
 .tool-flow h3 {
   margin: 0 0 8px;
@@ -3184,7 +3184,7 @@ footer a {
     border-radius: 0;
     background: transparent;
     color: var(--green);
-    font: 15px "Noto Sans JP", sans-serif;
+    font: var(--size-sm) "Noto Sans JP", sans-serif;
     cursor: pointer;
   }
   .js-nav body > header .site-nav,
