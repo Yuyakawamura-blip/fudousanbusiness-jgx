@@ -1006,7 +1006,7 @@ h3 {
 }
 h2 {
   margin: 0;
-  font-size: clamp(33px, 4vw, 52px);
+  font-size: clamp(var(--size-xl), 4vw, 52px);
   line-height: 1.45;
   letter-spacing: 0.04em;
 }
@@ -3351,6 +3351,11 @@ footer a {
 /* Footer: wrap between links, never inside one */
 
 /* Japanese headings: break lines between phrases, not inside words */
+/* Chrome splits a phrase wider than the column; wrap words that must stay together
+   (<wbr> marks where a long compound may break instead). */
+.keep-together {
+  white-space: nowrap;
+}
 .guide-hero-copy {
   max-width: 1040px;
 }
