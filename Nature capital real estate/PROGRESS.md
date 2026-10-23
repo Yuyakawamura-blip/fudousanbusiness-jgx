@@ -337,3 +337,10 @@
 - 新しく見つけた 1 件を PLAN の H-2 に記録: 同じページのほかの文字のコントラスト(H2-SUSTAINTEXT)
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-2 の H2-SUSTAINTEXT、`styles.css` の持続可能な林業の指定(2703 行目から)
+
+### 2026-10-23(レーン E-DEADSTEPS)
+- `styles.css` の `.steps`(4 列の手順の並び、720px 以下で 2 列)を使う HTML がどのページにもないことを確かめた。HTML と JS のクラス名を語ごとに調べ(`flow-fees-steps` は別のクラス)、git の履歴では、さとやま不動産の再構成(5e5ff35c)で共通部品 `.flow-fees` に置き換えたあとに CSS だけが残っていた。すぐ上の `.flow` も同じ理由で使われていなかった
+- ユーザーと決めて、`.steps` と `.flow` の指定をまとめて消した。`.flow` は `.concerns`・`.consultation` と共有していた余白の指定 2 か所からも外した(9b96826f)
+- 確認: ポート 8004 で 13 ページ × 1440 / 500 幅の撮影 26 枚が前後でバイト単位で一致(森林オープンデータとサービス一覧で 1 回ずつ描画の揺れがあり、撮り直すと一致した)。関門 8 項目・リンク確認 485 件・切れ 0・テスト 4 種(16 / 29 / 6 / 45)は通過
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-2 の H2-HEADTAIL と H2-SUSTAINTEXT
