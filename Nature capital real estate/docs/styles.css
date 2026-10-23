@@ -2960,7 +2960,7 @@ footer a {
   border-top: 3px solid #6d8068;
 }
 .value-grid article > span {
-  color: #6d8068;
+  color: var(--label);
   font-size: 1.35rem;
 }
 .value-callout {
