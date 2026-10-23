@@ -2667,6 +2667,9 @@ footer a {
   background: #ecefe5;
   color: #26342e;
 }
+.sustainable-page > header .brand small {
+  color: var(--text-muted); /* #627067 is 4.47:1 on this darker ground */
+}
 .sustainable-hero {
   min-height: 430px;
   padding: 96px clamp(28px, 8vw, 120px) 72px;
@@ -2716,7 +2719,7 @@ footer a {
 .sustainable-toc a {
   padding: 20px 26px 18px 0;
   margin-right: 26px;
-  color: #5d7969;
+  color: var(--label);
   text-decoration: none;
   font-size: 0.9rem;
   letter-spacing: 0.08em;
@@ -2856,7 +2859,7 @@ footer a {
 }
 .instrument-grid article > span,
 .value-grid article > span {
-  color: #cbd9c9;
+  color: var(--paper-warm);
   font-size: 0.72rem;
   letter-spacing: 0.12em;
 }
@@ -2904,7 +2907,7 @@ footer a {
   font-size: 1rem;
 }
 .evaluation-head {
-  color: #5d7969;
+  color: var(--label);
   font-size: 0.76rem;
   letter-spacing: 0.12em;
 }
@@ -2913,7 +2916,7 @@ footer a {
 }
 .small-note {
   margin-top: 22px;
-  color: #69736c;
+  color: var(--text-muted);
   font-size: 1rem;
   line-height: 1.8;
 }
@@ -2957,7 +2960,7 @@ footer a {
   border-bottom: 1px solid #bfcabd;
 }
 .recommendation-list li > span {
-  color: #6d8068;
+  color: var(--label);
   font-size: 1.4rem;
 }
 .recommendation-list h3 {
