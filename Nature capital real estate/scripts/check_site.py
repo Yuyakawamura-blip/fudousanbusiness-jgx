@@ -166,8 +166,10 @@ def untagged_items(patch):
 
 
 def check_message(message, comment='#'):
-    """Return the reasons the commit subject breaks the AGENTS.md rule (Japanese, 50 characters, no prefix)."""
-    lines = [l for l in message.splitlines() if not l.startswith(comment)]
+    """Return the reasons the commit subject breaks the AGENTS.md rule (Japanese, 50 characters, no prefix).
+
+    Lines starting with comment are skipped; pass None for a message git has already cleaned up."""
+    lines = [l for l in message.splitlines() if comment is None or not l.startswith(comment)]
     subject = next((l.strip() for l in lines if l.strip()), '')
     if AUTO_MESSAGE.match(subject):
         return []
@@ -238,8 +240,8 @@ def pushed(base):
     log = git('log', '--no-merges', '--format=%h%x1f%an%x1f%B%x1e', f'{base}..HEAD')
     for record in filter(str.strip, log.split('\x1e')):
         sha, author, message = record.strip('\n').split('\x1f', 2)
-        if author != BOT:
-            problems += [f'commit {sha}: {p}' for p in check_message(message)]
+        if author != BOT:  # git log shows messages after cleanup, so a leading # is text, not a comment.
+            problems += [f'commit {sha}: {p}' for p in check_message(message, comment=None)]
     return problems, warnings
 
 

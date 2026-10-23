@@ -3,6 +3,7 @@ import importlib.util
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
 
 spec = importlib.util.spec_from_file_location('check_site', Path(__file__).parents[1] / 'scripts/check_site.py')
 site = importlib.util.module_from_spec(spec)
@@ -129,6 +130,18 @@ class MessageTest(unittest.TestCase):
         for subject in ('Merge branch \'develop\'', 'Revert "ヘッダーを直す"', 'Reapply "Revert ' + '"x" ' * 20 + '"',
                         'fixup! ヘッダーを直す'):
             self.assertEqual(site.check_message(subject), [], subject)
+
+    def test_no_comment_character_keeps_hash_lines(self):
+        self.assertEqual(site.check_message('#12 ヘッダーを直す\n\nThe body is in English.', comment=None), [])
+        self.assertEqual(len(site.check_message('#12 Fix the header\n\nヘッダーを直す', comment=None)), 1)
+
+    def test_pushed_keeps_a_hash_subject_from_git_log(self):
+        # git log prints messages after git has stripped comments, so a leading # belongs to the subject.
+        log = 'abc1234\x1fsomeone\x1f#12 Fix the header\n\nヘッダーを直す\n\x1e'
+        with mock.patch.object(site, 'check_changes', return_value=([], [])), \
+                mock.patch.object(site, 'git', return_value=log):
+            problems, _ = site.pushed('base')
+        self.assertEqual(problems, ['commit abc1234: write the subject in Japanese'])
 
 class SiteTest(unittest.TestCase):
     def test_the_real_site_passes(self):
