@@ -27,7 +27,7 @@ EXTERNAL = re.compile(r'^(https?:)?//', re.I)
 PUBLIC = re.compile(r'^(https?:)?//yuyakawamura-blip\.github\.io/fudousanbusiness-jgx/', re.I)  # This site itself.
 # Counts in today's code that the rules say not to add to. A commit may lower them, never raise them;
 # when one goes down, lower it here too so it cannot creep back.
-BASELINE = {'!important in CSS': 9, 'var in JS': 6, 'innerHTML in JS': 1}
+BASELINE = {'!important in CSS': 8, 'var in JS': 6, 'innerHTML in JS': 1}
 PATTERNS = {'!important in CSS': ('.css', re.compile(r'!\s*important')),
             'var in JS': ('.js', re.compile(r'\bvar\s')),
             'innerHTML in JS': ('.js', re.compile(r'\binnerHTML\b'))}

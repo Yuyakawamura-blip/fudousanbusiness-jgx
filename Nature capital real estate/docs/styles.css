@@ -460,7 +460,7 @@ details p {
 }
 .contact-note {
   margin-top: 16px !important;
-  font-size: 14px;
+  font-size: 16px;
 }
 .owner-entry,
 .service-lines {
@@ -550,7 +550,7 @@ details p {
 .service-caveat {
   margin: 28px 0 0;
   color: #606a62;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
 }
 @media (max-width: 720px) {
@@ -3435,7 +3435,6 @@ footer a {
 .source-lead {
   padding-top: 18px;
   border-top: 1px solid #cfd7cb;
-  font-size: 0.9rem !important;
 }
 .source-lead a {
   color: #476b59;
@@ -3520,7 +3519,7 @@ footer a {
 }
 .forest-area-map-card span {
   display: block;
-  font-size: 0.78rem;
+  font-size: 1rem;
   line-height: 1.75;
 }
 .forest-area-map-card a {
@@ -3557,7 +3556,7 @@ footer a {
 .instrument-grid dd,
 .value-grid p {
   line-height: 1.85;
-  font-size: 0.92rem;
+  font-size: 1rem;
 }
 .instrument-grid dl {
   margin-top: 26px;
@@ -3587,7 +3586,7 @@ footer a {
   min-width: 0;
   padding: 18px 14px;
   line-height: 1.55;
-  font-size: 0.92rem;
+  font-size: 1rem;
 }
 .evaluation-head {
   color: #5d7969;
@@ -3600,7 +3599,7 @@ footer a {
 .small-note {
   margin-top: 22px;
   color: #69736c;
-  font-size: 0.82rem;
+  font-size: 1rem;
   line-height: 1.8;
 }
 .value-grid article {
@@ -3659,9 +3658,6 @@ footer a {
 .sustainable-en .sustainable-hero h1 {
   letter-spacing: 0;
 }
-.sustainable-en .evaluation-row > * {
-  font-size: 0.86rem;
-}
 @media (max-width: 900px) {
   .sustainable-hero {
     min-height: 0;
@@ -3715,7 +3711,6 @@ footer a {
   }
   .guide-asset figcaption {
     padding: 10px 6px 4px;
-    font-size: 14px;
   }
   .succession-panel {
     gap: 28px;
@@ -3989,7 +3984,7 @@ footer a {
 .concern-caveat {
   margin: 48px 0 0;
   color: #627067;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.8;
 }
 @media (max-width: 720px) {
