@@ -3,11 +3,16 @@
   --ink: #202923;
   --green: #254c3d;
   --green-dark: #183c30; /* hover on green controls */
+  --green-mid: #365d49; /* lighter green panels and their text */
+  --green-soft: #66826d; /* card top rules and step numbers */
   --paper: #fbfaf7;
+  --paper-warm: #f7f5ef; /* reading-page ground and light text on green */
+  --band: #f3f0e8; /* tinted bands that set a section apart */
   --pale: #e7eadf;
   --white: #fff;
   --line: #d4d8d0;
   --divider: #aeb8ad; /* rules between list items on light ground */
+  --rule-on-green: rgba(255, 255, 255, 0.35); /* rules between list items on green */
   --text-muted: #4d554f; /* secondary body text */
   --label: #4f6a57; /* section labels and kickers */
   --badge: #b9915b; /* copper: the fee and availability badges only (§6) */
@@ -331,7 +336,7 @@ h1 {
   display: inline-block;
   width: 55px;
   font: 20px "Noto Sans JP", sans-serif;
-  color: #66826d;
+  color: var(--green-soft);
 }
 .consultation {
   display: grid;
@@ -365,7 +370,7 @@ h1 {
   color: #ceddcc;
 }
 .flow {
-  background: #f3f0e8;
+  background: var(--band);
 }
 .flow > div:first-child {
   margin-bottom: 65px;
@@ -381,7 +386,7 @@ h1 {
 }
 .steps b {
   font: 28px "Noto Sans JP", sans-serif;
-  color: #66826d;
+  color: var(--green-soft);
 }
 .steps h3 {
   font-size: var(--size-xl);
@@ -478,7 +483,7 @@ details p {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   gap: 72px;
-  background: #f3f0e8;
+  background: var(--band);
 }
 .owner-entry-list {
   border-top: 1px solid var(--divider);
@@ -493,7 +498,7 @@ details p {
   text-decoration: none;
 }
 .owner-entry-list b {
-  color: #66826d;
+  color: var(--green-soft);
   font-size: var(--size-body);
   font-weight: 500;
 }
@@ -540,7 +545,7 @@ details p {
   border-bottom: 1px solid var(--divider);
 }
 .service-line-list article > b {
-  color: #66826d;
+  color: var(--green-soft);
   font-size: var(--size-lg);
   font-weight: 500;
 }
@@ -642,7 +647,7 @@ details p {
 
 /* Service landing pages */
 .service-page {
-  background: #f7f5ef;
+  background: var(--paper-warm);
 }
 .service-hero {
   min-height: 650px;
@@ -748,14 +753,14 @@ details p {
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-top: 1px solid var(--rule-on-green);
 }
 .tool-flow li {
   display: grid;
   grid-template-columns: 78px 1fr;
   gap: 22px;
   padding: 28px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid var(--rule-on-green);
 }
 .tool-flow b {
   color: #d5dfd1;
@@ -850,7 +855,7 @@ details p {
   align-items: center;
   padding: 28px;
   border: 1px solid var(--divider);
-  background: #f7f5ef;
+  background: var(--paper-warm);
   transform: rotate(-1deg);
 }
 .fact-essence-card {
@@ -1065,7 +1070,7 @@ h2 {
 .connection-grid span,
 .number {
   font: 20px "Noto Sans JP", sans-serif;
-  color: #66826d;
+  color: var(--green-soft);
 }
 .connection-grid h3 {
   margin: 22px 0 15px;
@@ -1094,12 +1099,12 @@ h2 {
 .promise > div {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-top: 1px solid var(--rule-on-green);
 }
 .promise p:not(.eyebrow) {
   margin: 0;
   padding: 24px 20px 24px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid var(--rule-on-green);
   font-size: var(--size-body);
   line-height: 1.65;
 }
@@ -1235,7 +1240,7 @@ footer a {
 
 /* Forest education page */
 .forest-page {
-  background: #f7f5ef;
+  background: var(--paper-warm);
 }
 .forest-hero {
   min-height: 680px;
@@ -1243,7 +1248,7 @@ footer a {
   display: flex;
   align-items: end;
   overflow: hidden;
-  color: #f7f5ef;
+  color: var(--paper-warm);
   background: linear-gradient( 90deg, rgba(19, 36, 29, 0.86), rgba(19, 36, 29, 0.36) 60%, rgba(19, 36, 29, 0.18) ), url("assets/forest-living-system.webp") center / cover;
 }
 .forest-hero-copy {
@@ -1269,7 +1274,7 @@ footer a {
   gap: 24px;
 }
 .forest-anchor-nav a {
-  color: #f7f5ef;
+  color: var(--paper-warm);
   font-size: var(--size-body);
   text-decoration: none;
   border-bottom: 1px solid rgba(247, 245, 239, 0.7);
@@ -1397,7 +1402,7 @@ footer a {
   color: #c3d3bd;
 }
 .forest-cta {
-  background: #f7f5ef;
+  background: var(--paper-warm);
   text-align: center;
 }
 .forest-cta h2 {
@@ -1438,7 +1443,7 @@ footer a {
 }
 .forest-context {
   padding: 120px clamp(24px, 9vw, 142px);
-  background: #f7f5ef;
+  background: var(--paper-warm);
 }
 .forest-context-intro {
   max-width: 900px;
@@ -1547,7 +1552,7 @@ footer a {
   font-style: normal;
 }
 .challenge-fact strong {
-  color: #365d49;
+  color: var(--green-mid);
   font: 48px "Noto Sans JP", sans-serif;
 }
 .challenge-fact span {
@@ -1760,7 +1765,7 @@ footer a {
 .data-loop {
   margin-top: 42px;
   padding: 20px;
-  color: #365d49;
+  color: var(--green-mid);
   border: 1px solid #839c8b;
   font-size: var(--size-body);
   text-align: center;
@@ -1908,7 +1913,7 @@ footer a {
   text-decoration: none;
 }
 .guide-page {
-  background: #f7f5ef;
+  background: var(--paper-warm);
 }
 .guide-hero {
   min-height: 670px;
@@ -1916,7 +1921,7 @@ footer a {
   display: flex;
   align-items: end;
   overflow: hidden;
-  color: #f7f5ef;
+  color: var(--paper-warm);
   background: linear-gradient( 90deg, rgba(22, 39, 31, 0.88), rgba(22, 39, 31, 0.44) 62%, rgba(22, 39, 31, 0.18) ), url("assets/concept-rice-terrace.webp") center 52% / cover;
 }
 .guide-hero-copy {
@@ -2088,7 +2093,7 @@ footer a {
   min-height: 220px;
   padding: 28px;
   color: #f6f4ed;
-  background: #365d49;
+  background: var(--green-mid);
 }
 .eco-consumer {
   background: #556c5c;
@@ -2334,7 +2339,7 @@ footer a {
   color: #f5f3eb;
   border: 10px solid #dbe2d5;
   border-radius: 50%;
-  background: #365d49;
+  background: var(--green-mid);
   text-align: center;
 }
 .function-wheel-core b {
@@ -2401,7 +2406,7 @@ footer a {
   position: absolute;
   top: 14px;
   left: 18px;
-  color: #f7f5ef;
+  color: var(--paper-warm);
   font-size: var(--size-body);
 }
 .canopy i {
@@ -2451,7 +2456,7 @@ footer a {
 .forest-type-compare aside {
   min-height: 390px;
   padding: 32px;
-  background: #f7f5ef;
+  background: var(--paper-warm);
 }
 .forest-type-compare article h3,
 .forest-type-compare aside h3 {
@@ -2518,7 +2523,7 @@ footer a {
 .management-timeline {
   margin-top: 72px;
   padding: 48px;
-  background: #f7f5ef;
+  background: var(--paper-warm);
 }
 .management-timeline ol {
   display: grid;
@@ -2576,7 +2581,7 @@ footer a {
   gap: 18px;
   align-items: center;
   padding: 36px;
-  background: #f7f5ef;
+  background: var(--paper-warm);
 }
 .thinning-compare > b {
   color: #738175;
@@ -2956,7 +2961,7 @@ footer a {
   gap: 18px;
   align-items: center;
   padding: 48px;
-  background: #f7f5ef;
+  background: var(--paper-warm);
 }
 .community-loop:before {
   content: "";
@@ -2974,7 +2979,7 @@ footer a {
   justify-content: center;
   padding: 22px;
   color: #f5f3eb;
-  background: #365d49;
+  background: var(--green-mid);
   font: 24px "Noto Sans JP", sans-serif;
   text-align: center;
 }
@@ -3017,12 +3022,12 @@ footer a {
   grid-template-columns: 1fr 1fr;
   max-width: 1060px;
   margin: 58px 0 48px;
-  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-top: 1px solid var(--rule-on-green);
 }
 .guide-summary > div p {
   margin: 0;
   padding: 24px 24px 24px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid var(--rule-on-green);
   font-size: var(--size-body);
   line-height: 1.75;
 }
@@ -3038,7 +3043,7 @@ footer a {
   text-decoration: none;
 }
 .guide-references {
-  background: #f7f5ef;
+  background: var(--paper-warm);
 }
 .guide-references details {
   max-width: 980px;
@@ -3317,7 +3322,7 @@ footer a {
 .function-hotspot-labels a:hover,
 .function-hotspot-labels a:focus-visible {
   color: #fffdf8;
-  background: #365d49;
+  background: var(--green-mid);
 }
 .hotspot-01 {
   left: 50%;

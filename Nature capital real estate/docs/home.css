@@ -92,7 +92,7 @@
   overflow: hidden;
   border: 1px solid #c4cdc2;
   border-radius: 16px;
-  background: #f7f5ef;
+  background: var(--paper-warm);
 }
 .home-page .fact-illustration {
   display: grid;
@@ -257,7 +257,7 @@
 /* Entrances for other audiences */
 .home-page .home-others {
   padding: 100px var(--home-gutter);
-  background: #f3f0e8;
+  background: var(--band);
 }
 .home-page .home-others-list {
   display: grid;
