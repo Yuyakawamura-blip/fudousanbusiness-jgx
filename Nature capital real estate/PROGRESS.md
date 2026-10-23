@@ -256,3 +256,11 @@
 - 確認: `/lane` を足したコミットは関門の 8 項目すべて通過。`workflow-shells` 側の確認はそのリポジトリの README とコミットにある
 
 次回最初に読むファイル: `PLAN.md` の E の新しい 2 項目、`scripts/worklane.py` の `update()`(80 行目)、`scripts/check_site.py` の `check_message()`(150 行目)
+
+### 2026-10-23(PLAN の項目とレーンの表をつなぐ)
+- 取れるレーンがなかったのに、PLAN には表に行のない `[ ]` の項目が 5 つあった。原因は、`worklane.py` が `PLAN.md` を読まないことと、表に行を足す決まり(WORKLANES.md の 6)がレーンで見つけた作業だけを対象にし、守られたかを確かめるものがないこと。H2-LOGOWRAP が記録した横はみ出しは push 済みなのに行がなく、レーンの外で足した 3 項目(写真の生成、`mark --note` の「|」、件名の「#」)は push 前だった
+- ユーザーと決めて、開いた項目の末尾にレーンのタグ `<!-- lane: <ID> -->`(レーンにしないものは `<!-- lane: none -->`)を付けることにした(1330a054)。`check_site.py` は、PLAN に足した `[ ]` の行にタグがなければコミットを止める(コミットの関門と CI の `--range`)。`worklane.py` は `list` と、取れるレーンがないときに、`origin/develop` の PLAN でタグがない項目と、タグのレーンが表にない項目を示す。`AGENTS.md`・`CLAUDE.md`・`/lane` に書き足した。今ある開いた項目にタグを付けた。15 と 15b(92・94 行目)は H1-15b が直すので付けていない(rebase でぶつからないように)
+- 新しいレーン 5 つを表に足した: E-MARKNOTE、E-HASHSUBJ、H2-PHOTOGEN(生成の道具をユーザーと決めるまで b)、H2-OVERFLOW、E-WHOORDER(rebase で入った「`--who` をサブコマンドの前に書く」の項目)
+- 確認: テストを 4 つ足した(既存は変えていない)。test_check_site 21 → 23・test_worklane 35 → 37、ほかの 2 種と関門・リンク確認 485 件・切れ 0 は通過。タグのない項目を足して `--staged` が止めること、タグがあれば通ることを確かめた。独立レビューは不具合なし(空のタグ `<!-- lane:  -->` は関門を通るが `list` には出る、という指摘は残した)
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の E の新しい 2 項目(E-MARKNOTE・E-HASHSUBJ)と H-2 の横はみ出し(H2-OVERFLOW)
