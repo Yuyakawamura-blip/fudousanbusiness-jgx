@@ -29,15 +29,17 @@
 mkdir -p /tmp/ncre-shots
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu --hide-scrollbars \
   --virtual-time-budget=5000 --window-size=1440,8000 --screenshot=/tmp/ncre-shots/services-1440-before.png \
-  "http://localhost:8000/__preview/services/"
-pgrep -fl -- "--headless"   # 撮影用の Chrome が残っていないか。何も出なければよい
+  "http://localhost:8000/__preview/services/" &
+pid=$!   # この撮影で開いた Chrome の番号(PID)。片付けはこの番号だけで行う
+for i in {1..60}; do kill -0 $pid 2>/dev/null || break; sleep 1; done
+if kill $pid 2>/dev/null; then echo "Chrome が 60 秒で終わらなかったので止めた。撮り直す"; fi
 ```
 
 - **高さ**: `--window-size` の高さの分だけが写る。900 にすると最初の画面しか写らず、下のほうの変更を見逃す。ページより高くすれば全体が写る(下の余白は前後で同じなので比較に影響しない)。撮った画像の下のほうにフッターが写っていることを確かめ、写っていなければ高さを増やす(森林ガイドなど長いページは 8000 では足りない)。
 - **幅**: ヘッドレス Chrome は幅 500px より狭く描けない。
 - **待ち時間**: `--virtual-time-budget=5000` は画像を読み終えてから撮るための指定で、これがあると同じページを 2 回撮った画像はバイト単位で一致する(§C-4 の比較の前提)。
 - **付けない指定**: `--user-data-dir` を付けると Chrome が終わらなくなることがある。
-- **片付け**: 残っていたら、ヘッドレスのものだけを止める(`pkill -f -- "--headless=new"`)。ユーザーがふだん使っている Chrome は止めない。`pgrep -fl "Google Chrome"` はユーザーの Chrome も表示するので、片付けの判断に使わない。
+- **片付け**: Chrome はふつう撮り終えると自分で終わる。60 秒たっても残っていれば、例の最後の 2 行が、この撮影で開いた Chrome だけを番号(PID)で止める。ヘルパーのプロセスも一緒に終わる。止めたときの画像は不完全なことがあるので撮り直す。`pkill -f` や `pgrep -fl` のように、名前や引数の文字で探して止めたり、残りを判断したりしない。並行するほかのレーンの撮影用 Chrome、その文字をコマンドに含むシェル、ユーザーがふだん使っている Chrome まで当たってしまう。
 - **写らないもの**: マウスを乗せたときやキーボード操作中の見た目、開いたスマホのメニュー、開いた Q&A、幅 500px より狭い画面は撮影に写らない。それを変える作業では CSS の差分を読んで確かめ、自分でも実際のブラウザで、メニューを開いた状態とマウスを乗せた状態を見る。そのうえでユーザーにも見てもらう。
 - **404 ページ**: `/__preview/404.html` で撮る。`404.html` は `<base href="/fudousanbusiness-jgx/">` で本物の `auth.js` を読むので、確認用のサーバ(`maintenance/nginx.conf`)がこの URL だけ `<base>` を `/__preview/` に書き換えて返す。撮った画像に「ページが見つかりません」が写っていることを確かめる。
 - **パスワード画面**: `/__preview/` を付けない URL(例: `http://localhost:8000/`)で撮る。ヘッドレス Chrome は毎回まっさらな状態で開くので、必ずパスワード画面が写る。CSS の共通部分(`styles.css` の `.password-gate`)に触れる作業では、ページと一緒にこれも前後比較する。
