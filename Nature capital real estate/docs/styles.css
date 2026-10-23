@@ -309,8 +309,7 @@ h1 {
   padding: 130px 34px;
 }
 .concerns,
-.consultation,
-.flow {
+.consultation {
   padding: 115px clamp(24px, 9vw, 142px);
 }
 .concerns {
@@ -369,34 +368,6 @@ h1 {
   content: "✓";
   margin-right: 17px;
   color: #ceddcc;
-}
-.flow {
-  background: var(--band);
-}
-.flow > div:first-child {
-  margin-bottom: 65px;
-}
-.steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-}
-.steps article {
-  border-top: 1px solid #9ba99b;
-  padding-top: 23px;
-}
-.steps b {
-  font: 28px "Noto Sans JP", sans-serif;
-  color: var(--green-soft);
-}
-.steps h3 {
-  font-size: var(--size-xl);
-  margin: 22px 0 15px;
-}
-.steps p {
-  font-size: var(--size-lg);
-  line-height: 1.65;
-  color: var(--text-muted);
 }
 .principles {
   padding: 125px clamp(24px, 9vw, 142px);
@@ -582,8 +553,7 @@ details p {
   }
   .narrow,
   .concerns,
-  .consultation,
-  .flow {
+  .consultation {
     padding: 85px 25px;
   }
   .concerns,
@@ -592,13 +562,6 @@ details p {
     gap: 34px;
   }
   .concerns li {
-    font-size: var(--size-body);
-  }
-  .steps {
-    grid-template-columns: 1fr 1fr;
-    gap: 25px 17px;
-  }
-  .steps h3 {
     font-size: var(--size-body);
   }
   .principles {
