@@ -37,7 +37,7 @@
   margin-bottom: 0;
 }
 .home-page .hero-copy .lead {
-  max-width: 1000px;
+  text-wrap: balance;
   margin: 0;
   line-height: 1.8;
   color: #dde8dc;
