@@ -51,6 +51,9 @@
 - [ ] (任意)15 か所に分散した `@media (max-width: 720px)` の集約。カスケード順が変わるため要検証
 - [x] 森林オープンデータのページでパスワード画面の見出しが巨大化していた不具合を修正(`.forest-data-page h1` → `main h1`)
 - [x] パスワード画面のブランド名「NATURE CAPITAL & REAL ESTATE」→「NATURE CAPITAL REAL ESTATE」
+- [x] `AGENTS.md` / `CLAUDE.md` / `.claude/settings.json` をリポジトリ直下に(2026-10-23)。直下から始めたセッションでは、サイトのフォルダの権限の設定(`rm -rf` や force push の禁止)が読まれていなかったため。`PLAN.md` と `PROGRESS.md` はレーンの最後のコミットとぶつかるので動かさない
+- [x] 書いてあるだけだった決まりをコミットの関門に(2026-10-23): `scripts/check_site.py` + `.githooks/`(pre-commit / commit-msg)+ `develop` への push と PR で動く `.github/workflows/checks.yml`。守れていない決まりは今の数を上限に(AGENTS.md「Checks」)
+- [ ] 外部リンク 12 か所(森林ガイドの林野庁 8、持続可能な林業の日英 3、森林データ 1)が同じタブで開く。AGENTS.md の `target="_blank"` の決まりは相談フォームだけなので、ほかの外部リンクをどうするかを決める
 
 ## H. デザインの決まり(`maintenance/design.md`、2026-10-22)
 - [x] GX Career のデザイン原則と照らし合わせ、このサイトの決まりを文書化

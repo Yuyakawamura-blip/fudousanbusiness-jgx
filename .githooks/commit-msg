@@ -1,0 +1,3 @@
+#!/bin/sh
+# Japanese subject, 50 characters at most, no prefix (AGENTS.md Conventions).
+exec python3 "$(git rev-parse --show-toplevel)/Nature capital real estate/scripts/check_site.py" --commit-msg "$1"

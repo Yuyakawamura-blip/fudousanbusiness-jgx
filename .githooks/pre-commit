@@ -1,0 +1,34 @@
+#!/bin/sh
+# Refuse a commit that breaks a checkable rule of the site (AGENTS.md "Checks").
+# Enable once per clone: git config core.hooksPath .githooks
+top="$(git rev-parse --show-toplevel)"
+project='Nature capital real estate'
+log="$(mktemp)"
+snap="$(mktemp -d)"
+trap 'rm -rf "$log" "$snap"' EXIT
+fail=0
+
+run() {
+  name="$1"; shift
+  if "$@" >"$log" 2>&1; then
+    echo "ok    $name"
+  else
+    echo "FAIL  $name"; cat "$log"; fail=1
+  fi
+}
+
+run 'whitespace (git diff --cached --check)' git diff --cached --check
+run 'staged paths (check_site.py --staged)' python3 "$top/$project/scripts/check_site.py" --staged
+# Check what is being committed, not the files on disk: unstaged edits must neither hide nor cause a failure.
+git checkout-index -a --prefix="$snap/" || exit 1
+cd "$snap/$project" || exit 1
+# git sets GIT_INDEX_FILE and the like for hooks; the worklane tests make their own repositories,
+# and with these set their commits would land in this commit's index.
+unset GIT_INDEX_FILE GIT_DIR GIT_WORK_TREE GIT_PREFIX GIT_EDITOR
+run 'site rules (scripts/check_site.py)' python3 scripts/check_site.py
+run 'links (scripts/check_links.py)' python3 scripts/check_links.py
+for suite in test_check_links.py test_check_site.py test_forest_data.py test_worklane.py; do
+  run "tests/$suite" python3 -m unittest discover -s tests -p "$suite"
+done
+[ "$fail" = 0 ] || echo 'Commit refused. Fix the above, or see AGENTS.md "Checks".' >&2
+exit "$fail"

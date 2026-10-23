@@ -41,6 +41,15 @@
 - 森林データ更新のテスト: `python3 -m unittest discover -s tests -p 'test_forest_data.py'`
 - `tests/rendered-html.test.mjs` は旧ビルド(`dist/`)用で、現行サイトの確認には使わない
 
+## Checks(コミットの関門)
+- 下の決まりのうち機械で確かめられるものは、`scripts/check_site.py` がコミットのたびに確かめ、破っていればコミットを止める。**クローンごとに 1 回** `git config core.hooksPath .githooks`(リポジトリ直下で実行)。worktree は設定を共有するので、メインのチェックアウトで 1 回行えば足りる
+- `.githooks/pre-commit`: 空白の誤り(`git diff --cached --check`)、ステージしたパスの確認(`check_site.py --staged`)。そのあと、ステージした中身を一時フォルダに書き出し、そこで `check_site.py`、`check_links.py`、4 つのテスト(`test_check_links` / `test_check_site` / `test_forest_data` / `test_worklane`)を流す。ディスク上のステージしていない変更は結果に影響しない。merge・revert・cherry-pick の途中は、パスの確認を省く(それぞれの変更は作られたときに確かめられている)
+- `.githooks/commit-msg`: 件名が日本語・50 文字以内・prefix なし(git が作る `Merge` / `Revert "` などは通す)
+- `check_site.py` が見るもの: `<title>` の書き方、ファビコンと OGP の一式(`404.html` は OGP なし)、`<img>` の `alt`、HTML の `onclick` など、Google フォームへのリンクの `target` / `rel`、Python が標準ライブラリだけを使うこと、`archive/` を変えないこと(消すことも含む)、このサイト以外のファイルを足したり変えたりしないこと(消すのはよい)、新しい画像(名前の変更を含む)が `docs/` で WebP(または SVG)・英小文字のケバブケースであること(300KB 超は警告だけ)
+- 今のコードが守れていない決まりは、今の数を上限にしている(`!important` 9、JS の `var` 12、`innerHTML` 1。`check_site.py` の `BASELINE`)。増やすとコミットが止まる。減らしたら `BASELINE` も下げる
+- フックは `--no-verify` で飛ばせるので、`develop` への push と PR では `.github/workflows/checks.yml` が同じ確認をもう一度行う。push された範囲のパス・空白・コミットメッセージも `check_site.py --range` で確かめる(`catalog.json` を更新する bot のコミットは除く)
+- 機械で確かめられないもの(コントラスト比、文言、デザインの判断)は、今までどおり下の決まりと `maintenance/design.md` §11 の手順で確かめる
+
 ## Conventions
 - **見た目と画面構成の決まりは `maintenance/design.md`**。ページを作る・直すときは先に読む
 - **ヘッダー / フッターは各 HTML に直書き**。ナビやフッターを変えたら全ページ(各 index.html 12 ファイル + `docs/404.html`)を同じように直す。ヘッダーナビは対象者別: 山林をお持ちの方 / 林業事業体の方 / 企業・個人の方 / 森林を知る / 私たちについて / 無料相談

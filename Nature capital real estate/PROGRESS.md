@@ -70,3 +70,11 @@
 - 新しく見つけた件を PLAN の 10 の下に記録: `.text-link` にマウスオーバーの変化が無い
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-1 の 10 の下の項目、`docs/styles.css` の `.text-link`(961 行目付近)
+
+### 2026-10-23(指示ファイルの移動とコミットの関門)
+- `AGENTS.md` / `CLAUDE.md` / `.claude/settings.json` をリポジトリ直下に(9a868784)。直下から始めたセッションでは、サイトのフォルダの権限の設定(`rm -rf` や force push の禁止)が読まれていなかった。`settings.json` はサイトのフォルダにも残す(`.code-workspace` から開いたとき用)。`PLAN.md` / `PROGRESS.md` は動かしていない
+- 書いてあるだけだった決まりをコミットの関門に: `scripts/check_site.py`(テスト 21 件)、`.githooks/pre-commit` と `commit-msg`、`develop` への push と PR で動く `.github/workflows/checks.yml`。このクローンでは `git config core.hooksPath .githooks` を設定済み。中身は AGENTS.md の「Checks」
+- 確認: 独立したレビューで見つかった 4 件(ステージしていない変更で結果が変わる、名前の変更で画像の確認を抜ける、merge・revert・削除が止まる、CI が push の範囲を見ていない)を直し、使い捨ての worktree で良い・悪いコミット計 12 通りを試して、すべて期待どおり
+- 未決: 同じタブで開く外部リンク 12 か所をどうするか(PLAN の E)
+
+次回最初に読むファイル: リポジトリ直下の `AGENTS.md` の「Checks」、`scripts/check_site.py` の `BASELINE`(減らしたら下げる)
