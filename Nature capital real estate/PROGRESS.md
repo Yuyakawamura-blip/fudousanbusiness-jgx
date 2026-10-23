@@ -272,3 +272,9 @@
 - 新しく見つけた 2 件を PLAN に記録: 薄い緑の文字のコントラスト(H-2、H2-SOFTGREEN)、`.function-detail-grid article` の効いていない `border-top`(E、E-DEADBORDER)
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-1 の 15c、H-2 の薄い緑の文字のコントラスト、`styles.css` の `:root`
+
+### 2026-10-23(レーン E-WHOFLAG)
+- `worklane.py --who alice pick` と `--who alice mark A c` が、名前を記録せずに作った名前にしていた。`argparse` はサブコマンドの引数をトップレベルのあとに埋めるので、`pick` と `mark` の `--who` の既定値 `None` が前に書いた値を上書きしていた。`--dry-run` も同じ作りで、`--dry-run pick` は見るだけのつもりで本当にレーンを取っていた。ユーザーと決めて両方を直した: サブコマンドの側の既定値を `argparse.SUPPRESS`(書かれたときだけ値を入れる)にし、既定値はトップレベルだけが持つ(c2a4b8ed)。前に書いても後に書いても効き、今まで使えた書き方もそのまま使える
+- 確認: テストを 2 つ足した(既存は変えていない)。直す前のコードでは、壊れていた 3 つの書き方だけが失敗する。関門・リンク確認 485 件・切れ 0・テスト 4 種(16 / 23 / 6 / 43)は通過。独立レビューは不具合なし(Python 3.12 / 3.13 では試していない。3.9.6 のみ)
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-1 の 15c、H-2 の薄い緑の文字のコントラスト
