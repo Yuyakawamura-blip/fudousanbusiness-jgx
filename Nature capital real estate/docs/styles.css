@@ -1802,10 +1802,11 @@ footer a {
   }
   .forest-hero {
     min-height: 700px;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
   }
   .forest-hero-copy {
-    padding: 88px 25px 125px;
+    padding: 88px 25px 48px;
   }
   .forest-hero h1 {
     font-size: 48px;
@@ -1816,10 +1817,10 @@ footer a {
   .forest-cta > p:not(.label) {
     font-size: var(--size-body);
   }
+  /* In the flow on phones, so wrapped rows push the hero taller instead of covering the copy */
   .forest-anchor-nav {
-    right: 25px;
-    bottom: 28px;
-    left: 25px;
+    position: static;
+    margin: 0 25px 28px;
     gap: 10px;
     flex-wrap: wrap;
     justify-content: flex-start;
