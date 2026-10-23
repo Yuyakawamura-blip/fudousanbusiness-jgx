@@ -1,7 +1,7 @@
 /* Figma source: voPyGfM8U5sFDuvgGXEyzK, frame 2:2. */
 .home-page {
   --home-gutter: min(9%, 142px);
-  font-size: 20px;
+  font-size: var(--size-body);
 }
 .home-page h1,
 .home-page h2,
@@ -30,7 +30,7 @@
 }
 .home-page .label {
   margin: 0 0 22px;
-  font-size: 20px;
+  font-size: var(--size-body);
   line-height: 1.2;
 }
 .home-page .hero-copy .label {
@@ -99,7 +99,7 @@
   place-items: center;
   width: 96px;
   flex: 0 0 96px;
-  background: #e7eadf;
+  background: var(--pale);
 }
 .home-page .signal-list {
   align-content: flex-start;
@@ -151,7 +151,7 @@
 @media (max-width: 720px) {
   .home-page {
     --home-gutter: 25px;
-    font-size: 18px;
+    font-size: var(--size-md);
   }
   .home-page > header {
     height: auto;
@@ -161,7 +161,7 @@
     gap: 16px;
   }
   .home-page .brand {
-    font-size: 14px;
+    font-size: var(--size-xs);
     gap: 9px;
   }
   .home-page .brand small {
@@ -183,17 +183,17 @@
   }
   .home-page .hero-copy .lead,
   .home-page .hero-note {
-    font-size: 18px;
+    font-size: var(--size-md);
     line-height: 1.8;
   }
   .home-page .pills {
-    font-size: 14px;
+    font-size: var(--size-xs);
   }
   .home-page .hero-actions {
     display: grid;
   }
   .home-page h2 {
-    font-size: 32px;
+    font-size: var(--size-xl);
   }
   .home-page .owner-entry {
     display: block;
@@ -206,10 +206,10 @@
     min-height: 0;
   }
   .home-page .owner-entry-list strong {
-    font-size: 20px;
+    font-size: var(--size-body);
   }
   .home-page .concept-copy > p:not(.label) {
-    font-size: 18px;
+    font-size: var(--size-md);
   }
   .home-page .fact-essence {
     display: block;
@@ -230,7 +230,7 @@
   }
   .home-page .fact-essence-result {
     margin: 0;
-    font-size: 16px;
+    font-size: var(--size-sm);
   }
   .home-page .launch-cta {
     min-height: 0;
@@ -240,7 +240,7 @@
     margin-left: 0;
   }
   .home-page footer {
-    font-size: 16px;
+    font-size: var(--size-sm);
   }
 }
 
@@ -251,7 +251,7 @@
 .home-page .owner-entry-more {
   display: inline-block;
   margin-top: 28px;
-  font-size: 18px;
+  font-size: var(--size-md);
 }
 
 /* Entrances for other audiences */
@@ -268,7 +268,7 @@
 .home-page .home-others-list a {
   display: block;
   padding: 28px;
-  background: #fff;
+  background: var(--white);
   color: var(--ink);
   font-size: 22px;
   text-decoration: none;
@@ -281,7 +281,7 @@
   display: block;
   margin-bottom: 10px;
   color: #5d7662;
-  font-size: 16px;
+  font-size: var(--size-sm);
 }
 @media (max-width: 1000px) {
   .home-page .home-others-list {
