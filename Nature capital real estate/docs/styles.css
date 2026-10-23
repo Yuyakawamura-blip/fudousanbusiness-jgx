@@ -199,10 +199,6 @@ html.auth-locked body > .password-gate {
   flex-wrap: wrap;
   gap: 12px;
 }
-.nav-contact {
-  padding: 8px 14px;
-  border: 1px solid var(--green);
-}
 .label {
   margin: 0 0 22px;
   font: 24px "Noto Sans JP", sans-serif;
@@ -962,6 +958,11 @@ body {
   text-decoration: none;
   border-bottom: 1px solid var(--green);
   padding-bottom: 3px;
+}
+/* After .nav so the button's even padding wins at equal specificity (the link also has class "nav"). */
+.nav-contact {
+  padding: 8px 14px;
+  border: 1px solid var(--green);
 }
 .hero {
   height: min(67vw, 670px);
