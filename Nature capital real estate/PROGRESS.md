@@ -248,3 +248,11 @@
 - 新しく見つけた 1 件を PLAN の E に記録: `--who` をサブコマンドの前に書くと名前が落ちる(前からある)
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-1 の 15b(15a で残した値の一覧)、`styles.css` の `:root`
+
+### 2026-10-23(`/lane` とコミットのメール、作業の型の切り出し)
+- レーンの手順を `/lane` にまとめた(リポジトリ直下の `.claude/skills/lane/SKILL.md`、be2975f0)。セッションごとの名前でレーンを取るので、だれのレーンか見分けられる
+- push が GitHub に止められた(GH007: 個人のメールアドレスが公開されるため)。ユーザーの決定で、全リポジトリのコミットのメールを GitHub の no-reply アドレスにした(`~/.gitconfig`)。push 済みのコミットのアドレスは変えていない(履歴の書き換えと force push になるため)
+- このサイトで育てた作業の進め方を、ほかのプロジェクトでも使える型(テンプレート)にして、別のリポジトリ `workflow-shells` に切り出した(非公開、https://github.com/JGX-honorof/workflow-shells)。このリポジトリのファイルは変えていない。そのレビューで、このサイトのスクリプトにも同じ不具合が 2 件あると分かったので、PLAN の E に記録した(`mark --note` の「|」、件名が「#」で始まるコミット)
+- 確認: `/lane` を足したコミットは関門の 8 項目すべて通過。`workflow-shells` 側の確認はそのリポジトリの README とコミットにある
+
+次回最初に読むファイル: `PLAN.md` の E の新しい 2 項目、`scripts/worklane.py` の `update()`(80 行目)、`scripts/check_site.py` の `check_message()`(150 行目)
