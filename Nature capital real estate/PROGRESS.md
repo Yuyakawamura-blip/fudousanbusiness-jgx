@@ -107,3 +107,11 @@
 - 新しく見つけた件を PLAN の E に記録: `forest-data.js` の `external()` で作るリンク 3 か所も矢印が 2 つ並ぶ。撮影と画素の比較は Node の CDP スクリプトで行い、PIL や ImageMagick は使っていない(このマシンに無い)
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の E の矢印が 2 つ並ぶ件
+
+### 2026-10-23(レーン H1-12)
+- H-1 の 12: スマホのメニューを JavaScript なしでも表示する(25109a9c)。`nav.js` が読み込み直後に `<html>` へ `js-nav` を付け、`styles.css` の隠す 2 つのルール(`.home-page` の近くと `.nav-toggle` の下)はそのときだけ効く。開くルールにも `.js-nav` を足し、隠すルールと同じ強さにして後ろで勝たせた。JavaScript なしの見た目は、ユーザーと決めて、開いたときと同じ縦の一覧。design.md §14 の「未対応の例」を対応済みに書き換えた
+- `nav.js` の `var` 6 個を `const` に(92342cc7、中身は同じ)。`check_site.py` の `BASELINE` の `var` を 12 → 6
+- 確認: ポート 8005 で 13 ページ × 1440 / 500 幅を前後で撮影。JavaScript ありは全ページ一致(林業事業体の方の 1440 だけ違ったが、変更を外して撮り直しても変更後と同じ画像になり、変更前の撮影の揺れだった)。500 幅で、JavaScript なしの表示項目は 0 → 6、JavaScript ありはボタンで 6 項目が開き、閉じると 0。rebase 後(H1-11・H1-14 などの後)も 13 ページで同じ結果。独立レビューで指摘なし。リンク確認 485 件・切れ 0
+- JavaScript なしの撮影は、DevTools プロトコルの `Emulation.setScriptExecutionDisabled` で撮れた。このとき `Runtime.evaluate` は返ってこないので、高さは `Page.getLayoutMetrics`、要素の表示は `DOM.getBoxModel` で調べる。全ページを続けて撮ると、メモリが詰まって途中で止まることがある
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-1 の 15(H1-15a の前提は残り 13b だけ)
