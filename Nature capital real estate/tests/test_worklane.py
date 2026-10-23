@@ -38,6 +38,10 @@ def add_lane(path, lane, needs='-', status='o', note=None, before=None, item='i'
 def add_in_process(path, lane):
     return add_lane(Path(path), lane)
 
+def mark_lane(path, lane, status, note=None, who='w'):
+    args = Namespace(command='mark', lane=lane, status=status, note=note, who=who)
+    return lanes.run(args, path, path.parent, Path('/repo'), 'now', io.StringIO())
+
 
 class Selection(unittest.TestCase):
     def test_open_lane_with_completed_needs_is_free(self):
@@ -131,6 +135,48 @@ class Claims(unittest.TestCase):
             results = list(pool.map(claim_in_process, [str(self.path)] * 6, [f'w{i}' for i in range(6)]))
         ports = [port for _, out in results for port in re.findall(r'localhost:(\d+)/', out)]
         self.assertEqual(sorted(ports), [str(8001 + i) for i in range(6)])
+
+
+class Marking(unittest.TestCase):
+    """mark keeps a lane's recorded port while the lane can still hold it (c or b), so no later claim reuses it."""
+    def setUp(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.path = Path(tmp.name) / 'WORKLANES.md'
+        self.path.write_text(board('A | c | - | f | a | bob t port 8001', 'B | o | - | f | b | '))
+
+    def who(self, lane='A'):
+        return {r.id: r.who for r in lanes.parse(self.path.read_text())}[lane]
+
+    def test_blocking_with_a_note_keeps_the_port_and_a_claim_skips_it(self):
+        self.assertEqual(mark_lane(self.path, 'A', 'b', note='photos'), 0)
+        self.assertEqual(self.who(), 'photos port 8001')
+        self.assertIn('localhost:8002', pick(self.path)[1])
+
+    def test_reclaiming_keeps_the_port(self):
+        mark_lane(self.path, 'A', 'b', note='photos')
+        mark_lane(self.path, 'A', 'c', who='bob')
+        self.assertEqual(self.who(), 'bob now port 8001')
+
+    def test_a_note_naming_a_port_is_kept_as_written(self):
+        mark_lane(self.path, 'A', 'b', note='photos port 8005')
+        self.assertEqual(self.who(), 'photos port 8005')
+
+    def test_reopening_or_completing_drops_the_port(self):
+        for status, who in (('o', ''), ('x', 'done now')):
+            with self.subTest(status=status):
+                self.path.write_text(board('A | c | - | f | a | bob t port 8001'))
+                mark_lane(self.path, 'A', status)
+                self.assertEqual(self.who(), who)
+
+    def test_a_lane_without_a_port_gets_none(self):
+        mark_lane(self.path, 'B', 'b', note='photos')
+        self.assertEqual(self.who('B'), 'photos')
+
+    def test_a_stale_port_on_an_open_lane_is_not_revived(self):
+        self.path.write_text(board('A | o | - | f | a | stale port 8003'))
+        mark_lane(self.path, 'A', 'b', note='photos')
+        self.assertEqual(self.who(), 'photos')
 
 
 class Adding(unittest.TestCase):

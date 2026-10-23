@@ -285,6 +285,11 @@ def run(args, board, common_dir, root, now, out=sys.stdout, stop=docker_stop, po
             who = args.note if args.note is not None else (
                 f'{args.who} {now}' if args.status == 'c' else
                 f'done {now}' if args.status == 'x' else '')
+            old = {r.id: r for r in rows}.get(args.lane)
+            port = old and old.status in 'cb' and re.search(r'\bport \d+\b', old.who)
+            # choose_port reads ports from c and b lanes, so a mark must not drop one while the lane still holds it.
+            if port and args.status in 'cb' and not re.search(r'\bport \d+\b', who):
+                who = f'{who} {port.group()}'.strip()
             write(board, update(text, args.lane, args.status, who))
             print(f'{args.lane} -> {args.status}', file=out)
             return 0
