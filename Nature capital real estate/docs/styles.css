@@ -4,7 +4,7 @@
   --green: #254c3d;
   --green-dark: #183c30; /* hover on green controls */
   --green-mid: #365d49; /* lighter green panels and their text */
-  --green-soft: #66826d; /* card top rules and step numbers */
+  --green-soft: #66826d; /* card top rules, and numbers only at 24px or larger (3.7:1 on --band, below 4.5) */
   --paper: #fbfaf7;
   --paper-warm: #f7f5ef; /* reading-page ground and light text on green */
   --band: #f3f0e8; /* tinted bands that set a section apart */
@@ -336,7 +336,7 @@ h1 {
   display: inline-block;
   width: 55px;
   font: 20px "Noto Sans JP", sans-serif;
-  color: var(--green-soft);
+  color: var(--label);
 }
 .consultation {
   display: grid;
@@ -498,7 +498,7 @@ details p {
   text-decoration: none;
 }
 .owner-entry-list b {
-  color: var(--green-soft);
+  color: var(--label);
   font-size: var(--size-body);
   font-weight: 500;
 }
@@ -1070,7 +1070,7 @@ h2 {
 .connection-grid span,
 .number {
   font: 20px "Noto Sans JP", sans-serif;
-  color: var(--green-soft);
+  color: var(--label);
 }
 .connection-grid h3 {
   margin: 22px 0 15px;
