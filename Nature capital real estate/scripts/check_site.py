@@ -42,6 +42,10 @@ PREFIX = re.compile(r'^[A-Za-z]+(\([^)]*\))?!?:\s')
 AUTO_MESSAGE = re.compile(r'^(Merge |Revert "|Reapply "|fixup! |squash! |amend! )')
 BOT = 'github-actions[bot]'  # Commits catalog.json on main with an English message.
 IN_PROGRESS = ('MERGE_HEAD', 'REVERT_HEAD', 'CHERRY_PICK_HEAD')  # Their changes were checked where they were made.
+# An open PLAN.md item names its lanes, so worklane.py can tell which items the board cannot hand out (WORKLANES.md 6).
+OPEN_ITEM = re.compile(r'^\s*(?:[-*]|\d+\.)\s+\[ \]')  # same patterns in worklane.py
+LANE_TAG = re.compile(r'<!-- lane: ([^>]*?) -->')
+PLAN = f'{PROJECT}/PLAN.md'
 
 
 class Page(HTMLParser):
@@ -147,6 +151,20 @@ def check_staged(paths, added, sizes, deleted=()):
     return problems, warnings
 
 
+def untagged_items(patch):
+    """Line numbers of the open items that a PLAN.md patch (git diff -U0) adds without a lane tag."""
+    found, line = [], None
+    for l in patch.splitlines():
+        hunk = re.match(r'@@ -\S+ \+(\d+)', l)
+        if hunk:
+            line = int(hunk.group(1))
+        elif line is not None and l.startswith('+'):
+            if OPEN_ITEM.match(l[1:]) and not LANE_TAG.search(l):
+                found.append(line)
+            line += 1
+    return found
+
+
 def check_message(message, comment='#'):
     """Return the reasons the commit subject breaks the AGENTS.md rule (Japanese, 50 characters, no prefix)."""
     lines = [l for l in message.splitlines() if not l.startswith(comment)]
@@ -196,7 +214,11 @@ def check_changes(diff, size_of):
     names = lambda *f: [p for p in git('diff', '--no-renames', '--name-only', '-z', *f, *diff, cwd=root).split('\0') if p]
     added = names('--diff-filter=A')
     sizes = {p: size_of(p) for p in added if PurePosixPath(p).suffix.lower() in IMAGE}  # Submodules have no size.
-    return check_staged(names(), added, sizes, set(names('--diff-filter=D')))
+    problems, warnings = check_staged(names(), added, sizes, set(names('--diff-filter=D')))
+    patch = git('diff', '--no-renames', '--no-color', '-U0', *diff, '--', PLAN, cwd=root)
+    problems += [f'{PLAN}:{n}: end an open item with <!-- lane: <ID> --> (add the row after pushing) or'
+                 ' <!-- lane: none --> (WORKLANES.md 6)' for n in untagged_items(patch)]
+    return problems, warnings
 
 
 def git_size(rev):

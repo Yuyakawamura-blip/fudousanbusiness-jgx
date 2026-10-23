@@ -24,6 +24,10 @@ STATUSES = 'ocxb'
 NONE_FREE = 3  # exit code when nothing can be picked
 PORT_FIRST, PORT_LAST = 8001, 8999  # 8000 is the user's own preview server
 
+# An open PLAN.md item names the lanes that cover it, or none; check_site.py rejects a new item without the tag.
+OPEN_ITEM = re.compile(r'^\s*(?:[-*]|\d+\.)\s+\[ \]')  # same patterns in check_site.py
+LANE_TAG = re.compile(r'<!-- lane: ([^>]*?) -->')
+
 Row = namedtuple('Row', 'index line id status needs touches item who')
 COLUMNS = ('ID', 'S', 'Needs', 'Touches', 'Item', 'Who')
 
@@ -138,6 +142,38 @@ def summary(rows):
         elif r.status == 'o':
             out.append(f'  {r.id}: waiting on {", ".join(waiting_on(r, rows))}')
     return out
+
+
+def plan_gaps(plan, rows):
+    """Open PLAN.md items the board cannot hand out: no lane tag, or a tag naming a lane with no row."""
+    ids, gaps = {r.id for r in rows}, []
+    for n, line in enumerate(plan.splitlines(), 1):
+        if not OPEN_ITEM.match(line):
+            continue
+        tag = LANE_TAG.search(line)
+        missing = [t for t in map(str.strip, tag.group(1).split(',')) if t not in ids | {'none'}] if tag else []
+        if tag and not missing:
+            continue
+        why = f'no row for {", ".join(missing)}' if tag else 'no lane tag'
+        gaps.append(f'  PLAN.md:{n} ({why}): {OPEN_ITEM.sub("", LANE_TAG.sub("", line)).strip()[:60]}')
+    return gaps
+
+
+def read_plan(root):
+    """PLAN.md as pushed (rows are added only for items already on develop); None and the reason if unreadable."""
+    shown = git(root, 'show', f'origin/develop:{PROJECT}/PLAN.md')
+    return (shown.stdout, None) if not shown.returncode else (None, shown.stderr.strip())
+
+
+def report_plan(rows, root, plan, out):
+    text, error = plan(root)
+    if text is None:
+        print(f'\nPLAN.md not checked against the board: {error}', file=out)
+        return
+    gaps = plan_gaps(text, rows)
+    if gaps:
+        print('\nOpen PLAN.md items on origin/develop that no lane covers. Add a row with `worklane.py add <ID>`'
+              ' and tag the item <!-- lane: <ID> -->, or tag it <!-- lane: none -->:', *gaps, sep='\n', file=out)
 
 
 def host_port_free(port):
@@ -259,7 +295,8 @@ def write(board, text):
     os.replace(tmp, board)
 
 
-def run(args, board, common_dir, root, now, out=sys.stdout, stop=docker_stop, port_free=host_port_free):
+def run(args, board, common_dir, root, now, out=sys.stdout, stop=docker_stop, port_free=host_port_free,
+        plan=read_plan):
     if args.command == 'finish':
         rows = {r.id: r for r in parse(board.read_text())}
         if args.lane not in rows:
@@ -283,6 +320,7 @@ def run(args, board, common_dir, root, now, out=sys.stdout, stop=docker_stop, po
         if args.command == 'list':
             for r in rows:
                 print(f'{r.status} {r.id:<14} {r.item}', file=out)
+            report_plan(rows, root, plan, out)
             return 0
         if args.command == 'add':
             needs = [d.strip() for d in args.needs.split(',') if d.strip() not in ('', '-')]
@@ -308,6 +346,7 @@ def run(args, board, common_dir, root, now, out=sys.stdout, stop=docker_stop, po
         if not choices:
             print('No work lanes are available. Stop here unless you are given further instructions.', file=out)
             print('\n'.join(summary(rows)), file=out)
+            report_plan(rows, root, plan, out)  # the usual reason nothing is free: work that never got a row
             return NONE_FREE
         row = choices[0]
         if args.dry_run:

@@ -96,6 +96,18 @@ class StagedTest(unittest.TestCase):
         self.assertEqual(len(problems), 2)  # photo.png is not WebP; "My Photo" is not kebab-case.
         self.assertEqual(len(warnings), 1)
 
+class PlanTagTest(unittest.TestCase):
+    PATCH = ('diff --git a/PLAN.md b/PLAN.md\n--- a/PLAN.md\n+++ b/PLAN.md\n'
+             '@@ -3 +3 @@\n- [ ] old\n+- [x] old\n'
+             '@@ -9,0 +10,5 @@\n+- [ ] new <!-- lane: E-NEW -->\n+  - [ ] nested\n+15. [ ] numbered\n'
+             '+- [ ] skipped <!-- lane: none -->\n+plain text with - [ ] inside\n')
+
+    def test_only_added_open_items_without_a_tag_fail(self):
+        self.assertEqual(site.untagged_items(self.PATCH), [11, 12])
+
+    def test_headers_before_the_first_hunk_are_not_lines(self):
+        self.assertEqual(site.untagged_items('+++ b/- [ ] x\n'), [])
+
 class MessageTest(unittest.TestCase):
     def test_good_message(self):
         self.assertEqual(site.check_message('ヘッダーの「無料相談」をそろえる\n\nCo-Authored-By: x\n# comment'), [])

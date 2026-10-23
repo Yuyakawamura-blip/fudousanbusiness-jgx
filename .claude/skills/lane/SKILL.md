@@ -35,7 +35,7 @@ disable-model-invocation: true
 worktree の中で、この順に行う。どれかが失敗したら、そこで止まって伝える。
 1. `git pull --rebase origin develop`
 2. `python3 scripts/check_links.py`
-3. `PLAN.md` のチェックと `PROGRESS.md` の追記(「やったこと」と「次回最初に読むファイル」)を 1 コミット。新しい作業があれば、`PLAN.md` の合う節に `[ ]` の項目として足し、このコミットに入れる
+3. `PLAN.md` のチェックと `PROGRESS.md` の追記(「やったこと」と「次回最初に読むファイル」)を 1 コミット。新しい作業があれば、`PLAN.md` の合う節に `[ ]` の項目として足し、末尾に `<!-- lane: <新しい ID> -->` を付けて、このコミットに入れる
 4. `git push origin HEAD:develop`
 5. 新しい作業があれば、worktree の中で `python3 scripts/worklane.py add <新しい ID> --touches … --item …`(`WORKLANES.md` の 6)。表を手で直さない
 6. worktree の外から `python3 "SITE/scripts/worklane.py" finish <ID>`。終了コード 1 なら、表示された理由を直してからもう一度実行する。自分で `rm` や `git branch -D` を使わない

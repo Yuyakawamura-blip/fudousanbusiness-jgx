@@ -122,6 +122,24 @@ class Claims(unittest.TestCase):
         for reason in ('A: claimed (bob)', 'B: waiting on A', 'C: blocked (photos)'):
             self.assertIn(reason, out)
 
+    def test_nothing_free_lists_plan_items_no_lane_covers(self):
+        self.path.write_text(board('A | c | - | f | a | bob'))
+        plan = ('- [x] done\n- [ ] covered <!-- lane: A -->\n- [ ] untagged\n'
+                '  - [ ] named <!-- lane: A, Z -->\n12. [ ] no lane <!-- lane: none -->\n')
+        out = io.StringIO()
+        code = lanes.run(Namespace(command='pick', who='w', dry_run=False), self.path, self.path.parent, Path('/repo'),
+                         'now', out, plan=lambda root: (plan, None))
+        self.assertEqual(code, lanes.NONE_FREE)
+        gaps = [l for l in out.getvalue().splitlines() if 'PLAN.md:' in l]
+        self.assertEqual(gaps, ['  PLAN.md:3 (no lane tag): untagged', '  PLAN.md:4 (no row for Z): named'])
+
+    def test_unreadable_plan_is_said_not_hidden(self):
+        self.path.write_text(board('A | x | - | f | a | '))
+        out = io.StringIO()
+        lanes.run(Namespace(command='list'), self.path, self.path.parent, Path('/repo'), 'now', out,
+                  plan=lambda root: (None, 'no origin/develop'))
+        self.assertIn('PLAN.md not checked against the board: no origin/develop', out.getvalue())
+
     def test_simultaneous_workers_never_get_the_same_lane(self):
         self.path.write_text(board(*(f'L{i} | o | - | f | item | ' for i in range(6))))
         with ProcessPoolExecutor(8) as pool:
