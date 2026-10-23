@@ -839,7 +839,7 @@ details p {
 }
 .card-kicker {
   color: var(--label);
-  font-size: 13px;
+  font-size: var(--size-xs);
   letter-spacing: 0.14em;
 }
 .fact-essence-card h3 {
@@ -863,7 +863,7 @@ details p {
   color: #526259;
   border: 1px solid #c4cdc2;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: var(--size-xs);
 }
 .fact-essence-plus {
   color: #9aab82;
@@ -876,7 +876,7 @@ details p {
   padding: 16px 20px;
   color: var(--white);
   background: #2f5c4d;
-  font-size: 19px;
+  font-size: var(--size-body);
   font-weight: 600;
   text-align: center;
   transform: rotate(1deg);
@@ -3202,7 +3202,7 @@ footer a {
   html:not(.js-nav) body > header .site-nav .nav,
   body > header.nav-open .site-nav .nav {
     padding: 14px 0;
-    font-size: 17px;
+    font-size: var(--size-md);
     border-bottom: 1px solid #d8ddd4;
   }
   html:not(.js-nav) body > header .site-nav .nav-contact,
@@ -3410,7 +3410,7 @@ footer a {
   padding: 4px 12px;
   border: 1px solid var(--badge);
   color: #85663c;
-  font-size: 15px;
+  font-size: var(--size-sm);
   line-height: 1.6;
 }
 .partner-grid .partner-status.is-open {
@@ -3425,7 +3425,7 @@ footer a {
   display: inline-block;
   margin-top: 16px;
   color: var(--green);
-  font-size: 17px;
+  font-size: var(--size-md);
 }
 
 /* 404 page */
@@ -3495,7 +3495,7 @@ footer a {
   padding: 4px 12px;
   border: 1px solid var(--badge);
   color: #85663c;
-  font-size: 15px;
+  font-size: var(--size-sm);
   vertical-align: 3px;
 }
 .fee-free {
