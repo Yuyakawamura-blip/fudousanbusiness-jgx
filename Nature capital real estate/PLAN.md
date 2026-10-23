@@ -57,6 +57,7 @@
 - [x] 地図の出典のリンク 3 つ(`forest-data.js` の `attribution`)と Leaflet の「Leaflet」リンクが同じタブで開く。出典の欄は H1-06a(出典リンクの枠が切れる件)と同じ場所なので、そのときに一緒に見る → H1-06a で 4 つとも新しいタブに。「Leaflet」は Leaflet の書いた形(旗と title)のまま、開きタグに `target` と `rel` だけを足した。出典の欄は ↗ の分 234 → 280px に広がる。関門は JavaScript の文字列の中のリンクを見ていない
 - [ ] 森林データの「公式データを見る ↗」(`forest-data/index.html:124`)は本文にも矢印があり、CSS の矢印と 2 つ並ぶ。`forest-data.js` が作るリンクにも同じものが 3 か所ある(29・53・110 行目の `external()` の文字に ↗)
 - [ ] design.md §A の JavaScript なしの撮影(`--blink-settings=scriptEnabled=false`)が、Chrome 154 のヘッドレスでは画像を書き出さない(どのページでも)。代わりの手順を決める
+- [x] レーンの手順を `/lane` にまとめる(2026-10-23): リポジトリ直下の `.claude/skills/lane/SKILL.md`。読む → セッションごとの名前でレーンを取る → worktree で作業 → push の前で承認を待つ → 仕上げと `finish` → `/clear` のあと次の `/lane`。直下に置けば、サイトのフォルダから始めたセッションでも読まれる(Claude Code は開始したフォルダからリポジトリ直下までの `.claude/skills/` を読む)
 
 ## H. デザインの決まり(`maintenance/design.md`、2026-10-22)
 - [x] GX Career のデザイン原則と照らし合わせ、このサイトの決まりを文書化
