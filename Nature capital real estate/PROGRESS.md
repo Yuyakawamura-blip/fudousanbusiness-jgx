@@ -307,3 +307,10 @@
 - 新しく見つけた 2 件を PLAN に記録: 持続可能な林業のベージュの帯の上のラベル 3.92(H-2、H2-LABELBEIGE。前からある)、使われていない `.steps` の指定(E、E-DEADSTEPS)
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-2 の H2-LABELBEIGE と E の E-DEADSTEPS、`styles.css` の `.sustainable-heading`(3445 行目付近)
+
+### 2026-10-23(レーン E-HOOKHASH)
+- コミットの関門(commit-msg)が `git commit -m "#12 ヘッダーを直す"` を「件名が空」で止める件を直した(5a46e4bc)。使い捨てのリポジトリで確かめると、git はエディタを開かないとき(`-m`・`-F`・VS Code のコミット)フックに `GIT_EDITOR=:` を渡し、「#」の行を消さない。`check_site.py --commit-msg` は、`commit.cleanup` が `strip` のとき、または既定でエディタを開いたときだけ「#」の行を読み飛ばす。逆向きの誤り(`-m` の 1 行目が「# memo」で 2 行目が日本語のとき、関門は通すが git は「# memo」を件名にする)も、push 前に止まるようになった。直し方は 2 案からユーザーが選んだ
+- 見えないもの: コマンドラインの `--cleanup=…`。AGENTS.md の Checks に 1 文で書いた
+- 確認: テストを 4 つ足した(既存は変えていない)。直す前のコードでは、エディタなしのテストが失敗した。test_check_site 25 → 29、ほかの 3 種(16 / 6 / 45)・関門・リンク確認 485 件・切れ 0 は通過。使い捨てのリポジトリで本物の `git commit` を 3 通り流し、期待どおりの終了コードになった。独立レビューは止めるほどの不具合なし。指摘の、エディタありで `commit.cleanup` が `whitespace` などのときも同じ誤りが残る件は直した
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-2 の H2-LABELBEIGE と E の E-DEADSTEPS
