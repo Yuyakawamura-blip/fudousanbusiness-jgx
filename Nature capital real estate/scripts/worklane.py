@@ -379,10 +379,14 @@ def main(argv=None):
     new.add_argument('--before', help='insert above this lane (board order is priority); default: at the end')
     done = sub.add_parser('finish', help='after pushing: stop the preview, remove the worktree and branch, mark x')
     done.add_argument('lane')
+    # Accepted before or after the subcommand. Only the top level sets a default: a subcommand's default would
+    # overwrite the value given before it, so `--who alice pick` lost the name and `--dry-run pick` claimed.
     for s in (p, pick, mark):
-        s.add_argument('--who', help='name recorded on a claim (default: a new claude-MMDD-HHMM-hex4 name)')
+        s.add_argument('--who', default=None if s is p else argparse.SUPPRESS,
+                       help='name recorded on a claim (default: a new claude-MMDD-HHMM-hex4 name)')
     for s in (p, pick):
-        s.add_argument('--dry-run', action='store_true', help='show the lane without claiming it')
+        s.add_argument('--dry-run', action='store_true', default=False if s is p else argparse.SUPPRESS,
+                       help='show the lane without claiming it')
     args = p.parse_args(argv)
     args.command = args.command or 'pick'
     now = datetime.now()

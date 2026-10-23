@@ -191,6 +191,20 @@ class Names(unittest.TestCase):
     def test_given_who_is_recorded_unchanged(self):
         self.assertEqual(self.claim('--who', 'alice')[0].split()[0], 'alice')
 
+    def test_who_before_or_after_the_subcommand_is_recorded(self):
+        # A subcommand's own default once overwrote a --who given before it.
+        for argv in (('--who', 'alice', 'pick'), ('pick', '--who', 'alice'),
+                     ('--who', 'alice', 'mark', 'A', 'c'), ('mark', 'A', 'c', '--who', 'alice')):
+            with self.subTest(argv=argv):
+                self.assertEqual(self.claim(*argv)[0].split()[0], 'alice')
+
+    def test_dry_run_before_or_after_pick_claims_nothing(self):
+        for argv in (('--dry-run',), ('--dry-run', 'pick'), ('pick', '--dry-run')):
+            with self.subTest(argv=argv):
+                who, out = self.claim(*argv)
+                self.assertEqual(who, '')
+                self.assertIn('Would claim A', out)
+
     def test_claiming_by_mark_prints_the_name(self):
         self.path.write_text(board('A | o | - | f | a | '))
         out = io.StringIO()
