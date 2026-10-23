@@ -352,3 +352,11 @@
 - 新しく見つけた 1 件を PLAN の H-2 に記録: 英語版の最後の節 `.sustainable-footer` に CSS がない(H2-SUSTAINFOOT)
 
 次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-2 の H2-SUSTAINFOOT、`docs/forest/sustainable-forestry/en/index.html` の 358 行目
+
+### 2026-10-23(レーン H2-HEADTAIL)
+- 見出しの文節の中の折り返しを、DevTools プロトコルで 13 ページ × 320〜1440px の 9 幅で測った。`overflow-wrap: normal` に戻しても同じ所で折り返したので、原因は H2-OVERFLOW の `anywhere` ではなく、列より広い文節を Chrome の `auto-phrase` が文節の中で折り返すことだった。320px の 33px の h2 は 8 文字の文節が 275px で列(270px)を 5px 超えていた。複合語の「森林経営計画作成支援ツール」は 500px でも、さとやま不動産の「人の / こと。」は 720px でも折り返していた
+- ユーザーと決めて、h2 の最小を `--size-xl`(32px)にし、ツールの h1・サービス一覧の h3・404 の h1・森林ガイドの水の h3 に `<wbr />`、さとやま不動産の「人のこと。」とサービス一覧の「関わる人。」に新しい `.keep-together` を付けた。`AGENTS.md` の見出しの行に仕組みを書き足した(b5669142)。森林ガイドの「間伐は」の `<wbr />` は 1440px で「ただ木を減らす作業 / ではない。」と切れ目を悪くしたので外した
+- 確認: 文節の中の折り返しは 65 から 29(短い切れ端は 360px 以上でなし)、9 幅でページの幅は画面と同じ。1440 / 500 幅の撮影 26 枚のうち、変わったのは 500 幅の h2 のあるページと、1440 幅のツール(h1 の切れ目が直った)と 404(行は同じで描画の 1px 未満の違い)。関門 8 項目・リンク確認 485 件・切れ 0・テスト 4 種(16 / 29 / 6 / 45)は通過。Safari と実機では確かめていない
+- 残りの 5 つ(320〜360px)を PLAN の H-2 に記録した(H2-HEADNARROW)
+
+次回最初に読むファイル: `WORKLANES.md`(`scripts/worklane.py list`)、`PLAN.md` の H-2 の H2-HEADNARROW、`AGENTS.md` の見出しの行、`styles.css` の `.keep-together`
