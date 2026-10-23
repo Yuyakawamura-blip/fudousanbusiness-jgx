@@ -228,6 +228,7 @@ h3 {
   font-weight: 500;
   font-family: "Noto Sans JP", sans-serif;
   word-break: auto-phrase;
+  overflow-wrap: anywhere;
 }
 h1 {
   font-size: clamp(38px, 5vw, 65px);
