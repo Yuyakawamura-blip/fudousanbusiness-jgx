@@ -22,6 +22,7 @@
   --size-md: 18px;
   --size-body: 20px;
   --size-lg: 24px;
+  --size-lg-plus: 28px;
   --size-xl: 32px;
 }
 
@@ -351,7 +352,7 @@ h1 {
 }
 .consultation .note {
   color: #d9e2d6;
-  font-size: 28px !important;
+  font-size: var(--size-lg-plus) !important;
 }
 .consultation ul {
   margin: 35px 0 0;
@@ -732,7 +733,7 @@ details p {
 }
 .tool-flow h3 {
   margin: 0 0 8px;
-  font-size: 28px;
+  font-size: var(--size-lg-plus);
 }
 .tool-flow p {
   grid-column: 2;
@@ -843,7 +844,7 @@ details p {
 }
 .fact-essence-card h3 {
   margin: 28px 0 14px;
-  font-size: 28px;
+  font-size: var(--size-lg-plus);
 }
 .fact-essence-card p {
   margin: 0;

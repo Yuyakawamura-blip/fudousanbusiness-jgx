@@ -82,7 +82,7 @@
   padding: 28px;
 }
 .home-page .fact-essence-card h3 {
-  font-size: 28px;
+  font-size: var(--size-lg-plus);
   margin: 12px 0 14px;
 }
 .home-page .fact-visual {
