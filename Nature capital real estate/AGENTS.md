@@ -28,10 +28,11 @@
 | `docs/partners/` | 企業・個人の方向け(企業の森づくり / 自然資本・クレジット / 体験・ボランティア / 山林の取得・活用) |
 | `docs/styles.css` | 全ページ共通 CSS |
 | `docs/nav.js` | スマホ幅(720px 以下)のメニューボタンを全ページのヘッダーに追加する |
+| `docs/consult-source.js` | 相談フォームへのリンクに流入元(`?src=`)と押したページを事前入力する。`FORM_ENTRY` が空なら何もしない(`maintenance/consult-source.md`) |
 | `docs/auth.js` | 全ページのパスワードゲート(クライアント側のみ。本当の保護ではない) |
 | `docs/404.html` | 存在しない URL 用。GitHub Pages はどの階層でもこのファイルを返すので `<base href="/fudousanbusiness-jgx/">` でリンクの基準を固定している |
 | `archive/` | 公開対象外の旧ページ |
-| `maintenance/` | 運用メモ(Figma / 森林データ) |
+| `maintenance/` | 運用メモ(Figma / 森林データ / 流入元の記録 / 整理メモのひな形 / 公開前チェックリスト / 開発ガイド) |
 
 ## Commands
 - ローカル確認: `python3 -m http.server 8000 -d docs` → http://localhost:8000/
@@ -53,7 +54,7 @@
 - 文字色は背景とのコントラスト比 4.5 以上にする(小見出しラベルは #4f6a57)
 - 「ご相談の流れと費用」は共通部品 `.flow-fees`(styles.css)。トップとさとやま不動産で同じ 3 段階(無料 / 無料 / 事前にお見積り)を保つ
 - ロゴは `docs/assets/nature-capital-mark.svg`
-- 各ページの `<head>` にはファビコンと共有用(OGP)のメタタグがある。新しいページを作るときも同じ一式を入れる(og:url は公開 URL の絶対パス、共有画像は `docs/assets/og-image.jpg`)。独自ドメインに移すときは og:url / og:image を書き換える
+- 各ページの `<head>` にはファビコン・共有用(OGP)のメタタグ・Noto Sans JP の読み込み(preconnect + link。CSS の `@import` は使わない)・`nav.js`・`consult-source.js` がある。`<body>` の直後に「本文へ移動」(`.skip-link` → `<main id="main">`)。新しいページを作るときも同じ一式を入れる(404 は `<base>` があるので本文へ移動は付けない)(og:url は公開 URL の絶対パス、共有画像は `docs/assets/og-image.jpg`)。独自ドメインに移すときは og:url / og:image を書き換える
 - 新しい画像は **WebP・1 枚 300KB 目安**、ファイル名は英小文字のケバブケース。`alt` を必ず書く
 - レイアウトはデスクトップとスマホ幅(720px 以下)の両方で確認する
 - 自然資本価値・売却・認証の結果を約束する表現を書かない(既存の注意書きの方針に合わせる)

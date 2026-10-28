@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap");
-
 /* Make new-tab destinations legible as actions. */
 a[target="_blank"] {
   position: relative;
@@ -839,7 +837,7 @@ details p {
 }
 .card-kicker {
   color: #4f6a57;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.14em;
 }
 .fact-essence-card h3 {
@@ -863,7 +861,7 @@ details p {
   color: #526259;
   border: 1px solid #c4cdc2;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 14px;
 }
 .fact-essence-plus {
   color: #9aab82;
@@ -4212,4 +4210,21 @@ footer a {
 }
 .flow-fees-steps ul li {
   margin-top: 4px;
+}
+/* キーボード操作で最初に出る「本文へ移動」。フォーカスされるまでは画面外に置く */
+.skip-link {
+  position: absolute;
+  top: -200px;
+  left: 16px;
+  z-index: 999;
+  padding: 12px 20px;
+  color: var(--green);
+  background: var(--paper);
+  border: 2px solid var(--green);
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 16px;
 }
