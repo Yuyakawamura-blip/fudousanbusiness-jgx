@@ -9,6 +9,7 @@
 - 公開 URL: https://yuyakawamura-blip.github.io/fudousanbusiness-jgx/
 - デザインの元: Figma `voPyGfM8U5sFDuvgGXEyzK`(ページとフレームの対応は `maintenance/figma.md`)
 - サイト階層図: `LP_HIERARCHY.drawio`
+- 設計書: `DESIGN.md`(コンセプト・仕様・11 工程の現状・未決定事項)。進め方は `maintenance/ai-product-dev-guide.md`、ベースラインは事業計画書(SharePoint P065)
 
 ## 対象者
 - **主役: 山林所有者**(相続・遠方管理・売却/活用)。トップと主要導線はこの人向けに書く
@@ -36,6 +37,11 @@
 - ローカル確認: `python3 -m http.server 8000 -d docs` → http://localhost:8000/
 - 森林データ更新のテスト: `python3 -m unittest discover -s tests -p 'test_forest_data.py'`
 - `tests/rendered-html.test.mjs` は旧ビルド(`dist/`)用で、現行サイトの確認には使わない
+
+## 進め方
+- `maintenance/ai-product-dev-guide.md` の 11 工程・5 層(戦略 → 要件 → 構造 → 骨格 → 表層)に沿う。見た目より先に目的と流れを決める
+- `DESIGN.md` では 事実 / 仮説 / 決定 / 実装済み / 検証済み / 未決定 を書き分ける。決めたら日付と理由を残す
+- 報告では「ローカルで確認」「公開(push)」「公開 URL で確認」を分けて書く
 
 ## Conventions
 - **ヘッダー / フッターは各 HTML に直書き**。ナビやフッターを変えたら全ページ(各 index.html 12 ファイル + `docs/404.html`)を同じように直す。ヘッダーナビは対象者別: 山林をお持ちの方 / 林業事業体の方 / 企業・個人の方 / 森林を知る / 私たちについて / 無料相談
