@@ -13,6 +13,8 @@
 
 ## 有効にする手順(1 回だけ)
 
+対象のフォーム: 「山林・里山 初回相談フォーム」(回答用 URL `https://docs.google.com/forms/d/e/1FAIpQLSf-ocdeAe1K4wWujFNSnc8Av1y8yW-3cLAVppjavB2UJwqELg/viewform`。編集は https://forms.google.com の一覧からこの名前で開く)
+
 1. Google フォームに **記述式(短文)** の質問を 1 つ追加する
    - 質問: 「(自動入力)このフォームを開いたページ」
    - 説明: 「入力不要です」/ 必須にしない / フォームの一番最後に置く

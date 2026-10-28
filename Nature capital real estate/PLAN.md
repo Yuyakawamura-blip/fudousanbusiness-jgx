@@ -62,7 +62,7 @@
 - [x] 整理メモのひな形(`maintenance/consultation-memo-template.md`)。送る時期は未決定
 - [x] 公開前チェックリスト(`maintenance/launch-checklist.md`)
 - [ ] Google フォームの新着回答メール通知を有効にする(ユーザー)
-- [ ] 公開待ち(社内手配): 独自ドメイン・専用メールアドレス
+- [ ] 【未決定・上司に確認】独自ドメイン・専用メールアドレス(決まるまで公開しない)
 - [x] 相談の流入元の記録の仕組み(`docs/consult-source.js`、全 13 ページ、ローカル確認)と運用メモ(`maintenance/consult-source.md`)
 - [ ] フォームに「流入元」質問を追加し、`FORM_ENTRY` を設定(ユーザーの作業 → ID をもらって設定)
 - [x] 05 価値検証の計画 → 印・集計表・判定は `maintenance/consult-source.md`。配布地域・期間は未決定
