@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* 手本: 穂垂亭 hotarutei.com(Awwwards Honorable Mention 2023)の実測値を踏襲。
+/* 試作 v4(2026-10-29)。
    基準 --r = clamp(10px, .7142857vw, 12px)(手本の html font-size と同じ)。
    変えたところ: 本文 15.4px → 17px 以上(高齢の読み手のため)。書体は無料の近いものに置き換え。 */
 :root {
@@ -392,12 +392,12 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 28px; }
     <a href="../../../docs/services/satoyama-real-estate/">山林をお持ちの方</a><a href="../../../docs/services/forest-planning-tool/">林業事業体の方</a><a href="../../../docs/partners/">企業・個人の方</a><a href="../../../docs/forest/">森林を知る</a><a href="../../../docs/about/">私たちについて</a>
   </nav>
 </footer>
-<div class="proto">試作 v4(手本: 穂垂亭)</div>
+<div class="proto">試作 v4</div>
 
 <script src="../../../docs/consult-source.js"></script>
 <script src="../../../docs/consult-sheet.js"></script>
 <script>
-// ---- ペン画の地図(手本: 穂垂亭の敷地マップ。点描の地面、ペン画の木、枠付きの地名) ----
+// ---- ペン画の地図 ----
 (function () {
   const svg = document.getElementById('map'), NS = 'http://www.w3.org/2000/svg';
   let seed = 11; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;

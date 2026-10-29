@@ -89,7 +89,7 @@
 - 相談票 → フォームの事前入力: `docs/consult-sheet.js` を新設、`docs/consult-source.js` を押した時点でも流入元を付けるよう変更。試作 v3 に「山のある市町村」の欄を追加。本物のフォームで 3 つの値の表示を確認、既存ページの流入元も確認。未コミット
 - 2c2bfe7d・0082ed17 を push(川村さんの f8e891db も同時に公開)。リポジトリは公開設定のため、ムードボードの他社サイトの記述を中立に変更してから push。公開 URL で consult-source.js の更新と、相談ボタンの流入元(?src=flyer-a)を確認
 - 本番のトップを「手紙 → 相談票」に差し替え(`docs/index.html` の本文、`docs/home-letter.css`・`home-letter.js` を新設、`forest-data/home-link.css` の読み込みを外した)。styles.css の「全要素 Noto Sans JP !important」を本文の中だけ上書き。写真は Wikimedia Commons(`maintenance/photo-credits.md`)。パスワード画面を外した写しで 1440/500 幅と相談票の動作を確認
-- 「まだ AI 感がすごい」→ 受賞サイト 5 つを Chrome で撮影・計測(`maintenance/moodboard/refs/v3/`、社外の画像なのでリポジトリに入れない)、手本を穂垂亭に。寸法・部品・動きを踏襲した試作 v4 → 了承 → 本番: トップ本文と全ページのヘッダー・フッターを差し替え
+- 「まだ AI 感がすごい」→ 受賞サイト 5 つを Chrome で撮影・計測(`maintenance/moodboard/refs/v3/`、社外の画像なのでリポジトリに入れない)、参考を決めて試作 v4 → 了承 → 本番: トップ本文と全ページのヘッダー・フッターを差し替え
 - 計測用スクリプトは scratchpad の inspect.py(Chrome DevTools でスクロール撮影と computed style の取得)。次に使うときは作り直しが必要
 
 次回最初に読むファイル: `DESIGN.md` §6、`PLAN.md`(K)、`docs/home-letter.css`
@@ -98,3 +98,7 @@
 
 次回最初に読むファイル: `DESIGN.md` §6、`PLAN.md`(K)、`docs/page-letter.css`
 - ed7f0a6b を push、デプロイ成功。公開 URL で page-letter.css / .js と各ページの 200、さとやま不動産の表示(PC)を確認
+- 白黒の挿絵・図はカーソルでカラーに戻るように(森林を知る・森林ガイドの最初の画像は本物の画像に置き換え)。間伐の図をペン画で描き直し、カスケード利用の図を作り直し、枠の図に内側の余白
+- 盗作の心配への対応: 参考サイト名を `docs/`・記録から削除(元の記録は gitignore 済みの `maintenance/moodboard/refs/reference-notes.md`)。色・小見出しの印・写真の額縁・入口のボタン・地図・年表の点を事業の実物から来る形に替えた。PC 1440・スマホ 390 で確認、横はみ出しなし。未コミット
+
+次回最初に読むファイル: `DESIGN.md` §6、`PLAN.md`(K)、`docs/page-letter.css`

@@ -1,9 +1,9 @@
-/* トップ以外のページの本文(2026-10-29)。手本: 穂垂亭 hotarutei.com、トップの home-letter.css と同じ寸法・部品。
+/* トップ以外のページの本文(2026-10-29)。トップの home-letter.css と同じ色・部品(DESIGN.md §6)。
    HTML の部品名はページごとに違うので、<main class="lt"> の中だけで見た目を上書きする。
    styles.css の後(forest-data は forest-data.css の後)に読み込む。 */
 .lt {
-  --r: clamp(10px, .7142857vw, 12px);
-  --bg: #f6f8f5; --ink: #1d201f; --gray: #646865; --white: #fff; --hair: #c9ccc8;
+  --r: clamp(10px, .75vw, 12px);
+  --bg: #f4f2eb; --ink: #23211d; --gray: #5b5a52; --white: #fff; --hair: #cfcbbf;
   --en: "Cormorant Garamond", Didot, "Times New Roman", serif;
   --ja: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
   --mincho: "Shippori Mincho", "Hiragino Mincho ProN", serif;
@@ -11,13 +11,14 @@
   --ease: cubic-bezier(.25, .46, .45, .94);
   --sec: calc(var(--r) * 18);
   --side: calc(var(--r) * 16);
-  --line: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 10'%3E%3Cpath d='M0 5h34M28 1c2 2 4 3 8 4M28 9c2-2 4-3 8-4M4 2c2 1 3 2 4 3' fill='none' stroke='black' stroke-width='1'/%3E%3C/svg%3E");
+  --corners: linear-gradient(currentColor, currentColor) left top / 16px 1px no-repeat, linear-gradient(currentColor, currentColor) left top / 1px 16px no-repeat, linear-gradient(currentColor, currentColor) right top / 16px 1px no-repeat, linear-gradient(currentColor, currentColor) right top / 1px 16px no-repeat, linear-gradient(currentColor, currentColor) left bottom / 16px 1px no-repeat, linear-gradient(currentColor, currentColor) left bottom / 1px 16px no-repeat, linear-gradient(currentColor, currentColor) right bottom / 16px 1px no-repeat, linear-gradient(currentColor, currentColor) right bottom / 1px 16px no-repeat;
+  --shu: #a8382a;
   display: block;
   background: var(--bg); color: var(--ink);
   font-size: max(17px, calc(var(--r) * 1.6)); line-height: 2; letter-spacing: .08em;
   font-feature-settings: "palt";
 }
-body:has(main.lt) { background: var(--frame-bg, #f6f8f5); }
+body:has(main.lt) { background: var(--frame-bg, #f4f2eb); }
 /* styles.css の「* { Noto Sans JP !important }」を本文の中だけ上書きする */
 .lt, .lt * { font-family: var(--ja) !important; }
 .lt h1, .lt h2, .lt h3, .lt summary, .lt dt, .lt .label, .lt .eyebrow, .lt .guide-kicker,
@@ -46,7 +47,7 @@ body:has(main.lt) { background: var(--frame-bg, #f6f8f5); }
 .lt small, .lt .small-note, .lt .service-caveat, .lt .concern-caveat, .lt .forest-note, .lt .forest-source-note, .lt .source-line, .lt figcaption {
   font-size: max(14px, calc(var(--r) * 1.3)) !important; line-height: 1.9; letter-spacing: .06em; color: var(--gray);
 }
-/* 小見出し: 穂垂亭の「線 + 小さな明朝」 */
+/* 小見出し: 境界杭の小さな四角 + 小さな明朝 */
 .lt :is(.label, .eyebrow, .guide-kicker) {
   display: flex; align-items: center; gap: calc(var(--r) * 1.6);
   margin: 0 0 calc(var(--r) * 2.4); padding: 0; background: none; border: 0;
@@ -54,8 +55,7 @@ body:has(main.lt) { background: var(--frame-bg, #f6f8f5); }
   text-transform: none; color: inherit !important; opacity: 1;
 }
 .lt :is(.label, .eyebrow, .guide-kicker)::before {
-  content: ""; flex: none; width: calc(var(--r) * 4); height: calc(var(--r) * 1);
-  background: currentColor; -webkit-mask: var(--line) center / contain no-repeat; mask: var(--line) center / contain no-repeat;
+  content: ""; flex: none; width: 9px; height: 9px; border: 1px solid currentColor; box-sizing: border-box;
 }
 .lt b, .lt strong { font-weight: 500; }
 .lt a { color: inherit; }
@@ -76,20 +76,13 @@ body:has(main.lt) { background: var(--frame-bg, #f6f8f5); }
   max-width: 34em; margin: calc(var(--r) * 4) 0 0; font-size: max(17px, calc(var(--r) * 1.7)) !important; line-height: 2.3; letter-spacing: .12em;
 }
 /* 写真は枠付き(手本の .frame) */
-.lt .service-hero figure, .lt .hero > img {
+.lt .service-hero figure, .lt .hero > img, .lt .hero-photo {
   position: relative; inset: auto; order: 1; width: 100%; height: calc(100svh - var(--r) * 22); min-height: 380px; max-height: 760px;
-  margin: calc(var(--r) * 8) calc(var(--side) * -1 + 12px) 0; width: auto; padding: calc(var(--r) * .9); border: 1px solid var(--ink); border-radius: 4px; background: var(--bg); overflow: hidden;
+  margin: calc(var(--r) * 8) calc(var(--side) * -1 + 12px) 0; width: auto; padding: calc(var(--r) * 1.4); border: 0; border-radius: 0; color: var(--ink); background: var(--corners), var(--bg); overflow: hidden;
 }
 .lt .service-hero figure::after, .lt .hero-shade, .lt .hero::after { display: none !important; }
-.lt .service-hero figure img { width: 100%; height: 100%; object-fit: cover; position: static; border-radius: 0; filter: none; }
+.lt :is(.service-hero figure, .hero-photo) img { width: 100%; height: 100%; object-fit: cover; position: static; border-radius: 0; filter: none; }
 .lt .hero > img { object-fit: cover; }
-/* 背景画像だった hero は、同じ画像を枠付きの写真として下に出す */
-.lt :is(.forest-hero, .guide-hero)::after {
-  content: ""; display: block; order: 1; height: calc(100svh - var(--r) * 22); min-height: 380px; max-height: 760px;
-  margin: calc(var(--r) * 8) calc(var(--side) * -1 + 12px) 0; border: 1px solid var(--ink); border-radius: 4px; padding: calc(var(--r) * .9);
-  background: url("assets/forest-living-system.webp") center / cover no-repeat content-box, var(--bg);
-}
-.lt .guide-hero::after { background: url("assets/concept-rice-terrace.webp") center 52% / cover no-repeat content-box, var(--bg); }
 .lt .service-hero-copy .service-hero-button {
   display: inline-flex; position: relative; margin-top: calc(var(--r) * 4); padding: 0 0 calc(var(--r) * .8) !important; border: 0 !important;
   background: none !important; color: var(--ink) !important; font-size: max(17px, calc(var(--r) * 1.6)) !important; letter-spacing: .14em;
@@ -97,7 +90,7 @@ body:has(main.lt) { background: var(--frame-bg, #f6f8f5); }
 .lt .service-hero-copy .service-hero-button::before { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: currentColor; transition: width .7s var(--ease-out); }
 .lt .service-hero-copy .service-hero-button:hover::before { width: 0; left: auto; right: 0; }
 .lt .hero-copy > p:first-child { display: flex; align-items: center; gap: calc(var(--r) * 1.6); margin: 0 0 calc(var(--r) * 2.4); font: 500 max(15px, calc(var(--r) * 1.4)) / 1.6 var(--mincho); letter-spacing: .2em; }
-.lt .hero-copy > p:first-child::before { content: ""; flex: none; width: calc(var(--r) * 4); height: calc(var(--r) * 1); background: currentColor; -webkit-mask: var(--line) center / contain no-repeat; mask: var(--line) center / contain no-repeat; }
+.lt .hero-copy > p:first-child::before { content: ""; flex: none; width: 9px; height: 9px; border: 1px solid currentColor; box-sizing: border-box; }
 /* ページ内メニュー: 下線だけの文字の並び */
 .lt :is(.forest-anchor-nav, .guide-index, .sustainable-toc, .concern-jump) {
   position: static; display: flex; flex-wrap: wrap; gap: calc(var(--r) * 1) calc(var(--r) * 4);
@@ -119,7 +112,7 @@ body:has(main.lt) { background: var(--frame-bg, #f6f8f5); }
 
 /* ---- 写真・図: 枠付き ---- */
 .lt :is(figure.why-image, .forest-visual, .guide-asset, .forest-area-map-card) {
-  margin: calc(var(--r) * 6) 0 0; padding: calc(var(--r) * .9); border: 1px solid var(--ink); border-radius: 3px; background: var(--bg) !important; box-shadow: none; overflow: hidden;
+  margin: calc(var(--r) * 6) 0 0; padding: calc(var(--r) * 1.4); border: 0; border-radius: 0; color: var(--ink); background: var(--corners), var(--bg) !important; box-shadow: none; overflow: hidden;
 }
 .lt :is(.why-image, .forest-visual, .guide-asset) img { display: block; width: 100%; height: auto; border-radius: 0; box-shadow: none; }
 .lt img { border-radius: 0; }
@@ -160,7 +153,7 @@ body:has(main.lt) { background: var(--frame-bg, #f6f8f5); }
 .lt :is(.service-card-grid, .connection-grid, .function-grid, .future-grid, .instrument-grid, .value-grid, .usage-grid, .quality-pillars, .guide-scale-grid, .cycle-list, .risk-grid) h3 { margin: 0 0 calc(var(--r) * 1.2); }
 .lt :is(.service-card-grid, .owner-entry-list, .reference-grid, .concern-items) > a { text-decoration: none; transition: opacity .5s var(--ease); }
 .lt :is(.service-card-grid, .owner-entry-list, .reference-grid, .concern-items) > a:hover { opacity: .6; }
-.lt :is(.service-card-grid, .function-grid, .future-grid) img { border: 1px solid var(--ink); padding: calc(var(--r) * .6); background: var(--bg); }
+.lt :is(.service-card-grid, .function-grid, .future-grid) img { border: 0; padding: calc(var(--r) * .9); color: var(--ink); background: var(--corners), var(--bg); }
 .lt :is(.partner-status, .fee) {
   display: inline-block; padding: 2px 10px; border: 1px solid currentColor !important; border-radius: 0 !important; background: none !important; color: var(--ink) !important;
   font-size: max(13px, calc(var(--r) * 1.2)) !important; letter-spacing: .12em;
@@ -240,8 +233,9 @@ body:has(main.lt) { background: var(--frame-bg, #f6f8f5); }
 .lt :is(.cta, .forest-cta) .label { justify-content: center; }
 .lt :is(.cta, .forest-cta) > p:not(.label):not(.contact-note) { max-width: 34em; margin: calc(var(--r) * 3) auto 0; }
 .lt .cta .contact-button {
-  width: calc(var(--r) * 22); min-width: 200px; aspect-ratio: 1; margin: calc(var(--r) * 6) auto 0; padding: 0 !important;
-  border-radius: 50% !important; background: transparent !important; color: var(--ink) !important; font-size: max(16px, calc(var(--r) * 1.5)) !important;
+  width: calc(var(--r) * 32); max-width: 100%; margin: calc(var(--r) * 6) auto 0; padding: calc(var(--r) * 2.6) calc(var(--r) * 1.6) !important;
+  justify-content: space-between; border: 0 !important; border-top: 1px solid var(--ink) !important; border-bottom: 1px solid var(--ink) !important; border-radius: 0 !important;
+  background: transparent !important; color: var(--ink) !important; font-size: max(16px, calc(var(--r) * 1.5)) !important;
 }
 .lt .cta .contact-button:hover { background: var(--ink) !important; color: var(--bg) !important; }
 .lt .cta .contact-button[target="_blank"]::after { position: static; transform: none; margin-left: 4px; }
@@ -265,7 +259,7 @@ body:has(main.lt) { background: var(--frame-bg, #f6f8f5); }
   .lt h1, .lt :is(.service-hero, .hero, .forest-hero, .guide-hero, .sustainable-hero) h1 { font-size: clamp(32px, 9vw, 42px); letter-spacing: .1em; }
   .lt h2 { font-size: 26px; letter-spacing: .1em; }
   .lt :is(.service-hero, .hero, .forest-hero, .guide-hero, .sustainable-hero) { padding-top: 64px !important; }
-  .lt .service-hero figure, .lt .hero > img, .lt :is(.forest-hero, .guide-hero)::after { margin-inline: -8px; height: 56svh; min-height: 300px; margin-top: 48px; }
+  .lt .service-hero figure, .lt .hero > img, .lt .hero-photo { margin-inline: -8px; height: 56svh; min-height: 300px; margin-top: 48px; }
   .lt :is(.service-intro, .two-column, .owner-entry, .concerns, .service-lines, .flow-fees, .faq, .tool-flow) { grid-template-columns: 1fr; gap: 24px; }
   .lt :is(.concerns, .service-lines, .flow-fees, .faq) > *, .lt .faq > details:first-of-type, .lt .faq > h2 { grid-column: 1 !important; grid-row: auto !important; }
   .lt .faq > details:first-of-type { margin-top: 24px; }
@@ -273,7 +267,7 @@ body:has(main.lt) { background: var(--frame-bg, #f6f8f5); }
   .lt :is(.principles, .promise) > div { grid-template-columns: 1fr; }
   .lt .service-line-list article { grid-template-columns: 44px 1fr; }
   .lt .company-table > div { grid-template-columns: 1fr; gap: 2px; }
-  .lt .cta .contact-button { width: 200px; }
+  .lt .cta .contact-button { width: 100%; }
 }
 
 /* ---- 森林ガイドの図: 色の板をやめ、枠と墨 1 色に。挿絵も墨 1 色にして、手本のペン画の地図と揃える ---- */
@@ -282,16 +276,14 @@ body:has(main.lt) { background: var(--frame-bg, #f6f8f5); }
   background: var(--bg) !important; border: 1px solid var(--ink) !important; border-radius: 3px !important; box-shadow: none !important; color: var(--ink) !important;
 }
 .lt :is(.succession-panel, .water-system, .thinning-explainer, .conservation-note) :is(h2, h3, p, li, span, strong) { color: var(--ink) !important; }
-.lt :is(.management-timeline ol, .cascade-use, .satoyama-transect, .conservation-layers, .water-diagram, .thinning-compare, .wood-disc, .community-cycles) { filter: grayscale(1) contrast(1.05); }
+.lt :is(.management-timeline ol, .satoyama-transect, .conservation-layers, .water-diagram, .thinning-compare, .wood-disc, .community-cycles) { filter: grayscale(1) contrast(1.05); }
 .lt :is(.guide-asset, .forest-visual) img { filter: grayscale(1) contrast(1.06) brightness(1.03); }
 .lt .concern-group-title { color: var(--ink) !important; border-color: var(--ink) !important; }
 .lt .concern-group-title * , .lt .concern-jump a * { color: var(--ink) !important; }
 .lt .guide-conservation :is(.guide-section-heading, .risk-grid, .conservation-layers, .conservation-note) :is(p, h2, h3, span, strong, li) { color: var(--ink) !important; }
 .lt .work-figure { border: 0 !important; border-radius: 3px !important; }
-/* forest・guide の最初の画像は合成の挿絵なので、ほかの挿絵と同じく墨 1 色にする */
-.lt :is(.forest-hero, .guide-hero)::after { filter: grayscale(1) contrast(1.06) brightness(1.03); }
 .lt :is(.service-hero, .hero, .forest-hero, .guide-hero, .sustainable-hero) h1 { max-width: none; }
-.lt :is(.tool-hero figure, .why-image) img { filter: grayscale(1) contrast(1.06) brightness(1.03); }
+.lt :is(.tool-hero figure, .why-image, .hero-photo) img { filter: grayscale(1) contrast(1.06) brightness(1.03); }
 .lt .data-intro .back-link { display: inline-block; background: transparent !important; color: var(--ink) !important; padding: 0 0 calc(var(--r) * .6) !important; border: 0 !important; border-bottom: 1px solid var(--ink) !important; font-size: max(15px, calc(var(--r) * 1.4)) !important; letter-spacing: .14em; }
 .lt .value-callout { background: var(--gray) !important; color: var(--white) !important; border: 0 !important; border-radius: 3px !important; }
 .lt .value-callout * { color: var(--white) !important; }
@@ -307,3 +299,55 @@ body:has(main.lt) { background: var(--frame-bg, #f6f8f5); }
 .sustainable-en .lt :is(h1, h2, h3, .label, summary, .sustainable-hero-meta strong) { font-family: var(--en) !important; font-weight: 500; letter-spacing: .04em; }
 .sustainable-en .lt h1 { font-size: calc(var(--r) * 5.8); line-height: 1.25; }
 .sustainable-en .lt h2 { font-size: max(28px, calc(var(--r) * 3.8)); line-height: 1.35; }
+.lt .guide-hero .hero-photo img { object-position: center 52%; }
+
+/* ---- 白黒にした元の挿絵・図は、カーソルを合わせるとカラーに戻る(2026-10-29) ---- */
+.lt :is(.challenge-figure, .baseline-chart, .policy-statement, .work-foundation, .management-timeline ol, .satoyama-transect,
+  .conservation-layers, .water-diagram, .wood-disc, .community-cycles, .guide-asset img, .forest-visual img,
+  .tool-hero figure img, .why-image img, .hero-photo img) { transition: filter .8s var(--ease); }
+@media (hover: hover) {
+  .lt :is(.challenge-figure, .baseline-chart, .policy-statement, .work-foundation, .management-timeline ol, .satoyama-transect,
+    .conservation-layers, .water-diagram, .wood-disc, .community-cycles):hover,
+  .lt :is(.guide-asset, .forest-visual, .tool-hero figure, .why-image, .hero-photo):hover img { filter: none; }
+}
+
+/* ---- 枠付きの図の内側の余白 ---- */
+.lt :is(.succession-panel, .water-system, .thinning-explainer, .conservation-note, .cascade-use, .community-cycles, .wood-anatomy, .forest-type-compare, .guide-two-column > article) {
+  padding: calc(var(--r) * 5) calc(var(--r) * 6) !important;
+}
+
+/* ---- 間伐: ペン画の図(トップの地図と同じ描き方) ---- */
+.lt .thinning-pen { margin: 0; }
+.lt .thinning-pen svg { display: block; width: 100%; height: auto; }
+.lt .thinning-pen .tag rect { fill: var(--bg); stroke: var(--ink); stroke-width: 1; }
+.lt .thinning-pen text { font-family: var(--mincho) !important; font-size: 16px; letter-spacing: .12em; fill: var(--ink); }
+.lt .thinning-pen text.note { font-family: var(--ja) !important; font-size: 14px; fill: var(--gray); letter-spacing: .08em; }
+
+/* ---- カスケード利用: 縦の線と点。点が小さくなるほど、後の使い方 ---- */
+.lt .cascade-use { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: calc(var(--r) * 8); align-items: center; }
+.lt .cascade-use ol { position: relative; display: block; margin: 0; padding: 0 0 0 calc(var(--r) * 5); list-style: none; background: none; border: 0; }
+.lt .cascade-use ol::before { content: "価値の高い使い方から順に"; display: block; margin: 0 0 calc(var(--r) * 1.2) calc(var(--r) * -5); font-size: max(14px, calc(var(--r) * 1.3)); color: var(--gray); letter-spacing: .12em; }
+.lt .cascade-use ol::after { content: ""; position: absolute; left: calc(var(--r) * 1.4); top: calc(var(--r) * 6.6); bottom: calc(var(--r) * 4.2); width: 1px; background: var(--ink); }
+.lt .cascade-use li {
+  position: relative; display: grid; grid-template-columns: calc(var(--r) * 4.4) 1fr; align-items: baseline; gap: 0 calc(var(--r) * 1.2);
+  width: auto; min-height: 0; margin: 0; padding: calc(var(--r) * 2) 0; border: 0; border-bottom: 1px solid var(--hair);
+  background: none !important; color: var(--ink) !important; transform: none;
+}
+.lt .cascade-use li:first-child { border-top: 1px solid var(--ink); }
+.lt .cascade-use li::after { display: none !important; }
+.lt .cascade-use li::before {
+  content: ""; position: absolute; left: calc(var(--r) * -3.6); top: calc(var(--r) * 3.4); width: var(--d); height: var(--d);
+  transform: translate(-50%, -50%); border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 4px var(--bg);
+}
+.lt .cascade-use li:nth-child(1) { --d: 18px; }
+.lt .cascade-use li:nth-child(2) { --d: 13px; }
+.lt .cascade-use li:nth-child(3) { --d: 9px; }
+.lt .cascade-use li:nth-child(4) { --d: 6px; }
+.lt .cascade-use li span { grid-row: span 2; font-family: var(--en) !important; font-size: max(22px, calc(var(--r) * 2.4)); line-height: 1; color: var(--ink) !important; }
+.lt .cascade-use li b { font-family: var(--mincho) !important; font-weight: 500; font-size: max(19px, calc(var(--r) * 1.9)); letter-spacing: .14em; line-height: 1.5; color: var(--ink) !important; }
+.lt .cascade-use li small { display: block; margin: 0; font-size: max(15px, calc(var(--r) * 1.45)) !important; color: var(--gray) !important; letter-spacing: .1em; line-height: 1.7; }
+@media (max-width: 900px) {
+  .lt .cascade-use, .lt .thinning-explainer { grid-template-columns: 1fr; gap: 32px; }
+  .lt :is(.succession-panel, .water-system, .thinning-explainer, .conservation-note, .cascade-use, .community-cycles, .wood-anatomy, .forest-type-compare, .guide-two-column > article) { padding: 28px 20px !important; }
+}
+.lt .forest-future .forest-visual { background: var(--corners) !important; }

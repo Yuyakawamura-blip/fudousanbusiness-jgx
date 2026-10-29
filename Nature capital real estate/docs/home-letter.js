@@ -1,33 +1,38 @@
 // トップの本文(2026-10-29、試作 v4 を本番化): ペン画の地図・相談票・入場の動き。
 // 相談票の印は、申し込みの用紙で送信するまでどこにも送られない(consult-sheet.js)。
 document.addEventListener('DOMContentLoaded', () => {
-// ---- ペン画の地図(手本: 穂垂亭の敷地マップ。点描の地面、ペン画の木、枠付きの地名) ----
+// ---- ペン画の地図(等高線の地面、ペン画の木、公図のような注記) ----
 (function () {
   const svg = document.getElementById('map'), NS = 'http://www.w3.org/2000/svg';
   let seed = 11; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
   const el = (n, a, p = svg) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
-  // 点描の地面
-  const defs = el('defs', {});
-  const pat = el('pattern', { id: 'stip', width: 46, height: 46, patternUnits: 'userSpaceOnUse' }, defs);
-  for (let i = 0; i < 26; i++) el('circle', { cx: (rnd() * 46).toFixed(1), cy: (rnd() * 46).toFixed(1), r: (.5 + rnd() * .5).toFixed(2), fill: '#1d201f' }, pat);
-  el('rect', { x: 0, y: 0, width: 1100, height: 620, fill: 'url(#stip)' });
+  // 等高線の地面(5 本ごとに太い計曲線)
+  const cg = el('g', { fill: 'none', stroke: '#23211d', opacity: .5 });
+  [[470, 250, 10], [990, 100, 6], [80, 580, 5]].forEach(([cx, cy, n]) => {
+    for (let k = 1; k <= n; k++) {
+      const pts = [];
+      for (let a = 0; a < 72; a++) { const t = a / 72 * Math.PI * 2, r = k * 44 * (1 + .14 * Math.sin(3 * t + k * .7) + .07 * Math.sin(5 * t + cx));
+        pts.push(`${(cx + Math.cos(t) * r * 1.4).toFixed(1)} ${(cy + Math.sin(t) * r).toFixed(1)}`); }
+      el('path', { d: 'M' + pts.join(' L') + ' Z', 'stroke-width': k % 5 ? .6 : 1.2 }, cg);
+    }
+  });
   // 林道(白く抜く 2 本線)
   const road = 'M -20 470 C 180 420, 300 520, 470 470 S 760 330, 900 360 S 1060 430, 1130 400';
-  el('path', { d: road, fill: 'none', stroke: '#f6f8f5', 'stroke-width': 34 });
-  el('path', { d: road, fill: 'none', stroke: '#1d201f', 'stroke-width': 36, 'stroke-opacity': 1, 'stroke-dasharray': 'none', style: 'mix-blend-mode:normal', opacity: 0 });
-  const edge = (dy) => el('path', { d: road, fill: 'none', stroke: '#1d201f', 'stroke-width': 1, transform: `translate(0 ${dy})` });
+  el('path', { d: road, fill: 'none', stroke: '#f4f2eb', 'stroke-width': 34 });
+  el('path', { d: road, fill: 'none', stroke: '#23211d', 'stroke-width': 36, 'stroke-opacity': 1, 'stroke-dasharray': 'none', style: 'mix-blend-mode:normal', opacity: 0 });
+  const edge = (dy) => el('path', { d: road, fill: 'none', stroke: '#23211d', 'stroke-width': 1, transform: `translate(0 ${dy})` });
   edge(-17); edge(17);
   // 沢(点線)
-  el('path', { d: 'M 640 0 C 620 90, 690 160, 650 250 S 600 360, 640 420', fill: 'none', stroke: '#1d201f', 'stroke-width': 1, 'stroke-dasharray': '2 6' });
+  el('path', { d: 'M 640 0 C 620 90, 690 160, 650 250 S 600 360, 640 420', fill: 'none', stroke: '#23211d', 'stroke-width': 1, 'stroke-dasharray': '2 6' });
   // 境界(区画)
   const lot = 'M 330 90 L 600 70 L 640 250 L 610 400 L 360 420 L 300 260 Z';
-  el('path', { d: lot, fill: '#f6f8f5', 'fill-opacity': .55, stroke: '#1d201f', 'stroke-width': 2 });
-  el('path', { d: 'M 600 70 L 860 110 L 880 300 L 640 250', fill: 'none', stroke: '#1d201f', 'stroke-width': 1, 'stroke-dasharray': '7 5' });
-  el('path', { d: 'M 330 90 L 120 130 L 90 330 L 300 260', fill: 'none', stroke: '#1d201f', 'stroke-width': 1, 'stroke-dasharray': '7 5' });
+  el('path', { d: lot, fill: '#f4f2eb', 'fill-opacity': .6, stroke: '#a8382a', 'stroke-width': 2.2 });
+  el('path', { d: 'M 600 70 L 860 110 L 880 300 L 640 250', fill: 'none', stroke: '#23211d', 'stroke-width': 1, 'stroke-dasharray': '7 5' });
+  el('path', { d: 'M 330 90 L 120 130 L 90 330 L 300 260', fill: 'none', stroke: '#23211d', 'stroke-width': 1, 'stroke-dasharray': '7 5' });
   // 境界杭
-  [[330, 90], [600, 70], [640, 250], [610, 400], [360, 420], [300, 260]].forEach(([x, y]) => { el('rect', { x: x - 4, y: y - 4, width: 8, height: 8, fill: '#f6f8f5', stroke: '#1d201f', 'stroke-width': 1 }); });
+  [[330, 90], [600, 70], [640, 250], [610, 400], [360, 420], [300, 260]].forEach(([x, y]) => { el('rect', { x: x - 4, y: y - 4, width: 8, height: 8, fill: '#f4f2eb', stroke: '#23211d', 'stroke-width': 1 }); });
   // ペン画の杉
-  const tree = (x, y, s) => { const g = el('g', { transform: `translate(${x} ${y}) scale(${s})`, stroke: '#1d201f', 'stroke-width': 1.1, fill: 'none', 'stroke-linecap': 'round' });
+  const tree = (x, y, s) => { const g = el('g', { transform: `translate(${x} ${y}) scale(${s})`, stroke: '#23211d', 'stroke-width': 1.1, fill: 'none', 'stroke-linecap': 'round' });
     el('path', { d: 'M0 -62 V6' }, g);
     for (let i = 0; i < 13; i++) { const yy = -56 + i * 4.6, w = 3 + i * 1.25; el('path', { d: `M0 ${yy} l${-w} ${3 + i * .15} M0 ${yy} l${w} ${3 + i * .15}` }, g); } };
   const inside = (x, y) => x > 290 && x < 650 && y > 60 && y < 430;
@@ -37,11 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (onRoad(x, y)) continue; if (pts.some(p => Math.hypot(p[0] - x, p[1] - y) < 62)) continue; pts.push([x, y]); }
   pts.sort((a, b) => a[1] - b[1]).forEach(([x, y]) => tree(x, y, inside(x, y) ? .95 : .8 + rnd() * .25));
   // 枠付きの地名
-  const tag = (x, y, main, sub) => { const g = el('g', { class: 'tag' });
+  const tag = (x, y, main, sub, cls = '') => { const g = el('g', { class: ('tag ' + cls).trim() });
     const t = el('text', { x: x + 10, y: y + 21, 'font-size': 17 }, g); t.textContent = main;
     if (sub) { const s = el('tspan', { 'font-size': 12, dx: 4 }, t); s.textContent = sub; }
     const w = t.getComputedTextLength ? t.getComputedTextLength() : main.length * 18; const r = el('rect', { x, y, width: w + 20, height: 30 }, g); g.insertBefore(r, t); };
-  tag(390, 205, '1206-2', '(ご相談の山)');
+  tag(390, 205, '1206-2', '(ご相談の山)', 'mine');
   tag(700, 160, '隣の山', '(所有者は別)');
   tag(110, 200, '隣の山', '');
   tag(820, 395, '林道', '(車で入れる所まで)');

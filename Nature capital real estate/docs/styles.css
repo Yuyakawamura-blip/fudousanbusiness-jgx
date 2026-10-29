@@ -4230,12 +4230,12 @@ footer a {
 }
 
 /* ===== 共通ヘッダー・フッター(2026-10-29) =====
-   手本: 穂垂亭 hotarutei.com(maintenance/ 以下と DESIGN.md §6)。HTML は各ページのまま、見た目だけ上書きする。
+   トップの本文と同じ色・書体(DESIGN.md §6)。HTML は各ページのまま、見た目だけ上書きする。
    :root を付けて、上の body > header.site-header などより優先させる。 */
 :root {
-  --frame-bg: #f6f8f5;
-  --frame-ink: #1d201f;
-  --frame-gray: #646865;
+  --frame-bg: #f4f2eb;
+  --frame-ink: #23211d;
+  --frame-gray: #5b5a52;
   --frame-ja: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
   --frame-en: "Cormorant Garamond", Didot, "Times New Roman", serif;
 }
@@ -4256,7 +4256,7 @@ footer a {
   gap: 28px;
   height: 80px;
   padding: 0 30px;
-  background: rgba(246, 248, 245, 0.94);
+  background: rgba(244, 242, 235, 0.94);
   backdrop-filter: blur(6px);
   border: 0;
   box-shadow: none;
@@ -4429,7 +4429,7 @@ footer a {
   :root body > header.nav-open .site-nav .nav {
     padding: 14px 0;
     font-size: 17px;
-    border-bottom: 1px solid #d5d8d4;
+    border-bottom: 1px solid #dcd8cc;
     text-decoration: none;
   }
   :root body > header.nav-open .site-nav .nav-contact {
