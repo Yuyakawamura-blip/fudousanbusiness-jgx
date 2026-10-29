@@ -19,7 +19,7 @@
 ## 構成
 | パス | 内容 |
 | --- | --- |
-| `docs/index.html` + `docs/home.css` | トップ |
+| `docs/index.html` + `docs/home.css` + `docs/home-letter.css` / `home-letter.js` | トップ(本文は「手紙 → 相談票」。`home-letter.*` は本文だけに効く) |
 | `docs/about/` `docs/concerns/` `docs/services/` | 私たちについて / お悩みから探す / サービス一覧 |
 | `docs/services/satoyama-real-estate/` | 山林所有者向けサービス |
 | `docs/services/forest-planning-tool/` | 林業事業体向けツール |
@@ -29,6 +29,7 @@
 | `docs/styles.css` | 全ページ共通 CSS |
 | `docs/nav.js` | スマホ幅(720px 以下)のメニューボタンを全ページのヘッダーに追加する |
 | `docs/consult-source.js` | 相談フォームへのリンクに流入元(`?src=`)と押したページを事前入力する。`FORM_ENTRY` が空なら何もしない(`maintenance/consult-source.md`) |
+| `docs/consult-sheet.js` | 相談票の印を相談フォームの「ご相談の内容」「山林の所在地」に事前入力する(`maintenance/consult-source.md`) |
 | `docs/auth.js` | 全ページのパスワードゲート(クライアント側のみ。本当の保護ではない) |
 | `docs/404.html` | 存在しない URL 用。GitHub Pages はどの階層でもこのファイルを返すので `<base href="/fudousanbusiness-jgx/">` でリンクの基準を固定している |
 | `archive/` | 公開対象外の旧ページ |
