@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>森林・里山の相続と管理のご相談 | ネイチャーキャピタル・リアルエステイト(試作 v4)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* 手本: 穂垂亭 hotarutei.com(Awwwards Honorable Mention 2023)の実測値を踏襲。
+   基準 --r = clamp(10px, .7142857vw, 12px)(手本の html font-size と同じ)。
+   変えたところ: 本文 15.4px → 17px 以上(高齢の読み手のため)。書体は無料の近いものに置き換え。 */
+:root {
+  --r: clamp(10px, .7142857vw, 12px);
+  --bg: #f6f8f5; --ink: #1d201f; --gray: #646865; --white: #fff;
+  --en: "Cormorant Garamond", Didot, "Times New Roman", serif;
+  --ja: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+  --mincho: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+  --ease-out: cubic-bezier(.165, .84, .44, 1);
+  --ease: cubic-bezier(.25, .46, .45, .94);
+  --sec: calc(var(--r) * 20);
+  --side: calc(var(--r) * 16);
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--ja); font-size: max(17px, calc(var(--r) * 1.6)); line-height: 2; -webkit-font-smoothing: antialiased; font-feature-settings: "palt"; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.sp { display: none; }
+.skip { position: absolute; left: -999px; } .skip:focus { left: 12px; top: 12px; background: var(--white); padding: 6px 10px; z-index: 50; }
+
+/* ---------- 共通部品 ---------- */
+/* 額縁: 1px の線 + 内側の余白(手本 .c-frame / 写真の枠) */
+.frame { border: 1px solid var(--ink); border-radius: 3px; padding: calc(var(--r) * .9); background: var(--bg); }
+.frame img { width: 100%; height: 100%; object-fit: cover; }
+.dark .frame { border-color: var(--white); background: var(--gray); }
+/* 大見出し(英字の細い明朝)+ 矢印の線 + 小さな明朝(手本 .c-head--2 + .c-head__sub) */
+.head-en { font: 400 calc(var(--r) * 6.2) / 1.35 var(--mincho); letter-spacing: .14em; margin: 0; font-feature-settings: "palt"; }
+.head-sub { display: flex; align-items: center; gap: calc(var(--r) * 1.8); margin: calc(var(--r) * 1.4) 0 0; font: 500 max(15px, calc(var(--r) * 1.4)) / 1.6 var(--mincho); letter-spacing: .2em; }
+.head-sub svg { width: calc(var(--r) * 4); flex: none; }
+/* 本文(手本 .s-overview__text: 1.5rem / 2.4 / .15em、1 文ごとに改行) */
+.lines { margin: calc(var(--r) * 5) 0 0; line-height: 2.3; letter-spacing: .12em; }
+.lines span { display: block; }
+/* View Detail 型のリンク(手本 .c-btn: 下線が右へ縮む 0.7s) */
+.more { display: inline-flex; align-items: center; gap: calc(var(--r) * 1.8); position: relative; padding: 0 0 calc(var(--r) * 1); margin-top: calc(var(--r) * 5); font: 500 max(17px, calc(var(--r) * 1.6)) / 1.3 var(--en); letter-spacing: .04em; }
+.more.ja { font: 500 max(16px, calc(var(--r) * 1.5)) / 1.3 var(--ja); letter-spacing: .12em; }
+.more::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: currentColor; transition: width .7s var(--ease-out); }
+.more:hover::after { width: 0; left: auto; right: 0; }
+.more svg { width: calc(var(--r) * 2.2); }
+
+/* ---------- ヘッダー(手本: 左にロゴと英字 2 行と明朝の一文、右に枠付きボタン 2 つと MENU) ---------- */
+.header { position: sticky; top: 0; z-index: 20; display: grid; grid-template-columns: auto auto 1fr auto auto; align-items: center; gap: calc(var(--r) * 4); height: calc(var(--r) * 8); padding: 0 calc(var(--r) * 3); background: rgba(246, 248, 245, .92); backdrop-filter: blur(6px); }
+.logo { display: flex; align-items: center; gap: calc(var(--r) * 1.2); }
+.logo svg { width: calc(var(--r) * 4.2); height: auto; }
+.logo b { font: 500 max(14px, calc(var(--r) * 1.5)) / 1.3 var(--ja); letter-spacing: .14em; }
+.logo small { display: block; font: 400 calc(var(--r) * .95) / 1.2 var(--en); letter-spacing: .18em; text-transform: uppercase; }
+.header .en2 { font: 500 max(12px, calc(var(--r) * 1.1)) / 1.25 var(--en); }
+.header .copy { font: 500 max(14px, calc(var(--r) * 1.5)) / 1 var(--mincho); letter-spacing: .2em; }
+.fbtn { display: inline-flex; align-items: center; gap: calc(var(--r) * .9); border: 1px solid var(--ink); padding: calc(var(--r) * .55) calc(var(--r) * 1); background: var(--white); font: 500 max(15px, calc(var(--r) * 1.44)) / 1 var(--ja); letter-spacing: .15em; transition: background .5s cubic-bezier(.215, .61, .355, 1), color .5s cubic-bezier(.215, .61, .355, 1); }
+.fbtn:hover { background: var(--ink); color: var(--bg); }
+.fbtn svg { width: 1em; height: 1em; }
+.btns { display: flex; gap: calc(var(--r) * 2); }
+
+/* ---------- 1 最初の画面(額縁の写真 + 下に並ぶナビ) ---------- */
+.visual { padding: 0 calc(var(--r) * .1); }
+.visual .frame { height: calc(100svh - var(--r) * 16); min-height: 420px; border-radius: 4px; }
+.visual-under { display: flex; justify-content: flex-end; align-items: center; gap: calc(var(--r) * 3.2); height: calc(var(--r) * 8); padding: 0 calc(var(--r) * 3); font-size: max(15px, calc(var(--r) * 1.44)); letter-spacing: .15em; }
+.visual-under a:hover { text-decoration: underline; text-underline-offset: 6px; }
+.visual-under .cap { margin-right: auto; font-size: max(12px, calc(var(--r) * 1.05)); letter-spacing: .05em; color: var(--gray); }
+.visual-under .cap a { text-decoration: underline; }
+
+/* ---------- 2 ご相談について(手本 Overview) ---------- */
+.overview { padding: var(--sec) 0 0; }
+.overview .inner { padding: 0 var(--side); }
+.overview .row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr); gap: calc(var(--r) * 6); align-items: end; margin-top: calc(var(--r) * 6); }
+.overview .doc { margin-right: calc(var(--side) * -.4); }
+.overview .doc figcaption { margin-top: calc(var(--r) * 1.2); font-size: max(13px, calc(var(--r) * 1.2)); letter-spacing: .1em; color: var(--gray); }
+/* 写真の帯(手本: 左端からはみ出す額縁に 4 枚) */
+.strip { display: grid; grid-template-columns: 1.3fr 2fr 3.2fr 1fr; gap: 0; height: calc(var(--r) * 31); margin: var(--sec) var(--side) 0 calc(var(--r) * -1); padding: calc(var(--r) * .9); border: 1px solid var(--ink); border-left: 0; border-radius: 0 3px 3px 0; }
+.strip img { width: 100%; height: 100%; object-fit: cover; border-right: 1px solid var(--bg); }
+.strip-cap { margin: calc(var(--r) * 1.2) var(--side) 0 0; text-align: right; font-size: max(12px, calc(var(--r) * 1.05)); color: var(--gray); letter-spacing: .05em; }
+
+/* ---------- 3 ある山の記録(年表 + ペン画の地図) ---------- */
+.record { padding: var(--sec) 0 0; }
+.record .inner { padding: 0 var(--side); }
+.timeline { position: relative; margin: calc(var(--r) * 8) 0 0; height: calc(var(--r) * 14); }
+.timeline::before { content: ""; position: absolute; left: 0; right: 0; top: calc(var(--r) * 5); height: 1px; background: var(--ink); transform-origin: left; transition: transform 1.6s var(--ease-out); }
+.timeline .ev { position: absolute; top: 0; transform: translateX(-50%); text-align: center; width: calc(var(--r) * 16); }
+.timeline .tick { display: block; width: 1px; height: calc(var(--r) * 3.6); margin: 0 auto; background-image: linear-gradient(var(--ink) 50%, transparent 0); background-size: 1px 4px; }
+.timeline .dot { display: block; width: calc(var(--r) * 2); height: calc(var(--r) * 2); margin: -1px auto 0; border: 1px solid var(--ink); border-radius: 50%; background: var(--bg); }
+.timeline .ev.key .dot { box-shadow: inset 0 0 0 3px var(--bg), inset 0 0 0 4px var(--ink); }
+.timeline .y { display: block; margin-top: calc(var(--r) * 1); font: 500 max(15px, calc(var(--r) * 1.44)) / 1 var(--ja); letter-spacing: .1em; }
+.timeline .t { display: block; margin-top: calc(var(--r) * .8); font: 500 max(14px, calc(var(--r) * 1.3)) / 1.6 var(--mincho); letter-spacing: .1em; }
+.note { margin: calc(var(--r) * 2) 0 0; font-size: max(13px, calc(var(--r) * 1.2)); color: var(--gray); letter-spacing: .08em; }
+.illust { margin: calc(var(--r) * 8) 0 0; }
+.illust svg { width: 100%; height: auto; display: block; }
+.illust .tag rect { fill: var(--bg); stroke: var(--ink); stroke-width: 1; }
+.illust .tag text { font-family: var(--mincho); font-weight: 500; fill: var(--ink); letter-spacing: .08em; }
+
+/* ---------- 4 考え方(手本: 灰緑の帯 + 斜めの細い線) ---------- */
+.dark { background: var(--gray); color: var(--white); }
+.stance { margin-top: var(--sec); padding: 0 0 var(--sec); }
+.stance .photo { margin-left: calc(var(--r) * 45); height: calc(var(--r) * 40); transform: translateY(calc(var(--r) * -10)); border-right: 0; border-radius: 3px 0 0 3px; }
+.stance .row { display: grid; grid-template-columns: calc(var(--r) * 45) 1fr; }
+.stance .slash { position: relative; }
+.stance .slash::before { content: ""; position: absolute; left: 40%; top: 0; width: 1px; height: calc(var(--r) * 32); background: var(--white); transform: rotate(45deg); transform-origin: top; }
+.stance .lead { font: 300 max(18px, calc(var(--r) * 1.65)) / 2 var(--ja); letter-spacing: .2em; margin: 0; }
+
+/* ---------- 5 相談票 ---------- */
+.check { padding: var(--sec) var(--side) 0; }
+.check .grid { display: grid; grid-template-columns: minmax(0, 1fr) calc(var(--r) * 36); gap: calc(var(--r) * 5); align-items: start; margin-top: calc(var(--r) * 6); }
+.sheet { border: 1px solid var(--ink); border-radius: 3px; padding: calc(var(--r) * .9); }
+.sheet-in { border: 1px solid var(--ink); background: var(--white); }
+.sheet-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; padding: calc(var(--r) * 2) calc(var(--r) * 3); border-bottom: 1px solid var(--ink); }
+.sheet-head b { font: 500 max(18px, calc(var(--r) * 1.8)) / 1.4 var(--mincho); letter-spacing: .2em; }
+.sheet-head span { font-size: max(14px, calc(var(--r) * 1.3)); letter-spacing: .1em; color: var(--gray); font-variant-numeric: tabular-nums; }
+.sheet fieldset { border: 0; border-bottom: 1px solid #d5d8d4; margin: 0; padding: calc(var(--r) * 2.4) calc(var(--r) * 3); }
+.sheet fieldset:last-child { border-bottom: 0; }
+.sheet legend { float: left; width: 100%; padding: 0; margin: 0 0 calc(var(--r) * 1); font: 500 max(17px, calc(var(--r) * 1.6)) / 1.6 var(--mincho); letter-spacing: .15em; }
+.sheet legend small { font: 400 max(13px, calc(var(--r) * 1.2)) var(--ja); color: var(--gray); margin-left: 12px; letter-spacing: .1em; }
+.opts { clear: both; display: grid; grid-template-columns: repeat(auto-fit, minmax(17em, 1fr)); gap: 0 calc(var(--r) * 2); }
+.opts label { display: flex; gap: 12px; align-items: flex-start; padding: 7px 0; cursor: pointer; letter-spacing: .08em; line-height: 1.7; }
+.opts input { width: 24px; height: 24px; margin: 2px 0 0; accent-color: var(--ink); flex: none; }
+.opts label:has(input:checked) { text-decoration: underline; text-underline-offset: 6px; }
+.free input { width: 100%; font: inherit; letter-spacing: .08em; padding: 12px 14px; border: 1px solid var(--gray); background: var(--white); }
+.result { position: sticky; top: calc(var(--r) * 10); }
+.result h3 { margin: 0; font: 500 max(17px, calc(var(--r) * 1.6)) / 1.6 var(--mincho); letter-spacing: .2em; padding-bottom: calc(var(--r) * 1.2); border-bottom: 1px solid var(--ink); }
+.result ol { margin: calc(var(--r) * 2) 0 0; padding: 0; list-style: none; counter-reset: s; }
+.result li { counter-increment: s; position: relative; padding: 0 0 calc(var(--r) * 1.6) calc(var(--r) * 3.6); letter-spacing: .08em; line-height: 1.9; }
+.result li::before { content: counter(s, decimal-leading-zero); position: absolute; left: 0; top: .1em; font: 400 max(15px, calc(var(--r) * 1.4)) var(--en); letter-spacing: .05em; }
+.result .empty { margin: calc(var(--r) * 2) 0 0; color: var(--gray); letter-spacing: .08em; }
+.result .apply { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: calc(var(--r) * 1.6); padding: calc(var(--r) * 1.8); border: 1px solid var(--ink); font: 500 max(17px, calc(var(--r) * 1.6)) / 1 var(--ja); letter-spacing: .2em; background: var(--ink); color: var(--bg); transition: background .5s cubic-bezier(.215, .61, .355, 1), color .5s; }
+.result .apply:hover { background: var(--white); color: var(--ink); }
+.result small { display: block; margin-top: calc(var(--r) * 1.2); font-size: max(13px, calc(var(--r) * 1.2)); line-height: 1.8; color: var(--gray); letter-spacing: .06em; }
+@media (prefers-reduced-motion: no-preference) { .result li.new { animation: arrive .6s cubic-bezier(.23, 1, .32, 1) both; } @keyframes arrive { from { opacity: 0; transform: translateY(8px); } } }
+
+/* ---------- 6 費用 ---------- */
+.fees { padding: var(--sec) var(--side) 0; }
+.fees dl { margin: calc(var(--r) * 6) 0 0; border-top: 1px solid var(--ink); }
+.fees .r { display: grid; grid-template-columns: calc(var(--r) * 24) calc(var(--r) * 16) 1fr; gap: calc(var(--r) * 3); padding: calc(var(--r) * 2.6) 0; border-bottom: 1px solid #c9ccc8; letter-spacing: .12em; }
+.fees dt { font: 500 max(17px, calc(var(--r) * 1.6)) / 1.6 var(--mincho); letter-spacing: .15em; }
+.fees .p { font: 500 max(17px, calc(var(--r) * 1.6)) / 1.6 var(--ja); }
+.fees dd { margin: 0; line-height: 2; }
+
+/* ---------- 7 円のボタン(手本: 大きな細い円 3 つを「/」でつなぐ) ---------- */
+.circles { display: flex; justify-content: center; align-items: center; gap: calc(var(--r) * 4); padding: var(--sec) 0 0; }
+.circle { position: relative; display: grid; place-items: center; width: calc(var(--r) * 22); aspect-ratio: 1; font: 500 max(15px, calc(var(--r) * 1.44)) / 1 var(--ja); letter-spacing: .15em; }
+.circle svg.ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.circle svg.ring circle { fill: none; stroke: var(--ink); stroke-width: 1; vector-effect: non-scaling-stroke; transition: stroke-dashoffset 1s var(--ease-out); }
+.circle span { display: inline-flex; gap: 10px; align-items: center; }
+.circle span svg { width: 1.1em; height: 1.1em; }
+.circle:hover svg.ring circle { stroke-dashoffset: 0 !important; }
+.sep { width: calc(var(--r) * 3); height: 1px; background: var(--ink); transform: rotate(-45deg); }
+
+/* ---------- 8 対応地域 ---------- */
+.area { padding: var(--sec) var(--side) var(--sec); display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--r) * 6); }
+.area .addr { margin: calc(var(--r) * 5) 0 0; font: 500 max(17px, calc(var(--r) * 1.65)) / 1.8 var(--ja); letter-spacing: .15em; }
+
+footer { border-top: 1px solid var(--ink); margin: 0 calc(var(--r) * 1); padding: calc(var(--r) * 4) calc(var(--r) * 2) calc(var(--r) * 6); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; font-size: max(14px, calc(var(--r) * 1.3)); letter-spacing: .12em; }
+footer nav { display: flex; flex-wrap: wrap; gap: 8px 28px; }
+.proto { position: fixed; right: 12px; bottom: 12px; z-index: 40; background: var(--white); border: 1px solid var(--ink); padding: 4px 10px; font-size: 12px; }
+
+/* ---------- 入場の動き(手本: 0.6〜0.8s のゆっくり止まる動き) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .rv { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform 1s cubic-bezier(.23, 1, .32, 1); }
+  .rv.on { opacity: 1; transform: none; }
+  .rv-img img { clip-path: inset(100% 0 0 0); transition: clip-path 1.2s cubic-bezier(.23, 1, .32, 1); }
+  .rv-img.on img { clip-path: inset(0 0 0 0); }
+  .timeline.rv::before { transform: scaleX(0); }
+  .timeline.rv.on::before { transform: scaleX(1); }
+}
+
+/* ---------- スマートフォン ---------- */
+@media (max-width: 900px) {
+  :root { --r: 10px; --sec: 96px; --side: 20px; }
+  .header { grid-template-columns: 1fr auto; height: 64px; padding: 0 16px; gap: 12px; }
+  .header .en2, .header .copy { display: none; }
+  .logo b { font-size: 12px; letter-spacing: .04em; line-height: 1.45; }
+  .logo small { display: none; }
+  .sp { display: inline; }
+  .illust { overflow-x: auto; margin-right: -20px; padding-bottom: 8px; }
+  .illust svg { width: 760px; max-width: none; }
+  .illust::after { content: "← 横に動かして見られます →"; display: block; font-size: 13px; color: var(--gray); margin-top: 6px; }
+  .btns .fbtn:nth-child(2) { display: none; }
+  .visual .frame { height: 62svh; }
+  .visual-under { flex-wrap: wrap; height: auto; padding: 14px 16px; gap: 6px 18px; justify-content: flex-start; }
+  .visual-under .cap { width: 100%; }
+  .head-en { font-size: 46px; }
+  .overview .row, .check .grid, .area { grid-template-columns: 1fr; }
+  .overview .doc { margin-right: 0; }
+  .strip { grid-template-columns: 1fr 1fr; height: 300px; margin-right: 20px; }
+  .strip img:nth-child(n+3) { display: none; }
+  .timeline { height: auto; display: grid; gap: 18px; margin-top: 48px; padding-left: 28px; border-left: 1px solid var(--ink); }
+  .timeline::before { display: none; }
+  .timeline .ev { position: static; transform: none; text-align: left; width: auto; }
+  .timeline .tick { display: none; }
+  .timeline .dot { position: absolute; margin-left: -40px; margin-top: 4px; }
+  .timeline .y, .timeline .t { display: inline; margin: 0 10px 0 0; }
+  .stance .photo { margin-left: 20px; height: 260px; transform: translateY(-40px); }
+  .stance .row { grid-template-columns: 1fr; padding: 0 20px; }
+  .stance .slash { display: none; }
+  .result { position: static; }
+  .fees .r { grid-template-columns: 1fr; gap: 4px; }
+  .circles { flex-direction: column; gap: 18px; }
+  .circle { width: 200px; }
+  .sep { display: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-line" viewBox="0 0 40 10"><path d="M0 5h34M28 1c2 2 4 3 8 4M28 9c2-2 4-3 8-4" fill="none" stroke="currentColor" stroke-width="1"/><path d="M4 2c2 1 3 2 4 3" fill="none" stroke="currentColor" stroke-width="1"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 22 10"><path d="M0 5h20M15 1l5 4" fill="none" stroke="currentColor" stroke-width="1"/></symbol>
+  <symbol id="i-blank" viewBox="0 0 16 16"><path d="M5 2.5h8.5V11M2.5 5.5h8V13.5h-8z" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
+</svg>
+
+<header class="header">
+  <a class="logo" href="#">
+    <img src="../../../docs/assets/nature-capital-mark.svg" alt="" width="42" height="42" style="width:calc(var(--r)*4.2);height:auto">
+    <span><b>ネイチャーキャピタル・<br class="sp">リアルエステイト</b><small>Nature Capital Real Estate</small></span>
+  </a>
+  <span class="en2">Forest &amp; Satoyama<br>Consultation</span>
+  <span class="copy">山のことを、分からないままにしない</span>
+  <span class="btns">
+    <a class="fbtn" href="#check">無料相談<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <a class="fbtn" href="../../../docs/concerns/">お悩みから探す<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </span>
+</header>
+
+<main id="main">
+  <section class="visual" aria-label="写真">
+    <div class="frame rv-img rv"><img src="../../../docs/assets/cedar-forest-trunks.webp" alt="まっすぐに並んだ杉の幹"></div>
+    <nav class="visual-under" aria-label="主なページ">
+      <span class="cap">写真: <a href="https://commons.wikimedia.org/wiki/File:Tsukuba%27s_cedar_forest_(53667839474).jpg">Raita Futo</a> / CC BY 2.0</span>
+      <a href="../../../docs/services/satoyama-real-estate/">山林をお持ちの方</a>
+      <a href="../../../docs/services/forest-planning-tool/">林業事業体の方</a>
+      <a href="../../../docs/partners/">企業・個人の方</a>
+      <a href="../../../docs/forest/">森林を知る</a>
+      <a href="../../../docs/about/">私たちについて</a>
+    </nav>
+  </section>
+
+  <section class="overview" aria-labelledby="h-ov">
+    <div class="inner">
+      <h2 class="head-en rv" id="h-ov">相談について</h2>
+      <p class="head-sub rv"><svg aria-hidden="true" viewBox="0 0 40 10"><use href="#i-line"/></svg>たいてい、こういうところから始まります</p>
+      <div class="row">
+        <div>
+          <p class="lines rv">
+            <span>相談に来られる方の多くは、その山を見たことがありません。</span>
+            <span>場所は「〇〇町のあたり」としか分からない。</span>
+            <span>毎年、固定資産税の通知だけが届く。</span>
+            <span>名義は、亡くなった祖父のまま。</span>
+            <span>私たちは、まず今の状態をはっきりさせるところから始めます。</span>
+          </p>
+          <a class="more ja rv" href="#check">まず、あなたの場合を確かめる<svg aria-hidden="true" viewBox="0 0 22 10"><use href="#i-arrow"/></svg></a>
+        </div>
+        <figure class="doc rv-img rv" style="margin:0">
+          <div class="frame"><img src="../../samples/img/kozu-map.webp" alt="公図の見本。朱で囲んだ区画が地番 1206-2"></div>
+          <figcaption>公図(見本)― 山の場所と形は、ここから確かめます</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="strip rv-img rv" aria-hidden="true">
+      <img src="../../../docs/assets/forest-road-gate.webp" alt="">
+      <img src="../../../docs/assets/satoyama-fields.webp" alt="">
+      <img src="../../../docs/assets/cedar-forest-trunks.webp" alt="" style="object-position:30% 50%">
+      <img src="../../../docs/assets/nature-capital-concept.webp" alt="" style="object-position:50% 40%">
+    </div>
+    <p class="strip-cap">写真: Alpsdake(CC0)/ Tonytakuya(パブリックドメイン)/ Raita Futo(CC BY 2.0)/ 自社</p>
+  </section>
+
+  <section class="record" aria-labelledby="h-rec">
+    <div class="inner">
+      <h2 class="head-en rv" id="h-rec">ある山の記録</h2>
+      <p class="head-sub rv"><svg aria-hidden="true" viewBox="0 0 40 10"><use href="#i-line"/></svg>どこで止まっているかを、たどる(例)</p>
+      <p class="lines rv">
+        <span>山の事情は、たいてい何十年もかけて積み重なっています。</span>
+        <span>どこで止まっているのかを、一緒にたどります。</span>
+      </p>
+      <div class="timeline rv" aria-label="ある山の記録の例">
+        <div class="ev key" style="left:4%"><i class="tick"></i><i class="dot"></i><b class="y">1963</b><span class="t">祖父が購入</span></div>
+        <div class="ev" style="left:27%"><i class="tick"></i><i class="dot"></i><b class="y">1998</b><span class="t">最後の間伐</span></div>
+        <div class="ev" style="left:52%"><i class="tick"></i><i class="dot"></i><b class="y">2016</b><span class="t">祖父が亡くなる</span></div>
+        <div class="ev" style="left:74%"><i class="tick"></i><i class="dot"></i><b class="y">2024</b><span class="t">相続登記が義務に</span></div>
+        <div class="ev key" style="left:94%"><i class="tick"></i><i class="dot"></i><b class="y">2026</b><span class="t">ご相談</span></div>
+      </div>
+      <p class="note">年と出来事は例です。相続登記の申請は、2024 年 4 月から義務になりました。</p>
+      <figure class="illust rv" style="margin-left:0;margin-right:0">
+        <svg id="map" viewBox="0 0 1100 620" role="img" aria-label="ペン画の地図。林道沿いの山に、ご相談の山(地番 1206-2)と隣の山、境界がある"></svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="stance dark" aria-labelledby="h-st">
+    <div class="frame photo rv-img rv"><img src="../../../docs/assets/forest-road-gate.webp" alt="林道の入口。ゲートの奥に森が続く"></div>
+    <div class="row">
+      <div class="slash" aria-hidden="true"></div>
+      <div>
+        <h2 class="lead rv" id="h-st">売ることを、前提にはしていません。</h2>
+        <p class="lines rv">
+          <span>持ち続ける、管理を頼む、隣の方に譲る、売る。</span>
+          <span>それぞれの手間と費用を並べてから考えます。</span>
+          <span>売れない山も多く、そのことも最初にお伝えします。</span>
+          <span>引き受け手は、隣の方や地域の事業者も含めて探します。</span>
+        </p>
+        <a class="more ja rv" href="../../../docs/services/satoyama-real-estate/">さとやま不動産について<svg aria-hidden="true" viewBox="0 0 22 10"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="check" id="check" aria-labelledby="h-ck">
+    <h2 class="head-en rv" id="h-ck">山の相談票</h2>
+    <p class="head-sub rv"><svg aria-hidden="true" viewBox="0 0 40 10"><use href="#i-line"/></svg>あなたの場合は、何から始めればいいか</p>
+    <p class="lines rv"><span>当てはまるものに印を付けてください。最初にすることが出ます。</span><span>印の内容は、申し込みの用紙で送信するまで、どこにも送られません。</span></p>
+    <div class="grid">
+      <form class="sheet" id="hl-sheet" onsubmit="return false">
+        <div class="sheet-in">
+          <div class="sheet-head"><b>山の相談票</b><span>記入日 <time id="hl-today"></time> ・ <output id="hl-count">0</output> 項目に印</span></div>
+          <fieldset data-label="名義"><legend>その山は、いま誰の名義ですか<small>1 つ</small></legend><div class="opts">
+            <label><input type="radio" name="owner" value="self">自分の名義</label>
+            <label><input type="radio" name="owner" value="dead">亡くなった親・祖父母の名義のまま</label>
+            <label><input type="radio" name="owner" value="living">親など家族が持っている(これから相続)</label>
+            <label><input type="radio" name="owner" value="unknown">分からない</label></div></fieldset>
+          <fieldset data-label="場所"><legend>山の場所は分かりますか<small>1 つ</small></legend><div class="opts">
+            <label><input type="radio" name="place" value="known">行ったことがある・地図で分かる</label>
+            <label><input type="radio" name="place" value="town">市町村くらいは分かる</label>
+            <label><input type="radio" name="place" value="none">ほとんど分からない</label></div></fieldset>
+          <fieldset data-label="手元にあるもの"><legend>手元にあるもの<small>いくつでも</small></legend><div class="opts">
+            <label><input type="checkbox" name="doc" value="tax">固定資産税の納税通知書</label>
+            <label><input type="checkbox" name="doc" value="touki">登記簿(登記事項証明書)</label>
+            <label><input type="checkbox" name="doc" value="kozu">公図・地図</label>
+            <label><input type="checkbox" name="doc" value="nothing">何も無い</label></div></fieldset>
+          <fieldset data-label="気になっていること"><legend>気になっていること<small>いくつでも</small></legend><div class="opts">
+            <label><input type="checkbox" name="worry" value="far">遠くて見に行けない</label>
+            <label><input type="checkbox" name="worry" value="cost">税金や管理費がかかり続ける</label>
+            <label><input type="checkbox" name="worry" value="tree">倒木・越境で迷惑をかけていないか</label>
+            <label><input type="checkbox" name="worry" value="sell">売れるのか、手放せるのか</label>
+            <label><input type="checkbox" name="worry" value="mixed">畑や空き家も一緒にある</label>
+            <label><input type="checkbox" name="worry" value="family">子どもに負担を残したくない</label></div></fieldset>
+          <fieldset><legend>山のある市町村<small>分かれば</small></legend>
+            <div class="free"><input type="text" data-prefill="place" aria-label="山のある市町村" placeholder="例: 〇〇県 〇〇町"></div></fieldset>
+          <fieldset data-label="ひと言"><legend>ひと言で言うと<small>書かなくても構いません</small></legend>
+            <div class="free"><input type="text" aria-label="ひと言で言うと" placeholder="例: 祖父の山が〇〇町にあるらしいが、行ったことがない"></div></fieldset>
+        </div>
+      </form>
+      <aside class="result" aria-live="polite">
+        <h3>最初にすること</h3>
+        <div id="hl-out"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="fees" aria-labelledby="h-fee">
+    <h2 class="head-en rv" id="h-fee">費用</h2>
+    <p class="head-sub rv"><svg aria-hidden="true" viewBox="0 0 40 10"><use href="#i-line"/></svg>費用がかかるのは、了承をいただいてから</p>
+    <dl class="rv">
+      <div class="r"><dt>最初の聞き取り</dt><dd class="p">無料</dd><dd>お申し込みから 3 営業日以内にご連絡します。電話・オンライン・対面のどれでも。</dd></div>
+      <div class="r"><dt>整理メモ</dt><dd class="p">無料</dd><dd>分かったこと、まだ分からないこと、考えられる選択肢を 1 枚にまとめてお渡しします。</dd></div>
+      <div class="r"><dt>現地確認・調査など</dt><dd class="p">事前にお見積り</dd><dd>内容と金額を先にお伝えします。了承なく費用がかかることはありません。</dd></div>
+    </dl>
+  </section>
+
+  <nav class="circles" aria-label="ご相談の入口">
+    <a class="circle" href="#check"><svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="49.5" pathLength="100" stroke-dasharray="49 1" stroke-dashoffset="-25.5"/></svg><span>無料相談<svg aria-hidden="true" viewBox="0 0 22 10"><use href="#i-arrow"/></svg></span></a>
+    <i class="sep" aria-hidden="true"></i>
+    <a class="circle" href="../../../docs/concerns/"><svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="49.5" pathLength="100" stroke-dasharray="49 1" stroke-dashoffset="-25.5"/></svg><span>お悩みから探す<svg aria-hidden="true" viewBox="0 0 22 10"><use href="#i-arrow"/></svg></span></a>
+    <i class="sep" aria-hidden="true"></i>
+    <a class="circle" href="../../../docs/about/"><svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="49.5" pathLength="100" stroke-dasharray="49 1" stroke-dashoffset="-25.5"/></svg><span>私たちについて<svg aria-hidden="true" viewBox="0 0 22 10"><use href="#i-arrow"/></svg></span></a>
+  </nav>
+
+  <section class="area" aria-labelledby="h-area">
+    <div>
+      <h2 class="head-en rv" id="h-area">対応地域</h2>
+      <p class="head-sub rv"><svg aria-hidden="true" viewBox="0 0 40 10"><use href="#i-line"/></svg>相談は全国から、現地は地域の事業者と</p>
+      <p class="addr rv">全国から受け付けています</p>
+      <p class="lines rv" style="margin-top:calc(var(--r)*2)"><span>現地の確認は、地域の森林組合や林業事業体と連携し、</span><span>場所ごとにご案内します。</span></p>
+    </div>
+    <div class="rv">
+      <p class="lines" style="margin-top:calc(var(--r)*9)"><span>運営 日本GXグループ株式会社</span><span>ご相談の受付 申し込みの用紙(フォーム)</span><span>ご連絡 3 営業日以内</span></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>ネイチャーキャピタル・リアルエステイト</span>
+  <nav aria-label="フッター">
+    <a href="../../../docs/services/satoyama-real-estate/">山林をお持ちの方</a><a href="../../../docs/services/forest-planning-tool/">林業事業体の方</a><a href="../../../docs/partners/">企業・個人の方</a><a href="../../../docs/forest/">森林を知る</a><a href="../../../docs/about/">私たちについて</a>
+  </nav>
+</footer>
+<div class="proto">試作 v4(手本: 穂垂亭)</div>
+
+<script src="../../../docs/consult-source.js"></script>
+<script src="../../../docs/consult-sheet.js"></script>
+<script>
+// ---- ペン画の地図(手本: 穂垂亭の敷地マップ。点描の地面、ペン画の木、枠付きの地名) ----
+(function () {
+  const svg = document.getElementById('map'), NS = 'http://www.w3.org/2000/svg';
+  let seed = 11; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  const el = (n, a, p = svg) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+  // 点描の地面
+  const defs = el('defs', {});
+  const pat = el('pattern', { id: 'stip', width: 46, height: 46, patternUnits: 'userSpaceOnUse' }, defs);
+  for (let i = 0; i < 26; i++) el('circle', { cx: (rnd() * 46).toFixed(1), cy: (rnd() * 46).toFixed(1), r: (.5 + rnd() * .5).toFixed(2), fill: '#1d201f' }, pat);
+  el('rect', { x: 0, y: 0, width: 1100, height: 620, fill: 'url(#stip)' });
+  // 林道(白く抜く 2 本線)
+  const road = 'M -20 470 C 180 420, 300 520, 470 470 S 760 330, 900 360 S 1060 430, 1130 400';
+  el('path', { d: road, fill: 'none', stroke: '#f6f8f5', 'stroke-width': 34 });
+  el('path', { d: road, fill: 'none', stroke: '#1d201f', 'stroke-width': 36, 'stroke-opacity': 1, 'stroke-dasharray': 'none', style: 'mix-blend-mode:normal', opacity: 0 });
+  const edge = (dy) => el('path', { d: road, fill: 'none', stroke: '#1d201f', 'stroke-width': 1, transform: `translate(0 ${dy})` });
+  edge(-17); edge(17);
+  // 沢(点線)
+  el('path', { d: 'M 640 0 C 620 90, 690 160, 650 250 S 600 360, 640 420', fill: 'none', stroke: '#1d201f', 'stroke-width': 1, 'stroke-dasharray': '2 6' });
+  // 境界(区画)
+  const lot = 'M 330 90 L 600 70 L 640 250 L 610 400 L 360 420 L 300 260 Z';
+  el('path', { d: lot, fill: '#f6f8f5', 'fill-opacity': .55, stroke: '#1d201f', 'stroke-width': 2 });
+  el('path', { d: 'M 600 70 L 860 110 L 880 300 L 640 250', fill: 'none', stroke: '#1d201f', 'stroke-width': 1, 'stroke-dasharray': '7 5' });
+  el('path', { d: 'M 330 90 L 120 130 L 90 330 L 300 260', fill: 'none', stroke: '#1d201f', 'stroke-width': 1, 'stroke-dasharray': '7 5' });
+  // 境界杭
+  [[330, 90], [600, 70], [640, 250], [610, 400], [360, 420], [300, 260]].forEach(([x, y]) => { el('rect', { x: x - 4, y: y - 4, width: 8, height: 8, fill: '#f6f8f5', stroke: '#1d201f', 'stroke-width': 1 }); });
+  // ペン画の杉
+  const tree = (x, y, s) => { const g = el('g', { transform: `translate(${x} ${y}) scale(${s})`, stroke: '#1d201f', 'stroke-width': 1.1, fill: 'none', 'stroke-linecap': 'round' });
+    el('path', { d: 'M0 -62 V6' }, g);
+    for (let i = 0; i < 13; i++) { const yy = -56 + i * 4.6, w = 3 + i * 1.25; el('path', { d: `M0 ${yy} l${-w} ${3 + i * .15} M0 ${yy} l${w} ${3 + i * .15}` }, g); } };
+  const inside = (x, y) => x > 290 && x < 650 && y > 60 && y < 430;
+  const onRoad = (x, y) => { const t = x / 1100; const ry = 470 - 120 * Math.sin(t * Math.PI * 1.1); return Math.abs(y - ry) < 70; };
+  const pts = [];
+  for (let i = 0; i < 400 && pts.length < 54; i++) { const x = 30 + rnd() * 1040, y = 70 + rnd() * 540;
+    if (onRoad(x, y)) continue; if (pts.some(p => Math.hypot(p[0] - x, p[1] - y) < 62)) continue; pts.push([x, y]); }
+  pts.sort((a, b) => a[1] - b[1]).forEach(([x, y]) => tree(x, y, inside(x, y) ? .95 : .8 + rnd() * .25));
+  // 枠付きの地名
+  const tag = (x, y, main, sub) => { const g = el('g', { class: 'tag' });
+    const t = el('text', { x: x + 10, y: y + 21, 'font-size': 17 }, g); t.textContent = main;
+    if (sub) { const s = el('tspan', { 'font-size': 12, dx: 4 }, t); s.textContent = sub; }
+    const w = t.getComputedTextLength ? t.getComputedTextLength() : main.length * 18; const r = el('rect', { x, y, width: w + 20, height: 30 }, g); g.insertBefore(r, t); };
+  tag(390, 205, '1206-2', '(ご相談の山)');
+  tag(700, 160, '隣の山', '(所有者は別)');
+  tag(110, 200, '隣の山', '');
+  tag(820, 395, '林道', '(車で入れる所まで)');
+  tag(600, 20, '沢', '');
+  tag(250, 445, '境界杭', '(見つかっていない所も)');
+})();
+
+// ---- 相談票 ----
+(function () {
+  const form = document.getElementById('hl-sheet'), out = document.getElementById('hl-out');
+  const d = new Date(); document.getElementById('hl-today').textContent = `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+  let prev = new Set();
+  const apply = () => `<a class="apply" href="${window.ConsultSheet.url(form)}" target="_blank" rel="noopener noreferrer">無料相談を申し込む<svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><use href="#i-blank"/></svg></a><small>申し込みの用紙が開きます。ここで付けた印は、用紙の「ご相談の内容」に写してあります。お名前とご連絡先を書いて送ってください。</small>`;
+  function render() {
+    document.getElementById('hl-count').textContent = form.querySelectorAll('input:checked').length;
+    const v = n => form.querySelector(`[name=${n}]:checked`)?.value, all = n => [...form.querySelectorAll(`[name=${n}]:checked`)].map(e => e.value);
+    const docs = all('doc'), worry = all('worry'), owner = v('owner'), place = v('place'), steps = [];
+    if (!owner && !place && !docs.length && !worry.length) { out.innerHTML = '<p class="empty">相談票に印を付けると、ここに出ます。印を付けずに申し込んでも構いません。</p>' + apply(); prev = new Set(); return; }
+    if (docs.includes('tax')) steps.push('納税通知書に書かれた地番から、山の場所と面積が分かります。まずはこれをお手元に。');
+    else if (place !== 'known') steps.push('山の場所は、市町村で「名寄帳」を取ると一覧で分かることがあります。取り方はご相談の中でご案内します。');
+    if (owner === 'dead') steps.push('名義が亡くなった方のままの場合、相続登記が必要です(義務化されています)。手続きは司法書士へおつなぎします。');
+    if (owner === 'unknown' || (!docs.includes('touki') && owner !== 'self')) steps.push('登記簿を取ると、今の名義と共有者が分かります。法務局で誰でも取れます。');
+    if (worry.includes('far') || worry.includes('tree')) steps.push('現地の様子は、私たちが確かめて写真でお伝えできます(費用は事前にお見積り)。');
+    if (worry.includes('sell')) steps.push('売れるかどうかは場所と条件次第です。売る以外に、管理を頼む・隣の方に譲る、も一緒に比べます。');
+    if (worry.includes('mixed')) steps.push('畑や空き家も、山と一緒に一覧にして整理します。');
+    if (worry.includes('cost') || worry.includes('family')) steps.push('毎年の負担を土地ごとに一覧にすると、残すか手放すかを家族で話しやすくなります。');
+    if (!steps.length) steps.push('分かる範囲のことを、そのままお聞かせください。');
+    out.innerHTML = '<ol>' + steps.map(s => `<li${prev.has(s) ? '' : ' class="new"'}>${s}</li>`).join('') + '</ol>' + apply();
+    prev = new Set(steps);
+  }
+  if (location.hash === '#demo') ['owner=dead', 'place=town', 'doc=tax', 'worry=far', 'worry=sell'].forEach(k => { const [n, val] = k.split('='); form.querySelector(`[name=${n}][value=${val}]`).checked = true; });
+  form.addEventListener('change', render); form.addEventListener('input', render); render();
+})();
+
+// ---- 入場 ----
+(function () {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  if (location.hash === '#static' || location.hash === '#demo') document.querySelectorAll('.rv').forEach(el => el.classList.add('on'));
+})();
+</script>
+</body>
+</html>

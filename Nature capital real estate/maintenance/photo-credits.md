@@ -5,14 +5,15 @@
 
 | ファイル | 使っている場所 | 撮影者 | ライセンス | 出典 | 取得日 |
 |---|---|---|---|---|---|
-| `docs/assets/cedar-forest-trunks.webp` | トップ(写真の帯) | Raita Futo | CC BY 2.0(クレジット表記が必要。写真の下に表記済み) | https://commons.wikimedia.org/wiki/File:Tsukuba%27s_cedar_forest_(53667839474).jpg | 2026-10-29 |
+| `docs/assets/cedar-forest-trunks.webp` | トップ(最初の画面・写真の帯) | Raita Futo | CC BY 2.0(クレジット表記が必要。写真の下に表記済み) | https://commons.wikimedia.org/wiki/File:Tsukuba%27s_cedar_forest_(53667839474).jpg | 2026-10-29 |
+| `docs/assets/forest-road-gate.webp` | トップ(写真の帯・考え方) | Alpsdake | CC0(表記不要。帯の下に記載) | https://commons.wikimedia.org/wiki/File:Gate_of_forest_road_along_Kakizore_River.jpg | 2026-10-29 |
+| `docs/assets/satoyama-fields.webp` | トップ(写真の帯) | Tonytakuya | パブリックドメイン(表記不要。帯の下に記載) | https://commons.wikimedia.org/wiki/File:Tony_satoyama_.jpg | 2026-10-29 |
+| `docs/assets/sample-kozu-map.webp` | トップ(公図の見本) | 自社作成(架空の地番) | ― | `maintenance/samples/` | 2026-10-29 |
 
 ## 候補(未使用)
 
 | 内容 | 撮影者 | ライセンス | 出典 |
 |---|---|---|---|
-| 林道の入口(柿其川沿い) | Alpsdake | CC0(表記不要) | https://commons.wikimedia.org/wiki/File:Gate_of_forest_road_along_Kakizore_River.jpg |
-| 里山の風景 | Tonytakuya | パブリックドメイン | https://commons.wikimedia.org/wiki/File:Tony_satoyama_.jpg |
 
 ## 探し方
 

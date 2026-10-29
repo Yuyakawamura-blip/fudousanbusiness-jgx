@@ -4228,3 +4228,229 @@ footer a {
 .skip-link:focus {
   top: 16px;
 }
+
+/* ===== 共通ヘッダー・フッター(2026-10-29) =====
+   手本: 穂垂亭 hotarutei.com(maintenance/ 以下と DESIGN.md §6)。HTML は各ページのまま、見た目だけ上書きする。
+   :root を付けて、上の body > header.site-header などより優先させる。 */
+:root {
+  --frame-bg: #f6f8f5;
+  --frame-ink: #1d201f;
+  --frame-gray: #646865;
+  --frame-ja: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+  --frame-en: "Cormorant Garamond", Didot, "Times New Roman", serif;
+}
+:root body > header,
+:root body > header * ,
+:root body > footer,
+:root body > footer * {
+  font-family: var(--frame-ja) !important;
+}
+:root body > header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 28px;
+  height: 80px;
+  padding: 0 30px;
+  background: rgba(246, 248, 245, 0.94);
+  backdrop-filter: blur(6px);
+  border: 0;
+  box-shadow: none;
+  color: var(--frame-ink);
+}
+:root body > header .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.35;
+  white-space: nowrap;
+  color: var(--frame-ink);
+  text-decoration: none;
+}
+:root body > header .brand-mark {
+  width: 42px;
+  height: auto;
+}
+:root body > header .brand small {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--frame-en) !important;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--frame-ink);
+}
+:root body > header .site-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 26px;
+  width: auto;
+}
+:root body > header .site-nav .nav {
+  padding: 4px 0;
+  border: 0;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+  color: var(--frame-ink);
+  text-decoration: none;
+  text-underline-offset: 7px;
+}
+:root body > header .site-nav .nav:hover,
+:root body > header .site-nav .nav[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  font-weight: 500;
+}
+/* 「無料相談」は枠付きのボタン(手本の 宿泊予約 / お食事予約) */
+:root body > header .site-nav .nav-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1px solid var(--frame-ink);
+  border-radius: 0;
+  background: #fff;
+  box-shadow: none;
+  color: var(--frame-ink);
+  text-decoration: none;
+  transform: none;
+  transition: background 0.5s cubic-bezier(0.215, 0.61, 0.355, 1), color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+:root body > header .site-nav .nav-contact:hover {
+  background: var(--frame-ink);
+  color: var(--frame-bg);
+  box-shadow: none;
+  transform: none;
+}
+:root body > header .site-nav .nav-contact::after {
+  position: static;
+  margin: 0;
+  color: inherit;
+}
+:root body > footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 10px;
+  padding: 40px 20px 64px;
+  border-top: 1px solid var(--frame-ink);
+  background: var(--frame-bg);
+  color: var(--frame-ink);
+  font-size: 14px;
+  line-height: 2;
+  letter-spacing: 0.12em;
+}
+:root body > footer small {
+  font-family: var(--frame-en) !important;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+:root body > footer a {
+  color: var(--frame-ink);
+  text-decoration: none;
+}
+:root body > footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+@media (max-width: 1280px) {
+  :root body > header .brand small {
+    display: none;
+  }
+  :root body > header .site-nav {
+    gap: 18px;
+  }
+  :root body > header .site-nav .nav {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+  }
+}
+@media (max-width: 1080px) {
+  :root body > header {
+    height: auto;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    padding: 14px 24px;
+  }
+  :root body > header .site-nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 720px) {
+  :root body > header {
+    flex-wrap: wrap;
+    min-height: 64px;
+    padding: 10px 16px;
+    gap: 10px;
+  }
+  :root body > header .brand {
+    flex: 1 1 0;
+    min-width: 0;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    white-space: normal;
+  }
+  :root body > header .brand-mark {
+    width: 34px;
+  }
+  :root body > header .nav-toggle {
+    min-height: 44px;
+    padding: 0 16px;
+    border: 1px solid var(--frame-ink);
+    background: #fff;
+    color: var(--frame-ink);
+    font-size: 15px;
+    letter-spacing: 0.15em;
+  }
+  :root body > header .site-nav {
+    display: none !important;
+  }
+  :root body > header.nav-open .site-nav {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+  }
+  :root body > header.nav-open .site-nav .nav {
+    padding: 14px 0;
+    font-size: 17px;
+    border-bottom: 1px solid #d5d8d4;
+    text-decoration: none;
+  }
+  :root body > header.nav-open .site-nav .nav-contact {
+    justify-content: center;
+    margin-top: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--frame-ink);
+  }
+  :root body > footer {
+    margin: 0;
+    padding: 32px 16px 48px;
+  }
+}
+@media (max-width: 720px) {
+  :root body > header .brand {
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    white-space: normal;
+    word-break: auto-phrase;
+  }
+  :root body > header .brand > span {
+    min-width: 0;
+  }
+}

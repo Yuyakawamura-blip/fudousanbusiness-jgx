@@ -89,3 +89,7 @@
 - 相談票 → フォームの事前入力: `docs/consult-sheet.js` を新設、`docs/consult-source.js` を押した時点でも流入元を付けるよう変更。試作 v3 に「山のある市町村」の欄を追加。本物のフォームで 3 つの値の表示を確認、既存ページの流入元も確認。未コミット
 - 2c2bfe7d・0082ed17 を push(川村さんの f8e891db も同時に公開)。リポジトリは公開設定のため、ムードボードの他社サイトの記述を中立に変更してから push。公開 URL で consult-source.js の更新と、相談ボタンの流入元(?src=flyer-a)を確認
 - 本番のトップを「手紙 → 相談票」に差し替え(`docs/index.html` の本文、`docs/home-letter.css`・`home-letter.js` を新設、`forest-data/home-link.css` の読み込みを外した)。styles.css の「全要素 Noto Sans JP !important」を本文の中だけ上書き。写真は Wikimedia Commons(`maintenance/photo-credits.md`)。パスワード画面を外した写しで 1440/500 幅と相談票の動作を確認
+- 「まだ AI 感がすごい」→ 受賞サイト 5 つを Chrome で撮影・計測(`maintenance/moodboard/refs/v3/`、社外の画像なのでリポジトリに入れない)、手本を穂垂亭に。寸法・部品・動きを踏襲した試作 v4 → 了承 → 本番: トップ本文と全ページのヘッダー・フッターを差し替え
+- 計測用スクリプトは scratchpad の inspect.py(Chrome DevTools でスクロール撮影と computed style の取得)。次に使うときは作り直しが必要
+
+次回最初に読むファイル: `DESIGN.md` §6、`PLAN.md`(K)、`docs/home-letter.css`
