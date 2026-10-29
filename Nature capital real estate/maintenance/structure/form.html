@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>構造案 3 相談票</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho:wght@400;700&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#f2f1ec; --sheet:#fff; --ink:#1d1d1b; --pencil:#5a5a55; --line:#1d1d1b; --soft:#d3d0c6; --shu:#ad3a22; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:"BIZ UDPGothic",sans-serif; font-size:18px; line-height:1.8; }
+  .top { display:flex; justify-content:space-between; align-items:center; padding:18px clamp(20px,4vw,40px); font-size:15px; }
+  .top a { color:inherit; }
+  .wrap { max-width:1180px; margin:0 auto; padding:24px clamp(16px,4vw,40px) 96px; display:grid; grid-template-columns:minmax(0,1fr) 360px; gap:36px; align-items:start; }
+  .sheet { background:var(--sheet); border:1.5px solid var(--line); }
+  .sheet header { padding:28px 32px 24px; border-bottom:1.5px solid var(--line); }
+  .sheet h1 { font:700 clamp(28px,3.4vw,42px)/1.4 "BIZ UDPMincho"; margin:0 0 10px; }
+  .sheet header p { margin:0; color:var(--pencil); }
+  fieldset { border:0; margin:0; padding:24px 32px 26px; border-bottom:1px solid var(--soft); }
+  legend { float:left; width:100%; font:700 21px "BIZ UDPMincho"; margin:0 0 12px; padding:0; }
+  legend span { font:400 15px "BIZ UDPGothic"; color:var(--pencil); margin-left:10px; }
+  .opts { clear:both; display:grid; grid-template-columns:1fr 1fr; gap:8px 20px; }
+  label { display:flex; gap:12px; align-items:flex-start; padding:8px 0; cursor:pointer; }
+  input[type=checkbox], input[type=radio] { width:26px; height:26px; margin:2px 0 0; accent-color:var(--shu); flex:none; }
+  .free { margin-top:8px; }
+  .free input { width:100%; font:inherit; padding:12px 14px; border:1px solid var(--pencil); background:#fff; }
+  .side { position:sticky; top:20px; border:1.5px solid var(--line); background:#fbfaf6; }
+  .side h2 { font:700 19px "BIZ UDPMincho"; margin:0; padding:16px 20px; border-bottom:1.5px solid var(--line); }
+  .side .body { padding:18px 20px 22px; }
+  .side .empty { color:var(--pencil); }
+  .side ul { margin:0 0 16px; padding-left:1.2em; }
+  .side li { margin-bottom:8px; }
+  .side .go { display:block; text-align:center; background:var(--shu); color:#fff; text-decoration:none; font-weight:700; font-size:19px; padding:16px; margin-top:8px; }
+  .side small { display:block; color:var(--pencil); font-size:14px; margin-top:12px; line-height:1.7; }
+  .after { max-width:1180px; margin:0 auto; padding:0 clamp(16px,4vw,40px) 80px; color:var(--pencil); font-size:16px; }
+  .after a { color:var(--ink); margin-right:1.2em; }
+  @media (max-width:880px){ .wrap{grid-template-columns:1fr;} .side{position:static;} .opts{grid-template-columns:1fr;} fieldset,.sheet header{padding-left:20px;padding-right:20px;} }
+</style>
+</head>
+<body>
+<div class="top"><a href="#">ネイチャーキャピタル・リアルエステイト</a><span>山林・里山の相続と管理の相談</span></div>
+<div class="wrap">
+  <form class="sheet" onsubmit="return false">
+    <header>
+      <h1>山の相談票</h1>
+      <p>当てはまるものに印を付けてください。右側に、何から始めればよいかが出ます。この画面の内容はどこにも送られません。</p>
+    </header>
+    <fieldset>
+      <legend>その山は、いま誰の名義ですか<span>1 つ</span></legend>
+      <div class="opts">
+        <label><input type="radio" name="owner" value="self">自分の名義</label>
+        <label><input type="radio" name="owner" value="dead">亡くなった親・祖父母の名義のまま</label>
+        <label><input type="radio" name="owner" value="living">親など、家族が持っている(これから相続)</label>
+        <label><input type="radio" name="owner" value="unknown">分からない</label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>山の場所は分かりますか<span>1 つ</span></legend>
+      <div class="opts">
+        <label><input type="radio" name="place" value="known">行ったことがある・地図で分かる</label>
+        <label><input type="radio" name="place" value="town">市町村くらいは分かる</label>
+        <label><input type="radio" name="place" value="none">ほとんど分からない</label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>手元にあるもの<span>いくつでも</span></legend>
+      <div class="opts">
+        <label><input type="checkbox" name="doc" value="tax">固定資産税の納税通知書</label>
+        <label><input type="checkbox" name="doc" value="touki">登記簿(登記事項証明書)</label>
+        <label><input type="checkbox" name="doc" value="kozu">公図・地図</label>
+        <label><input type="checkbox" name="doc" value="nothing">何も無い</label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>気になっていること<span>いくつでも</span></legend>
+      <div class="opts">
+        <label><input type="checkbox" name="worry" value="far">遠くて見に行けない</label>
+        <label><input type="checkbox" name="worry" value="cost">税金や管理費がかかり続ける</label>
+        <label><input type="checkbox" name="worry" value="tree">倒木・越境で迷惑をかけていないか</label>
+        <label><input type="checkbox" name="worry" value="sell">売れるのか、手放せるのか</label>
+        <label><input type="checkbox" name="worry" value="mixed">畑や空き家も一緒にある</label>
+        <label><input type="checkbox" name="worry" value="family">子どもに負担を残したくない</label>
+      </div>
+    </fieldset>
+    <fieldset style="border-bottom:0">
+      <legend>ひと言で言うと<span>書かなくても構いません</span></legend>
+      <div class="free"><input type="text" placeholder="例: 祖父の山が〇〇町にあるらしいが、行ったことがない"></div>
+    </fieldset>
+  </form>
+
+  <aside class="side" aria-live="polite">
+    <h2>あなたの場合は、ここから</h2>
+    <div class="body" id="out"><p class="empty">左の相談票に印を付けると、ここに出ます。</p></div>
+  </aside>
+</div>
+<div class="after">相談は無料です。3 営業日以内にご連絡します。売却を前提にはしません。全国から受け付けています。<br>山林をお持ちの方以外は　<a href="#">林業事業体の方</a><a href="#">企業・個人の方</a><a href="#">森林を知る</a></div>
+<script>
+const form = document.querySelector('form'), out = document.getElementById('out');
+function render() {
+  const v = n => form.querySelector(`[name=${n}]:checked`)?.value;
+  const all = n => [...form.querySelectorAll(`[name=${n}]:checked`)].map(e => e.value);
+  const steps = [];
+  const docs = all('doc'), worry = all('worry'), owner = v('owner'), place = v('place');
+  if (!owner && !place && !docs.length && !worry.length) { out.innerHTML = '<p class="empty">左の相談票に印を付けると、ここに出ます。</p>'; return; }
+  if (docs.includes('tax')) steps.push('納税通知書に書かれた地番から、山の場所と面積が分かります。まずはこれをお手元に。');
+  else if (place !== 'known') steps.push('山の場所は、市町村で「名寄帳」を取ると一覧で分かることがあります。取り方はご相談の中でご案内します。');
+  if (owner === 'dead') steps.push('名義が亡くなった方のままの場合、相続登記が必要です(義務化されています)。手続きは司法書士へおつなぎします。');
+  if (owner === 'unknown' || (!docs.includes('touki') && owner !== 'self')) steps.push('登記簿を取ると、今の名義と共有者が分かります。法務局で誰でも取れます。');
+  if (worry.includes('far') || worry.includes('tree')) steps.push('現地の様子は、私たちが確かめて写真でお伝えできます(費用は事前にお見積り)。');
+  if (worry.includes('sell')) steps.push('売れるかどうかは場所と条件次第です。売る以外に、管理を頼む・隣の方に譲る、も一緒に比べます。');
+  if (worry.includes('mixed')) steps.push('畑や空き家も、山と一緒に一覧にして整理します。');
+  if (worry.includes('cost') || worry.includes('family')) steps.push('毎年の負担を土地ごとに一覧にすると、残すか手放すかを家族で話しやすくなります。');
+  out.innerHTML = '<ul>' + steps.map(s => `<li>${s}</li>`).join('') + '</ul>' +
+    '<a class="go" href="#">この内容で相談する(無料)</a><small>申し込みの用紙が開きます。ここで付けた印は送られないので、用紙にもう一度書いてください。<br>(本番では、この内容を用紙に自動で写すことを検討)</small>';
+}
+if (location.hash === '#demo') { ['owner=dead','place=town','doc=tax','worry=far','worry=sell'].forEach(k => { const [n,v]=k.split('='); form.querySelector(`[name=${n}][value=${v}]`).checked = true; }); render(); }
+form.addEventListener('change', render); form.addEventListener('input', render);
+</script>
+</body>
+</html>

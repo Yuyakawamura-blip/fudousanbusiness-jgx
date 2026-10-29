@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ムードボード | ネイチャーキャピタル・リアルエステイト</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=BIZ+UDPGothic:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1d221f; --paper:#f6f4ee; --muted:#5b625d; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:#ecebe6; color:var(--ink); font-family:"Noto Sans JP",sans-serif; font-size:16px; line-height:1.8; }
+  .wrap { max-width:1280px; margin:0 auto; padding:56px 32px 96px; }
+  header.page h1 { font-size:34px; margin:0 0 8px; letter-spacing:.02em; }
+  header.page p { margin:0 0 6px; color:var(--muted); max-width:860px; }
+  .common { background:#fff; border-radius:8px; padding:20px 24px; margin:28px 0 56px; }
+  .common h2 { font-size:17px; margin:0 0 8px; }
+  .common ul { margin:0; padding-left:1.2em; }
+  section.dir { margin:0 0 88px; }
+  .dir-head { display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; margin-bottom:18px; }
+  .dir-head .no { font-size:15px; font-weight:700; color:#fff; background:var(--ink); border-radius:999px; padding:2px 14px; }
+  .dir-head h2 { font-size:30px; margin:0; }
+  .dir-head .en { color:var(--muted); font-size:15px; letter-spacing:.12em; }
+  .concept { max-width:900px; margin:0 0 22px; font-size:17px; }
+  .boards { display:grid; grid-template-columns: 1fr 300px; gap:24px; align-items:start; }
+  .mock-web { aspect-ratio:16/10; border-radius:6px; overflow:hidden; position:relative; box-shadow:0 1px 0 rgba(0,0,0,.06),0 18px 40px -24px rgba(0,0,0,.35); }
+  .mock-flyer { aspect-ratio:210/297; border-radius:3px; overflow:hidden; position:relative; box-shadow:0 1px 0 rgba(0,0,0,.06),0 18px 40px -24px rgba(0,0,0,.35); }
+  .cap { font-size:13px; color:var(--muted); margin:8px 0 0; }
+  .specs { display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; margin-top:28px; }
+  .spec { background:#fff; border-radius:8px; padding:18px 20px; }
+  .spec h3 { font-size:14px; margin:0 0 10px; color:var(--muted); font-weight:700; letter-spacing:.06em; }
+  .swatches { display:flex; flex-wrap:wrap; gap:8px; }
+  .sw { width:76px; font-size:11px; line-height:1.4; }
+  .sw i { display:block; height:44px; border-radius:4px; border:1px solid rgba(0,0,0,.08); margin-bottom:4px; }
+  .spec ul { margin:0; padding-left:1.1em; font-size:14px; }
+  .refs a { color:inherit; }
+  .h, .f-h, .lead { word-break: auto-phrase; }
+  @media (max-width: 900px) { .boards { grid-template-columns:1fr; } .mock-flyer { max-width:320px; } .specs { grid-template-columns:1fr; } }
+
+  /* ---------- 1. 山の記録帳 ---------- */
+  .d1 { --bg:#f3efe6; --ink1:#1f2420; --moss:#3d5a45; --rust:#9a4a2b; --rule:#cfc7b6; }
+  .d1 .mock-web { background:var(--bg); color:var(--ink1); display:grid; grid-template-columns: 46% 54%; }
+  .d1 .mw-text { padding:7% 6% 6% 9%; display:flex; flex-direction:column; justify-content:space-between; position:relative; }
+  .d1 .mw-text::before { content:""; position:absolute; left:5.5%; top:7%; bottom:6%; border-left:1px solid var(--rule); }
+  .d1 .eyebrow { font:500 12px/1.4 "Zen Kaku Gothic New"; letter-spacing:.18em; color:var(--moss); }
+  .d1 .h { font:800 clamp(22px,3.3vw,44px)/1.35 "Shippori Mincho B1"; margin:.6em 0 .5em; letter-spacing:.02em; }
+  .d1 .lead { font:400 clamp(12px,1.15vw,16px)/1.9 "Zen Kaku Gothic New"; max-width:28em; }
+  .d1 .btn { display:inline-block; font:700 14px "Zen Kaku Gothic New"; background:var(--moss); color:#fff; padding:.75em 1.4em; border-radius:2px; }
+  .d1 .meta { display:flex; gap:22px; font:500 11px/1.5 "Zen Kaku Gothic New"; color:#5c5a52; border-top:1px solid var(--rule); padding-top:10px; }
+  .d1 .meta b { display:block; font:700 18px "Shippori Mincho B1"; color:var(--ink1); }
+  .d1 .mw-photo { background:url("../../../docs/assets/nature-capital-concept.webp") center/cover; filter:saturate(.8) contrast(1.02); position:relative; }
+  .d1 .mw-photo span { position:absolute; right:14px; top:14px; writing-mode:vertical-rl; font:500 12px "Shippori Mincho B1"; color:#fff; letter-spacing:.3em; }
+  .d1 .mock-flyer { background:var(--bg); color:var(--ink1); }
+  .d1 .f-photo { height:42%; background:url("../../../docs/assets/nature-capital-concept.webp") center 35%/cover; filter:saturate(.8); }
+  .d1 .f-body { padding:7% 9%; }
+  .d1 .f-h { font:800 20px/1.45 "Shippori Mincho B1"; margin:.4em 0; }
+  .d1 .f-list { font:400 11px/1.9 "Zen Kaku Gothic New"; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:6px 0; margin:10px 0; }
+  .d1 .f-cta { font:700 12px "Zen Kaku Gothic New"; color:var(--rust); }
+
+  /* ---------- 2. 地図と境界 ---------- */
+  .d2 { --bg:#0f2a22; --sand:#efe7d4; --line:#c9b98e; --red:#d0563b; }
+  .d2 .mock-web { background:var(--bg); color:var(--sand); }
+  .d2 svg.contour { position:absolute; inset:0; width:100%; height:100%; }
+  .d2 .mw-inner { position:absolute; inset:0; padding:6% 7%; display:flex; flex-direction:column; justify-content:space-between; }
+  .d2 .eyebrow { font:500 12px/1.4 "Zen Kaku Gothic New"; letter-spacing:.2em; color:var(--line); }
+  .d2 .h { font:700 clamp(24px,3.6vw,48px)/1.3 "Zen Kaku Gothic New"; margin:.5em 0 .4em; max-width:12em; }
+  .d2 .h em { font-style:normal; color:var(--red); }
+  .d2 .lead { font:400 clamp(12px,1.15vw,16px)/1.9 "Zen Kaku Gothic New"; max-width:30em; color:#dcd4c0; }
+  .d2 .coords { display:flex; gap:28px; font:500 11px/1.5 ui-monospace,Menlo,monospace; color:var(--line); }
+  .d2 .btn { display:inline-block; font:700 14px "Zen Kaku Gothic New"; background:var(--sand); color:var(--bg); padding:.75em 1.4em; border-radius:999px; }
+  .d2 .pin { position:absolute; right:22%; top:38%; width:14px; height:14px; border-radius:50%; background:var(--red); box-shadow:0 0 0 6px rgba(208,86,59,.25),0 0 0 14px rgba(208,86,59,.12); }
+  .d2 .mock-flyer { background:var(--bg); color:var(--sand); }
+  .d2 .mock-flyer .mw-inner { padding:9%; }
+  .d2 .f-h { font:700 20px/1.45 "Zen Kaku Gothic New"; margin:.4em 0; }
+  .d2 .f-h em { font-style:normal; color:var(--red); }
+  .d2 .f-list { font:400 11px/1.9 "Zen Kaku Gothic New"; color:#dcd4c0; }
+  .d2 .f-cta { display:inline-block; font:700 12px "Zen Kaku Gothic New"; background:var(--sand); color:var(--bg); padding:6px 14px; border-radius:999px; }
+
+  /* ---------- 3. 静かな里山 ---------- */
+  .d3 { --ink3:#22261f; --dawn1:#f4e6cf; --dawn2:#f9f6ef; --leaf:#47603f; }
+  .d3 .mock-web { color:#fff; background:url("../../../docs/assets/concept-rice-terrace.webp") center 40%/cover; }
+  .d3 .mock-web::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(20,24,18,.05) 30%,rgba(20,24,18,.62) 100%); }
+  .d3 .mw-inner { position:absolute; inset:0; z-index:1; padding:6% 7%; display:flex; flex-direction:column; justify-content:flex-end; }
+  .d3 .h { font:700 clamp(24px,3.6vw,50px)/1.45 "BIZ UDPGothic"; margin:0 0 .4em; letter-spacing:.04em; text-shadow:0 1px 18px rgba(0,0,0,.25); }
+  .d3 .lead { font:400 clamp(13px,1.25vw,18px)/1.9 "BIZ UDPGothic"; max-width:30em; }
+  .d3 .row { display:flex; gap:14px; margin-top:18px; flex-wrap:wrap; }
+  .d3 .btn { font:700 15px "BIZ UDPGothic"; background:#fff; color:var(--ink3); padding:.8em 1.6em; border-radius:6px; }
+  .d3 .btn.ghost { background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,.8); }
+  .d3 .topbar { position:absolute; z-index:1; top:0; left:0; right:0; display:flex; justify-content:space-between; padding:3% 7%; font:700 13px "BIZ UDPGothic"; }
+  .d3 .mock-flyer { background:var(--dawn2); color:var(--ink3); }
+  .d3 .f-photo { height:44%; background:url("../../../docs/assets/concept-rice-terrace.webp") center 20%/cover; }
+  .d3 .f-body { padding:6% 8%; }
+  .d3 .f-h { font:700 20px/1.5 "BIZ UDPGothic"; margin:.2em 0 .4em; }
+  .d3 .f-list { font:400 11.5px/1.9 "BIZ UDPGothic"; background:var(--dawn1); border-radius:6px; padding:8px 12px; }
+  .d3 .f-cta { margin-top:10px; font:700 13px "BIZ UDPGothic"; color:var(--leaf); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page">
+    <h1>ムードボード ― 方向性 3 案</h1>
+    <p>ウェブ(トップの最初の画面)とチラシ(A 表面)を、同じ方向性で並べています。写真はサイトで使っている自社の写真です。</p>
+    <p>2026-10-29 作成。進め方は社内ガイド 7 章(参考を集める → 採り入れたい要素を言葉にする → ルールを先に決める → 少数案をブラウザで比べる)。</p>
+  </header>
+
+  <div class="common">
+    <h2>3 案に共通の条件(主役は高齢の山林所有者)</h2>
+    <ul>
+      <li>本文はウェブで 18px 以上、チラシで 11pt 以上。文字と背景のコントラスト比 4.5 以上</li>
+      <li>受賞サイトに多い重い動き・独自のスクロール操作は使わない。質は「写真・書体・余白・細部」で上げる。動きは控えめで、動きを減らす設定の人には止める</li>
+      <li>相談ボタンはどの画面でも迷わず見つかる位置と大きさ</li>
+    </ul>
+  </div>
+
+  <!-- 1 -->
+  <section class="dir d1">
+    <div class="dir-head"><span class="no">案 1</span><h2>山の記録帳</h2><span class="en">FIELD JOURNAL</span></div>
+    <p class="concept">調査ノートや和書の誌面のような、落ち着いた編集デザイン。明朝の見出しと細い罫線、余白の多い組版で「きちんと調べて整理してくれる」信頼感を出す。山の数字(面積・所在地・名義)を記録帳の項目のように見せる。</p>
+    <div class="boards">
+      <div>
+        <div class="mock-web">
+          <div class="mw-text">
+            <div>
+              <div class="eyebrow">さとやま不動産 ― 山林・里山の管理と出口整理</div>
+              <div class="h">山のこと、<br>分からないままに<br>しない。</div>
+              <div class="lead">場所・名義・境界・毎年の負担。分かる範囲から、ご家族と一緒に確かめます。</div>
+            </div>
+            <div>
+              <span class="btn">無料相談を申し込む</span>
+              <div class="meta" style="margin-top:18px"><div><b>無料</b>初回インタビュー</div><div><b>3 営業日</b>以内にご連絡</div><div><b>全国</b>から相談可</div></div>
+            </div>
+          </div>
+          <div class="mw-photo"><span>里山の記録</span></div>
+        </div>
+        <p class="cap">ウェブ:左に文字、右に写真。縦の罫線と縦書きの小さな添え書き</p>
+      </div>
+      <div>
+        <div class="mock-flyer">
+          <div class="f-photo"></div>
+          <div class="f-body">
+            <div class="eyebrow" style="font-size:9px">さとやま不動産</div>
+            <div class="f-h">相続する予定の山、<br>今のうちに整理しませんか。</div>
+            <div class="f-list">・親の山がどこにあるか分からない<br>・名義が祖父母のまま<br>・子どもに負担を残したくない</div>
+            <div class="f-cta">無料相談はこちら →</div>
+          </div>
+        </div>
+        <p class="cap">チラシ A 表面</p>
+      </div>
+    </div>
+    <div class="specs">
+      <div class="spec"><h3>色</h3><div class="swatches">
+        <div class="sw"><i style="background:#f3efe6"></i>生成り #f3efe6</div>
+        <div class="sw"><i style="background:#1f2420"></i>墨 #1f2420</div>
+        <div class="sw"><i style="background:#3d5a45"></i>苔 #3d5a45</div>
+        <div class="sw"><i style="background:#9a4a2b"></i>弁柄 #9a4a2b</div>
+        <div class="sw"><i style="background:#cfc7b6"></i>罫線 #cfc7b6</div>
+      </div></div>
+      <div class="spec"><h3>書体・組版・写真</h3><ul>
+        <li>見出し: しっぽり明朝 B1 / 本文: 漢角ゴシック(Zen Kaku Gothic New)</li>
+        <li>細い罫線、縦書きの添え書き、数字を大きく</li>
+        <li>写真は彩度を少し落として、紙になじませる</li>
+      </ul></div>
+      <div class="spec refs"><h3>参考</h3><ul>
+        <li><a href="https://www.awwwards.com/sites/auwa">Auwa</a>(Awwwards 入賞 2026)― 静かな編集デザイン</li>
+        <li><a href="https://www.awwwards.com/sites/hotarutei">Hotarutei</a>(Awwwards 入賞 2023)― 写真と文字組</li>
+        <li><a href="https://www.awwwards.com/inspiration/editorial-layout">Awwwards: Editorial Layout</a></li>
+        <li>向き: 信頼感・落ち着き / 懸念: 明朝は小さいと高齢の方に読みにくい → 見出しだけに使う</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="dir d2">
+    <div class="dir-head"><span class="no">案 2</span><h2>地図と境界</h2><span class="en">CARTOGRAPHY</span></div>
+    <p class="concept">等高線・測量図・地番をモチーフにした、深い森の緑の世界。「山の場所や境界が分からない」という一番多い悩みを、地図の上で一つずつ確かめていく体験として見せる。森林オープンデータのページとも自然につながる。</p>
+    <div class="boards">
+      <div>
+        <div class="mock-web">
+          <svg class="contour" id="contour-web" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+          <span class="pin"></span>
+          <div class="mw-inner">
+            <div class="eyebrow">さとやま不動産 ― 山林・里山の管理と出口整理</div>
+            <div>
+              <div class="h">その山の<em>場所</em>から、<br>一緒に確かめます。</div>
+              <div class="lead">地番・境界・名義・毎年の負担。地図と資料で分かる範囲から整理します。</div>
+              <div style="margin-top:18px"><span class="btn">無料相談を申し込む</span></div>
+            </div>
+            <div class="coords"><span>N 43°03′</span><span>E 141°21′</span><span>地番 ― 確認中</span></div>
+          </div>
+        </div>
+        <p class="cap">ウェブ:等高線が背景でゆっくり描かれる(動きを減らす設定では止める)</p>
+      </div>
+      <div>
+        <div class="mock-flyer">
+          <svg class="contour" id="contour-flyer" viewBox="0 0 300 424" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+          <div class="mw-inner" style="justify-content:flex-end">
+            <div class="eyebrow" style="font-size:9px">さとやま不動産</div>
+            <div class="f-h">相続する予定の山、<br><em>今のうちに</em>整理しませんか。</div>
+            <div class="f-list">・親の山がどこにあるか分からない<br>・名義が祖父母のまま<br>・子どもに負担を残したくない</div>
+            <div style="margin-top:12px"><span class="f-cta">無料相談はこちら</span></div>
+          </div>
+        </div>
+        <p class="cap">チラシ A 表面</p>
+      </div>
+    </div>
+    <div class="specs">
+      <div class="spec"><h3>色</h3><div class="swatches">
+        <div class="sw"><i style="background:#0f2a22"></i>深緑 #0f2a22</div>
+        <div class="sw"><i style="background:#efe7d4"></i>地図の砂 #efe7d4</div>
+        <div class="sw"><i style="background:#c9b98e"></i>等高線 #c9b98e</div>
+        <div class="sw"><i style="background:#d0563b"></i>測量の朱 #d0563b</div>
+      </div></div>
+      <div class="spec"><h3>書体・組版・写真</h3><ul>
+        <li>見出し・本文: 漢角ゴシック / 数字: 等幅</li>
+        <li>等高線・ピン・座標を飾りとして使う。写真は控えめ</li>
+        <li>暗い背景が多いので、印刷ではインクが多くなる</li>
+      </ul></div>
+      <div class="spec refs"><h3>参考</h3><ul>
+        <li><a href="https://www.awwwards.com/sites/treasures-of-japan">Treasures of Japan</a>(Awwwards Site of the Day 2024)― 地図と旅の構成</li>
+        <li><a href="https://www.awwwards.com/websites/Japan/">Awwwards: Japan</a></li>
+        <li>向き: 印象に残る・独自性 / 懸念: 暗い背景は高齢の方に読みにくいことがある、山の「温かさ」が出にくい</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="dir d3">
+    <div class="dir-head"><span class="no">案 3</span><h2>静かな里山</h2><span class="en">QUIET SATOYAMA</span></div>
+    <p class="concept">画面いっぱいの里山の写真と、大きく読みやすい文字。飾りを減らし、写真の光と余白で上質さを出す。書体は読みやすさを最優先した UD ゴシック。「ここなら安心して相談できそう」と最初の 3 秒で感じてもらう。</p>
+    <div class="boards">
+      <div>
+        <div class="mock-web">
+          <div class="topbar"><span>ネイチャーキャピタル・リアルエステイト</span><span>無料相談</span></div>
+          <div class="mw-inner">
+            <div class="h">山のこと、<br>分からないままにしない。</div>
+            <div class="lead">相続・遠方の管理・売却や活用。分かる範囲から、一緒に整理します。</div>
+            <div class="row"><span class="btn">無料相談を申し込む</span><span class="btn ghost">さとやま不動産について</span></div>
+          </div>
+        </div>
+        <p class="cap">ウェブ:全面写真の上に大きな見出しと 2 つのボタン</p>
+      </div>
+      <div>
+        <div class="mock-flyer">
+          <div class="f-photo"></div>
+          <div class="f-body">
+            <div class="f-h">相続する予定の山、<br>今のうちに整理しませんか。</div>
+            <div class="f-list">・親の山がどこにあるか分からない<br>・名義が祖父母のまま<br>・子どもに負担を残したくない</div>
+            <div class="f-cta">無料相談はこちら →</div>
+          </div>
+        </div>
+        <p class="cap">チラシ A 表面</p>
+      </div>
+    </div>
+    <div class="specs">
+      <div class="spec"><h3>色</h3><div class="swatches">
+        <div class="sw"><i style="background:#f9f6ef"></i>朝の白 #f9f6ef</div>
+        <div class="sw"><i style="background:#f4e6cf"></i>朝焼け #f4e6cf</div>
+        <div class="sw"><i style="background:#22261f"></i>墨 #22261f</div>
+        <div class="sw"><i style="background:#47603f"></i>葉 #47603f</div>
+      </div></div>
+      <div class="spec"><h3>書体・組版・写真</h3><ul>
+        <li>見出し・本文: BIZ UDP ゴシック(読みやすさ重視のユニバーサルデザイン書体)</li>
+        <li>写真が主役。飾りは最小限、余白を広く</li>
+        <li>写真の質がそのまま出来に響く → 撮り下ろしか高解像度の写真が要る</li>
+      </ul></div>
+      <div class="spec refs"><h3>参考</h3><ul>
+        <li><a href="https://www.awwwards.com/websites/minimal/">Awwwards: Minimal</a></li>
+        <li><a href="https://www.awwwards.com/sites/hotarutei">Hotarutei</a> ― 写真の扱い</li>
+        <li>向き: 一番読みやすい・安心感 / 懸念: 写真頼みで、他社と似やすい</li>
+      </ul></div>
+    </div>
+  </section>
+</div>
+<script>
+  // 案 2 の等高線(飾り)
+  function contour(svg, w, h, n, seed) {
+    let s = seed; const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+    const cx = w * 0.7, cy = h * 0.4, ph = [rnd() * 6, rnd() * 6, rnd() * 6];
+    let out = '';
+    for (let i = 1; i <= n; i++) {
+      const r = i * (Math.max(w, h) / n) * 0.75; let d = '';
+      for (let a = 0; a <= 64; a++) {
+        const t = a / 64 * Math.PI * 2;
+        const k = 1 + 0.18 * Math.sin(3 * t + ph[0] + i * .15) + 0.1 * Math.sin(5 * t + ph[1]) + 0.06 * Math.sin(7 * t + ph[2] - i * .1);
+        const x = cx + Math.cos(t) * r * k * 1.25, y = cy + Math.sin(t) * r * k * .85;
+        d += (a ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1);
+      }
+      out += `<path d="${d}Z" fill="none" stroke="#c9b98e" stroke-opacity="${i % 5 === 0 ? .55 : .22}" stroke-width="${i % 5 === 0 ? 1.2 : .7}"/>`;
+    }
+    svg.innerHTML = out;
+  }
+  contour(document.getElementById('contour-web'), 800, 500, 26, 7);
+  contour(document.getElementById('contour-flyer'), 300, 424, 18, 7);
+</script>
+</body>
+</html>

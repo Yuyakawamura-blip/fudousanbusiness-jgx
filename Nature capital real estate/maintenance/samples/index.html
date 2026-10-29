@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>見本の書類(撮影用・架空)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&family=BIZ+UDPGothic&family=Zen+Kurenaido&display=swap" rel="stylesheet">
+<style>
+  /* A4 を 1 枚ずつ印刷できる。画面では縦に並ぶ */
+  @page { size: A4; margin: 0; }
+  body { margin:0; background:#888; font-family:"BIZ UDPMincho",serif; color:#222; }
+  .sheet { width:210mm; height:297mm; margin:10mm auto; background:#fff; position:relative; overflow:hidden; box-sizing:border-box; padding:16mm 15mm; page-break-after:always; }
+  .mihon { position:absolute; right:12mm; top:9mm; font:700 11pt "BIZ UDPGothic"; color:#c8442f; border:1.5px solid #c8442f; padding:1mm 3mm; letter-spacing:.3em; }
+  .foot { position:absolute; left:15mm; bottom:9mm; font:8pt "BIZ UDPGothic"; color:#777; }
+  h1 { font-size:15pt; font-weight:400; text-align:center; letter-spacing:.4em; margin:6mm 0 8mm; }
+  table { border-collapse:collapse; width:100%; font-size:9.5pt; }
+  td, th { border:0.6pt solid #333; padding:2mm 2.5mm; vertical-align:top; font-weight:400; }
+  th { background:#f2f2f2; text-align:center; }
+  .note { font-size:8.5pt; color:#444; margin-top:4mm; line-height:1.7; }
+  .hand { font-family:"Zen Kurenaido",cursive; color:#2a4d8f; font-size:13pt; }
+  @media print { body { background:#fff; } .sheet { margin:0; } }
+</style>
+</head>
+<body>
+
+<!-- 1 公図(地図) -->
+<section class="sheet" id="kozu" style="background:#fbf8ef">
+  <div class="mihon">見本</div>
+  <h1>地 図(写)</h1>
+  <table style="margin-bottom:5mm"><tr><th style="width:22%">所在</th><td>〇〇郡 杉ノ沢村 大字 奥沢 字 上ノ平</td><th style="width:14%">縮尺</th><td style="width:16%">1/2500</td></tr></table>
+  <svg viewBox="0 0 600 700" style="width:100%;height:205mm;border:0.6pt solid #333;background:#fffdf6">
+    <g fill="none" stroke="#333" stroke-width="1.1">
+      <path d="M40 80 L250 60 L300 210 L120 260 Z"/>
+      <path d="M250 60 L470 90 L440 240 L300 210 Z"/>
+      <path d="M470 90 L560 120 L540 300 L440 240 Z"/>
+      <path d="M120 260 L300 210 L330 380 L160 430 Z"/>
+      <path d="M300 210 L440 240 L460 400 L330 380 Z"/>
+      <path d="M440 240 L540 300 L550 470 L460 400 Z"/>
+      <path d="M160 430 L330 380 L350 560 L190 620 Z"/>
+      <path d="M330 380 L460 400 L480 600 L350 560 Z"/>
+      <path d="M460 400 L550 470 L560 640 L480 600 Z"/>
+    </g>
+    <path d="M60 300 C 120 330, 110 420, 150 470 S 170 600, 140 690" fill="none" stroke="#333" stroke-width="1" stroke-dasharray="6 4"/>
+    <text x="70" y="330" font-size="13" fill="#333" transform="rotate(70 70 330)">林 道</text>
+    <g font-family="BIZ UDPMincho" font-size="17" fill="#222" text-anchor="middle">
+      <text x="170" y="170">1203</text><text x="365" y="150">1204</text><text x="500" y="190">1205</text>
+      <text x="230" y="330">1206-1</text><text x="385" y="310">1206-2</text><text x="495" y="355">1207</text>
+      <text x="260" y="500">1208</text><text x="405" y="490">1209</text><text x="510" y="530">1210</text>
+    </g>
+    <path d="M300 210 L440 240 L460 400 L330 380 Z" fill="#c8442f" fill-opacity=".08" stroke="#c8442f" stroke-width="2.4"/>
+    <text x="520" y="60" font-size="14" fill="#333">↑ N</text>
+  </svg>
+  <div class="foot">撮影用の見本です。所在・地番は架空のもので、実在の土地とは関係ありません。</div>
+</section>
+
+<!-- 2 登記簿 -->
+<section class="sheet" id="touki">
+  <div class="mihon">見本</div>
+  <h1>全部事項(土地)の写し</h1>
+  <table>
+    <tr><th colspan="4">表 題 部(土地の表示)</th></tr>
+    <tr><th style="width:18%">所在</th><td colspan="3">〇〇郡杉ノ沢村大字奥沢字上ノ平</td></tr>
+    <tr><th>① 地番</th><th>② 地目</th><th>③ 地積 ㎡</th><th>原因及びその日付</th></tr>
+    <tr><td>1206番2</td><td>山林</td><td>8,412</td><td>1206番から分筆<br>昭和38年5月14日</td></tr>
+  </table>
+  <table style="margin-top:6mm">
+    <tr><th colspan="4">権 利 部(甲区)(所有権に関する事項)</th></tr>
+    <tr><th style="width:10%">順位</th><th style="width:20%">登記の目的</th><th style="width:28%">受付年月日</th><th>権利者その他の事項</th></tr>
+    <tr><td>1</td><td>所有権移転</td><td>昭和38年6月2日</td><td>原因 昭和38年5月20日売買<br>所有者 〇〇郡杉ノ沢村大字奥沢 112番地<br>山 田 　 一 郎</td></tr>
+  </table>
+  <p class="note">※ 下線のあるものは抹消事項であることを示す。</p>
+  <p class="hand" style="position:absolute;left:30mm;top:150mm;transform:rotate(-3deg)">祖父の名前のまま → 相続登記まだ?</p>
+  <div class="foot">撮影用の見本です。氏名・所在・地番は架空のもので、実在の人物・土地とは関係ありません。</div>
+</section>
+
+<!-- 3 納税通知書 -->
+<section class="sheet" id="nouzei" style="background:#fbfbf8">
+  <div class="mihon">見本</div>
+  <h1>固定資産税 課税明細(写)</h1>
+  <table style="margin-bottom:5mm"><tr><th style="width:22%">年度</th><td>令和8年度</td><th style="width:18%">納税義務者</th><td>山田 一郎 様</td></tr></table>
+  <table>
+    <tr><th>所在地番</th><th>地目</th><th>地積 ㎡</th><th>評価額 円</th><th>課税標準額 円</th><th>税相当額 円</th></tr>
+    <tr><td>上ノ平 1206-2</td><td>山林</td><td style="text-align:right">8,412</td><td style="text-align:right">168,240</td><td style="text-align:right">168,240</td><td style="text-align:right">2,355</td></tr>
+    <tr><td>上ノ平 1209</td><td>山林</td><td style="text-align:right">5,130</td><td style="text-align:right">102,600</td><td style="text-align:right">102,600</td><td style="text-align:right">1,436</td></tr>
+    <tr><td>奥沢 455</td><td>畑</td><td style="text-align:right">612</td><td style="text-align:right">58,140</td><td style="text-align:right">58,140</td><td style="text-align:right">813</td></tr>
+    <tr><td>奥沢 460</td><td>宅地</td><td style="text-align:right">330</td><td style="text-align:right">1,980,000</td><td style="text-align:right">330,000</td><td style="text-align:right">4,620</td></tr>
+    <tr><th colspan="5" style="text-align:right">合 計</th><td style="text-align:right">9,224</td></tr>
+  </table>
+  <p class="note">※ 数字は撮影用の架空のものです。実際の税額の計算方法を示すものではありません。</p>
+  <p class="hand" style="position:absolute;right:28mm;top:118mm;transform:rotate(2deg)">毎年これだけ… 山は2つ?</p>
+  <div class="foot">撮影用の見本です。氏名・地番・金額は架空のもので、実在の人物・土地とは関係ありません。</div>
+</section>
+
+<!-- 4 森林簿 -->
+<section class="sheet" id="shinrin" style="background:#f7f9f4">
+  <div class="mihon">見本</div>
+  <h1>森 林 簿(抜粋)</h1>
+  <table>
+    <tr><th>林班</th><th>小班</th><th>地番</th><th>面積 ha</th><th>樹種</th><th>林齢</th><th>施業履歴</th></tr>
+    <tr><td>12</td><td>い</td><td>1206-2</td><td style="text-align:right">0.84</td><td>スギ</td><td style="text-align:right">58</td><td>間伐 平成10年</td></tr>
+    <tr><td>12</td><td>ろ</td><td>1209</td><td style="text-align:right">0.51</td><td>カラマツ</td><td style="text-align:right">52</td><td>―</td></tr>
+    <tr><td>12</td><td>は</td><td>1210</td><td style="text-align:right">1.12</td><td>広葉樹</td><td style="text-align:right">―</td><td>―</td></tr>
+  </table>
+  <p class="note">※ 森林簿の様式・項目は都道府県によって異なります。</p>
+  <p class="hand" style="position:absolute;left:34mm;top:96mm;transform:rotate(-2deg)">58年… 最後の手入れは平成10年</p>
+  <div class="foot">撮影用の見本です。地番・数値は架空のもので、実在の土地とは関係ありません。</div>
+</section>
+
+</body>
+</html>

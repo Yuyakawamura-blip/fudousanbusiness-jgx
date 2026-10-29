@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>チラシ(表 手紙 / 裏 相談票)試作</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho:wght@400;700&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* A4 + 塗り足し 3mm = 216 × 303mm。文字は仕上がり線から 12mm 以上内側 */
+@page { size: 216mm 303mm; margin: 0; }
+:root { --paper:#f4f2ec; --ink:#1d1d1b; --pencil:#4f4f49; --soft:#cfcbc0; --shu:#ad3a22; }
+* { box-sizing:border-box; }
+body { margin:0; background:#8a8a85; font-family:"BIZ UDPGothic",sans-serif; color:var(--ink); }
+.page { width:216mm; height:303mm; margin:10mm auto; background:var(--paper); position:relative; overflow:hidden; padding:18mm 17mm 16mm; page-break-after:always; display:flex; flex-direction:column; }
+h1, h2, .mincho { font-family:"BIZ UDPMincho",serif; font-feature-settings:"palt"; }
+.from-line { font-size:9.5pt; color:var(--pencil); display:flex; justify-content:space-between; border-bottom:0.5pt solid var(--ink); padding-bottom:3mm; }
+.front h1 { font-size:31pt; line-height:1.45; margin:16mm 0 11mm; font-weight:700; word-break:auto-phrase; }
+.front .letter { font-family:"BIZ UDPMincho",serif; font-size:14pt; line-height:2.05; flex:1; }
+.front .letter p { margin:0 0 5mm; }
+.front .four { list-style:none; margin:3mm 0 7mm; padding:0; border-top:0.5pt solid var(--ink); font-size:13pt; }
+.front .four li { display:grid; grid-template-columns:40mm 1fr; border-bottom:0.4pt solid var(--soft); padding:2.4mm 0; line-height:1.7; }
+.front .four b { font-weight:700; }
+.front .bottom { border-top:0.5pt solid var(--ink); padding-top:5mm; display:grid; grid-template-columns:26mm 1fr; gap:6mm; align-items:center; }
+.qr { width:26mm; height:26mm; border:0.8pt dashed var(--ink); display:grid; place-items:center; font-size:9pt; color:var(--pencil); text-align:center; line-height:1.4; background:#fff; }
+.front .bottom b { display:block; font-size:15pt; color:var(--shu); margin-bottom:1mm; }
+.front .bottom p { margin:0; font-size:10pt; line-height:1.7; }
+.sender { font-size:9pt; color:var(--pencil); margin-top:4mm; line-height:1.6; }
+.sender b { color:var(--ink); font-family:"BIZ UDPMincho",serif; font-size:10pt; }
+
+/* 裏 */
+.back h2 { font-size:21pt; margin:7mm 0 2mm; line-height:1.45; }
+.back .lead { word-break:auto-phrase; font-size:10pt; color:var(--pencil); margin:0 0 4mm; line-height:1.7; }
+.sheet { border:0.9pt solid var(--ink); background:#fff; }
+.sheet .head { display:flex; justify-content:space-between; align-items:baseline; padding:2.4mm 4mm; border-bottom:0.9pt solid var(--ink); }
+.sheet .head .t { font:700 13pt "BIZ UDPMincho"; }
+.sheet .head span:last-child { font-size:9pt; color:var(--pencil); }
+.q { padding:3.4mm 4.5mm 3.6mm; border-bottom:0.4pt solid var(--soft); }
+.q:last-child { border-bottom:0; }
+.q h3 { font:700 12pt "BIZ UDPMincho"; margin:0 0 1.6mm; }
+.q h3 span { font:400 8.5pt "BIZ UDPGothic"; color:var(--pencil); margin-left:2mm; }
+.opts { display:grid; grid-template-columns:1fr 1fr; gap:1mm 5mm; font-size:11.5pt; line-height:1.65; }
+.opts span::before { content:""; display:inline-block; width:3.6mm; height:3.6mm; border:0.7pt solid var(--ink); margin-right:2mm; vertical-align:-0.6mm; background:#fff; }
+.write { height:12mm; border-bottom:0.5pt dotted var(--pencil); }
+.fees { width:100%; border-collapse:collapse; margin-top:5mm; font-size:10.5pt; line-height:1.6; border-top:0.5pt solid var(--ink); border-bottom:0.5pt solid var(--ink); }
+.fees th, .fees td { text-align:left; vertical-align:top; padding:1.6mm 2mm 1.6mm 0; border-bottom:0.4pt solid var(--soft); }
+.fees th { font:700 10.5pt "BIZ UDPMincho"; width:38mm; }
+.fees td.fee { width:28mm; font-weight:700; }
+.fees td.free { color:var(--shu); }
+.back .bottom { margin-top:auto; padding-top:4mm; display:grid; grid-template-columns:26mm 1fr; gap:6mm; align-items:center; }
+.back .bottom b { display:block; font-size:13pt; color:var(--shu); margin-bottom:1mm; }
+.back .bottom p { margin:0; font-size:9.5pt; line-height:1.7; }
+.note { font-size:8pt; color:var(--pencil); margin-top:3mm; line-height:1.6; }
+@media print { body { background:none; } .page { margin:0; } }
+</style>
+</head>
+<body>
+
+<!-- A 相続前 -->
+<section class="page front">
+  <div class="from-line"><span>山林・里山をお持ちの方へ</span><span>さとやま不動産</span></div>
+  <h1>相続する予定の山、<br>今のうちに整理しませんか。</h1>
+  <div class="letter">
+    <p>親が持っている山について、場所も名義も分からないまま、という方は少なくありません。相続のあとに調べようとすると、書類を集めるだけで何か月もかかることがあります。</p>
+    <p>私たちは、まず今の状態をはっきりさせるところからお手伝いします。</p>
+    <ul class="four">
+      <li><b>どこにあるか</b>公図や地図で、場所と形を確かめます。</li>
+      <li><b>誰の名義か</b>登記簿で、名義と共有の状況を確かめます。</li>
+      <li><b>毎年いくらか</b>土地ごとの負担を一覧にします。</li>
+      <li><b>この先どうするか</b>持つ・頼む・譲る・売るの手間と費用を並べます。</li>
+    </ul>
+    <p>売ることを前提にはしていません。ご家族と一緒に聞いていただいても構いません。</p>
+  </div>
+  <div class="bottom">
+    <div class="qr">QR<br>(A)</div>
+    <div><b>相談は無料です</b><p>裏の相談票に印を付けてから、QR で申し込んでください。3 営業日以内にご連絡します。</p></div>
+  </div>
+  <p class="sender"><b>ネイチャーキャピタル・リアルエステイト</b>　運営 日本GXグループ株式会社 / 全国から受け付けています</p>
+</section>
+
+<!-- B 管理負担 -->
+<section class="page front">
+  <div class="from-line"><span>山林・里山をお持ちの方へ</span><span>さとやま不動産</span></div>
+  <h1>手入れできない山、<br>放置する前にご相談ください。</h1>
+  <div class="letter">
+    <p>遠くに住んでいて、何年も山を見に行けていない。倒木や越境で、近所に迷惑をかけていないかが気になる。それでも、誰に頼めばいいのか分からない。そういうご相談をよく受けます。</p>
+    <p>私たちは、まず今の状態をはっきりさせるところからお手伝いします。</p>
+    <ul class="four">
+      <li><b>どこにあるか</b>公図や地図で、場所と形を確かめます。</li>
+      <li><b>今どうなっているか</b>現地を確かめ、写真でお伝えします(費用は事前にお見積り)。</li>
+      <li><b>毎年いくらか</b>土地ごとの負担を一覧にします。</li>
+      <li><b>この先どうするか</b>管理を地域の事業者に頼む・譲る・売るを比べます。</li>
+    </ul>
+    <p>売ることを前提にはしていません。手元に書類が無くても構いません。</p>
+  </div>
+  <div class="bottom">
+    <div class="qr">QR<br>(B)</div>
+    <div><b>相談は無料です</b><p>裏の相談票に印を付けてから、QR で申し込んでください。3 営業日以内にご連絡します。</p></div>
+  </div>
+  <p class="sender"><b>ネイチャーキャピタル・リアルエステイト</b>　運営 日本GXグループ株式会社 / 全国から受け付けています</p>
+</section>
+
+<!-- C 複合資産 -->
+<section class="page front">
+  <div class="from-line"><span>山林・里山をお持ちの方へ</span><span>さとやま不動産</span></div>
+  <h1>森林・耕作放棄地・空き家。<br>どうすればよいか分からない土地を、まとめて相談。</h1>
+  <div class="letter">
+    <p>山と畑と空き家を一度に引き継ぐと、土地ごとに相談先が違い、どこから手を付ければいいのか分からなくなります。毎年の固定資産税だけが続いている、という話もよく聞きます。</p>
+    <p>私たちは、持っている土地を一覧にするところからお手伝いします。</p>
+    <ul class="four">
+      <li><b>何を持っているか</b>山・畑・空き家を一覧にし、場所と名義を確かめます。</li>
+      <li><b>毎年いくらか</b>どの土地にいくらかかっているかを並べます。</li>
+      <li><b>どこに相談するか</b>土地ごとの相談先(農業委員会など)をご案内します。</li>
+      <li><b>この先どうするか</b>持つ・頼む・譲る・売るの手間と費用を並べます。</li>
+    </ul>
+    <p>売ることを前提にはしていません。空き家や畑だけのご相談も、まずはお話を伺います。</p>
+  </div>
+  <div class="bottom">
+    <div class="qr">QR<br>(C)</div>
+    <div><b>相談は無料です</b><p>裏の相談票に印を付けてから、QR で申し込んでください。3 営業日以内にご連絡します。</p></div>
+  </div>
+  <p class="sender"><b>ネイチャーキャピタル・リアルエステイト</b>　運営 日本GXグループ株式会社 / 全国から受け付けています</p>
+</section>
+
+<!-- 裏 共通 -->
+<section class="page back">
+  <div class="from-line"><span>山の相談票</span><span>ネイチャーキャピタル・リアルエステイト</span></div>
+  <h2>当てはまるものに、印を付けてください。</h2>
+  <p class="lead">分かる所だけで構いません。ご相談のとき、この紙を手元に置いてお話しください。この紙を送っていただく必要はありません。</p>
+  <div class="sheet">
+    <div class="head"><span class="t">山の相談票</span><span>記入日　　　年　　月　　日</span></div>
+    <div class="q"><h3>その山は、いま誰の名義ですか<span>1 つ</span></h3><div class="opts"><span>自分の名義</span><span>亡くなった親・祖父母の名義のまま</span><span>家族が持っている(これから相続)</span><span>分からない</span></div></div>
+    <div class="q"><h3>山の場所は分かりますか<span>1 つ</span></h3><div class="opts"><span>行ったことがある・地図で分かる</span><span>市町村くらいは分かる</span><span>ほとんど分からない</span></div></div>
+    <div class="q"><h3>手元にあるもの<span>いくつでも</span></h3><div class="opts"><span>固定資産税の納税通知書</span><span>登記簿(登記事項証明書)</span><span>公図・地図</span><span>何も無い</span></div></div>
+    <div class="q"><h3>気になっていること<span>いくつでも</span></h3><div class="opts"><span>遠くて見に行けない</span><span>税金や管理費がかかり続ける</span><span>倒木・越境で迷惑をかけていないか</span><span>売れるのか、手放せるのか</span><span>畑や空き家も一緒にある</span><span>子どもに負担を残したくない</span></div></div>
+    <div class="q"><h3>ひと言で言うと<span>書かなくても構いません</span></h3><div class="write"></div></div>
+  </div>
+  <table class="fees">
+    <tr><th>最初の聞き取り</th><td class="fee free">無料</td><td>3 営業日以内にご連絡。電話・オンライン・対面</td></tr>
+    <tr><th>整理メモ</th><td class="fee free">無料</td><td>分かったこと・まだ分からないこと・選択肢を 1 枚に</td></tr>
+    <tr><th>現地確認・調査など</th><td class="fee">事前にお見積り</td><td>了承なく費用がかかることはありません</td></tr>
+  </table>
+  <div class="bottom">
+    <div class="qr">QR</div>
+    <div><b>相談の申し込み(無料)</b><p>QR から申し込みの用紙が開きます。メールでも受け付けます(アドレス準備中)。<br>運営 日本GXグループ株式会社 / 全国から受け付けています</p></div>
+  </div>
+  <p class="note">売却・制度の利用などの結果をお約束するものではありません。法律・税務の判断は、司法書士・税理士などの専門家にご確認ください。</p>
+</section>
+
+</body>
+</html>

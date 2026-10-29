@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>構造案 1 一枚の地図</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho:wght@400;700&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#f7f4ea; --ink:#1d1d1b; --pencil:#5a5a55; --shu:#ad3a22; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:"BIZ UDPGothic",sans-serif; font-size:18px; line-height:1.85; }
+  .top { display:flex; justify-content:space-between; align-items:center; padding:18px clamp(20px,4vw,40px); font-size:15px; border-bottom:1px solid var(--ink); }
+  .top a { color:inherit; }
+  .top .cta { background:var(--shu); color:#fff; padding:10px 18px; text-decoration:none; font-weight:700; }
+  .sheetinfo { display:flex; flex-wrap:wrap; gap:4px 28px; padding:10px clamp(20px,4vw,40px); font:400 14px "BIZ UDPMincho"; color:var(--pencil); border-bottom:1px solid #c9c5ba; }
+  .map { max-width:1100px; margin:0 auto; padding:24px clamp(12px,3vw,32px) 0; }
+  .lot { position:relative; padding:56px 9% 64px; margin-top:-2px; }
+  .lot svg { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+  .lot polygon { fill:none; stroke:var(--ink); stroke-width:1.2; vector-effect:non-scaling-stroke; }
+  .lot .no { font:400 22px "BIZ UDPMincho"; color:var(--pencil); margin:0 0 6px; letter-spacing:.04em; font-variant-numeric:tabular-nums; position:relative; }
+  .lot h2, .lot h1 { font-family:"BIZ UDPMincho"; font-weight:700; line-height:1.45; margin:0 0 14px; position:relative; word-break:auto-phrase; }
+  .lot h1 { font-size:clamp(32px,4.4vw,56px); }
+  .lot h2 { font-size:clamp(24px,2.6vw,32px); }
+  .lot p, .lot ul { position:relative; max-width:34em; margin:0 0 12px; }
+  .lot ul { padding-left:1.2em; }
+  .lot.w { width:72%; } .lot.r { margin-left:auto; } .lot.c { margin-left:12%; }
+  .lot.mine polygon { stroke:var(--shu); stroke-width:2.6; fill:rgba(173,58,34,.06); }
+  .lot.mine .no { color:var(--shu); }
+  .road { font:400 15px "BIZ UDPMincho"; color:var(--pencil); text-align:center; padding:8px 0; letter-spacing:.6em; position:relative; }
+  .road::before, .road::after { content:""; position:absolute; top:50%; width:30%; border-top:1px dashed var(--pencil); }
+  .road::before { left:5%; } .road::after { right:5%; }
+  .btn { display:inline-block; background:var(--shu); color:#fff; text-decoration:none; font-weight:700; font-size:20px; padding:16px 28px; position:relative; margin-top:8px; }
+  .legend { max-width:1100px; margin:40px auto 80px; padding:0 clamp(20px,4vw,40px); font-size:15px; color:var(--pencil); }
+  .legend a { color:var(--ink); margin-right:1.2em; }
+  @media (max-width:760px){ .lot.w{width:100%;} .lot.c{margin-left:0;} .lot{padding:44px 7% 52px;} }
+</style>
+</head>
+<body>
+<div class="top"><a href="#">ネイチャーキャピタル・リアルエステイト</a><a class="cta" href="#mine">無料相談</a></div>
+<div class="sheetinfo"><span>地図(見本)</span><span>所在 山林・里山の相続と管理の相談</span><span>作成 ネイチャーキャピタル・リアルエステイト</span></div>
+
+<div class="map">
+  <section class="lot" style="padding-top:72px">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,0 100,0 97,100 3,94"/></svg>
+    <p class="no">1</p>
+    <h1>その山がどこにあって、<br>誰の名義で、<br>毎年いくらかかっているか。</h1>
+    <p>相続した山、親が持っている山について、まずこの 3 つをはっきりさせるところから一緒にやります。書類が手元に無くても始められます。</p>
+  </section>
+
+  <div class="road" aria-hidden="true">林道</div>
+
+  <section class="lot w">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,6 100,0 92,100 4,100"/></svg>
+    <p class="no">2 場所</p>
+    <h2>行ったことのない山でも、<br>場所は調べられます。</h2>
+    <p>納税通知書に書かれた地番や、市町村で取れる名寄帳から、公図と地図で場所と形を確かめます。</p>
+  </section>
+
+  <section class="lot w r">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="8,0 100,4 100,96 0,100"/></svg>
+    <p class="no">3 名義</p>
+    <h2>名義が祖父のままでも、<br>珍しくありません。</h2>
+    <p>登記簿で今の名義と共有者を確かめます。相続登記が必要な場合は、司法書士へおつなぎします。</p>
+  </section>
+
+  <section class="lot w c">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,0 94,6 100,100 6,92"/></svg>
+    <p class="no">4 負担</p>
+    <h2>毎年の負担を、<br>土地ごとに一覧にします。</h2>
+    <p>山・畑・空き家がまとまっている場合も、どの土地にいくらかかっているかを並べます。</p>
+  </section>
+
+  <section class="lot w r">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="4,4 100,0 96,100 0,94"/></svg>
+    <p class="no">5 これから</p>
+    <h2>売ることを前提にはしません。</h2>
+    <ul><li>持ち続けて、管理を地域の事業者に頼む</li><li>隣の方や地域の事業者に譲る</li><li>売る</li></ul>
+    <p>それぞれの手間と費用を並べます。売れない山も多く、そのことも最初にお伝えします。</p>
+  </section>
+
+  <section class="lot w mine" id="mine">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,4 96,0 100,92 8,100"/></svg>
+    <p class="no">あなたの山</p>
+    <h2>ご相談は無料です。</h2>
+    <p>3 営業日以内にご連絡します。聞き取りのあと、分かったこととまだ分からないことを 1 枚のメモにしてお渡しします(これも無料)。費用がかかる作業は、金額をお伝えして了承をいただいてからです。</p>
+    <a class="btn" href="#">相談を申し込む</a>
+  </section>
+</div>
+<div class="legend">全国から受け付けています。運営 日本GXグループ株式会社<br>山林をお持ちの方以外は　<a href="#">林業事業体の方</a><a href="#">企業・個人の方</a><a href="#">森林を知る</a></div>
+</body>
+</html>

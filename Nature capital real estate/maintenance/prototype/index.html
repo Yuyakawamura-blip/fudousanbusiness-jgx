@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>森林・里山の相続と管理のご相談 | ネイチャーキャピタル・リアルエステイト(試作)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=BIZ+UDPMincho:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ===== デザインシステム「書類の文法」 試作 v1 ===== */
+:root {
+  --paper: #f3f0e7;      /* 再生紙 */
+  --paper-hi: #fbf9f3;   /* 公図の紙・カード */
+  --ink: #1b1b19;        /* 墨 */
+  --pencil: #57574f;     /* 鉛筆(補足の文字) 対 paper 6.3 */
+  --rule: #2b2b27;       /* 罫線 */
+  --rule-soft: #cfcabd;  /* 薄い罫 */
+  --shu: #b0381f;        /* 朱肉(相談・無料の印) 対 白 5.9 */
+  --ai: #24427e;         /* 藍(書き込み) */
+  --f-mincho: "BIZ UDPMincho", serif;
+  --f-gothic: "BIZ UDPGothic", sans-serif;
+  --max: 1200px;
+  --gut: clamp(20px, 5vw, 56px);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-gothic); font-size:18px; line-height:1.9; -webkit-font-smoothing:antialiased; }
+img { max-width:100%; display:block; }
+a { color:inherit; }
+.skip-link { position:absolute; left:-999px; } .skip-link:focus { left:16px; top:16px; background:#fff; padding:8px 12px; z-index:10; }
+:focus-visible { outline:3px solid var(--ai); outline-offset:3px; }
+h1, h2, h3 { font-family:var(--f-mincho); font-weight:700; word-break:auto-phrase; margin:0; letter-spacing:.02em; }
+p { margin:0; }
+.inner { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
+
+/* 欄の見出し(書類の項目名) */
+.field { display:flex; align-items:baseline; gap:14px; font-size:15px; color:var(--pencil); letter-spacing:.08em; border-top:1px solid var(--rule); padding-top:12px; margin-bottom:28px; }
+.field b { font-family:var(--f-mincho); color:var(--ink); font-size:15px; font-weight:400; font-variant-numeric:tabular-nums; }
+
+/* ボタン */
+.btn { display:inline-flex; align-items:center; gap:12px; min-height:58px; padding:0 28px; font:700 18px/1 var(--f-gothic); text-decoration:none; border:2px solid var(--ink); background:transparent; color:var(--ink); transition:transform .2s, box-shadow .2s; }
+.btn:hover { transform:translateY(-2px); box-shadow:0 6px 0 -2px var(--ink); }
+.btn.primary { background:var(--shu); border-color:var(--shu); color:#fff; }
+.btn.primary:hover { box-shadow:0 6px 0 -2px #6e2212; }
+.btn .arrow { font-family:var(--f-mincho); }
+
+/* 朱の印 */
+.stamp { display:inline-grid; place-items:center; width:64px; height:64px; border:2px solid var(--shu); border-radius:50%; color:var(--shu); font:700 17px/1 var(--f-mincho); letter-spacing:.06em; flex:none; }
+.stamp.sq { border-radius:4px; width:auto; height:auto; padding:6px 10px; font-size:15px; }
+
+/* ===== ヘッダー ===== */
+.site-header { border-bottom:1px solid var(--rule); background:var(--paper); position:sticky; top:0; z-index:5; }
+.site-header .inner { display:flex; align-items:center; justify-content:space-between; gap:24px; min-height:76px; }
+.brand { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.brand span { font:700 16px/1.3 var(--f-mincho); letter-spacing:.04em; }
+.nav { display:flex; gap:26px; font-size:15px; }
+.nav a { text-decoration:none; padding:8px 0; border-bottom:1px solid transparent; }
+.nav a:hover { border-color:var(--ink); }
+.site-header .btn { min-height:48px; padding:0 20px; font-size:16px; }
+
+/* ===== 1 最初の画面: 相談の机 ===== */
+.hero { padding:72px 0 96px; overflow:hidden; }
+.hero .inner { display:grid; grid-template-columns: minmax(0,1.05fr) minmax(0,1fr); gap:56px; align-items:center; }
+.hero .kicker { font-size:15px; color:var(--pencil); letter-spacing:.08em; margin-bottom:26px; }
+.hero h1 { font-size:clamp(34px, 4.2vw, 56px); line-height:1.45; margin-bottom:22px; }
+.hero h1 .q { font-family:var(--f-mincho); }
+.hero .who { font-size:15px; color:var(--pencil); margin-bottom:28px; }
+.hero .lead { font-size:19px; max-width:30em; margin-bottom:36px; }
+.hero .actions { display:flex; flex-wrap:wrap; gap:14px; margin-bottom:30px; }
+.hero .facts { display:flex; gap:0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); max-width:560px; }
+.hero .facts div { flex:1; padding:12px 14px; border-left:1px solid var(--rule-soft); font-size:14px; color:var(--pencil); line-height:1.5; }
+.hero .facts div:first-child { border-left:0; padding-left:0; }
+.hero .facts b { display:block; font:700 20px/1.4 var(--f-mincho); color:var(--ink); }
+
+.desk { position:relative; aspect-ratio: 1 / 1.05; margin-right:calc(-1 * var(--gut)); }
+.desk .map { position:absolute; inset:0 0 8% 0; background:#fbf8ef url("../samples/img/kozu-map.webp") 38% 40%/150% auto no-repeat; border:1px solid var(--rule); box-shadow:0 22px 40px -26px rgba(40,30,10,.5); }
+.desk .map::after { content:"所在 〇〇郡 杉ノ沢村 字 上ノ平　縮尺 1/2500　(見本)"; position:absolute; left:0; right:0; top:0; padding:8px 14px; font:400 13px var(--f-mincho); color:var(--pencil); border-bottom:1px solid var(--rule-soft); background:rgba(251,248,239,.92); }
+.desk .ask { position:absolute; left:33%; top:19%; font:700 22px/1.3 var(--f-mincho); color:var(--ai); transform:rotate(-4deg); }
+.desk .ask::after { content:""; position:absolute; left:100%; top:70%; width:64px; height:1.5px; background:var(--ai); transform:rotate(30deg); transform-origin:left; margin-left:6px; }
+.desk .sheet { position:absolute; left:-8%; bottom:0; width:46%; background:#fff; transform:rotate(-4deg); box-shadow:0 1px 1px rgba(0,0,0,.08), 0 20px 36px -18px rgba(40,30,10,.55); transition:transform .5s cubic-bezier(.2,.7,.2,1); }
+.desk:hover .sheet { transform:rotate(-6deg) translate(-6px,-6px); }
+.desk .label { position:absolute; z-index:4; right:8%; bottom:10%; font-size:13px; color:var(--pencil); background:var(--paper); padding:2px 8px; }
+
+/* ===== 2 人の言葉 ===== */
+.voices { padding:40px 0 112px; }
+.voices h2 { font-size:clamp(28px,3vw,40px); line-height:1.5; margin-bottom:12px; }
+.voices .sub { color:var(--pencil); margin-bottom:44px; }
+.voice-list { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--rule); }
+.voice-list li { border-bottom:1px solid var(--rule); border-right:1px solid var(--rule-soft); }
+.voice-list li:nth-child(3n) { border-right:0; }
+.voice-list a { display:block; height:100%; padding:30px 28px 28px 0; padding-left:28px; text-decoration:none; transition:background .2s; }
+.voice-list li:nth-child(3n+1) a { padding-left:0; }
+.voice-list a:hover { background:var(--paper-hi); }
+.voice-list .n { font:400 14px var(--f-mincho); color:var(--pencil); font-variant-numeric:tabular-nums; }
+.voice-list q { display:block; quotes:"「" "」"; font:700 23px/1.6 var(--f-mincho); margin:8px 0 14px; word-break:auto-phrase; }
+.voice-list .ans { font-size:16px; color:var(--pencil); line-height:1.7; }
+.voice-list .ans b { color:var(--ink); font-weight:700; }
+.more { margin-top:28px; }
+.more a { font-size:17px; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:2px; }
+
+/* ===== 3 4 枚の紙 ===== */
+.papers { background:var(--paper-hi); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:104px 0 112px; }
+.papers .head { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:end; margin-bottom:56px; }
+.papers h2 { font-size:clamp(28px,3vw,40px); line-height:1.5; }
+.papers .head p { color:var(--ink); }
+.paper-list { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4,1fr); gap:32px; }
+.paper-list figure { margin:0; }
+.paper-list .img { aspect-ratio: 1/.62; overflow:hidden; background:#fff; box-shadow:0 1px 1px rgba(0,0,0,.08), 0 14px 26px -18px rgba(40,30,10,.5); margin-bottom:20px; transition:transform .3s; }
+.paper-list li:hover .img { transform:translateY(-6px) rotate(-1deg); }
+.paper-list img { width:100%; }
+.paper-list h3 { font-size:22px; margin-bottom:4px; }
+.paper-list .what { font-size:16px; line-height:1.7; }
+.paper-list .what b { display:block; font-size:15px; color:var(--pencil); font-weight:400; margin-top:6px; }
+
+/* ===== 4 流れと費用(書類の表) ===== */
+.flow { padding:112px 0; }
+.flow h2 { font-size:clamp(28px,3vw,40px); line-height:1.5; margin-bottom:14px; }
+.flow .sub { max-width:36em; margin-bottom:44px; }
+.form { border:1.5px solid var(--rule); background:var(--paper-hi); display:grid; grid-template-columns:repeat(3,1fr); }
+.form .col { border-left:1px solid var(--rule); display:grid; grid-template-rows:auto auto 1fr; }
+.form .col:first-child { border-left:0; }
+.form .th { background:#e7e3d7; border-bottom:1px solid var(--rule); padding:10px 22px; font:400 15px var(--f-mincho); color:var(--ink); letter-spacing:.06em; display:flex; justify-content:space-between; }
+.form .ttl { padding:22px 22px 0; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.form .ttl h3 { font-size:23px; line-height:1.4; }
+.form .body { padding:14px 22px 26px; font-size:16px; line-height:1.8; }
+.memo { margin-top:40px; display:grid; grid-template-columns: 300px 1fr; gap:40px; align-items:center; }
+.memo .note { background:#fff; padding:22px 24px; box-shadow:0 14px 26px -18px rgba(40,30,10,.5); transform:rotate(-1.5deg); font-size:14px; line-height:1.8; }
+.memo .note h4 { font:700 16px var(--f-mincho); margin:0 0 8px; border-bottom:1px solid var(--rule); padding-bottom:6px; }
+.memo .note ul { margin:0; padding-left:1.1em; }
+.memo .note .hand { font-family:var(--f-mincho); color:var(--ai); }
+
+/* ===== 5 考え方 ===== */
+.stance { border-top:1px solid var(--rule); }
+.stance .inner { display:grid; grid-template-columns:1fr 1fr; gap:0; padding:0; max-width:none; }
+.stance .photo { min-height:520px; background:url("../../docs/assets/concept-rice-terrace.webp") center 35%/cover; position:relative; }
+.stance .photo span { position:absolute; left:16px; bottom:14px; font-size:13px; color:#fff; background:rgba(0,0,0,.45); padding:2px 8px; }
+.stance .text { padding:96px var(--gut); max-width:640px; }
+.stance h2 { font-size:clamp(28px,3vw,40px); line-height:1.5; margin-bottom:24px; }
+.stance ol { list-style:none; padding:0; margin:0 0 36px; counter-reset:s; }
+.stance li { counter-increment:s; border-top:1px solid var(--rule-soft); padding:14px 0 14px 44px; position:relative; }
+.stance li::before { content:counter(s, decimal-leading-zero); position:absolute; left:0; top:14px; font:400 15px var(--f-mincho); color:var(--pencil); }
+
+/* ===== 6 その他の方へ ===== */
+.others { border-top:1px solid var(--rule); padding:72px 0; }
+.others ul { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--rule); }
+.others li { border-bottom:1px solid var(--rule); border-left:1px solid var(--rule-soft); }
+.others li:first-child { border-left:0; }
+.others a { display:flex; justify-content:space-between; align-items:center; padding:24px 24px; text-decoration:none; font:700 20px var(--f-mincho); }
+.others li:first-child a { padding-left:0; }
+.others a small { display:block; font:400 15px var(--f-gothic); color:var(--pencil); margin-top:4px; }
+
+/* ===== 7 相談 ===== */
+.consult { background:var(--ink); color:#f3f0e7; padding:112px 0; }
+.consult .inner { display:grid; grid-template-columns:1.2fr 1fr; gap:56px; align-items:center; }
+.consult h2 { font-size:clamp(30px,3.4vw,46px); line-height:1.5; }
+.consult p { color:#d9d5c8; margin-top:18px; }
+.consult .box { border:1px solid #6d6a60; padding:28px; }
+.consult .btn.primary { width:100%; justify-content:center; min-height:66px; font-size:20px; }
+.consult .box p { font-size:15px; margin-top:14px; }
+footer { padding:40px 0 56px; font-size:14px; color:var(--pencil); }
+
+.proto-note { position:fixed; right:12px; bottom:12px; z-index:9; background:#fff; border:1px solid var(--rule); font-size:12px; padding:6px 10px; }
+
+/* 入場の動き(動きを減らす設定では無し) */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity:0; transform:translateY(14px); transition:opacity .8s, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.on { opacity:1; transform:none; }
+}
+
+/* ===== スマートフォン ===== */
+@media (max-width: 860px) {
+  body { font-size:17px; }
+  .nav { display:none; }
+  .site-header .inner { min-height:64px; }
+  .brand span { font-size:14px; }
+  .hero { padding:28px 0 64px; }
+  .hero .inner { grid-template-columns:1fr; gap:28px; }
+  .desk { order:-1; aspect-ratio: 1/.8; }
+  .hero .actions .btn { width:100%; justify-content:center; }
+  .voice-list { grid-template-columns:1fr; }
+  .voice-list li { border-right:0; }
+  .voice-list a, .voice-list li:nth-child(3n+1) a { padding:22px 0; }
+  .papers .head { grid-template-columns:1fr; gap:16px; }
+  .paper-list { grid-template-columns:1fr 1fr; gap:22px; }
+  .form { grid-template-columns:1fr; }
+  .form .col { border-left:0; border-top:1px solid var(--rule); }
+  .form .col:first-child { border-top:0; }
+  .memo { grid-template-columns:1fr; }
+  .stance .inner { grid-template-columns:1fr; }
+  .stance .photo { min-height:260px; }
+  .stance .text { padding:56px var(--gut); }
+  .others ul { grid-template-columns:1fr; }
+  .others li { border-left:0; }
+  .others a, .others li:first-child a { padding:20px 0; }
+  .consult .inner { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="#">
+      <svg width="34" height="34" viewBox="0 0 128 128" aria-hidden="true"><path d="M8 78 43 25l18 22 27-38 32 69H8Z" fill="#24475B"/><path d="M8 78h112v22H8z" fill="#2A4D43"/><path d="M10 88c21-8 40 6 61-1 19-7 31 4 49-2" fill="none" stroke="#F5F4EF" stroke-width="5" stroke-linecap="round"/><path d="M18 108c22-7 43 6 64-1 17-6 28 3 38-1" fill="none" stroke="#B9915B" stroke-width="3.5" stroke-linecap="round"/></svg>
+      <span>ネイチャーキャピタル・<br>リアルエステイト</span>
+    </a>
+    <nav class="nav" aria-label="主なページ">
+      <a href="#">山林をお持ちの方</a><a href="#">林業事業体の方</a><a href="#">企業・個人の方</a><a href="#">森林を知る</a><a href="#">私たちについて</a>
+    </nav>
+    <a class="btn primary" href="#consult">無料相談</a>
+  </div>
+</header>
+
+<main id="main">
+  <!-- 1 -->
+  <section class="hero">
+    <div class="inner">
+      <div>
+        <p class="kicker">山林・里山の相続と管理のご相談 ― さとやま不動産</p>
+        <h1><span class="q">「祖父の山が、<br>どこにあるのか<br>分からない。」</span></h1>
+        <p class="who">― 東京にお住まいの方からの、最初のひと言(例)</p>
+        <p class="lead">ご相談は、たいていこういう言葉から始まります。公図・登記簿・納税通知書。お手元の紙から、山の場所と名義と毎年の負担を、一緒に確かめていきます。</p>
+        <div class="actions">
+          <a class="btn primary" href="#consult">無料相談を申し込む <span class="arrow">→</span></a>
+          <a class="btn" href="#flow">相談の流れと費用</a>
+        </div>
+        <div class="facts">
+          <div><b>無料</b>初回のインタビュー</div>
+          <div><b>3 営業日</b>以内にご連絡</div>
+          <div><b>全国</b>からご相談可</div>
+        </div>
+      </div>
+      <div class="desk" aria-label="公図の見本。朱で囲んだ区画に「この山?」と書き込みがあり、手前に登記簿の見本が重なっている">
+        <div class="map"></div>
+        <span class="ask">この山?</span>
+        <img class="sheet" src="../samples/img/touki-top.webp" alt="">
+        <span class="label">写真 A の仮置き(見本の書類)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="voices reveal">
+    <div class="inner">
+      <p class="field"><b>01</b>よくある、最初のひと言</p>
+      <h2>うまく説明できなくても、<br>大丈夫です。</h2>
+      <p class="sub">これまでに多い言葉を並べました。近いものはありますか。</p>
+      <ul class="voice-list">
+        <li><a href="#"><span class="n">1</span><q>何年も、山を見に行けていない</q><p class="ans"><b>遠方の管理</b> ― 現地を確かめ、写真でご報告します</p></a></li>
+        <li><a href="#"><span class="n">2</span><q>名義が、祖父のままになっている</q><p class="ans"><b>相続の前後</b> ― 名義と共有の状況を整理します</p></a></li>
+        <li><a href="#"><span class="n">3</span><q>売れるのかどうかも、分からない</q><p class="ans"><b>出口の整理</b> ― 持つ・頼む・譲る・売るを比べます</p></a></li>
+        <li><a href="#"><span class="n">4</span><q>倒木で、近所に迷惑をかけていないか</q><p class="ans"><b>現地の確認</b> ― 状況を見て、必要なら地域の事業者と</p></a></li>
+        <li><a href="#"><span class="n">5</span><q>固定資産税だけ、払い続けている</q><p class="ans"><b>負担の一覧</b> ― どの土地にいくらかかっているか</p></a></li>
+        <li><a href="#"><span class="n">6</span><q>山と一緒に、畑と空き家もある</q><p class="ans"><b>まとめて整理</b> ― 土地ごとの相談先と選択肢</p></a></li>
+      </ul>
+      <p class="more"><a href="#">ほかのお悩みから探す →</a></p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="papers reveal">
+    <div class="inner">
+      <p class="field"><b>02</b>相談の机に出てくるもの</p>
+      <div class="head">
+        <h2>どれか1枚あれば、<br>そこから始められます。</h2>
+        <p>無くても大丈夫です。どこで取り寄せられるかも、一緒に確認します。</p>
+      </div>
+      <ul class="paper-list">
+        <li><figure><div class="img"><img src="../samples/img/kozu-top.webp" alt="公図の見本"></div><h3>公図</h3><p class="what">山の<b style="display:inline;color:inherit;font-size:inherit">場所と形</b>が分かる<b>法務局で取得</b></p></figure></li>
+        <li><figure><div class="img"><img src="../samples/img/touki-top.webp" alt="登記簿の見本"></div><h3>登記簿</h3><p class="what">いま<b style="display:inline;color:inherit;font-size:inherit">誰の名義</b>かが分かる<b>法務局で取得</b></p></figure></li>
+        <li><figure><div class="img"><img src="../samples/img/nouzei-top.webp" alt="固定資産税の課税明細の見本"></div><h3>納税通知書</h3><p class="what"><b style="display:inline;color:inherit;font-size:inherit">毎年の負担</b>が分かる<b>毎年、市町村から届く</b></p></figure></li>
+        <li><figure><div class="img"><img src="../samples/img/shinrin-top.webp" alt="森林簿の見本"></div><h3>森林簿</h3><p class="what"><b style="display:inline;color:inherit;font-size:inherit">木の種類と年齢</b>が分かる<b>都道府県・市町村に問い合わせ</b></p></figure></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="flow reveal" id="flow">
+    <div class="inner">
+      <p class="field"><b>03</b>ご相談の流れと費用</p>
+      <h2>費用がかかるのは、<br>ご了承いただいてからです。</h2>
+      <p class="sub">初回のインタビューと整理メモは無料です。売却を前提にせず、分かること・分からないことを一緒に確かめます。</p>
+      <div class="form" role="list">
+        <div class="col" role="listitem"><div class="th"><span>01</span><span>費用</span></div><div class="ttl"><h3>初回<br>インタビュー</h3><span class="stamp">無料</span></div><div class="body">お申し込みから 3 営業日以内に、担当者からご連絡します。電話・オンライン・対面で、分かる範囲のことをお聞きします。</div></div>
+        <div class="col" role="listitem"><div class="th"><span>02</span><span>費用</span></div><div class="ttl"><h3>整理メモを<br>お渡し</h3><span class="stamp">無料</span></div><div class="body">分かったこと・まだ分からないこと・考えられる選択肢を、1 枚のメモにまとめます。</div></div>
+        <div class="col" role="listitem"><div class="th"><span>03</span><span>費用</span></div><div class="ttl"><h3>ご依頼</h3><span class="stamp sq">事前に<br>お見積り</span></div><div class="body">現地確認や調査が必要な場合は、内容と金額を先にお伝えします。ご了承なく費用がかかることはありません。</div></div>
+      </div>
+      <div class="memo">
+        <div class="note" aria-label="整理メモの見本">
+          <h4>整理メモ(見本)</h4>
+          <ul><li>分かったこと: 上ノ平 1206-2(山林 約 0.8ha)は祖父名義</li><li>まだ分からないこと: 境界、隣の方</li><li>考えられる選択肢: 管理を頼む / 隣の方に譲る / …</li></ul>
+          <p class="hand">→ 次は公図で場所を確認</p>
+        </div>
+        <div><p style="margin-bottom:22px">02 でお渡しするのは、こういう 1 枚です。ご家族と見ながら、この先どうするかを考える材料にしてください。</p><a class="btn primary" href="#consult">無料相談を申し込む <span class="arrow">→</span></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="stance reveal">
+    <div class="inner">
+      <div class="photo"><span>写真 E の仮置き</span></div>
+      <div class="text">
+        <p class="field"><b>04</b>私たちの考え方</p>
+        <h2>売却を、<br>前提にしません。</h2>
+        <ol>
+          <li>持ち続ける・管理を頼む・譲る・売る。選択肢を並べてから考えます</li>
+          <li>不利なことも、先にお伝えします</li>
+          <li>引き受け手は、隣の方や地域の事業者も含めて探します</li>
+        </ol>
+        <a class="btn" href="#">さとやま不動産について <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="others">
+    <div class="inner">
+      <p class="field"><b>05</b>山林をお持ちの方以外にも</p>
+      <ul>
+        <li><a href="#"><span>林業事業体の方<small>森林経営計画の作成支援ツール</small></span>→</a></li>
+        <li><a href="#"><span>企業・個人の方<small>企業の森づくり・自然資本</small></span>→</a></li>
+        <li><a href="#"><span>森林を知る<small>森林の基礎とオープンデータ</small></span>→</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="consult" id="consult">
+    <div class="inner">
+      <div>
+        <h2>まずは、お手元の紙1枚から。<br>何も無くても構いません。</h2>
+        <p>山の場所が曖昧でも、相談だけでも大丈夫です。全国からご相談いただけます。</p>
+      </div>
+      <div class="box">
+        <a class="btn primary" href="#">無料相談を申し込む <span class="arrow">→</span></a>
+        <p>お申し込みから 3 営業日以内に、担当者からご連絡します。<br>メール:(専用アドレスができたら掲載)</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><div class="inner">運営:日本GXグループ株式会社 ・ プライバシーポリシー</div></footer>
+<div class="proto-note">試作 v1(写真は仮置き)</div>
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>森林・里山の相続と管理のご相談 | ネイチャーキャピタル・リアルエステイト(試作 v2)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho:wght@400;700&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper:#f4f2ec; --sheet:#fff; --ink:#1d1d1b; --pencil:#57574f; --line:#1d1d1b; --soft:#d3d0c6; --shu:#ad3a22;
+  --mincho:"BIZ UDPMincho",serif; --gothic:"BIZ UDPGothic",sans-serif;
+  --gut:clamp(20px,5vw,56px);
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--gothic); font-size:18px; line-height:1.85; -webkit-font-smoothing:antialiased; }
+a { color:inherit; }
+:focus-visible { outline:3px solid #24427e; outline-offset:3px; }
+.skip-link { position:absolute; left:-999px; } .skip-link:focus { left:16px; top:16px; background:#fff; padding:8px 12px; z-index:9; }
+
+.top { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:16px var(--gut); }
+.top .brand { font:700 16px var(--mincho); text-decoration:none; letter-spacing:.03em; }
+.top nav { display:flex; gap:24px; font-size:15px; }
+.top nav a { text-decoration:none; }
+.top nav a:hover { text-decoration:underline; }
+.top .cta { background:var(--shu); color:#fff; text-decoration:none; font-weight:700; font-size:16px; padding:12px 20px; }
+
+/* 手紙 */
+.letter { max-width:1180px; margin:0 auto; padding:56px var(--gut) 40px; display:grid; grid-template-columns:200px minmax(0,34em); gap:0 64px; }
+.letter .side { font-size:15px; color:var(--pencil); line-height:1.8; padding-top:12px; }
+.letter .side b { display:block; color:var(--ink); font:400 15px var(--mincho); }
+.letter h1 { font:700 clamp(30px,3.8vw,48px)/1.5 var(--mincho); margin:0 0 40px; word-break:auto-phrase; letter-spacing:.01em; }
+.letter .body { font-family:var(--mincho); font-size:20px; line-height:2.05; }
+.letter .body p { margin:0 0 1.3em; }
+.letter .four { margin:.4em 0 1.6em; padding:0; list-style:none; border-top:1px solid var(--line); font-size:19px; }
+.letter .four li { display:grid; grid-template-columns:8em 1fr; gap:1em; border-bottom:1px solid var(--soft); padding:.6em 0; }
+.letter .four b { font-weight:700; }
+.letter .go { display:inline-flex; gap:14px; align-items:center; font:700 18px var(--gothic); text-decoration:none; border-bottom:2px solid var(--ink); padding-bottom:4px; margin-top:.4em; }
+.letter .body .from { margin-top:2.4em; margin-bottom:0; font-size:16px; color:var(--pencil); font-family:var(--gothic); line-height:1.8; }
+.letter .from b { color:var(--ink); font:700 17px var(--mincho); }
+
+/* 写真の帯(撮影後に差し替え) */
+.photo { max-width:1180px; margin:48px auto 0; padding:0 var(--gut); }
+.photo div { aspect-ratio:21/8; background:#dcd8cc; display:grid; place-items:center; color:var(--pencil); font-size:15px; text-align:center; }
+
+/* 相談票 */
+.form-sec { max-width:1180px; margin:0 auto; padding:96px var(--gut) 40px; }
+.form-sec > h2 { font:700 clamp(26px,2.8vw,36px)/1.5 var(--mincho); margin:0 0 10px; word-break:auto-phrase; }
+.form-sec > p { margin:0 0 32px; color:var(--pencil); max-width:40em; }
+.grid { display:grid; grid-template-columns:minmax(0,1fr) 380px; gap:32px; align-items:start; }
+.sheet { background:var(--sheet); border:1.5px solid var(--line); }
+.sheet .head { padding:18px 28px; border-bottom:1.5px solid var(--line); display:flex; justify-content:space-between; font:700 22px var(--mincho); }
+.sheet .head span { font:400 14px var(--gothic); color:var(--pencil); align-self:center; }
+fieldset { border:0; margin:0; padding:22px 28px 24px; border-bottom:1px solid var(--soft); }
+legend { float:left; width:100%; font:700 20px var(--mincho); margin:0 0 10px; padding:0; }
+legend span { font:400 14px var(--gothic); color:var(--pencil); margin-left:10px; }
+.opts { clear:both; display:grid; grid-template-columns:1fr 1fr; gap:4px 20px; }
+label { display:flex; gap:12px; align-items:flex-start; padding:8px 0; cursor:pointer; }
+input[type=checkbox], input[type=radio] { width:26px; height:26px; margin:2px 0 0; accent-color:var(--shu); flex:none; }
+.free input { width:100%; font:inherit; padding:12px 14px; border:1px solid var(--pencil); }
+.result { position:sticky; top:20px; border:1.5px solid var(--line); background:#fbfaf6; }
+.result h3 { font:700 19px var(--mincho); margin:0; padding:16px 20px; border-bottom:1.5px solid var(--line); }
+.result .body { padding:18px 20px 22px; }
+.result .empty { color:var(--pencil); margin:0 0 16px; }
+.result ul { margin:0 0 16px; padding-left:1.2em; }
+.result li { margin-bottom:8px; }
+.btn { display:block; text-align:center; background:var(--shu); color:#fff; text-decoration:none; font-weight:700; font-size:19px; padding:17px; }
+.result small { display:block; color:var(--pencil); font-size:14px; margin-top:12px; line-height:1.7; }
+
+/* 費用と約束 */
+.terms { max-width:1180px; margin:0 auto; padding:80px var(--gut); }
+.terms table { width:100%; border-collapse:collapse; border-top:1.5px solid var(--line); border-bottom:1.5px solid var(--line); }
+.terms caption { text-align:left; font:700 clamp(24px,2.6vw,32px)/1.5 var(--mincho); margin-bottom:20px; }
+.terms th, .terms td { text-align:left; vertical-align:top; padding:18px 16px 18px 0; border-bottom:1px solid var(--soft); }
+.terms th { font:700 19px var(--mincho); width:14em; }
+.terms td.fee { width:9em; font-weight:700; }
+.terms td.fee.free { color:var(--shu); }
+
+.others { max-width:1180px; margin:0 auto; padding:0 var(--gut) 72px; font-size:16px; color:var(--pencil); }
+.others a { color:var(--ink); margin-right:1.4em; font-size:17px; }
+footer { border-top:1px solid var(--soft); padding:28px var(--gut) 48px; font-size:14px; color:var(--pencil); }
+
+@media (max-width:900px) {
+  .top nav { display:none; }
+  .letter { grid-template-columns:1fr; padding-top:24px; }
+  .letter .side { order:2; padding-top:0; }
+  .letter .body { font-size:19px; }
+  .letter .four li { grid-template-columns:1fr; gap:0; }
+  .grid { grid-template-columns:1fr; }
+  .result { position:static; }
+  .opts { grid-template-columns:1fr; }
+  fieldset, .sheet .head { padding-left:18px; padding-right:18px; }
+  .terms th, .terms td { display:block; width:auto; padding:6px 0; border:0; }
+  .terms tr { display:block; border-bottom:1px solid var(--soft); padding:12px 0; }
+  .photo div { aspect-ratio:4/3; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">本文へ移動</a>
+<div class="top">
+  <a class="brand" href="#">ネイチャーキャピタル・リアルエステイト</a>
+  <nav aria-label="主なページ"><a href="#">山林をお持ちの方</a><a href="#">林業事業体の方</a><a href="#">企業・個人の方</a><a href="#">森林を知る</a><a href="#">私たちについて</a></nav>
+  <a class="cta" href="#form">無料相談</a>
+</div>
+
+<main id="main">
+  <section class="letter" aria-labelledby="t">
+    <div class="side"><b>山林・里山をお持ちの方へ</b>山林の相続と管理の相談窓口<br>さとやま不動産</div>
+    <div>
+      <h1 id="t">山のことで、誰に聞けばいいのか分からない方へ。</h1>
+      <div class="body">
+        <p>相談に来られる方の多くは、その山を見たことがありません。親や祖父母が持っていた山で、場所は「〇〇町のあたり」としか分からない。毎年、固定資産税の通知だけが届く。名義は亡くなった祖父のまま。そういうところから始まります。</p>
+        <p>私たちがするのは、まず今の状態をはっきりさせることです。</p>
+        <ul class="four">
+          <li><b>どこにあるか</b>公図や地図で、場所と形を確かめます。</li>
+          <li><b>誰の名義か</b>登記簿で、名義と共有の状況を確かめます。</li>
+          <li><b>毎年いくらか</b>どの土地にいくらかかっているかを一覧にします。</li>
+          <li><b>この先どうするか</b>持ち続ける、管理を頼む、隣の方に譲る、売る。手間と費用を並べます。</li>
+        </ul>
+        <p>売ることを前提にはしていません。売れない山も多く、そのことも最初にお伝えします。手元に書類が無くても構いません。</p>
+        <a class="go" href="#form">まず、あなたの場合を確かめる <span aria-hidden="true">↓</span></a>
+        <p class="from"><b>ネイチャーキャピタル・リアルエステイト</b><br>運営 日本GXグループ株式会社 / 全国から受け付けています</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="photo" aria-hidden="true"><div>写真(撮影後に差し替え)<br>相談の机に広げた納税通知書と公図、または山の入口</div></div>
+
+  <section class="form-sec" id="form" aria-labelledby="f">
+    <h2 id="f">あなたの場合は、何から始めればいいか。</h2>
+    <p>当てはまるものに印を付けてください。最初にすることが出ます。この画面の内容はどこにも送られません。</p>
+    <div class="grid">
+      <form class="sheet" onsubmit="return false">
+        <div class="head">山の相談票<span>分かる所だけで構いません</span></div>
+        <fieldset><legend>その山は、いま誰の名義ですか<span>1 つ</span></legend><div class="opts">
+          <label><input type="radio" name="owner" value="self">自分の名義</label>
+          <label><input type="radio" name="owner" value="dead">亡くなった親・祖父母の名義のまま</label>
+          <label><input type="radio" name="owner" value="living">親など家族が持っている(これから相続)</label>
+          <label><input type="radio" name="owner" value="unknown">分からない</label></div></fieldset>
+        <fieldset><legend>山の場所は分かりますか<span>1 つ</span></legend><div class="opts">
+          <label><input type="radio" name="place" value="known">行ったことがある・地図で分かる</label>
+          <label><input type="radio" name="place" value="town">市町村くらいは分かる</label>
+          <label><input type="radio" name="place" value="none">ほとんど分からない</label></div></fieldset>
+        <fieldset><legend>手元にあるもの<span>いくつでも</span></legend><div class="opts">
+          <label><input type="checkbox" name="doc" value="tax">固定資産税の納税通知書</label>
+          <label><input type="checkbox" name="doc" value="touki">登記簿(登記事項証明書)</label>
+          <label><input type="checkbox" name="doc" value="kozu">公図・地図</label>
+          <label><input type="checkbox" name="doc" value="nothing">何も無い</label></div></fieldset>
+        <fieldset><legend>気になっていること<span>いくつでも</span></legend><div class="opts">
+          <label><input type="checkbox" name="worry" value="far">遠くて見に行けない</label>
+          <label><input type="checkbox" name="worry" value="cost">税金や管理費がかかり続ける</label>
+          <label><input type="checkbox" name="worry" value="tree">倒木・越境で迷惑をかけていないか</label>
+          <label><input type="checkbox" name="worry" value="sell">売れるのか、手放せるのか</label>
+          <label><input type="checkbox" name="worry" value="mixed">畑や空き家も一緒にある</label>
+          <label><input type="checkbox" name="worry" value="family">子どもに負担を残したくない</label></div></fieldset>
+        <fieldset style="border-bottom:0"><legend>ひと言で言うと<span>書かなくても構いません</span></legend>
+          <div class="free"><input type="text" aria-label="ひと言で言うと" placeholder="例: 祖父の山が〇〇町にあるらしいが、行ったことがない"></div></fieldset>
+      </form>
+      <aside class="result" aria-live="polite">
+        <h3>最初にすること</h3>
+        <div class="body" id="out"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="terms" aria-label="費用">
+    <table>
+      <caption>費用がかかるのは、了承をいただいてからです。</caption>
+      <tr><th>最初の聞き取り</th><td class="fee free">無料</td><td>お申し込みから 3 営業日以内にご連絡します。電話・オンライン・対面のどれでも。</td></tr>
+      <tr><th>整理メモ</th><td class="fee free">無料</td><td>分かったこと、まだ分からないこと、考えられる選択肢を 1 枚にまとめてお渡しします。</td></tr>
+      <tr><th>現地確認・調査など</th><td class="fee">事前にお見積り</td><td>内容と金額を先にお伝えします。了承なく費用がかかることはありません。</td></tr>
+    </table>
+  </section>
+
+  <div class="others">山林をお持ちの方以外は　<a href="#">林業事業体の方</a><a href="#">企業・個人の方</a><a href="#">森林を知る</a></div>
+</main>
+<footer>運営 日本GXグループ株式会社 / プライバシーポリシー<br>試作 v2(写真と所有者の実際の言葉は未反映)</footer>
+<script>
+const form = document.querySelector('form'), out = document.getElementById('out');
+const CTA = '<a class="btn" href="#">相談を申し込む(無料)</a><small>申し込みの用紙が開きます。3 営業日以内にご連絡します。<br>(本番では、ここで付けた印を用紙に写すことを検討)</small>';
+function render() {
+  const v = n => form.querySelector(`[name=${n}]:checked`)?.value;
+  const all = n => [...form.querySelectorAll(`[name=${n}]:checked`)].map(e => e.value);
+  const docs = all('doc'), worry = all('worry'), owner = v('owner'), place = v('place'), steps = [];
+  if (!owner && !place && !docs.length && !worry.length) { out.innerHTML = '<p class="empty">相談票に印を付けると、ここに出ます。印を付けずに申し込んでも構いません。</p>' + CTA; return; }
+  if (docs.includes('tax')) steps.push('納税通知書に書かれた地番から、山の場所と面積が分かります。まずはこれをお手元に。');
+  else if (place !== 'known') steps.push('山の場所は、市町村で「名寄帳」を取ると一覧で分かることがあります。取り方はご相談の中でご案内します。');
+  if (owner === 'dead') steps.push('名義が亡くなった方のままの場合、相続登記が必要です(義務化されています)。手続きは司法書士へおつなぎします。');
+  if (owner === 'unknown' || (!docs.includes('touki') && owner !== 'self')) steps.push('登記簿を取ると、今の名義と共有者が分かります。法務局で誰でも取れます。');
+  if (worry.includes('far') || worry.includes('tree')) steps.push('現地の様子は、私たちが確かめて写真でお伝えできます(費用は事前にお見積り)。');
+  if (worry.includes('sell')) steps.push('売れるかどうかは場所と条件次第です。売る以外に、管理を頼む・隣の方に譲る、も一緒に比べます。');
+  if (worry.includes('mixed')) steps.push('畑や空き家も、山と一緒に一覧にして整理します。');
+  if (worry.includes('cost') || worry.includes('family')) steps.push('毎年の負担を土地ごとに一覧にすると、残すか手放すかを家族で話しやすくなります。');
+  if (!steps.length) steps.push('分かる範囲のことを、そのままお聞かせください。');
+  out.innerHTML = '<ul>' + steps.map(s => `<li>${s}</li>`).join('') + '</ul>' + CTA;
+}
+if (location.hash === '#demo') { ['owner=dead','place=town','doc=tax','worry=far','worry=sell'].forEach(k => { const [n,val]=k.split('='); form.querySelector(`[name=${n}][value=${val}]`).checked = true; }); }
+render();
+form.addEventListener('change', render); form.addEventListener('input', render);
+</script>
+</body>
+</html>
