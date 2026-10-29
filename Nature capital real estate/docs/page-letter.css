@@ -1,0 +1,309 @@
+/* トップ以外のページの本文(2026-10-29)。手本: 穂垂亭 hotarutei.com、トップの home-letter.css と同じ寸法・部品。
+   HTML の部品名はページごとに違うので、<main class="lt"> の中だけで見た目を上書きする。
+   styles.css の後(forest-data は forest-data.css の後)に読み込む。 */
+.lt {
+  --r: clamp(10px, .7142857vw, 12px);
+  --bg: #f6f8f5; --ink: #1d201f; --gray: #646865; --white: #fff; --hair: #c9ccc8;
+  --en: "Cormorant Garamond", Didot, "Times New Roman", serif;
+  --ja: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+  --mincho: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+  --ease-out: cubic-bezier(.165, .84, .44, 1);
+  --ease: cubic-bezier(.25, .46, .45, .94);
+  --sec: calc(var(--r) * 18);
+  --side: calc(var(--r) * 16);
+  --line: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 10'%3E%3Cpath d='M0 5h34M28 1c2 2 4 3 8 4M28 9c2-2 4-3 8-4M4 2c2 1 3 2 4 3' fill='none' stroke='black' stroke-width='1'/%3E%3C/svg%3E");
+  display: block;
+  background: var(--bg); color: var(--ink);
+  font-size: max(17px, calc(var(--r) * 1.6)); line-height: 2; letter-spacing: .08em;
+  font-feature-settings: "palt";
+}
+body:has(main.lt) { background: var(--frame-bg, #f6f8f5); }
+/* styles.css の「* { Noto Sans JP !important }」を本文の中だけ上書きする */
+.lt, .lt * { font-family: var(--ja) !important; }
+.lt h1, .lt h2, .lt h3, .lt summary, .lt dt, .lt .label, .lt .eyebrow, .lt .guide-kicker,
+.lt .concern-group-title, .lt .challenge-fact strong, .lt blockquote { font-family: var(--mincho) !important; }
+.lt :focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+/* ---- 面: 色の付いた帯をやめ、地は 1 色。濃い面は灰色だけ ---- */
+.lt > section, .lt > nav, .lt > div, .lt .challenge-block, .lt .baseline-explainer,
+.lt .tone-green, .lt .tone-sand, .lt .service-intro-alt { background: var(--bg) !important; color: var(--ink); box-shadow: none; }
+.lt > section { padding: var(--sec) var(--side) 0; margin: 0; border: 0; }
+.lt > section:last-of-type { padding-bottom: var(--sec); }
+.lt > section, .lt > section > *, .lt > section .narrow { max-width: none; }
+.lt > section.narrow { width: auto; margin: 0; }
+.lt :is(.principles, .promise, .tool-flow, .guide-summary, .forest-future) {
+  background: var(--gray) !important; color: var(--white) !important;
+  margin-top: var(--sec); padding-bottom: var(--sec) !important;
+}
+.lt :is(.principles, .promise, .tool-flow, .guide-summary, .forest-future) + section { padding-top: var(--sec); }
+.lt :is(.principles, .promise, .tool-flow, .guide-summary, .forest-future) * { color: var(--white) !important; border-color: rgba(255, 255, 255, .55) !important; background: transparent !important; }
+
+/* ---- 文字 ---- */
+.lt h1 { font-weight: 400; font-size: calc(var(--r) * 5.4); line-height: 1.5; letter-spacing: .14em; margin: 0; color: inherit; word-break: auto-phrase; }
+.lt h2 { font-weight: 400; font-size: max(26px, calc(var(--r) * 3.6)); line-height: 1.7; letter-spacing: .14em; margin: 0; color: inherit; word-break: auto-phrase; }
+.lt h3 { font-weight: 500; font-size: max(19px, calc(var(--r) * 1.9)); line-height: 1.7; letter-spacing: .12em; color: inherit; }
+.lt p, .lt li, .lt dd, .lt td { font-size: max(17px, calc(var(--r) * 1.6)); line-height: 2.1; letter-spacing: .08em; color: inherit; }
+.lt small, .lt .small-note, .lt .service-caveat, .lt .concern-caveat, .lt .forest-note, .lt .forest-source-note, .lt .source-line, .lt figcaption {
+  font-size: max(14px, calc(var(--r) * 1.3)) !important; line-height: 1.9; letter-spacing: .06em; color: var(--gray);
+}
+/* 小見出し: 穂垂亭の「線 + 小さな明朝」 */
+.lt :is(.label, .eyebrow, .guide-kicker) {
+  display: flex; align-items: center; gap: calc(var(--r) * 1.6);
+  margin: 0 0 calc(var(--r) * 2.4); padding: 0; background: none; border: 0;
+  font-size: max(15px, calc(var(--r) * 1.4)) !important; font-weight: 500; line-height: 1.6; letter-spacing: .2em;
+  text-transform: none; color: inherit !important; opacity: 1;
+}
+.lt :is(.label, .eyebrow, .guide-kicker)::before {
+  content: ""; flex: none; width: calc(var(--r) * 4); height: calc(var(--r) * 1);
+  background: currentColor; -webkit-mask: var(--line) center / contain no-repeat; mask: var(--line) center / contain no-repeat;
+}
+.lt b, .lt strong { font-weight: 500; }
+.lt a { color: inherit; }
+
+/* ---- 最初の見出しと写真(各ページの hero) ---- */
+.lt :is(.service-hero, .hero, .forest-hero, .guide-hero, .sustainable-hero) {
+  position: relative; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start;
+  min-height: 0; height: auto; overflow: visible;
+  padding: calc(var(--r) * 13) var(--side) 0 !important; background: var(--bg) !important; color: var(--ink) !important;
+}
+.lt :is(.service-hero-copy, .hero-copy, .forest-hero-copy, .guide-hero-copy, .sustainable-hero > div:first-child) {
+  order: -1; position: static; max-width: none; width: auto; padding: 0 !important; margin: 0; background: none !important; color: var(--ink) !important;
+}
+.lt :is(.service-hero-copy, .hero-copy, .forest-hero-copy, .guide-hero-copy, .sustainable-hero > div:first-child) * { color: var(--ink) !important; }
+.lt :is(.service-hero, .hero, .forest-hero, .guide-hero, .sustainable-hero) h1 { margin: 0; font-size: calc(var(--r) * 5.4); }
+.lt .hero-sub { display: block; margin-top: calc(var(--r) * 1.2); font-size: max(17px, calc(var(--r) * 1.7)); letter-spacing: .2em; }
+.lt :is(.service-hero-copy, .hero-copy, .forest-hero-copy, .guide-hero-copy, .sustainable-hero > div:first-child) > p:not(.label) {
+  max-width: 34em; margin: calc(var(--r) * 4) 0 0; font-size: max(17px, calc(var(--r) * 1.7)) !important; line-height: 2.3; letter-spacing: .12em;
+}
+/* 写真は枠付き(手本の .frame) */
+.lt .service-hero figure, .lt .hero > img {
+  position: relative; inset: auto; order: 1; width: 100%; height: calc(100svh - var(--r) * 22); min-height: 380px; max-height: 760px;
+  margin: calc(var(--r) * 8) calc(var(--side) * -1 + 12px) 0; width: auto; padding: calc(var(--r) * .9); border: 1px solid var(--ink); border-radius: 4px; background: var(--bg); overflow: hidden;
+}
+.lt .service-hero figure::after, .lt .hero-shade, .lt .hero::after { display: none !important; }
+.lt .service-hero figure img { width: 100%; height: 100%; object-fit: cover; position: static; border-radius: 0; filter: none; }
+.lt .hero > img { object-fit: cover; }
+/* 背景画像だった hero は、同じ画像を枠付きの写真として下に出す */
+.lt :is(.forest-hero, .guide-hero)::after {
+  content: ""; display: block; order: 1; height: calc(100svh - var(--r) * 22); min-height: 380px; max-height: 760px;
+  margin: calc(var(--r) * 8) calc(var(--side) * -1 + 12px) 0; border: 1px solid var(--ink); border-radius: 4px; padding: calc(var(--r) * .9);
+  background: url("assets/forest-living-system.webp") center / cover no-repeat content-box, var(--bg);
+}
+.lt .guide-hero::after { background: url("assets/concept-rice-terrace.webp") center 52% / cover no-repeat content-box, var(--bg); }
+.lt .service-hero-copy .service-hero-button {
+  display: inline-flex; position: relative; margin-top: calc(var(--r) * 4); padding: 0 0 calc(var(--r) * .8) !important; border: 0 !important;
+  background: none !important; color: var(--ink) !important; font-size: max(17px, calc(var(--r) * 1.6)) !important; letter-spacing: .14em;
+}
+.lt .service-hero-copy .service-hero-button::before { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: currentColor; transition: width .7s var(--ease-out); }
+.lt .service-hero-copy .service-hero-button:hover::before { width: 0; left: auto; right: 0; }
+.lt .hero-copy > p:first-child { display: flex; align-items: center; gap: calc(var(--r) * 1.6); margin: 0 0 calc(var(--r) * 2.4); font: 500 max(15px, calc(var(--r) * 1.4)) / 1.6 var(--mincho); letter-spacing: .2em; }
+.lt .hero-copy > p:first-child::before { content: ""; flex: none; width: calc(var(--r) * 4); height: calc(var(--r) * 1); background: currentColor; -webkit-mask: var(--line) center / contain no-repeat; mask: var(--line) center / contain no-repeat; }
+/* ページ内メニュー: 下線だけの文字の並び */
+.lt :is(.forest-anchor-nav, .guide-index, .sustainable-toc, .concern-jump) {
+  position: static; display: flex; flex-wrap: wrap; gap: calc(var(--r) * 1) calc(var(--r) * 4);
+  margin: calc(var(--r) * 5) 0 0; padding: 0; background: none !important; border: 0; box-shadow: none; inset: auto; transform: none;
+}
+.lt > :is(.guide-index, .sustainable-toc) { padding: calc(var(--r) * 5) var(--side) 0; margin: 0; }
+.lt :is(.forest-anchor-nav, .guide-index, .sustainable-toc, .concern-jump) a {
+  position: relative; padding: 0 0 calc(var(--r) * .6); border: 0; background: none !important; color: var(--ink) !important;
+  font-size: max(16px, calc(var(--r) * 1.5)); letter-spacing: .14em; text-decoration: none; border-radius: 0; box-shadow: none; min-height: 0;
+}
+.lt :is(.forest-anchor-nav, .guide-index, .sustainable-toc, .concern-jump) a::after {
+  content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: currentColor; transition: width .7s var(--ease-out);
+}
+.lt :is(.forest-anchor-nav, .guide-index, .sustainable-toc, .concern-jump) a:hover::after { width: 0; left: auto; right: 0; }
+.lt .forest-anchor-nav { order: 0; }
+.lt .sustainable-hero-meta { order: 0; min-width: 0; margin-top: calc(var(--r) * 4); padding: 0 0 0 calc(var(--r) * 2.4); border-left: 1px solid var(--ink); }
+.lt .sustainable-hero-meta span { color: var(--gray) !important; font-size: max(14px, calc(var(--r) * 1.3)); }
+.lt .sustainable-hero-meta strong { font-family: var(--mincho) !important; font-size: max(18px, calc(var(--r) * 1.8)); }
+
+/* ---- 写真・図: 枠付き ---- */
+.lt :is(figure.why-image, .forest-visual, .guide-asset, .forest-area-map-card) {
+  margin: calc(var(--r) * 6) 0 0; padding: calc(var(--r) * .9); border: 1px solid var(--ink); border-radius: 3px; background: var(--bg) !important; box-shadow: none; overflow: hidden;
+}
+.lt :is(.why-image, .forest-visual, .guide-asset) img { display: block; width: 100%; height: auto; border-radius: 0; box-shadow: none; }
+.lt img { border-radius: 0; }
+
+/* ---- 2 段組の見出し + 本文 ---- */
+.lt :is(.service-intro, .two-column, .owner-entry, .concerns, .service-lines, .flow-fees) {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: calc(var(--r) * 3) calc(var(--r) * 8); align-items: start;
+}
+.lt :is(.concerns, .service-lines, .flow-fees) > :not(:first-child) { grid-column: 2; }
+.lt .flow-fees > :is(.flow-fees-steps, .flow-fees-promises) { grid-column: 1 / -1; }
+.lt .body-copy p:first-child, .lt .why-copy .body-copy p:first-child { margin-top: 0; }
+.lt :is(.service-intro, .two-column) h2 { margin-bottom: 0; }
+
+/* ---- 番号付きの並び(01 02 03) ---- */
+.lt :is(.concerns ol, .service-line-list, .recommendation-list) { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--ink); counter-reset: n; }
+.lt .concerns ol li { counter-increment: n; position: relative; padding: calc(var(--r) * 2) 0 calc(var(--r) * 2) calc(var(--r) * 5); border-bottom: 1px solid var(--hair); background: none; margin: 0; }
+.lt .concerns ol li::before { content: counter(n, decimal-leading-zero); position: absolute; left: 0; top: calc(var(--r) * 2); font-family: var(--en) !important; font-size: max(17px, calc(var(--r) * 1.6)); color: var(--ink); background: none; }
+.lt .service-line-list article { display: grid; grid-template-columns: calc(var(--r) * 6) 1fr; padding: calc(var(--r) * 3) 0; margin: 0; border: 0; border-bottom: 1px solid var(--hair); background: none; }
+.lt .service-line-list article b, .lt .flow-fees-steps > li > b { font-family: var(--en) !important; font-weight: 400; font-size: max(20px, calc(var(--r) * 2.2)); letter-spacing: .04em; color: var(--ink); background: none; }
+.lt .service-line-list h3 { margin: 0 0 calc(var(--r) * 1); }
+.lt .service-line-list p { margin: 0; }
+.lt :is(.concerns-more, .text-link) { grid-column: 2; justify-self: start; }
+
+/* ---- カード: 塗りと角丸をやめ、上の 1 本線で区切る ---- */
+.lt :is(.service-card-grid, .connection-grid, .owner-entry-list, .function-grid, .future-grid, .instrument-grid, .value-grid,
+  .usage-grid, .reference-grid, .quality-pillars, .guide-scale-grid, .cycle-list, .risk-grid, .concern-items) {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15em), 1fr)); gap: calc(var(--r) * 5) calc(var(--r) * 4);
+  margin-top: calc(var(--r) * 6); background: none !important;
+}
+.lt :is(.service-card-grid, .connection-grid, .owner-entry-list, .function-grid, .future-grid, .instrument-grid, .value-grid,
+  .usage-grid, .reference-grid, .quality-pillars, .guide-scale-grid, .cycle-list, .risk-grid, .concern-items) > * {
+  margin: 0; padding: calc(var(--r) * 2.4) 0 0; min-height: 0;
+  background: none !important; border: 0 !important; border-top: 1px solid var(--ink) !important; border-radius: 0 !important; box-shadow: none !important;
+  color: var(--ink) !important; transform: none;
+}
+.lt :is(.service-card-grid, .connection-grid, .owner-entry-list, .function-grid, .future-grid, .instrument-grid, .value-grid,
+  .usage-grid, .reference-grid, .quality-pillars, .guide-scale-grid, .cycle-list, .risk-grid, .concern-items) > * * { color: inherit; background-color: transparent; }
+.lt :is(.service-card-grid, .connection-grid, .function-grid, .future-grid, .instrument-grid, .value-grid, .usage-grid, .quality-pillars, .guide-scale-grid, .cycle-list, .risk-grid) h3 { margin: 0 0 calc(var(--r) * 1.2); }
+.lt :is(.service-card-grid, .owner-entry-list, .reference-grid, .concern-items) > a { text-decoration: none; transition: opacity .5s var(--ease); }
+.lt :is(.service-card-grid, .owner-entry-list, .reference-grid, .concern-items) > a:hover { opacity: .6; }
+.lt :is(.service-card-grid, .function-grid, .future-grid) img { border: 1px solid var(--ink); padding: calc(var(--r) * .6); background: var(--bg); }
+.lt :is(.partner-status, .fee) {
+  display: inline-block; padding: 2px 10px; border: 1px solid currentColor !important; border-radius: 0 !important; background: none !important; color: var(--ink) !important;
+  font-size: max(13px, calc(var(--r) * 1.2)) !important; letter-spacing: .12em;
+}
+.lt .partner-status.is-open, .lt .fee-free { background: var(--ink) !important; color: var(--bg) !important; border-color: var(--ink) !important; }
+
+/* ---- ご相談の流れと費用(共通部品 .flow-fees) ---- */
+.lt .flow-fees-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(var(--r) * 4); margin: calc(var(--r) * 6) 0 0; padding: 0; list-style: none; }
+.lt .flow-fees-steps > li { padding: calc(var(--r) * 2.4) 0 0; border: 0 !important; border-top: 1px solid var(--ink) !important; background: none !important; box-shadow: none !important; border-radius: 0 !important; }
+.lt .flow-fees-steps > li > b { margin-right: 12px; }
+.lt .flow-fees-steps h3 { margin: calc(var(--r) * 1.6) 0 calc(var(--r) * 1); }
+.lt .flow-fees-steps ul { padding-left: 1.2em; }
+.lt .flow-fees-steps ul li { font-size: max(15px, calc(var(--r) * 1.45)); line-height: 1.9; }
+.lt .flow-fees-promises { display: flex; flex-wrap: wrap; gap: calc(var(--r) * 1) calc(var(--r) * 4); margin: calc(var(--r) * 4) 0 0; padding: calc(var(--r) * 2.4) 0 0; border-top: 1px solid var(--hair); list-style: none; }
+.lt .flow-fees-promises li { color: var(--ink); background: none; }
+
+/* ---- 灰色の面の中(考え方・約束など) ---- */
+.lt :is(.principles, .promise) > div { display: grid; grid-template-columns: 1fr 1fr; gap: 0 calc(var(--r) * 6); margin-top: calc(var(--r) * 6); border-top: 1px solid rgba(255, 255, 255, .55); }
+.lt :is(.principles, .promise) > div > p { margin: 0; padding: calc(var(--r) * 2.2) 0; border-bottom: 1px solid rgba(255, 255, 255, .35); font-weight: 300; letter-spacing: .16em; }
+.lt .principles .future { max-width: 40em; margin: calc(var(--r) * 4) 0 0; }
+.lt .tool-flow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: calc(var(--r) * 8); }
+.lt .tool-flow ol { margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(255, 255, 255, .55); }
+.lt .tool-flow ol li { padding: calc(var(--r) * 2.2) 0; border-bottom: 1px solid rgba(255, 255, 255, .35); }
+
+/* ---- 図: 色の付いた板をやめ、枠と墨 1 色にする(手本のペン画に合わせる) ---- */
+.lt :is(.baseline-explainer, .challenge-figure:not(.work-figure)) { background: var(--bg) !important; border: 1px solid var(--ink) !important; border-radius: 3px !important; box-shadow: none !important; }
+.lt :is(.challenge-figure, .baseline-chart, .policy-statement, .work-foundation) { filter: grayscale(1) contrast(1.05); }
+.lt .business-response { background: none !important; border: 1px solid var(--ink) !important; border-radius: 0 !important; color: var(--ink) !important; }
+.lt .business-response * { color: var(--ink) !important; }
+.lt .challenge-fact strong { font-weight: 400; letter-spacing: .04em; color: var(--ink) !important; }
+
+/* ---- よくある質問 ---- */
+.lt .faq { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 0 calc(var(--r) * 8); align-items: start; }
+.lt .faq > :is(.label, h2) { grid-column: 1; }
+.lt .faq > h2 { grid-row: 2; }
+.lt .faq > details { grid-column: 2; }
+.lt .faq > details:first-of-type { grid-row: 1; border-top: 1px solid var(--ink); }
+.lt details { border: 0; border-bottom: 1px solid var(--hair); background: none !important; border-radius: 0; box-shadow: none; margin: 0; padding: 0; }
+.lt summary { display: flex; justify-content: space-between; gap: 24px; padding: calc(var(--r) * 2.2) 0; font-size: max(17px, calc(var(--r) * 1.65)); font-weight: 500; letter-spacing: .12em; line-height: 1.7; cursor: pointer; list-style: none; background: none; color: var(--ink); }
+.lt summary::-webkit-details-marker { display: none; }
+.lt summary b { font-family: var(--en) !important; font-weight: 300; font-size: 1.5em; line-height: 1; transition: transform .5s var(--ease-out); }
+.lt details[open] summary b { transform: rotate(45deg); }
+.lt details > p, .lt details > div { margin: 0; padding: 0 0 calc(var(--r) * 2.6); }
+
+/* ---- 表 ---- */
+.lt .company-table { margin: calc(var(--r) * 6) 0 0; border-top: 1px solid var(--ink); background: none; }
+.lt .company-table > div { display: grid; grid-template-columns: calc(var(--r) * 20) 1fr; gap: calc(var(--r) * 3); padding: calc(var(--r) * 2.2) 0; border: 0; border-bottom: 1px solid var(--hair); background: none !important; }
+.lt .company-table dt { font-weight: 500; letter-spacing: .15em; }
+.lt .company-table dd { margin: 0; }
+.lt .evaluation-table { border-top: 1px solid var(--ink); background: none; border-radius: 0; box-shadow: none; }
+.lt .evaluation-row { background: none !important; border: 0 !important; border-bottom: 1px solid var(--hair) !important; border-radius: 0; }
+.lt .evaluation-head { font-family: var(--mincho) !important; color: var(--ink) !important; }
+.lt .evaluation-head * { color: var(--ink) !important; }
+
+/* ---- ボタン・リンク ---- */
+.lt :is(.contact-button, .button, .forest-deep-link, .outline-button, .data-button, .guide-summary > a, .forest-cta a, .back-link) {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 0;
+  padding: calc(var(--r) * 1.8) calc(var(--r) * 4); border: 1px solid var(--ink) !important; border-radius: 0 !important;
+  background: var(--ink) !important; color: var(--bg) !important; box-shadow: none !important; transform: none !important;
+  font-size: max(17px, calc(var(--r) * 1.6)) !important; font-weight: 500; line-height: 1.3; letter-spacing: .2em; text-decoration: none;
+  transition: background .5s cubic-bezier(.215, .61, .355, 1), color .5s;
+}
+.lt :is(.contact-button, .button, .forest-deep-link, .outline-button, .data-button, .guide-summary > a, .forest-cta a):hover { background: var(--white) !important; color: var(--ink) !important; }
+.lt .forest-deep-link + .forest-deep-link, .lt .forest-cta a + a { background: transparent !important; color: var(--ink) !important; }
+.lt :is(.guide-summary > a) { border-color: var(--white) !important; background: transparent !important; color: var(--white) !important; }
+.lt .back-link { background: transparent !important; color: var(--ink) !important; padding: 0 0 calc(var(--r) * .6) !important; border: 0 !important; border-bottom: 1px solid var(--ink) !important; }
+.lt .text-link {
+  display: inline-flex; position: relative; margin-top: calc(var(--r) * 4); padding: 0 0 calc(var(--r) * .8); border: 0; background: none;
+  font-size: max(16px, calc(var(--r) * 1.5)); letter-spacing: .12em; text-decoration: none; color: var(--ink);
+}
+.lt .text-link::before { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: currentColor; transition: width .7s var(--ease-out); }
+.lt .text-link:hover::before { width: 0; left: auto; right: 0; }
+
+/* ---- 最後のお問い合わせ: 円のボタン(トップの .circle と同じ) ---- */
+.lt :is(.cta, .forest-cta) { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: var(--sec); padding-top: var(--sec) !important; border-top: 1px solid var(--hair); }
+.lt :is(.principles, .promise, .tool-flow, .guide-summary, .forest-future) + :is(.cta, .forest-cta) { margin-top: 0; border-top: 0; }
+.lt :is(.cta, .forest-cta) .label { justify-content: center; }
+.lt :is(.cta, .forest-cta) > p:not(.label):not(.contact-note) { max-width: 34em; margin: calc(var(--r) * 3) auto 0; }
+.lt .cta .contact-button {
+  width: calc(var(--r) * 22); min-width: 200px; aspect-ratio: 1; margin: calc(var(--r) * 6) auto 0; padding: 0 !important;
+  border-radius: 50% !important; background: transparent !important; color: var(--ink) !important; font-size: max(16px, calc(var(--r) * 1.5)) !important;
+}
+.lt .cta .contact-button:hover { background: var(--ink) !important; color: var(--bg) !important; }
+.lt .cta .contact-button[target="_blank"]::after { position: static; transform: none; margin-left: 4px; }
+.lt .contact-note { max-width: 36em; margin: calc(var(--r) * 3) auto 0; font-size: max(14px, calc(var(--r) * 1.3)) !important; color: var(--gray) !important; line-height: 1.9; }
+.lt .contact-note a { text-decoration: underline; }
+.lt :is(.cta, .forest-cta) > div { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: calc(var(--r) * 5); }
+/* 次の兄弟が .company など普通の節なら、上の線で区切る */
+.lt .cta + section { border-top: 1px solid var(--hair); margin-top: var(--sec); }
+
+/* ---- 入場(トップと同じ。JS が動かないときは最初から見える) ---- */
+@media (prefers-reduced-motion: no-preference) {
+  html.rv-ready .lt .rv { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform 1s cubic-bezier(.23, 1, .32, 1); }
+  html.rv-ready .lt .rv.on { opacity: 1; transform: none; }
+  html.rv-ready .lt .rv-img img { clip-path: inset(100% 0 0 0); transition: clip-path 1.2s cubic-bezier(.23, 1, .32, 1); }
+  html.rv-ready .lt .rv-img.on img { clip-path: inset(0 0 0 0); }
+}
+
+/* ---- スマホ幅 ---- */
+@media (max-width: 900px) {
+  .lt { --r: 10px; --sec: 96px; --side: 20px; }
+  .lt h1, .lt :is(.service-hero, .hero, .forest-hero, .guide-hero, .sustainable-hero) h1 { font-size: clamp(32px, 9vw, 42px); letter-spacing: .1em; }
+  .lt h2 { font-size: 26px; letter-spacing: .1em; }
+  .lt :is(.service-hero, .hero, .forest-hero, .guide-hero, .sustainable-hero) { padding-top: 64px !important; }
+  .lt .service-hero figure, .lt .hero > img, .lt :is(.forest-hero, .guide-hero)::after { margin-inline: -8px; height: 56svh; min-height: 300px; margin-top: 48px; }
+  .lt :is(.service-intro, .two-column, .owner-entry, .concerns, .service-lines, .flow-fees, .faq, .tool-flow) { grid-template-columns: 1fr; gap: 24px; }
+  .lt :is(.concerns, .service-lines, .flow-fees, .faq) > *, .lt .faq > details:first-of-type, .lt .faq > h2 { grid-column: 1 !important; grid-row: auto !important; }
+  .lt .faq > details:first-of-type { margin-top: 24px; }
+  .lt .flow-fees-steps { grid-template-columns: 1fr; }
+  .lt :is(.principles, .promise) > div { grid-template-columns: 1fr; }
+  .lt .service-line-list article { grid-template-columns: 44px 1fr; }
+  .lt .company-table > div { grid-template-columns: 1fr; gap: 2px; }
+  .lt .cta .contact-button { width: 200px; }
+}
+
+/* ---- 森林ガイドの図: 色の板をやめ、枠と墨 1 色に。挿絵も墨 1 色にして、手本のペン画の地図と揃える ---- */
+.lt :is(.succession-panel, .water-system, .thinning-explainer, .management-timeline, .conservation-note, .cascade-use,
+  .community-cycles, .wood-anatomy, .forest-type-compare, .guide-two-column > article) {
+  background: var(--bg) !important; border: 1px solid var(--ink) !important; border-radius: 3px !important; box-shadow: none !important; color: var(--ink) !important;
+}
+.lt :is(.succession-panel, .water-system, .thinning-explainer, .conservation-note) :is(h2, h3, p, li, span, strong) { color: var(--ink) !important; }
+.lt :is(.management-timeline ol, .cascade-use, .satoyama-transect, .conservation-layers, .water-diagram, .thinning-compare, .wood-disc, .community-cycles) { filter: grayscale(1) contrast(1.05); }
+.lt :is(.guide-asset, .forest-visual) img { filter: grayscale(1) contrast(1.06) brightness(1.03); }
+.lt .concern-group-title { color: var(--ink) !important; border-color: var(--ink) !important; }
+.lt .concern-group-title * , .lt .concern-jump a * { color: var(--ink) !important; }
+.lt .guide-conservation :is(.guide-section-heading, .risk-grid, .conservation-layers, .conservation-note) :is(p, h2, h3, span, strong, li) { color: var(--ink) !important; }
+.lt .work-figure { border: 0 !important; border-radius: 3px !important; }
+/* forest・guide の最初の画像は合成の挿絵なので、ほかの挿絵と同じく墨 1 色にする */
+.lt :is(.forest-hero, .guide-hero)::after { filter: grayscale(1) contrast(1.06) brightness(1.03); }
+.lt :is(.service-hero, .hero, .forest-hero, .guide-hero, .sustainable-hero) h1 { max-width: none; }
+.lt :is(.tool-hero figure, .why-image) img { filter: grayscale(1) contrast(1.06) brightness(1.03); }
+.lt .data-intro .back-link { display: inline-block; background: transparent !important; color: var(--ink) !important; padding: 0 0 calc(var(--r) * .6) !important; border: 0 !important; border-bottom: 1px solid var(--ink) !important; font-size: max(15px, calc(var(--r) * 1.4)) !important; letter-spacing: .14em; }
+.lt .value-callout { background: var(--gray) !important; color: var(--white) !important; border: 0 !important; border-radius: 3px !important; }
+.lt .value-callout * { color: var(--white) !important; }
+.lt .tone-green :is(.sustainable-heading, .instrument-grid) :is(p, h2, h3, span, strong, li, b) { color: var(--ink) !important; }
+.lt .prefecture-grid { gap: 0; border-top: 1px solid var(--ink); border-left: 0; background: none !important; }
+.lt .prefecture-card { background: var(--bg) !important; border: 0 !important; border-bottom: 1px solid var(--hair) !important; border-right: 1px solid var(--hair) !important; border-radius: 0 !important; box-shadow: none !important; }
+.lt .prefecture-card :is(h3, a) { font-family: var(--mincho) !important; }
+.lt h2 + p:not(.label) { margin-top: calc(var(--r) * 3); }
+.lt h3 + p { margin-top: calc(var(--r) * .8); }
+.lt .stat-card { background: var(--gray) !important; color: var(--white) !important; border-radius: 3px !important; box-shadow: none !important; }
+.lt .stat-card * { color: var(--white) !important; }
+/* 英語版の見出しは欧文の明朝(トップの英字と同じ Cormorant Garamond) */
+.sustainable-en .lt :is(h1, h2, h3, .label, summary, .sustainable-hero-meta strong) { font-family: var(--en) !important; font-weight: 500; letter-spacing: .04em; }
+.sustainable-en .lt h1 { font-size: calc(var(--r) * 5.8); line-height: 1.25; }
+.sustainable-en .lt h2 { font-size: max(28px, calc(var(--r) * 3.8)); line-height: 1.35; }

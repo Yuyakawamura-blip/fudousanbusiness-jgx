@@ -20,6 +20,7 @@
 | パス | 内容 |
 | --- | --- |
 | `docs/index.html` + `docs/home-letter.css` / `home-letter.js` | トップ(手本: 穂垂亭。相談について → ある山の記録 → 考え方 → 相談票 → 費用 → 入口 → 対応地域。`home-letter.*` は本文 `main.hl` だけに効く。`home.css` は旧トップ用で今は読み込んでいない) |
+| `docs/page-letter.css` / `page-letter.js` | トップ以外の 11 ページの本文(`<main class="lt">`)をトップと同じ作り(穂垂亭の踏襲)に上書きする。styles.css(森林データは forest-data.css)の後に読み込む。新しいページにも入れる |
 | `docs/about/` `docs/concerns/` `docs/services/` | 私たちについて / お悩みから探す / サービス一覧 |
 | `docs/services/satoyama-real-estate/` | 山林所有者向けサービス |
 | `docs/services/forest-planning-tool/` | 林業事業体向けツール |
@@ -55,7 +56,7 @@
 - 文字色は背景とのコントラスト比 4.5 以上にする(小見出しラベルは #4f6a57)
 - 「ご相談の流れと費用」は共通部品 `.flow-fees`(styles.css)。トップとさとやま不動産で同じ 3 段階(無料 / 無料 / 事前にお見積り)を保つ
 - ロゴは `docs/assets/nature-capital-mark.svg`
-- 各ページの `<head>` にはファビコン・共有用(OGP)のメタタグ・Noto Sans JP の読み込み(preconnect + link。CSS の `@import` は使わない)・`nav.js`・`consult-source.js` がある。`<body>` の直後に「本文へ移動」(`.skip-link` → `<main id="main">`)。新しいページを作るときも同じ一式を入れる(404 は `<base>` があるので本文へ移動は付けない)(og:url は公開 URL の絶対パス、共有画像は `docs/assets/og-image.jpg`)。独自ドメインに移すときは og:url / og:image を書き換える
+- 各ページの `<head>` にはファビコン・共有用(OGP)のメタタグ・書体の読み込み(preconnect + link。CSS の `@import` は使わない)・`nav.js`・`consult-source.js`、トップ以外は `page-letter.css` / `page-letter.js` がある。`<body>` の直後に「本文へ移動」(`.skip-link` → `<main id="main">`)。新しいページを作るときも同じ一式を入れる(404 は `<base>` があるので本文へ移動は付けない)(og:url は公開 URL の絶対パス、共有画像は `docs/assets/og-image.jpg`)。独自ドメインに移すときは og:url / og:image を書き換える
 - 新しい画像は **WebP・1 枚 300KB 目安**、ファイル名は英小文字のケバブケース。`alt` を必ず書く
 - レイアウトはデスクトップとスマホ幅(720px 以下)の両方で確認する
 - 自然資本価値・売却・認証の結果を約束する表現を書かない(既存の注意書きの方針に合わせる)

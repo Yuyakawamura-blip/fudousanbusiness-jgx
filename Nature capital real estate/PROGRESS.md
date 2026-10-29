@@ -93,3 +93,7 @@
 - 計測用スクリプトは scratchpad の inspect.py(Chrome DevTools でスクロール撮影と computed style の取得)。次に使うときは作り直しが必要
 
 次回最初に読むファイル: `DESIGN.md` §6、`PLAN.md`(K)、`docs/home-letter.css`
+- 他の 11 ページの本文をトップと同じ作りに(ユーザー了承「このデザインで問題ありません」): `docs/page-letter.css` / `page-letter.js` を新設し、各ページに読み込みと `<main class="lt">` を追加。合成の挿絵と色の図は墨 1 色に。PC 1440・スマホ 390 で全ページ撮影して確認(横はみ出しなし)。未コミット
+- 撮影用スクリプト: scratchpad の `tools/shoot.py`(パスワードを sessionStorage で通して全体撮影)、`tools/tile.py`。scratchpad の venv で動かす
+
+次回最初に読むファイル: `DESIGN.md` §6、`PLAN.md`(K)、`docs/page-letter.css`
