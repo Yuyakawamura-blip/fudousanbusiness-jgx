@@ -143,28 +143,30 @@ footer { border-top:1px solid var(--soft); padding:28px var(--gut) 48px; font-si
     <div class="grid">
       <form class="sheet" onsubmit="return false">
         <div class="head"><span class="t">山の相談票</span><span class="meta">記入日 <time id="today"></time> ・ <output id="count">0</output> 項目に印</span></div>
-        <fieldset><legend>その山は、いま誰の名義ですか<span>1 つ</span></legend><div class="opts">
+        <fieldset data-label="名義"><legend>その山は、いま誰の名義ですか<span>1 つ</span></legend><div class="opts">
           <label><input type="radio" name="owner" value="self">自分の名義</label>
           <label><input type="radio" name="owner" value="dead">亡くなった親・祖父母の名義のまま</label>
           <label><input type="radio" name="owner" value="living">親など家族が持っている(これから相続)</label>
           <label><input type="radio" name="owner" value="unknown">分からない</label></div></fieldset>
-        <fieldset><legend>山の場所は分かりますか<span>1 つ</span></legend><div class="opts">
+        <fieldset data-label="場所"><legend>山の場所は分かりますか<span>1 つ</span></legend><div class="opts">
           <label><input type="radio" name="place" value="known">行ったことがある・地図で分かる</label>
           <label><input type="radio" name="place" value="town">市町村くらいは分かる</label>
           <label><input type="radio" name="place" value="none">ほとんど分からない</label></div></fieldset>
-        <fieldset><legend>手元にあるもの<span>いくつでも</span></legend><div class="opts">
+        <fieldset data-label="手元にあるもの"><legend>手元にあるもの<span>いくつでも</span></legend><div class="opts">
           <label><input type="checkbox" name="doc" value="tax">固定資産税の納税通知書</label>
           <label><input type="checkbox" name="doc" value="touki">登記簿(登記事項証明書)</label>
           <label><input type="checkbox" name="doc" value="kozu">公図・地図</label>
           <label><input type="checkbox" name="doc" value="nothing">何も無い</label></div></fieldset>
-        <fieldset><legend>気になっていること<span>いくつでも</span></legend><div class="opts">
+        <fieldset data-label="気になっていること"><legend>気になっていること<span>いくつでも</span></legend><div class="opts">
           <label><input type="checkbox" name="worry" value="far">遠くて見に行けない</label>
           <label><input type="checkbox" name="worry" value="cost">税金や管理費がかかり続ける</label>
           <label><input type="checkbox" name="worry" value="tree">倒木・越境で迷惑をかけていないか</label>
           <label><input type="checkbox" name="worry" value="sell">売れるのか、手放せるのか</label>
           <label><input type="checkbox" name="worry" value="mixed">畑や空き家も一緒にある</label>
           <label><input type="checkbox" name="worry" value="family">子どもに負担を残したくない</label></div></fieldset>
-        <fieldset style="border-bottom:0"><legend>ひと言で言うと<span>書かなくても構いません</span></legend>
+        <fieldset><legend>山のある市町村<span>分かれば</span></legend>
+          <div class="free"><input type="text" data-prefill="place" aria-label="山のある市町村" placeholder="例: 〇〇県 〇〇町"></div></fieldset>
+        <fieldset style="border-bottom:0" data-label="ひと言"><legend>ひと言で言うと<span>書かなくても構いません</span></legend>
           <div class="free"><input type="text" aria-label="ひと言で言うと" placeholder="例: 祖父の山が〇〇町にあるらしいが、行ったことがない"></div></fieldset>
       </form>
       <aside class="result" aria-live="polite">
@@ -186,17 +188,19 @@ footer { border-top:1px solid var(--soft); padding:28px var(--gut) 48px; font-si
   <div class="others">山林をお持ちの方以外は　<a href="#">林業事業体の方</a><a href="#">企業・個人の方</a><a href="#">森林を知る</a></div>
 </main>
 <footer>運営 日本GXグループ株式会社 / プライバシーポリシー<br>試作 v3(写真と所有者の実際の言葉は未反映)</footer>
+<script src="../../docs/consult-source.js"></script>
+<script src="../../docs/consult-sheet.js"></script>
 <script>
 const form = document.querySelector('form'), out = document.getElementById('out');
 const d = new Date(); document.getElementById('today').textContent = `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
 let prev = new Set();
-const CTA = '<a class="btn" href="#">相談を申し込む(無料)</a><small>申し込みの用紙が開きます。3 営業日以内にご連絡します。<br>(本番では、ここで付けた印を用紙に写すことを検討)</small>';
+const cta = () => `<a class="btn" href="${ConsultSheet.url(form)}" target="_blank" rel="noopener noreferrer">相談を申し込む(無料)</a><small>申し込みの用紙が開きます。ここで付けた印は、用紙の「ご相談の内容」に写してあります。お名前とご連絡先を書いて送ってください。3 営業日以内にご連絡します。</small>`;
 function render() {
   document.getElementById('count').textContent = new Set([...form.querySelectorAll('input:checked')].map(i => i.name + (i.type === 'checkbox' ? i.value : ''))).size;
   const v = n => form.querySelector(`[name=${n}]:checked`)?.value;
   const all = n => [...form.querySelectorAll(`[name=${n}]:checked`)].map(e => e.value);
   const docs = all('doc'), worry = all('worry'), owner = v('owner'), place = v('place'), steps = [];
-  if (!owner && !place && !docs.length && !worry.length) { out.innerHTML = '<p class="empty">相談票に印を付けると、ここに出ます。印を付けずに申し込んでも構いません。</p>' + CTA; return; }
+  if (!owner && !place && !docs.length && !worry.length) { out.innerHTML = '<p class="empty">相談票に印を付けると、ここに出ます。印を付けずに申し込んでも構いません。</p>' + cta(); return; }
   if (docs.includes('tax')) steps.push('納税通知書に書かれた地番から、山の場所と面積が分かります。まずはこれをお手元に。');
   else if (place !== 'known') steps.push('山の場所は、市町村で「名寄帳」を取ると一覧で分かることがあります。取り方はご相談の中でご案内します。');
   if (owner === 'dead') steps.push('名義が亡くなった方のままの場合、相続登記が必要です(義務化されています)。手続きは司法書士へおつなぎします。');
@@ -206,7 +210,7 @@ function render() {
   if (worry.includes('mixed')) steps.push('畑や空き家も、山と一緒に一覧にして整理します。');
   if (worry.includes('cost') || worry.includes('family')) steps.push('毎年の負担を土地ごとに一覧にすると、残すか手放すかを家族で話しやすくなります。');
   if (!steps.length) steps.push('分かる範囲のことを、そのままお聞かせください。');
-  out.innerHTML = '<ul>' + steps.map(s => `<li${prev.has(s) ? '' : ' class="new"'}>${s}</li>`).join('') + '</ul>' + CTA;
+  out.innerHTML = '<ul>' + steps.map(s => `<li${prev.has(s) ? '' : ' class="new"'}>${s}</li>`).join('') + '</ul>' + cta();
   prev = new Set(steps);
 }
 if (location.hash === '#demo') { ['owner=dead','place=town','doc=tax','worry=far','worry=sell'].forEach(k => { const [n,val]=k.split('='); form.querySelector(`[name=${n}][value=${val}]`).checked = true; }); }

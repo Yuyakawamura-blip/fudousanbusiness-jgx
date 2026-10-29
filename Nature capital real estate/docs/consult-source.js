@@ -20,9 +20,7 @@
   var script = document.currentScript;
   var base = script ? script.src.replace(/consult-source\.js.*$/, "") : "";
 
-  document.addEventListener("DOMContentLoaded", function () {
-    if (!FORM_ENTRY) return;
-
+  function decorate(link) {
     var stored = null;
     try {
       stored = sessionStorage.getItem(STORAGE_KEY);
@@ -32,12 +30,24 @@
     var page = base && here.indexOf(base) === 0 ? here.slice(base.length) : window.location.pathname;
     var value = (stored || "web") + " / " + (page || "top");
 
+    var url = new URL(link.href);
+    url.searchParams.set("usp", "pp_url");
+    url.searchParams.set(FORM_ENTRY, value);
+    link.href = url.toString();
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!FORM_ENTRY) return;
     var links = document.querySelectorAll('a[href^="' + FORM_PREFIX + '"]');
-    Array.prototype.forEach.call(links, function (link) {
-      var url = new URL(link.href);
-      url.searchParams.set("usp", "pp_url");
-      url.searchParams.set(FORM_ENTRY, value);
-      link.href = url.toString();
-    });
+    Array.prototype.forEach.call(links, decorate);
   });
+
+  // 相談票のボタンのように後から作られたリンクにも、押した時点で付ける
+  function onPress(event) {
+    if (!FORM_ENTRY) return;
+    var link = event.target.closest && event.target.closest('a[href^="' + FORM_PREFIX + '"]');
+    if (link) decorate(link);
+  }
+  document.addEventListener("click", onPress, true);
+  document.addEventListener("auxclick", onPress, true);
 })();
