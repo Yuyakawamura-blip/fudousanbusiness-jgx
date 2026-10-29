@@ -97,3 +97,4 @@
 - 撮影用スクリプト: scratchpad の `tools/shoot.py`(パスワードを sessionStorage で通して全体撮影)、`tools/tile.py`。scratchpad の venv で動かす
 
 次回最初に読むファイル: `DESIGN.md` §6、`PLAN.md`(K)、`docs/page-letter.css`
+- ed7f0a6b を push、デプロイ成功。公開 URL で page-letter.css / .js と各ページの 200、さとやま不動産の表示(PC)を確認
